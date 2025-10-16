@@ -254,3 +254,126 @@ main {
     visibility: visible;
     transform: translateY(0);
 }
+/* ==========================================================================
+   8. Página de Localização e Contato
+   ==========================================================================
+*/
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Duas colunas de largura igual */
+    gap: 2.5rem; /* Espaço entre as colunas */
+    align-items: flex-start;
+}
+
+.contact-info-section, .map-section {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.contact-info-section h2, .map-section h2 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    color: var(--cor-texto-escuro);
+}
+
+.contact-details {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2.5rem 0;
+}
+
+.contact-details li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1.2rem;
+    line-height: 1.5;
+}
+
+.contact-details i {
+    font-size: 1.2rem;
+    color: var(--cor-laranja-destaque);
+    margin-top: 5px;
+    width: 25px;
+    text-align: center;
+    margin-right: 15px;
+}
+
+.contact-details strong {
+    display: block;
+    margin-bottom: 2px;
+}
+.contact-details p {
+    margin: 0;
+    color: #555;
+}
+
+.form-title {
+    border-top: 1px solid var(--cor-borda-suave);
+    padding-top: 2rem;
+}
+
+.contact-form .form-group {
+    margin-bottom: 1rem;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--cor-borda-suave);
+    border-radius: 4px;
+    font-size: 1rem;
+    font-family: inherit;
+    box-sizing: border-box; /* Garante que padding não afete a largura total */
+}
+
+.submit-button {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border-radius: 4px;
+    background-color: var(--cor-laranja-destaque);
+    color: var(--cor-texto-claro);
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #d47321; /* Um tom de laranja mais escuro */
+}
+
+/* Deixa o mapa responsivo */
+.map-embed {
+    position: relative;
+    height: 0;
+    padding-bottom: 100%; /* Proporção 1:1. Ajuste se o mapa ficar esticado. Ex: 75% para 4:3 */
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.map-embed iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* -- 9. Media Query para Responsividade (Contato) -- */
+@media (max-width: 992px) {
+    .contact-grid {
+        grid-template-columns: 1fr; /* Colunas empilhadas em telas menores */
+    }
+}

@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <title>Localização e Contato - Museu Estadual do Carvão</title>
     
     <link rel="stylesheet" href="css/style.css">
@@ -11,9 +10,9 @@
 </head>
 <body>
 
-   <header>
+    <header>
         <div class="header-top">
-            <a href="#" class="logo">
+            <a href="index.html" class="logo">
                 <img src="img/logo-museu.png" alt="Logo Museu Estadual do Carvão">
                 <div>
                     <span>Museu</span>
@@ -26,34 +25,31 @@
                     <input type="text" placeholder="Buscar">
                     <button><i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
-                </div>
+            </div>
         </div>
-       <nav class="main-nav">
-    <ul>
-        <li class="has-dropdown">
-            <a href="nossa-historia.html">Nossa História <i class="fa-solid fa-caret-down"></i></a>
-            <ul class="dropdown-menu">
-                <li><a href="#">O Museu</a></li>
-                <li><a href="#">Arquivo de Mineração</a></li>
+        <nav class="main-nav">
+            <ul>
+                <li class="has-dropdown">
+                    <a href="nossa-historia.html">Nossa História <i class="fa-solid fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">O Museu</a></li>
+                        <li><a href="#">Arquivo de Mineração</a></li>
+                    </ul>
+                </li>
+                <li class="has-dropdown">
+                    <a href="nossos-fundos.html">Nossos Fundos <i class="fa-solid fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Companhia Estrada de Ferro...</a></li>
+                        <li><a href="#">Companhia Minas de Carvão...</a></li>
+                    </ul>
+                </li>
+                <li><a href="index.html">Arquivo Digital</a></li>
+                <li><a href="projetos.html">Projetos</a></li>
+                <li><a href="publicacoes.html">Publicações</a></li>
+                <li><a href="servicos.html">Serviços</a></li>
+                <li><a href="localizacao-contato.html" class="active">Localização e Contato</a></li>
             </ul>
-        </li>
-        <li class="has-dropdown">
-            <a href="nossos-fundos.html">Nossos Fundos <i class="fa-solid fa-caret-down"></i></a>
-            <ul class="dropdown-menu">
-                <li><a href="#">Companhia Estrada de Ferro...</a></li>
-                <li><a href="#">Companhia Minas de Carvão...</a></li>
-                <li><a href="#">Companhia Carbonífera...</a></li>
-                <li><a href="#">Sindicatos</a></li>
-            </ul>
-        </li>
-
-        <li><a href="index.html" >Arquivo Digital</a></li>
-        <li><a href="projetos.html">Projetos</a></li>
-        <li><a href="publicacoes.html">Publicações</a></li>
-        <li><a href="servicos.html">Serviços</a></li>
-        <li><a href="localizacao-contato.html" class="active">Localização e Contato</a></li>
-    </ul>
-</nav>
+        </nav>
     </header>
 
     <main>
@@ -61,8 +57,76 @@
             <h1>Localização e Contato</h1>
         </section>
 
-        <div style="padding: 2rem; text-align: center; min-height: 300px;">
-            <p>Página em construção.</p>
+        <div class="contact-grid">
+            <div class="contact-info-section">
+                <h2>Informações de Contato</h2>
+                <ul class="contact-details">
+                    <li>
+                        <i class="fa-solid fa-map-marker-alt"></i>
+                        <div>
+                            <strong>Endereço:</strong>
+                            <p>R. Prof. Péricles de Barcellos, 2780 - Centro, Arroio dos Ratos - RS, 96740-000</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-phone"></i>
+                        <div>
+                            <strong>Telefone:</strong>
+                            <p>(51) 3656-1215</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-envelope"></i>
+                        <div>
+                            <strong>E-mail:</strong>
+                            <p>museu-carvao@sedac.rs.gov.br</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-clock"></i>
+                        <div>
+                            <strong>Horário de Funcionamento:</strong>
+                            <p>Terça a Sexta: 9h às 17h | Sábados: 13h às 17h</p>
+                        </div>
+                    </li>
+                </ul>
+
+                <h2 class="form-title">Envie uma Mensagem</h2>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Nome</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Assunto</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Mensagem</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-button">Enviar Mensagem</button>
+                </form>
+            </div>
+
+            <div class="map-section">
+                <h2>Nossa Localização</h2>
+                <div class="map-embed">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3453.793730706222!2d-51.72877962454659!3d-30.04278487492543!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9519553f185c7075%3A0x6b490f2095a9477b!2sMuseu%20Estadual%20do%20Carv%C3%A3o!5e0!3m2!1spt-BR!2sbr!4v1729124032549!5m2!1spt-BR!2sbr" 
+                        width="600" 
+                        height="450" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
         </div>
     </main>
 
