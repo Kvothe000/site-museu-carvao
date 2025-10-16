@@ -1,198 +1,52 @@
 /* ==========================================================================
-   Estilo baseado no design do Canva - Museu do Carvão
+   3a. Estilos para Dropdown do Menu Principal
    ==========================================================================
 */
 
-/* -- 1. Variáveis de Cor e Configurações Globais -- */
-:root {
-    --cor-laranja-destaque: #E58332;
-    --cor-fundo-escuro: #1A1A1A;
-    --cor-fundo-claro: #F5F5F5;
-    --cor-texto-claro: #FFFFFF;
-    --cor-texto-escuro: #333333;
-    --cor-borda-suave: #E0E0E0;
+/* Posicionamento do container do dropdown */
+.main-nav li.has-dropdown {
+    position: relative; /* Essencial para o posicionamento do submenu */
 }
 
-body {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    margin: 0;
-    background-color: var(--cor-fundo-claro);
-    color: var(--cor-texto-escuro);
-}
-
-/* -- 2. Cabeçalho -- */
-header {
-    background-color: var(--cor-texto-claro);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.header-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.logo {
+/* Adiciona um pequeno espaço para o ícone de seta */
+.main-nav li.has-dropdown > a {
     display: flex;
     align-items: center;
-    text-decoration: none;
-    color: var(--cor-texto-escuro);
+    gap: 8px; /* Espaço entre o texto e a seta */
 }
 
-.logo img {
-    height: 60px;
-    margin-right: 15px;
-}
-
-.logo div {
-    display: flex;
-    flex-direction: column;
-    font-weight: bold;
-    font-size: 1.1rem;
-    line-height: 1.2;
-}
-
-.search-bar {
-    display: flex;
-    border: 1px solid var(--cor-borda-suave);
-    border-radius: 4px;
-}
-
-.search-bar input {
-    border: none;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    background: #f1f1f1;
-}
-
-.search-bar button {
-    background: transparent;
-    border: none;
-    padding: 0 0.8rem;
-    cursor: pointer;
-    font-size: 1rem;
-    color: #555;
-}
-
-/* -- 3. Barra de Navegação Principal -- */
-.main-nav {
-    background-color: var(--cor-fundo-escuro);
-}
-
-.main-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-}
-
-.main-nav li a {
-    display: block;
-    padding: 1rem 1.5rem;
-    color: var(--cor-texto-claro);
-    text-decoration: none;
-    font-weight: 500;
-    transition: background-color 0.3s;
-}
-
-.main-nav li a:hover, .main-nav li a.active {
-    background-color: var(--cor-laranja-destaque);
-}
-
-/* -- 4. Conteúdo Principal -- */
-main {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2.5rem;
-}
-
-.page-title h1 {
-    text-align: center;
-    color: var(--cor-laranja-destaque);
-    margin-bottom: 2.5rem;
-    font-size: 2.2rem;
-}
-
-/* -- 5. Grid do Acervo e Cards -- */
-#acervo-container {
-    display: grid;
-    /* Cria um grid responsivo: tenta encaixar colunas de 250px, preenchendo o espaço */
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 1.5rem;
-}
-
-/* Card individual (será criado pelo JavaScript) */
-.fundo-card {
-    position: relative; /* Essencial para o posicionamento do texto sobre a imagem */
-    display: block;
-    text-decoration: none;
-    overflow: hidden;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-.fundo-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover; /* Garante que a imagem cubra o espaço sem distorcer */
-    display: block;
-    transition: transform 0.4s ease;
-}
-
-.fundo-card figcaption {
+/* Estilo do menu dropdown (escondido por padrão) */
+.dropdown-menu {
     position: absolute;
-    bottom: 0;
+    top: 100%; /* Posiciona logo abaixo do item pai */
     left: 0;
-    right: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-    color: var(--cor-texto-claro);
-    padding: 2rem 1rem 1rem 1rem;
-    text-align: center;
-    font-weight: bold;
-    transition: background-color 0.3s;
+    background-color: var(--cor-fundo-escuro);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    min-width: 280px; /* Largura mínima do dropdown */
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+
+    /* Animação de "expandir" */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
 }
 
-/* Efeito Hover */
-.fundo-card:hover img {
-    transform: scale(1.1);
+/* Estilo dos links dentro do dropdown */
+.dropdown-menu li a {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.95rem;
+    white-space: nowrap; /* Evita que o texto quebre em duas linhas */
 }
 
-.fundo-card:hover figcaption {
-    background-color: rgba(229, 131, 50, 0.85); /* Laranja com transparência */
-}
-
-
-/* -- 6. Animação de Loading -- */
-#acervo-container.loading {
-    display: flex;
-    justify-content: center;
-    padding: 3rem;
-    grid-template-columns: 1fr; /* Sobrescreve o grid durante o loading */
-}
-
-.spinner {
-    border: 5px solid var(--cor-borda-suave);
-    border-top: 5px solid var(--cor-laranja-destaque);
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* -- 7. Rodapé -- */
-.site-footer {
-    text-align: center;
-    padding: 2rem;
-    margin-top: 2rem;
-    background-color: #e0e0e0;
-    color: #555;
+/* Estado VISÍVEL do dropdown */
+/* Adicionamos esta classe via JavaScript */
+.has-dropdown.show-dropdown .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
 }

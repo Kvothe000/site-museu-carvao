@@ -1,61 +1,26 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arquivo Digital - Museu Estadual do Carvão</title>
-    
-    <link rel="stylesheet" href="css/style.css">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-</head>
-<body>
-
-    <header>
-        <div class="header-top">
-            <a href="#" class="logo">
-                <img src="https://arquivos.cultura.rs.gov.br/themes/arte/images/logo-mec.png" alt="Logo Museu Estadual do Carvão">
-                <div>
-                    <span>Museu</span>
-                    <span>Estadual</span>
-                    <span>do Carvão</span>
-                </div>
-            </a>
-            <div class="header-controls">
-                <div class="search-bar">
-                    <input type="text" placeholder="Buscar">
-                    <button><i class="fa-solid fa-magnifying-glass"></i></button>
-                </div>
-                </div>
-        </div>
-        <nav class="main-nav">
-            <ul>
-                <li><a href="#">Nossa História</a></li>
-                <li><a href="#">Nossos Fundos</a></li>
-                <li><a href="#" class="active">Arquivo Digital</a></li>
-                <li><a href="#">Projetos</a></li>
-                <li><a href="#">Publicações</a></li>
-                <li><a href="#">Serviços</a></li>
-                <li><a href="#">Localização e Contato</a></li>
+<nav class="main-nav">
+    <ul>
+        <li class="has-dropdown">
+            <a href="#">Nossa História <i class="fa-solid fa-caret-down"></i></a>
+            <ul class="dropdown-menu">
+                <li><a href="#">O Museu</a></li>
+                <li><a href="#">Arquivo de Mineração</a></li>
             </ul>
-        </nav>
-    </header>
+        </li>
+        <li class="has-dropdown">
+            <a href="#">Nossos Fundos <i class="fa-solid fa-caret-down"></i></a>
+            <ul class="dropdown-menu">
+                <li><a href="#">Companhia Estrada de Ferro...</a></li>
+                <li><a href="#">Companhia Minas de Carvão...</a></li>
+                <li><a href="#">Companhia Carbonífera...</a></li>
+                <li><a href="#">Sindicatos</a></li>
+            </ul>
+        </li>
 
-    <main>
-        <section class="page-title">
-            <h1>Fundos Documentais</h1>
-        </section>
-
-        <div id="acervo-container" class="loading">
-            <div class="spinner"></div>
-        </div>
-    </main>
-
-    <footer class="site-footer">
-        <p>&copy; 2025 Museu do Carvão. Projeto desenvolvido por Matheus (UFRGS).</p>
-    </footer>
-
-    <script src="js/script.js"></script>
-
-</body>
-</html>
+        <li><a href="#" class="active">Arquivo Digital</a></li>
+        <li><a href="#">Projetos</a></li>
+        <li><a href="#">Publicações</a></li>
+        <li><a href="#">Serviços</a></li>
+        <li><a href="#">Localização e Contato</a></li>
+    </ul>
+</nav>
