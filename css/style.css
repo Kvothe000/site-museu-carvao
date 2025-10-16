@@ -372,27 +372,45 @@ main {
 }
 
 /* ==========================================================================
-   8a. Personalização dos Títulos da Página de Contato
+   8a. Personalização dos Títulos da Página de Contato (VERSÃO ATUALIZADA)
    ==========================================================================
 */
 
-/* Estilo para o título principal "Localização e Contato" */
-.page-title h1 {
-    background-color: var(--cor-fundo-escuro); /* Fundo preto */
-    color: var(--cor-laranja-destaque);       /* Cor do texto em laranja para contraste */
-    display: inline-block;                    /* Faz o fundo envolver apenas o conteúdo do texto */
-    padding: 0.8rem 1.8rem;                   /* Adiciona um espaçamento interno para o fundo respirar */
-    border-radius: 5px;                       /* Suaviza os cantos */
+/* 1. Centraliza o container do título principal */
+.page-title {
+    text-align: center; /* <<< Centraliza tudo que está dentro dele */
 }
 
-/* Estilo para os subtítulos "Informações de Contato", "Nossa Localização" e "Envie uma Mensagem" */
+/* Estilo para o título principal "Localização e Contato" */
+.page-title h1 {
+    background-color: var(--cor-fundo-escuro);
+    color: var(--cor-laranja-destaque);
+    display: inline-block;
+    padding: 0.8rem 1.8rem;
+    border-radius: 5px;
+}
+
+/* 2. Transforma os subtítulos em cabeçalhos completos */
 .contact-info-section h2,
 .map-section h2 {
-    background-color: var(--cor-laranja-destaque); /* Fundo laranja */
-    color: var(--cor-texto-claro);                /* Cor do texto em branco para melhor leitura */
-    display: inline-block;                        /* Faz o fundo envolver apenas o conteúdo do texto */
-    padding: 0.6rem 1.5rem;                       /* Adiciona um espaçamento interno */
-    border-radius: 5px;                           /* Suaviza os cantos */
+    background-color: var(--cor-laranja-destaque);
+    color: var(--cor-texto-claro);
+
+    /* Removemos o 'inline-block' para que ocupe a largura toda */
+    padding: 1rem 2rem; /* Ajusta o padding para um cabeçalho */
+    margin: -2rem -2rem 1.5rem -2rem; /* <<< Faz o cabeçalho "sangrar" para as bordas */
+    
+    /* Arredonda apenas os cantos de cima para parecer um cabeçalho de card */
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+/* Ajuste específico para o segundo subtítulo (do formulário) */
+.form-title {
+    border-top: none; /* Remove a linha que existia antes */
+    padding-top: 1rem; /* Garante o padding igual aos outros */
 }
 
 /* -- 9. Media Query para Responsividade (Contato) -- */
