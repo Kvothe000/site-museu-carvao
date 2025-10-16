@@ -378,9 +378,10 @@ main {
 
 .contact-grid {
     display: grid;
-    /* Duas colunas de largura igual */
     grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
     gap: 2.5rem;
+    align-items: stretch; /* <<< A CORREÇÃO PRINCIPAL ESTÁ AQUI */
 }
 
 /* --- POSICIONAMENTO DOS BLOCOS NO GRID --- */
