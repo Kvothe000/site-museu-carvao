@@ -56,4 +56,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Chama a função para iniciar o processo
     carregarAcervo();
-});
+    
+// ... (seu código 'async function carregarAcervo()' e a chamada dele continuam aqui em cima)
+
+
+    // --- FUNCIONALIDADE DO MENU DROPDOWN ---
+    // Seleciona todos os itens de menu que têm um submenu.
+    const dropdownItems = document.querySelectorAll('.main-nav .has-dropdown');
+
+    // Adiciona um ouvinte de evento de clique para cada um.
+    dropdownItems.forEach(item => {
+        const link = item.querySelector('a');
+        link.addEventListener('click', function(event) {
+            // Previne o link de navegar para outra página (comportamento padrão do '#').
+            event.preventDefault();
+            
+            // Pega o item pai (o <li>) que foi clicado.
+            const clickedParent = this.parentElement;
+
+            // Fecha todos os outros dropdowns que possam estar abertos.
+            dropdownItems.forEach(otherItem => {
+                if (otherItem !== clickedParent) {
+                    otherItem.classList.remove('show-dropdown');
+                }
+            });
+
+            // Adiciona ou remove a classe 'show-dropdown' no item clicado.
+            // Isso faz o CSS mostrar ou esconder o menu.
+            clickedParent.classList.toggle('show-dropdown');
+        });
+    });
+
+    // Fecha o dropdown se o usuário clicar em qualquer outro lugar da página.
+    window.addEventListener('click', function(event) {
+        // Verifica se o clique NÃO foi dentro de um item de menu com dropdown.
+        if (!event.target.closest('.has-dropdown')) {
+            // Se não foi, remove a classe 'show-dropdown' de todos os itens.
+            dropdownItems.forEach(item => {
+                item.classList.remove('show-dropdown');
+            });
+        }
+    });
+
+}); // Esta é a chave de fechamento do 'DOMContentLoaded'. Certifique-se de que o código acima esteja dentro dela.
