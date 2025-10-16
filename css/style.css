@@ -371,6 +371,30 @@ main {
     height: 100%;
 }
 
+/* ==========================================================================
+   8a. Personalização dos Títulos da Página de Contato
+   ==========================================================================
+*/
+
+/* Estilo para o título principal "Localização e Contato" */
+.page-title h1 {
+    background-color: var(--cor-fundo-escuro); /* Fundo preto */
+    color: var(--cor-laranja-destaque);       /* Cor do texto em laranja para contraste */
+    display: inline-block;                    /* Faz o fundo envolver apenas o conteúdo do texto */
+    padding: 0.8rem 1.8rem;                   /* Adiciona um espaçamento interno para o fundo respirar */
+    border-radius: 5px;                       /* Suaviza os cantos */
+}
+
+/* Estilo para os subtítulos "Informações de Contato", "Nossa Localização" e "Envie uma Mensagem" */
+.contact-info-section h2,
+.map-section h2 {
+    background-color: var(--cor-laranja-destaque); /* Fundo laranja */
+    color: var(--cor-texto-claro);                /* Cor do texto em branco para melhor leitura */
+    display: inline-block;                        /* Faz o fundo envolver apenas o conteúdo do texto */
+    padding: 0.6rem 1.5rem;                       /* Adiciona um espaçamento interno */
+    border-radius: 5px;                           /* Suaviza os cantos */
+}
+
 /* -- 9. Media Query para Responsividade (Contato) -- */
 @media (max-width: 992px) {
     .contact-grid {
