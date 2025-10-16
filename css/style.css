@@ -372,45 +372,133 @@ main {
 }
 
 /* ==========================================================================
-   8a. Personalização dos Títulos da Página de Contato (VERSÃO ATUALIZADA)
+   8. Página de Localização e Contato (VERSÃO FINAL)
    ==========================================================================
 */
 
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    align-items: flex-start;
+}
+
+/* Container para os blocos da coluna esquerda */
+.contact-column {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem; /* Espaço entre o bloco de info e o de formulário */
+}
+
+/* Estilo unificado para todos os cards brancos da página */
+.info-card, .map-section {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* --- TÍTULOS PERSONALIZADOS --- */
+
 /* 1. Centraliza o container do título principal */
 .page-title {
-    text-align: center; /* <<< Centraliza tudo que está dentro dele */
+    text-align: center;
 }
 
 /* Estilo para o título principal "Localização e Contato" */
 .page-title h1 {
-    background-color: var(--cor-fundo-escuro);
-    color: var(--cor-laranja-destaque);
+    background-color: var(--cor-laranja-destaque); /* Fundo laranja */
+    color: var(--cor-texto-claro);             /* Letras brancas */
     display: inline-block;
     padding: 0.8rem 1.8rem;
     border-radius: 5px;
 }
 
 /* 2. Transforma os subtítulos em cabeçalhos completos */
-.contact-info-section h2,
+.info-card h2,
 .map-section h2 {
     background-color: var(--cor-laranja-destaque);
     color: var(--cor-texto-claro);
-
-    /* Removemos o 'inline-block' para que ocupe a largura toda */
-    padding: 1rem 2rem; /* Ajusta o padding para um cabeçalho */
-    margin: -2rem -2rem 1.5rem -2rem; /* <<< Faz o cabeçalho "sangrar" para as bordas */
-    
-    /* Arredonda apenas os cantos de cima para parecer um cabeçalho de card */
+    padding: 1rem 2rem;
+    margin: -2rem -2rem 1.5rem -2rem;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
 }
 
-/* Ajuste específico para o segundo subtítulo (do formulário) */
-.form-title {
-    border-top: none; /* Remove a linha que existia antes */
-    padding-top: 1rem; /* Garante o padding igual aos outros */
+/* --- CONTEÚDO DOS BLOCOS --- */
+
+.contact-details {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.contact-details li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1.2rem;
+}
+.contact-details i {
+    font-size: 1.2rem;
+    color: var(--cor-laranja-destaque);
+    margin-top: 5px;
+    width: 25px;
+    text-align: center;
+    margin-right: 15px;
+}
+.contact-details strong {
+    display: block;
+}
+.contact-details p {
+    margin: 0;
+    color: #555;
+}
+
+.contact-form .form-group { margin-bottom: 1rem; }
+.contact-form label { display: block; margin-bottom: 0.5rem; }
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--cor-borda-suave);
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+.submit-button {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border-radius: 4px;
+    background-color: var(--cor-laranja-destaque);
+    color: var(--cor-texto-claro);
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.submit-button:hover {
+    background-color: #d47321;
+}
+
+/* Mapa e Responsividade */
+.map-embed {
+    position: relative;
+    height: 0;
+    padding-bottom: 100%;
+    overflow: hidden;
+    border-radius: 8px;
+}
+.map-embed iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+@media (max-width: 992px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* -- 9. Media Query para Responsividade (Contato) -- */
