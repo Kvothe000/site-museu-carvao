@@ -3,25 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acervo Digital - Museu do Carvão</title>
+    <title>Arquivo Digital - Museu Estadual do Carvão</title>
+    
     <link rel="stylesheet" href="css/style.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
 
     <header>
-        <h1>Museu Estadual do Carvão</h1>
-        <p>Acervo Digital</p>
+        <div class="header-top">
+            <a href="#" class="logo">
+                <img src="https://arquivos.cultura.rs.gov.br/themes/arte/images/logo-mec.png" alt="Logo Museu Estadual do Carvão">
+                <div>
+                    <span>Museu</span>
+                    <span>Estadual</span>
+                    <span>do Carvão</span>
+                </div>
+            </a>
+            <div class="header-controls">
+                <div class="search-bar">
+                    <input type="text" placeholder="Buscar">
+                    <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+                </div>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="#">Nossa História</a></li>
+                <li><a href="#">Nossos Fundos</a></li>
+                <li><a href="#" class="active">Arquivo Digital</a></li>
+                <li><a href="#">Projetos</a></li>
+                <li><a href="#">Publicações</a></li>
+                <li><a href="#">Serviços</a></li>
+                <li><a href="#">Localização e Contato</a></li>
+            </ul>
+        </nav>
     </header>
 
     <main>
-        <h2>Documentos do Acervo</h2>
-        
+        <section class="page-title">
+            <h1>Fundos Documentais</h1>
+        </section>
+
         <div id="acervo-container" class="loading">
             <div class="spinner"></div>
         </div>
     </main>
 
-    <footer>
+    <footer class="site-footer">
         <p>&copy; 2025 Museu do Carvão. Projeto desenvolvido por Matheus (UFRGS).</p>
     </footer>
 

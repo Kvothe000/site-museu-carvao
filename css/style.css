@@ -1,74 +1,182 @@
 /* ==========================================================================
-   Estilo inspirado no design do Arquivo Histórico RS - Museu do Carvão
+   Estilo baseado no design do Canva - Museu do Carvão
    ==========================================================================
 */
 
 /* -- 1. Variáveis de Cor e Configurações Globais -- */
 :root {
-    --cor-fundo-escuro: #212529; /* Um preto suave */
-    --cor-fundo-claro: #f8f9fa;  /* Um cinza muito claro */
-    --cor-texto-claro: #f8f9fa;
-    --cor-texto-escuro: #343a40;
-    --cor-dourado-destaque: #ffc107;
-    --cor-borda: #dee2e6;
-    --cor-link: #5a7b9f;
+    --cor-laranja-destaque: #E58332;
+    --cor-fundo-escuro: #1A1A1A;
+    --cor-fundo-claro: #F5F5F5;
+    --cor-texto-claro: #FFFFFF;
+    --cor-texto-escuro: #333333;
+    --cor-borda-suave: #E0E0E0;
 }
 
 body {
-    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    line-height: 1.6;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
     margin: 0;
     background-color: var(--cor-fundo-claro);
     color: var(--cor-texto-escuro);
 }
 
-/* -- 2. Cabeçalho e Rodapé -- */
-header, footer {
-    background-color: var(--cor-fundo-escuro);
-    color: var(--cor-texto-claro);
-    text-align: center;
-    padding: 3rem 1.5rem;
+/* -- 2. Cabeçalho -- */
+header {
+    background-color: var(--cor-texto-claro);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-header h1 {
-    color: var(--cor-dourado-destaque);
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin: 0;
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-header p {
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--cor-texto-escuro);
+}
+
+.logo img {
+    height: 60px;
+    margin-right: 15px;
+}
+
+.logo div {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
     font-size: 1.1rem;
-    opacity: 0.9;
+    line-height: 1.2;
 }
 
-footer p {
+.search-bar {
+    display: flex;
+    border: 1px solid var(--cor-borda-suave);
+    border-radius: 4px;
+}
+
+.search-bar input {
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    background: #f1f1f1;
+}
+
+.search-bar button {
+    background: transparent;
+    border: none;
+    padding: 0 0.8rem;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #555;
+}
+
+/* -- 3. Barra de Navegação Principal -- */
+.main-nav {
+    background-color: var(--cor-fundo-escuro);
+}
+
+.main-nav ul {
+    list-style: none;
     margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
 }
 
-/* -- 3. Conteúdo Principal -- */
+.main-nav li a {
+    display: block;
+    padding: 1rem 1.5rem;
+    color: var(--cor-texto-claro);
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+.main-nav li a:hover, .main-nav li a.active {
+    background-color: var(--cor-laranja-destaque);
+}
+
+/* -- 4. Conteúdo Principal -- */
 main {
-    max-width: 960px; /* Controla a largura máxima do conteúdo */
-    margin: 2.5rem auto; /* Centraliza o conteúdo na página */
-    padding: 0 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2.5rem;
 }
 
-main h2 {
+.page-title h1 {
     text-align: center;
-    margin-bottom: 2rem;
-    font-size: 2rem;
+    color: var(--cor-laranja-destaque);
+    margin-bottom: 2.5rem;
+    font-size: 2.2rem;
 }
 
-/* -- 4. Estilo do Loading (Spinner) -- */
+/* -- 5. Grid do Acervo e Cards -- */
+#acervo-container {
+    display: grid;
+    /* Cria um grid responsivo: tenta encaixar colunas de 250px, preenchendo o espaço */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Card individual (será criado pelo JavaScript) */
+.fundo-card {
+    position: relative; /* Essencial para o posicionamento do texto sobre a imagem */
+    display: block;
+    text-decoration: none;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.fundo-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover; /* Garante que a imagem cubra o espaço sem distorcer */
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.fundo-card figcaption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    color: var(--cor-texto-claro);
+    padding: 2rem 1rem 1rem 1rem;
+    text-align: center;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+/* Efeito Hover */
+.fundo-card:hover img {
+    transform: scale(1.1);
+}
+
+.fundo-card:hover figcaption {
+    background-color: rgba(229, 131, 50, 0.85); /* Laranja com transparência */
+}
+
+
+/* -- 6. Animação de Loading -- */
 #acervo-container.loading {
     display: flex;
     justify-content: center;
     padding: 3rem;
+    grid-template-columns: 1fr; /* Sobrescreve o grid durante o loading */
 }
 
 .spinner {
-    border: 5px solid var(--cor-borda);
-    border-top: 5px solid var(--cor-dourado-destaque);
+    border: 5px solid var(--cor-borda-suave);
+    border-top: 5px solid var(--cor-laranja-destaque);
     border-radius: 50%;
     width: 50px;
     height: 50px;
@@ -80,43 +188,11 @@ main h2 {
     100% { transform: rotate(360deg); }
 }
 
-
-/* -- 5. Card de Documento (Onde os dados da API aparecem) -- */
-.documento-card {
-    background-color: #ffffff;
-    border: 1px solid var(--cor-borda);
-    border-radius: 8px;
-    padding: 1.5rem 2rem;
-    margin-bottom: 1.5rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-}
-
-.documento-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
-}
-
-.documento-card h3 {
-    margin-top: 0;
-    margin-bottom: 1rem;
-    color: var(--cor-texto-escuro);
-    font-size: 1.4rem;
-}
-
-.documento-card p {
-    margin-bottom: 0.5rem;
-}
-
-.documento-card a {
-    display: inline-block;
-    margin-top: 1rem;
-    color: var(--cor-link);
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.2s;
-}
-
-.documento-card a:hover {
-    color: var(--cor-dourado-destaque);
+/* -- 7. Rodapé -- */
+.site-footer {
+    text-align: center;
+    padding: 2rem;
+    margin-top: 2rem;
+    background-color: #e0e0e0;
+    color: #555;
 }
