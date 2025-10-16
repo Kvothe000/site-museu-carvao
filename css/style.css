@@ -43,7 +43,7 @@ header {
 }
 
 .logo img {
-    height: 60px;
+    height: 60px; /* Altere este valor para ajustar o tamanho */
     margin-right: 15px;
 }
 
