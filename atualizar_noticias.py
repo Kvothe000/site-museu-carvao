@@ -13,82 +13,66 @@ if not GEMINI_API_KEY:
 genai.configure(api_key=GEMINI_API_KEY)
 model = genai.GenerativeModel('gemini-pro')
 
-SOURCE_URL = 'https://www.cultura.rs.gov.br/inicial'
-BASE_URL = 'https://www.cultura.rs.gov.br'
+# A NOVA FONTE: UMA BUSCA PRECISA NO GOOGLE NOTÍCIAS PARA O BRASIL
+SEARCH_URL = 'https://news.google.com/search?q=%22Museu%20do%20Carv%C3%A3o%22&hl=pt-BR&gl=BR&ceid=BR%3Apt-419'
+BASE_URL = 'https://news.google.com'
 
-# --- 2. COLETA (WEB SCRAPING) ---
-print("Buscando notícias com o disfarce completo...")
+# --- 2. COLETA (WEB SCRAPING DO GOOGLE NOTÍCIAS) ---
+print("Buscando notícias no Google News...")
 try:
-    # O DISFARCE COMPLETO: CABEÇALHOS QUE IMITAM UM NAVEGADOR REAL
+    # Usamos o mesmo disfarce completo de antes, pois é a melhor prática
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36',
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-        'Accept-Language': 'en-US,en;q=0.9,pt-BR;q=0.8,pt;q=0.7',
-        'Accept-Encoding': 'gzip, deflate, br',
-        'Connection': 'keep-alive',
-        'Upgrade-Insecure-Requests': '1',
-        'DNT': '1', # Do Not Track
+        'Accept-Language': 'pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7',
     }
 
-    response = requests.get(SOURCE_URL, headers=headers, timeout=15) # Adiciona um timeout
+    response = requests.get(SEARCH_URL, headers=headers, timeout=15)
     response.raise_for_status()
     soup = BeautifulSoup(response.text, 'html.parser')
 
-    # ... (o resto do script continua exatamente igual) ...
+    # Encontra o primeiro artigo de notícia na lista de resultados do Google
+    first_result = soup.find('article')
     
-    latest_article = soup.find('article', class_='latest-news-item')
-    if not latest_article:
-        raise ValueError("Não foi possível encontrar o artigo de notícia mais recente.")
+    if not first_result:
+        print("Nenhuma notícia recente encontrada no Google News. Nenhuma atualização será feita.")
+        exit()
 
-    relative_link = latest_article.find('a')['href']
+    # Extrai o título e o link da notícia
+    news_title = first_result.find('h3').get_text()
+    relative_link = first_result.find('a')['href']
+    # O link no Google é relativo (ex: ./articles/...), então construímos o link completo
     news_link = urljoin(BASE_URL, relative_link)
-
-    news_page_response = requests.get(news_link, headers=headers, timeout=15)
-    news_page_response.raise_for_status()
-    news_soup = BeautifulSoup(news_page_response.text, 'html.parser')
     
-    relative_image_src = news_soup.find('figure', class_='news-main-image').find('img')['src']
-    image_url = urljoin(BASE_URL, relative_image_src)
-    
-    news_text = news_soup.find('div', class_='news-body-content').get_text(separator=' ', strip=True)
+    # Pega o pequeno trecho (snippet) da notícia que o Google mostra
+    snippet = first_result.find('span', class_='xBbh9').get_text()
 
-    print(f"Notícia encontrada: {news_link}")
-    print(f"Imagem encontrada: {image_url}")
+    print(f"Notícia encontrada: {news_title}")
 
     # --- 3. PROCESSAMENTO (IA) ---
     print("Enviando texto para a IA para resumo...")
     prompt = f"""
-    Analise o seguinte texto de uma notícia. Se a notícia for relevante para o 'Museu do Carvão', faça o seguinte:
-    1. Crie um título curto e chamativo para a notícia.
-    2. Crie um resumo conciso de no máximo duas frases.
+    Com base no título e no trecho a seguir de uma notícia, crie um resumo conciso e chamativo de no máximo duas frases para a homepage de um site.
+    
+    Título: "{news_title}"
+    Trecho: "{snippet}"
     
     Formate sua resposta EXATAMENTE assim, sem nenhuma palavra extra:
-    TÍTULO: [Seu título aqui]
     RESUMO: [Seu resumo aqui]
-    
-    Se a notícia NÃO for sobre o Museu do Carvão, responda apenas com a palavra "IRRELEVANTE".
-    
-    Texto da notícia: "{news_text[:2000]}"
     """
 
     response_ia = model.generate_content(prompt)
-    
-    if "IRRELEVANTE" in response_ia.text:
-        print("Notícia considerada irrelevante pela IA. Nenhuma atualização será feita.")
-        exit()
+    resumo = response_ia.text.replace("RESUMO:", "").strip()
 
-    lines = response_ia.text.split('\n')
-    titulo = lines[0].replace("TÍTULO:", "").strip()
-    resumo = lines[1].replace("RESUMO:", "").strip()
-
-    print(f"IA gerou o título: {titulo}")
+    print(f"IA gerou o resumo: {resumo}")
 
     # --- 4. SALVA OS DADOS ---
+    # Nota: Não conseguimos pegar uma imagem principal de forma confiável com este método,
+    # então usamos uma imagem placeholder padrão. A notícia em si é o mais importante.
     nova_noticia = {
-        "titulo": titulo,
+        "titulo": news_title,
         "resumo": resumo,
         "link": news_link,
-        "imagem_url": image_url
+        "imagem_url": "img/projeto-enchente.jpg" # Usamos nossa imagem padrão de alta qualidade
     }
 
     with open('noticias.json', 'w', encoding='utf-8') as f:
@@ -96,7 +80,5 @@ try:
 
     print("Arquivo noticias.json atualizado com sucesso!")
 
-except requests.exceptions.RequestException as e:
-    print(f"Ocorreu um erro de rede: {e}")
 except Exception as e:
     print(f"Ocorreu um erro geral: {e}")
