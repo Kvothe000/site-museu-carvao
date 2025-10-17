@@ -23,7 +23,7 @@ body {
 
 /* -- 2. Cabeçalho -- */
 header {
-    background-color: var(--cor-texto-claro);
+    background-color: var(--cor-fundo-claro);
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
@@ -420,13 +420,61 @@ main {
     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
-.page-title { text-align: center; }
-.page-title h1 {
-    background-color: var(--cor-laranja-destaque);
+/* Transforma a seção do título em um "Page Hero" */
+.page-title {
+    position: relative; /* Necessário para o posicionamento do overlay */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 350px; /* Altura da seção */
+    padding: 2rem;
+    box-sizing: border-box;
+    text-align: center;
     color: var(--cor-texto-claro);
-    display: inline-block;
-    padding: 0.8rem 1.8rem;
-    border-radius: 5px;
+
+    /* A LINHA ADICIONADA PARA O ESPAÇAMENTO */
+    margin-bottom: 2.5rem;
+
+    /* A IMAGEM DE FUNDO - Substitua pela sua foto! */
+    /* CÓDIGO NOVO */
+    background-image: url('../img/fundo-museu.jpeg'); /* <-- Use o nome do seu arquivo aqui! */
+    background-size: cover;
+    background-position: bottom center;
+    background-attachment: fixed;
+}
+
+/* --- TESTE --- Desative temporariamente este bloco */
+
+/* O OVERLAY ESCURO - Garante a legibilidade do texto */
+
+.page-title::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 1;
+}
+
+
+/* Posiciona o texto acima do overlay */
+.page-title h1, .page-title p {
+    position: relative;
+    z-index: 2;
+    color: var(--cor-texto-claro);
+}
+
+.page-title h1 {
+    font-size: 3rem;
+    margin: 0 0 0.5rem 0;
+}
+.page-title p {
+    font-size: 1.2rem;
+    max-width: 600px; /* Limita a largura do subtítulo */
+    opacity: 0.9;
 }
 .info-card h2, .map-section h2 {
     background-color: var(--cor-laranja-destaque);
