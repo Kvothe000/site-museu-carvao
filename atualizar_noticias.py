@@ -1,20 +1,11 @@
 import requests
 from bs4 import BeautifulSoup
-import google.generativeai as genai
 import json
 import os
-from urllib.parse import urljoin
+from urllib.parse import urljoin # Embora não usemos mais para construir links do Google
 
 # --- 1. CONFIGURAÇÃO ---
-GEMINI_API_KEY = os.getenv('GEMINI_API_KEY')
-if not GEMINI_API_KEY:
-    raise ValueError("Chave de API do Gemini não encontrada.")
-
-genai.configure(api_key=GEMINI_API_KEY)
-
-# <<< GARANTIR QUE ESTAMOS USANDO O MODELO CORRETO >>>
-model = genai.GenerativeModel('gemini-1.0-pro')
-
+# Não precisamos mais da chave de API do Gemini! 🎉
 RSS_URL = 'https://news.google.com/rss/search?q=%22Museu%20do%20Carv%C3%A3o%22&hl=pt-BR&gl=BR&ceid=BR:pt-419'
 
 # --- 2. COLETA (LENDO O FEED RSS) ---
@@ -33,42 +24,24 @@ try:
         print("Nenhuma notícia recente encontrada no feed RSS. Nenhuma atualização será feita.")
         exit()
 
+    # Pega apenas o título e o link direto do RSS
     news_title = first_item.find('title').get_text()
     news_link = first_item.find('link').get_text()
 
     print(f"Notícia encontrada: {news_title}")
 
-    # --- 3. PROCESSAMENTO (IA) ---
-    print("Enviando título para a IA para resumo...")
-    prompt = f"""
-    Com base no seguinte título de uma notícia, crie um resumo conciso e chamativo de no máximo duas frases para a homepage de um site.
-    
-    Título: "{news_title}"
-    
-    Formate sua resposta EXATAMENTE assim, sem nenhuma palavra extra:
-    RESUMO: [Seu resumo aqui]
-    """
-
-    try:
-        response_ia = model.generate_content(prompt)
-        resumo = response_ia.text.replace("RESUMO:", "").strip()
-        print(f"IA gerou o resumo: {resumo}")
-    except Exception as e_ia:
-        print(f"Ocorreu um erro ao chamar a API do Gemini: {e_ia}")
-        exit(1)
-
-    # --- 4. SALVA OS DADOS ---
+    # --- 3. SALVA OS DADOS (SEM IA) ---
     nova_noticia = {
         "titulo": news_title,
-        "resumo": resumo,
+        "resumo": "", # Deixamos o resumo vazio por enquanto
         "link": news_link,
-        "imagem_url": "img/projeto-enchente.jpg"
+        "imagem_url": "img/projeto-enchente.jpg" # Mantemos nossa imagem padrão
     }
 
     with open('noticias.json', 'w', encoding='utf-8') as f:
         json.dump(nova_noticia, f, ensure_ascii=False, indent=4)
 
-    print("Arquivo noticias.json atualizado com sucesso!")
+    print("Arquivo noticias.json atualizado com sucesso (sem resumo da IA)!")
 
 except Exception as e:
     print(f"Ocorreu um erro geral: {e}")
