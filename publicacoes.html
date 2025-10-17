@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <title>Publicações - Museu Estadual do Carvão</title>
     
     <link rel="stylesheet" href="css/style.css">
@@ -11,59 +10,76 @@
 </head>
 <body>
 
-   <header>
+    <header>
         <div class="header-top">
-            <a href="#" class="logo">
+            <a href="index.html" class="logo">
                 <img src="img/logo-museu.png" alt="Logo Museu Estadual do Carvão">
-                <div>
-                    <span>Museu</span>
-                    <span>Estadual</span>
-                    <span>do Carvão</span>
-                </div>
+                <div><span>Museu</span><span>Estadual</span><span>do Carvão</span></div>
             </a>
             <div class="header-controls">
                 <div class="search-bar">
                     <input type="text" placeholder="Buscar">
-                    <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <button aria-label="Buscar"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
+                <div class="header-utilities">
+                    <div class="language-selector"><strong>PT</strong><span>|</span><a href="#">EN</a></div>
+                    <div class="social-links">
+                        <a href="#" target="_blank" aria-label="Siga-nos no Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" target="_blank" aria-label="Siga-nos no Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="mailto:museu-carvao@sedac.rs.gov.br" aria-label="Envie-nos um e-mail"><i class="fa-solid fa-envelope"></i></a>
+                    </div>
                 </div>
+            </div>
         </div>
-       <nav class="main-nav">
-    <ul>
-        <li class="has-dropdown">
-            <a href="nossa-historia.html">Nossa História <i class="fa-solid fa-caret-down"></i></a>
-            <ul class="dropdown-menu">
-                <li><a href="#">O Museu</a></li>
-                <li><a href="#">Arquivo de Mineração</a></li>
-            </ul>
-        </li>
-        <li class="has-dropdown">
-            <a href="nossos-fundos.html">Nossos Fundos <i class="fa-solid fa-caret-down"></i></a>
-            <ul class="dropdown-menu">
-                <li><a href="#">Companhia Estrada de Ferro...</a></li>
-                <li><a href="#">Companhia Minas de Carvão...</a></li>
-                <li><a href="#">Companhia Carbonífera...</a></li>
-                <li><a href="#">Sindicatos</a></li>
-            </ul>
-        </li>
-
-        <li><a href="index.html" >Arquivo Digital</a></li>
-        <li><a href="projetos.html">Projetos</a></li>
-        <li><a href="publicacoes.html" class="active">Publicações</a></li>
-        <li><a href="servicos.html">Serviços</a></li>
-        <li><a href="localizacao-contato.html">Localização e Contato</a></li>
-    </ul>
-</nav>
+        <nav class="main-nav">
+            <ul>
+    <li><a href="index.html">Home</a></li> <li class="has-dropdown"><a href="nossa-historia.html">Nossa História <i class="fa-solid fa-caret-down"></i></a><ul class="dropdown-menu"><li><a href="#">O Museu</a></li><li><a href="#">Arquivo de Mineração</a></li></ul></li>
+    <li class="has-dropdown"><a href="nossos-fundos.html">Nossos Fundos <i class="fa-solid fa-caret-down"></i></a><ul class="dropdown-menu"><li><a href="#">Companhia Estrada de Ferro...</a></li><li><a href="#">Companhia Minas de Carvão...</a></li></ul></li>
+    <li><a href="arquivo-digital.html">Arquivo Digital</a></li>
+     <li><a href="projetos.html">Projetos</a></li>
+    <li><a href="publicacoes.html" class="active">Publicações</a></li>
+    <li><a href="servicos.html">Serviços</a></li>
+    <li><a href="localizacao-contato.html">Localização e Contato</a></li>
+</ul>
+        </nav>
     </header>
 
-    <main>
+    <main id="main-content">
         <section class="page-title">
             <h1>Publicações</h1>
         </section>
 
-        <div style="padding: 2rem; text-align: center; min-height: 300px;">
-            <p>Página em construção.</p>
-        </div>
+        <section class="publications-list">
+            <article class="publication-card">
+                <img src="https://via.placeholder.com/150x220.png?text=Capa+Livro" alt="Capa da publicação Estudos Avançados em Arquivologia" class="publication-cover">
+                <div class="publication-content">
+                    <h2 class="publication-title">Estudos Avançados em Arquivologia</h2>
+                    <p class="publication-author">Marta Ligia Pomim Valentim</p>
+                    <p class="publication-description">O profissional arquivista tem um amplo espaço de trabalho, tanto na iniciativa pública quanto na iniciativa privada. Entretanto tem atuado em mercados arquivísticos mais tradicionais como, por exemplo, arquivos municipais, arquivos universitários, arquivos cartorários, arquivos contábeis e arquivos pessoais...</p>
+                    <a href="#" class="publication-link">Link para Acesso <i class="fa-solid fa-arrow-right-long"></i></a>
+                </div>
+            </article>
+
+            <article class="publication-card">
+                <img src="https://via.placeholder.com/150x220.png?text=Capa+Livro" alt="Capa da publicação Arquivo: Teoria e Prática" class="publication-cover">
+                <div class="publication-content">
+                    <h2 class="publication-title">Arquivo: Teoria e Prática</h2>
+                    <p class="publication-author">Marilena Leite Paes</p>
+                    <p class="publication-description">Destinada aos alunos dos cursos de Arquivologia, Biblioteconomia e Documentação, esta obra de cunho didático supre a falta de publicações especializadas na área, apresentando técnicas, teorias e métodos arquivísticos...</p>
+                    <a href="#" class="publication-link">Link para Acesso <i class="fa-solid fa-arrow-right-long"></i></a>
+                </div>
+            </article>
+
+            <article class="publication-card">
+                <img src="https://via.placeholder.com/150x220.png?text=Capa+Livro" alt="Capa da publicação A Mediação da Informação na Arquivologia" class="publication-cover">
+                <div class="publication-content">
+                    <h2 class="publication-title">A Mediação da Informação na Arquivologia</h2>
+                    <p class="publication-author">Mariana Lousada</p>
+                    <p class="publication-description">A Arquivologia perdeu o status de disciplina auxiliar da História há algum tempo. No entanto, alguns pesquisadores considerados mais conservadores ainda apresentam dificuldades para discutir aspectos mais contemporâneos dessa disciplina. Por essa razão, muitos temas ainda não foram devidamente explorados pela área.</p>
+                    <a href="#" class="publication-link">Link para Acesso <i class="fa-solid fa-arrow-right-long"></i></a>
+                </div>
+            </article>
+        </section>
     </main>
 
     <footer class="site-footer">

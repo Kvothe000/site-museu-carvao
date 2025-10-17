@@ -11,6 +11,8 @@
 </head>
 <body>
 
+    <a href="#main-content" class="skip-link">Pular para o Conteúdo Principal</a>
+
    <header>
         <div class="header-top">
             <a href="#" class="logo">
@@ -22,41 +24,45 @@
                 </div>
             </a>
             <div class="header-controls">
-                <div class="search-bar">
-                    <input type="text" placeholder="Buscar">
-                    <button><i class="fa-solid fa-magnifying-glass"></i></button>
-                </div>
-                </div>
+    <div class="search-bar">
+        <input type="text" placeholder="Buscar">
+        <button aria-label="Buscar"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </div>
+
+    <div class="header-utilities">
+        <div class="language-selector">
+            <strong>PT</strong>
+            <span>|</span>
+            <a href="#">EN</a>
+        </div>
+        <div class="social-links">
+            <a href="#" target="_blank" aria-label="Siga-nos no Instagram">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="#" target="_blank" aria-label="Siga-nos no Facebook">
+                <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="mailto:museu-carvao@sedac.rs.gov.br" aria-label="Envie-nos um e-mail">
+                <i class="fa-solid fa-envelope"></i>
+            </a>
+        </div>
+    </div>
+</div>
         </div>
        <nav class="main-nav">
     <ul>
-        <li class="has-dropdown">
-            <a href="nossa-historia.html">Nossa História <i class="fa-solid fa-caret-down"></i></a>
-            <ul class="dropdown-menu">
-                <li><a href="#">O Museu</a></li>
-                <li><a href="#">Arquivo de Mineração</a></li>
-            </ul>
-        </li>
-        <li class="has-dropdown">
-            <a href="nossos-fundos.html">Nossos Fundos <i class="fa-solid fa-caret-down"></i></a>
-            <ul class="dropdown-menu">
-                <li><a href="#">Companhia Estrada de Ferro...</a></li>
-                <li><a href="#">Companhia Minas de Carvão...</a></li>
-                <li><a href="#">Companhia Carbonífera...</a></li>
-                <li><a href="#">Sindicatos</a></li>
-            </ul>
-        </li>
-
-        <li><a href="index.html" >Arquivo Digital</a></li>
-        <li><a href="projetos.html">Projetos</a></li>
-        <li><a href="publicacoes.html">Publicações</a></li>
-        <li><a href="servicos.html" class="active">Serviços</a></li>
-        <li><a href="localizacao-contato.html">Localização e Contato</a></li>
-    </ul>
+    <li><a href="index.html">Home</a></li> <li class="has-dropdown"><a href="nossa-historia.html">Nossa História <i class="fa-solid fa-caret-down"></i></a><ul class="dropdown-menu"><li><a href="#">O Museu</a></li><li><a href="#">Arquivo de Mineração</a></li></ul></li>
+    <li class="has-dropdown"><a href="nossos-fundos.html">Nossos Fundos <i class="fa-solid fa-caret-down"></i></a><ul class="dropdown-menu"><li><a href="#">Companhia Estrada de Ferro...</a></li><li><a href="#">Companhia Minas de Carvão...</a></li></ul></li>
+    <li><a href="arquivo-digital.html">Arquivo Digital</a></li> 
+    <li><a href="projetos.html">Projetos</a></li>
+    <li><a href="publicacoes.html">Publicações</a></li>
+    <li><a href="servicos.html" class="active">Serviços</a></li>
+    <li><a href="localizacao-contato.html">Localização e Contato</a></li>
+</ul>
 </nav>
     </header>
 
-    <main>
+    <main id="main-content">
         <section class="page-title">
             <h1>Serviços</h1>
         </section>

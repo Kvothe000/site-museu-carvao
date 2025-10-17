@@ -3,67 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arquivo Digital - Museu Estadual do Carvão</title>
-    
+    <title>Museu Estadual do Carvão - Bem-vindo</title>
     <link rel="stylesheet" href="css/style.css">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Pular para o Conteúdo Principal</a>
 
     <header>
-        <div class="header-top">
-            <a href="#" class="logo">
-                <img src="img/logo-museu.png" alt="Logo Museu Estadual do Carvão">
-                <div>
-                    <span>Museu</span>
-                    <span>Estadual</span>
-                    <span>do Carvão</span>
-                </div>
-            </a>
-            <div class="header-controls">
-                <div class="search-bar">
-                    <input type="text" placeholder="Buscar">
-                    <button><i class="fa-solid fa-magnifying-glass"></i></button>
-                </div>
-                </div>
-        </div>
-       <nav class="main-nav">
-    <ul>
-        <li class="has-dropdown">
-            <a href="nossa-historia.html">Nossa História <i class="fa-solid fa-caret-down"></i></a>
-            <ul class="dropdown-menu">
-                <li><a href="#">O Museu</a></li>
-                <li><a href="#">Arquivo de Mineração</a></li>
-            </ul>
-        </li>
-        <li class="has-dropdown">
-            <a href="nossos-fundos.html">Nossos Fundos <i class="fa-solid fa-caret-down"></i></a>
-            <ul class="dropdown-menu">
-                <li><a href="#">Companhia Estrada de Ferro...</a></li>
-                <li><a href="#">Companhia Minas de Carvão...</a></li>
-                <li><a href="#">Companhia Carbonífera...</a></li>
-                <li><a href="#">Sindicatos</a></li>
-            </ul>
-        </li>
-
-        <li><a href="index.html" class="active">Arquivo Digital</a></li>
-        <li><a href="projetos.html">Projetos</a></li>
-        <li><a href="publicacoes.html">Publicações</a></li>
-        <li><a href="servicos.html">Serviços</a></li>
-        <li><a href="localizacao-contato.html">Localização e Contato</a></li>
-    </ul>
-</nav>
+        <div class="header-top"><a href="index.html" class="logo"><img src="img/logo-museu.png" alt="Logo Museu Estadual do Carvão"><div><span>Museu</span><span>Estadual</span><span>do Carvão</span></div></a><div class="header-controls"><div class="search-bar"><input type="text" placeholder="Buscar"><button aria-label="Buscar"><i class="fa-solid fa-magnifying-glass"></i></button></div><div class="header-utilities"><div class="language-selector"><strong>PT</strong><span>|</span><a href="#">EN</a></div><div class="social-links"><a href="#" target="_blank" aria-label="Siga-nos no Instagram"><i class="fa-brands fa-instagram"></i></a><a href="#" target="_blank" aria-label="Siga-nos no Facebook"><i class="fa-brands fa-facebook-f"></i></a><a href="mailto:museu-carvao@sedac.rs.gov.br" aria-label="Envie-nos um e-mail"><i class="fa-solid fa-envelope"></i></a></div></div></div></div>
+        <nav class="main-nav"><ul><li><a href="index.html" class="active">Home</a></li><li class="has-dropdown"><a href="nossa-historia.html">Nossa História <i class="fa-solid fa-caret-down"></i></a><ul class="dropdown-menu"><li><a href="#">O Museu</a></li><li><a href="#">Arquivo de Mineração</a></li></ul></li><li class="has-dropdown"><a href="nossos-fundos.html">Nossos Fundos <i class="fa-solid fa-caret-down"></i></a><ul class="dropdown-menu"><li><a href="#">Companhia Estrada de Ferro...</a></li><li><a href="#">Companhia Minas de Carvão...</a></li></ul></li><li><a href="arquivo-digital.html">Arquivo Digital</a></li><li><a href="projetos.html">Projetos</a></li><li><a href="publicacoes.html">Publicações</a></li><li><a href="servicos.html">Serviços</a></li><li><a href="localizacao-contato.html">Localização e Contato</a></li></ul></nav>
     </header>
 
-    <main>
-        <section class="page-title">
-            <h1>Fundos Documentais</h1>
+    <main id="main-content">
+        <section class="home-hero">
+            <div class="hero-content">
+                <h1>Preservando a história da era do carvão</h1>
+                <p>Explore um dos mais importantes acervos sobre a história da mineração de carvão da América Latina.</p>
+                <a href="arquivo-digital.html" class="hero-button">Explore o Acervo</a>
+            </div>
         </section>
 
-        <div id="acervo-container" class="loading">
-            <div class="spinner"></div>
-        </div>
+        <section class="featured-sections">
+            <a href="nossos-fundos.html" class="feature-card">
+                <div class="card-content"><h3>Nossos Fundos</h3></div>
+            </a>
+            <a href="projetos.html" class="feature-card">
+                <div class="card-content"><h3>Projetos</h3></div>
+            </a>
+            <a href="nossa-historia.html" class="feature-card">
+                <div class="card-content"><h3>Nossa História</h3></div>
+            </a>
+        </section>
+
+        <section class="cta-section">
+            <h2>Planeje sua Visita</h2>
+            <p>Conheça de perto nosso acervo e as instalações históricas da antiga usina termelétrica.</p>
+            <a href="localizacao-contato.html" class="cta-button">Ver Localização e Horários</a>
+        </section>
     </main>
 
     <footer class="site-footer">
@@ -71,6 +48,5 @@
     </footer>
 
     <script src="js/script.js"></script>
-
 </body>
 </html>
