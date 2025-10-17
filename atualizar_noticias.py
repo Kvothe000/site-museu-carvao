@@ -17,7 +17,7 @@ SEARCH_URL = 'https://news.google.com/search?q=%22Museu%20do%20Carv%C3%A3o%22&hl
 BASE_URL = 'https://news.google.com'
 
 # --- 2. COLETA (WEB SCRAPING DO GOOGLE NOTÍCIAS) ---
-print("Buscando notícias no Google News...")
+print("Buscando notícias no Google News com seletores robustos...")
 try:
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36',
@@ -28,30 +28,31 @@ try:
     response.raise_for_status()
     soup = BeautifulSoup(response.text, 'html.parser')
 
-    first_result = soup.find('article')
+    # Encontra todos os artigos na página
+    articles = soup.select('article')
     
-    if not first_result:
+    if not articles:
         print("Nenhuma notícia recente encontrada no Google News. Nenhuma atualização será feita.")
         exit()
 
-    # --- INÍCIO DA CORREÇÃO ---
-    # Passo 1: Encontre a tag do título, que AGORA É H4.
-    title_tag = first_result.find('h4') # <<< A CORREÇÃO ESTÁ AQUI
-    if not title_tag:
-        # Atualizamos a mensagem de erro também
-        raise ValueError("Não foi possível encontrar a tag de título (h4) na notícia.")
-    news_title = title_tag.get_text()
+    # Pega apenas o primeiro artigo da lista
+    first_result = articles[0]
 
-    # O resto do código defensivo continua o mesmo
-    link_tag = first_result.find('a')
-    if not link_tag or 'href' not in link_tag.attrs:
-        raise ValueError("Não foi possível encontrar a tag de link (a) na notícia.")
-    relative_link = link_tag['href']
+    # --- INÍCIO DA CORREÇÃO FINAL ---
+    # Passo 1: Use um seletor CSS para encontrar o título. A classe 'gPFEn' parece ser a usada atualmente para o link do título.
+    title_link_tag = first_result.select_one('a.gPFEn')
+    if not title_link_tag:
+        raise ValueError("Não foi possível encontrar o link do título com o seletor 'a.gPFEn'. O HTML do Google pode ter mudado.")
+    news_title = title_link_tag.get_text()
+
+    # O link da notícia está nesta mesma tag 'a'
+    relative_link = title_link_tag['href']
     news_link = urljoin(BASE_URL, relative_link)
     
-    snippet_tag = first_result.find('span', class_='xBbh9')
+    # Passo 2: O snippet também pode ser encontrado com um seletor mais robusto
+    snippet_tag = first_result.select_one('span.xBbh9')
     snippet = snippet_tag.get_text() if snippet_tag else "" 
-    # --- FIM DA CORREÇÃO ---
+    # --- FIM DA CORREÇÃO FINAL ---
 
     print(f"Notícia encontrada: {news_title}")
 
