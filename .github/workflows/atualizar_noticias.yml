@@ -17,8 +17,8 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Instalar Dependências
-        run: pip install requests beautifulsoup4 google-generativeai lxml # <-- A CORREÇÃO ESTÁ AQUI
+      - name: Instalar Dependências (Forçando a versão mais recente)
+        run: pip install --upgrade requests beautifulsoup4 google-generativeai lxml # <-- A CORREÇÃO ESTÁ AQUI
 
       - name: Rodar script para buscar e resumir notícias
         env:
