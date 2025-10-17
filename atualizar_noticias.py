@@ -35,22 +35,21 @@ try:
         exit()
 
     # --- INÍCIO DA CORREÇÃO ---
-    # Passo 1: Encontre a tag do título e VERIFIQUE se ela existe.
-    title_tag = first_result.find('h3')
+    # Passo 1: Encontre a tag do título, que AGORA É H4.
+    title_tag = first_result.find('h4') # <<< A CORREÇÃO ESTÁ AQUI
     if not title_tag:
-        raise ValueError("Não foi possível encontrar a tag de título (h3) na notícia.")
+        # Atualizamos a mensagem de erro também
+        raise ValueError("Não foi possível encontrar a tag de título (h4) na notícia.")
     news_title = title_tag.get_text()
 
-    # Passo 2: Encontre a tag do link e VERIFIQUE se ela existe.
+    # O resto do código defensivo continua o mesmo
     link_tag = first_result.find('a')
     if not link_tag or 'href' not in link_tag.attrs:
         raise ValueError("Não foi possível encontrar a tag de link (a) na notícia.")
     relative_link = link_tag['href']
     news_link = urljoin(BASE_URL, relative_link)
     
-    # Passo 3: Encontre a tag do snippet e VERIFIQUE se ela existe.
     snippet_tag = first_result.find('span', class_='xBbh9')
-    # Se não encontrar o snippet, não é um erro fatal. Apenas usamos uma string vazia.
     snippet = snippet_tag.get_text() if snippet_tag else "" 
     # --- FIM DA CORREÇÃO ---
 
@@ -79,7 +78,7 @@ try:
         "titulo": news_title,
         "resumo": resumo,
         "link": news_link,
-        "imagem_url": "img/projeto-enchente.jpg" # Usamos nossa imagem padrão de alta qualidade
+        "imagem_url": "img/projeto-enchente.jpg"
     }
 
     with open('noticias.json', 'w', encoding='utf-8') as f:
