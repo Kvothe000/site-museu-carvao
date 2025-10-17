@@ -72,4 +72,26 @@ document.addEventListener('click', function(event) {
     }
 });
 
+// Ativa o carrossel da home se ele existir na página
+const homeCarousel = document.getElementById('home-carousel');
+if (homeCarousel) {
+    new Splide('#home-carousel', {
+        type       : 'loop',     // Faz o carrossel ser infinito
+        perPage    : 3,          // 3 slides visíveis em telas grandes
+        perMove    : 1,
+        gap        : '2rem',     // Espaço entre os slides
+        autoplay   : true,       // Inicia automaticamente
+        interval   : 4000,       // Muda a cada 4 segundos
+        pauseOnHover: true,
+        breakpoints: {
+            992: {
+                perPage: 2, // 2 slides em tablets
+            },
+            768: {
+                perPage: 1, // 1 slide em celulares
+            },
+        },
+    }).mount();
+}
+
 });

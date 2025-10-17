@@ -2,10 +2,11 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Museu Estadual do Carvão - Bem-vindo</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
 </head>
 <body>
     <a href="#main-content" class="skip-link">Pular para o Conteúdo Principal</a>
@@ -16,13 +17,55 @@
     </header>
 
     <main id="main-content">
-        <section class="home-hero">
-            <div class="hero-content">
-                <h1>Preservando a história da era do carvão</h1>
-                <p>Explore um dos mais importantes acervos sobre a história da mineração de carvão da América Latina.</p>
-                <a href="arquivo-digital.html" class="hero-button">Explore o Acervo</a>
-            </div>
-        </section>
+<section id="home-carousel" class="splide" aria-label="Destaques do Acervo do Museu do Carvão">
+    <div class="splide__track">
+        <ul class="splide__list">
+
+            <li class="splide__slide">
+                <a href="arquivo-digital.html" aria-label="Ver acervo da Companhia Estrada de Ferro e Minas de São Jerônymo">
+                    <img src="img/acervo-cefmsj.jpg" alt="Foto histórica em tons de sépia de uma locomotiva a vapor.">
+                    <span>Cia. Estrada de Ferro e Minas de S. Jerônymo</span>
+                </a>
+            </li>
+
+            <li class="splide__slide">
+                <a href="arquivo-digital.html" aria-label="Ver acervo da Companhia Minas de Carvão do Jacuhy">
+                    <img src="img/acervo-jacuhy.jpg" alt="Foto em preto e branco do interior de uma mina de carvão com trabalhadores.">
+                    <span>Cia. Minas de Carvão do Jacuhy</span>
+                </a>
+            </li>
+
+            <li class="splide__slide">
+                <a href="arquivo-digital.html" aria-label="Ver acervo da Companhia Carbonífera Rio Grandense">
+                    <img src="img/acervo-ccr.jpg" alt="Foto em preto e branco de uma estrutura industrial de mineração.">
+                    <span>Cia. Carbonífera Rio Grandense</span>
+                </a>
+            </li>
+
+            <li class="splide__slide">
+                <a href="arquivo-digital.html" aria-label="Ver acervo da Estrada de Ferro Jacuhy">
+                    <img src="img/acervo-efj.jpg" alt="Foto histórica de uma ponte ferroviária sobre um rio.">
+                    <span>Estrada de Ferro Jacuhy</span>
+                </a>
+            </li>
+
+            <li class="splide__slide">
+                <a href="arquivo-digital.html" aria-label="Ver acervo sobre Sindicatos">
+                    <img src="img/acervo-sindicatos.jpg" alt="Foto em preto e branco mostrando uma escavadeira gigante em uma mina a céu aberto.">
+                    <span>Sindicatos</span>
+                </a>
+            </li>
+
+            <li class="splide__slide">
+                <a href="arquivo-digital.html" aria-label="Ver acervo da Termoelétrica de Charqueadas">
+                    <img src="img/acervo-termoeletrica.jpg" alt="Foto em preto e branco de trabalhadores em frente a grandes estruturas industriais.">
+                    <span>Termoelétrica de Charqueadas</span>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+</section>
 
         <section class="featured-sections">
             <a href="nossos-fundos.html" class="feature-card">
@@ -35,11 +78,12 @@
                 <div class="card-content"><h3>Nossa História</h3></div>
             </a>
         </section>
-
-        <section class="cta-section">
-            <h2>Planeje sua Visita</h2>
+        <section class="home-hero">
+            <div class="hero-content">
+                           <h2>Planeje sua Visita</h2>
             <p>Conheça de perto nosso acervo e as instalações históricas da antiga usina termelétrica.</p>
-            <a href="localizacao-contato.html" class="cta-button">Ver Localização e Horários</a>
+                <a href="localizacao-contato.html" class="hero-button">Explore o Acervo</a>
+            </div>
         </section>
     </main>
 

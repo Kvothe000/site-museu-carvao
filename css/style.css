@@ -746,3 +746,100 @@ textarea:focus {
     background-color: var(--cor-laranja-destaque);
     color: var(--cor-texto-claro);
 }
+/* --- Estilos do Carrossel da Homepage --- */
+#home-carousel {
+    margin-bottom: 4rem;
+}
+
+.splide__slide {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+.splide__slide img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    display: block;
+}
+.splide__slide a {
+    text-decoration: none;
+    color: var(--cor-texto-claro);
+}
+.splide__slide::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+}
+.splide__slide span {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+/* Personaliza as setas e os pontos de navegação */
+.splide__arrow {
+    background: var(--cor-laranja-destaque);
+}
+.splide__arrow svg {
+    fill: var(--cor-texto-claro);
+}
+.splide__pagination__page.is-active {
+    background: var(--cor-laranja-destaque);
+}
+/* ==========================================================================
+   13. Página de Projetos
+   ==========================================================================
+*/
+
+.projects-list {
+    display: grid;
+    /* Cria uma grade responsiva com colunas de no mínimo 340px */
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.project-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    border: 1px solid var(--cor-borda-suave);
+    overflow: hidden; /* Garante que a imagem não "vaze" das bordas arredondadas */
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+}
+
+.project-image {
+    width: 100%;
+    height: 220px;
+    object-fit: cover; /* Garante que a imagem cubra o espaço sem distorcer */
+}
+
+.project-content {
+    padding: 1.5rem 2rem 2rem 2rem; /* Mais padding na parte de baixo */
+}
+
+.project-title {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    color: var(--cor-texto-escuro);
+}
+
+.project-description {
+    line-height: 1.7;
+    color: #444;
+}

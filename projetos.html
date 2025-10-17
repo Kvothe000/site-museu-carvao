@@ -3,63 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <title>Projetos - Museu Estadual do Carvão</title>
     
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-
     <a href="#main-content" class="skip-link">Pular para o Conteúdo Principal</a>
 
-   <header>
-        <div class="header-top">
-            <a href="#" class="logo">
-                <img src="img/logo-museu.png" alt="Logo Museu Estadual do Carvão">
-                <div>
-                    <span>Museu</span>
-                    <span>Estadual</span>
-                    <span>do Carvão</span>
-                </div>
-            </a>
-            <div class="header-controls">
-    <div class="search-bar">
-        <input type="text" placeholder="Buscar">
-        <button aria-label="Buscar"><i class="fa-solid fa-magnifying-glass"></i></button>
-    </div>
-
-    <div class="header-utilities">
-        <div class="language-selector">
-            <strong>PT</strong>
-            <span>|</span>
-            <a href="#">EN</a>
-        </div>
-        <div class="social-links">
-            <a href="#" target="_blank" aria-label="Siga-nos no Instagram">
-                <i class="fa-brands fa-instagram"></i>
-            </a>
-            <a href="#" target="_blank" aria-label="Siga-nos no Facebook">
-                <i class="fa-brands fa-facebook-f"></i>
-            </a>
-            <a href="mailto:museu-carvao@sedac.rs.gov.br" aria-label="Envie-nos um e-mail">
-                <i class="fa-solid fa-envelope"></i>
-            </a>
-        </div>
-    </div>
-</div>
-        </div>
-       <nav class="main-nav">
-   <ul>
-    <li><a href="index.html">Home</a></li> <li class="has-dropdown"><a href="nossa-historia.html">Nossa História <i class="fa-solid fa-caret-down"></i></a><ul class="dropdown-menu"><li><a href="#">O Museu</a></li><li><a href="#">Arquivo de Mineração</a></li></ul></li>
-    <li class="has-dropdown"><a href="nossos-fundos.html">Nossos Fundos <i class="fa-solid fa-caret-down"></i></a><ul class="dropdown-menu"><li><a href="#">Companhia Estrada de Ferro...</a></li><li><a href="#">Companhia Minas de Carvão...</a></li></ul></li>
-    <li><a href="arquivo-digital.html">Arquivo Digital</a></li> 
-    <li><a href="projetos.html" class="active">Projetos</a></li>
-    <li><a href="publicacoes.html">Publicações</a></li>
-    <li><a href="servicos.html">Serviços</a></li>
-    <li><a href="localizacao-contato.html">Localização e Contato</a></li>
-</ul>
-</nav>
+    <header>
+        <div class="header-top"><a href="index.html" class="logo"><img src="img/logo-museu.png" alt="Logo Museu Estadual do Carvão"><div><span>Museu</span><span>Estadual</span><span>do Carvão</span></div></a><div class="header-controls"><div class="search-bar"><input type="text" placeholder="Buscar"><button aria-label="Buscar"><i class="fa-solid fa-magnifying-glass"></i></button></div><div class="header-utilities"><div class="language-selector"><strong>PT</strong><span>|</span><a href="#">EN</a></div><div class="social-links"><a href="#" target="_blank" aria-label="Siga-nos no Instagram"><i class="fa-brands fa-instagram"></i></a><a href="#" target="_blank" aria-label="Siga-nos no Facebook"><i class="fa-brands fa-facebook-f"></i></a><a href="mailto:museu-carvao@sedac.rs.gov.br" aria-label="Envie-nos um e-mail"><i class="fa-solid fa-envelope"></i></a></div></div></div></div>
+        <nav class="main-nav"><ul><li><a href="index.html">Home</a></li><li class="has-dropdown"><a href="nossa-historia.html">Nossa História <i class="fa-solid fa-caret-down"></i></a><ul class="dropdown-menu"><li><a href="#">O Museu</a></li><li><a href="#">Arquivo de Mineração</a></li></ul></li><li class="has-dropdown"><a href="nossos-fundos.html">Nossos Fundos <i class="fa-solid fa-caret-down"></i></a><ul class="dropdown-menu"><li><a href="#">Companhia Estrada de Ferro...</a></li><li><a href="#">Companhia Minas de Carvão...</a></li></ul></li><li><a href="arquivo-digital.html">Arquivo Digital</a></li><li><a href="projetos.html" class="active">Projetos</a></li><li><a href="publicacoes.html">Publicações</a></li><li><a href="servicos.html">Serviços</a></li><li><a href="localizacao-contato.html">Localização e Contato</a></li></ul></nav>
     </header>
 
     <main id="main-content">
@@ -67,9 +21,24 @@
             <h1>Projetos</h1>
         </section>
 
-        <div style="padding: 2rem; text-align: center; min-height: 300px;">
-            <p>Página em construção.</p>
-        </div>
+        <section class="projects-list">
+            <article class="project-card">
+                <img src="img/projeto-enchente.webp" alt="Foto de prateleiras de arquivo com caixas de documentos." class="project-image">
+                <div class="project-content">
+                    <h2 class="project-title">Recuperação de Acervo Danificado pela Enchente</h2>
+                    <p class="project-description">Após a segunda quinzena de dezembro, um processo de secagem e desinfecção de parte do acervo foi iniciado, recuperando 650 caixas de documentos e 100 volumes de grandes formatos. O trabalho, realizado em contrato com a Secretaria de Estado da Cultura (Sedac), representa um marco na preservação de documentos atingidos por desastres climáticos.</p>
+                </div>
+            </article>
+
+            <article class="project-card">
+                <img src="img/tecnica-inovadora.jpg" alt="Descrição da imagem do projeto 2" class="project-image">
+                <div class="project-content">
+                    <h2 class="project-title">Digitalização do Fundo Documental CCR</h2>
+                    <p class="project-description">Um esforço contínuo para digitalizar e disponibilizar online os documentos históricos da Companhia Carbonífera Rio Grandense, garantindo o acesso a pesquisadores de todo o mundo e a preservação digital para as futuras gerações.</p>
+                </div>
+            </article>
+
+            </section>
     </main>
 
     <footer class="site-footer">
@@ -77,6 +46,5 @@
     </footer>
 
     <script src="js/script.js"></script>
-
 </body>
 </html>
