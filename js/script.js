@@ -94,4 +94,30 @@ if (homeCarousel) {
     }).mount();
 }
 
+// No seu js/script.js, dentro do DOMContentLoaded
+
+// Carrega e exibe a notícia mais recente
+async function carregarNoticia() {
+   const container = document.querySelector('.latest-news-container');
+   if (!container) return; // Só roda se o container existir
+
+   try {
+       const response = await fetch('noticias.json?v=' + new Date().getTime()); // O '?v=' evita cache
+       const noticia = await response.json();
+
+       container.innerHTML = `
+           <img src="${noticia.imagem_url}" alt="Imagem da notícia: ${noticia.titulo}" class="news-image">
+           <div class="news-content">
+               <h2>${noticia.titulo}</h2>
+               <p>${noticia.resumo}</p>
+               <a href="${noticia.link}" target="_blank" class="cta-button">Leia a Matéria Completa</a>
+           </div>
+       `;
+   } catch (error) {
+       console.error('Erro ao carregar a notícia:', error);
+       container.style.display = 'none'; // Esconde a seção se houver erro
+   }
+}
+carregarNoticia();
+
 });

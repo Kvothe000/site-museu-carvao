@@ -843,3 +843,29 @@ textarea:focus {
     line-height: 1.7;
     color: #444;
 }
+/* --- Seção de Últimas Notícias --- */
+.latest-news-wrapper {
+   padding: 4rem 1rem;
+   background-color: #fff;
+}
+.latest-news-container {
+   max-width: 1200px;
+   margin: 0 auto;
+   display: flex;
+   align-items: center;
+   gap: 3rem;
+}
+.news-image {
+   flex: 1;
+   max-width: 500px;
+   border-radius: 8px;
+   box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+.news-content {
+   flex: 1;
+}
+.news-content h2 {
+   font-size: 2.2rem;
+   margin-top: 0;
+   color: var(--cor-texto-escuro);
+}
