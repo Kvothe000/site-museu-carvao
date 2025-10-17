@@ -13,14 +13,12 @@ if not GEMINI_API_KEY:
 genai.configure(api_key=GEMINI_API_KEY)
 model = genai.GenerativeModel('gemini-pro')
 
-# A NOVA FONTE: UMA BUSCA PRECISA NO GOOGLE NOTÍCIAS PARA O BRASIL
 SEARCH_URL = 'https://news.google.com/search?q=%22Museu%20do%20Carv%C3%A3o%22&hl=pt-BR&gl=BR&ceid=BR%3Apt-419'
 BASE_URL = 'https://news.google.com'
 
 # --- 2. COLETA (WEB SCRAPING DO GOOGLE NOTÍCIAS) ---
 print("Buscando notícias no Google News...")
 try:
-    # Usamos o mesmo disfarce completo de antes, pois é a melhor prática
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36',
         'Accept-Language': 'pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7',
@@ -30,31 +28,42 @@ try:
     response.raise_for_status()
     soup = BeautifulSoup(response.text, 'html.parser')
 
-    # Encontra o primeiro artigo de notícia na lista de resultados do Google
     first_result = soup.find('article')
     
     if not first_result:
         print("Nenhuma notícia recente encontrada no Google News. Nenhuma atualização será feita.")
         exit()
 
-    # Extrai o título e o link da notícia
-    news_title = first_result.find('h3').get_text()
-    relative_link = first_result.find('a')['href']
-    # O link no Google é relativo (ex: ./articles/...), então construímos o link completo
+    # --- INÍCIO DA CORREÇÃO ---
+    # Passo 1: Encontre a tag do título e VERIFIQUE se ela existe.
+    title_tag = first_result.find('h3')
+    if not title_tag:
+        raise ValueError("Não foi possível encontrar a tag de título (h3) na notícia.")
+    news_title = title_tag.get_text()
+
+    # Passo 2: Encontre a tag do link e VERIFIQUE se ela existe.
+    link_tag = first_result.find('a')
+    if not link_tag or 'href' not in link_tag.attrs:
+        raise ValueError("Não foi possível encontrar a tag de link (a) na notícia.")
+    relative_link = link_tag['href']
     news_link = urljoin(BASE_URL, relative_link)
     
-    # Pega o pequeno trecho (snippet) da notícia que o Google mostra
-    snippet = first_result.find('span', class_='xBbh9').get_text()
+    # Passo 3: Encontre a tag do snippet e VERIFIQUE se ela existe.
+    snippet_tag = first_result.find('span', class_='xBbh9')
+    # Se não encontrar o snippet, não é um erro fatal. Apenas usamos uma string vazia.
+    snippet = snippet_tag.get_text() if snippet_tag else "" 
+    # --- FIM DA CORREÇÃO ---
 
     print(f"Notícia encontrada: {news_title}")
 
     # --- 3. PROCESSAMENTO (IA) ---
     print("Enviando texto para a IA para resumo...")
+    prompt_text = f"Título: \"{news_title}\"\nTrecho: \"{snippet}\""
+
     prompt = f"""
     Com base no título e no trecho a seguir de uma notícia, crie um resumo conciso e chamativo de no máximo duas frases para a homepage de um site.
     
-    Título: "{news_title}"
-    Trecho: "{snippet}"
+    {prompt_text}
     
     Formate sua resposta EXATAMENTE assim, sem nenhuma palavra extra:
     RESUMO: [Seu resumo aqui]
@@ -66,8 +75,6 @@ try:
     print(f"IA gerou o resumo: {resumo}")
 
     # --- 4. SALVA OS DADOS ---
-    # Nota: Não conseguimos pegar uma imagem principal de forma confiável com este método,
-    # então usamos uma imagem placeholder padrão. A notícia em si é o mais importante.
     nova_noticia = {
         "titulo": news_title,
         "resumo": resumo,
