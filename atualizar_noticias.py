@@ -10,7 +10,7 @@ if not GEMINI_API_KEY:
     raise ValueError("Chave de API do Gemini não encontrada.")
 
 genai.configure(api_key=GEMINI_API_KEY)
-model = genai.GenerativeModel('gemini-pro')
+model = genai.GenerativeModel('gemini-1.5-pro-latest')
 
 # A NOVA FONTE: O FEED RSS DO GOOGLE NOTÍCIAS. MUITO MAIS ESTÁVEL!
 RSS_URL = 'https://news.google.com/rss/search?q=%22Museu%20do%20Carv%C3%A3o%22&hl=pt-BR&gl=BR&ceid=BR:pt-419'
