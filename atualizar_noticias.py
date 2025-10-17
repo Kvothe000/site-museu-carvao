@@ -3,7 +3,6 @@ from bs4 import BeautifulSoup
 import google.generativeai as genai
 import json
 import os
-from urllib.parse import urljoin
 
 # --- 1. CONFIGURAÇÃO ---
 GEMINI_API_KEY = os.getenv('GEMINI_API_KEY')
@@ -13,57 +12,42 @@ if not GEMINI_API_KEY:
 genai.configure(api_key=GEMINI_API_KEY)
 model = genai.GenerativeModel('gemini-pro')
 
-SEARCH_URL = 'https://news.google.com/search?q=%22Museu%20do%20Carv%C3%A3o%22&hl=pt-BR&gl=BR&ceid=BR%3Apt-419'
-BASE_URL = 'https://news.google.com'
+# A NOVA FONTE: O FEED RSS DO GOOGLE NOTÍCIAS. MUITO MAIS ESTÁVEL!
+RSS_URL = 'https://news.google.com/rss/search?q=%22Museu%20do%20Carv%C3%A3o%22&hl=pt-BR&gl=BR&ceid=BR:pt-419'
 
-# --- 2. COLETA (WEB SCRAPING DO GOOGLE NOTÍCIAS) ---
-print("Buscando notícias no Google News com seletores robustos...")
+# --- 2. COLETA (LENDO O FEED RSS) ---
+print("Lendo o feed RSS do Google News...")
 try:
     headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36',
-        'Accept-Language': 'pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36'
     }
 
-    response = requests.get(SEARCH_URL, headers=headers, timeout=15)
+    response = requests.get(RSS_URL, headers=headers, timeout=15)
     response.raise_for_status()
-    soup = BeautifulSoup(response.text, 'html.parser')
 
-    # Encontra todos os artigos na página
-    articles = soup.select('article')
+    # Usamos o parser de XML, que é perfeito para RSS
+    soup = BeautifulSoup(response.content, 'xml')
+
+    # No RSS, cada notícia é um <item>
+    first_item = soup.find('item')
     
-    if not articles:
-        print("Nenhuma notícia recente encontrada no Google News. Nenhuma atualização será feita.")
+    if not first_item:
+        print("Nenhuma notícia recente encontrada no feed RSS. Nenhuma atualização será feita.")
         exit()
 
-    # Pega apenas o primeiro artigo da lista
-    first_result = articles[0]
-
-    # --- INÍCIO DA CORREÇÃO FINAL ---
-    # Passo 1: Use um seletor CSS para encontrar o título. A classe 'gPFEn' parece ser a usada atualmente para o link do título.
-    title_link_tag = first_result.select_one('a.gPFEn')
-    if not title_link_tag:
-        raise ValueError("Não foi possível encontrar o link do título com o seletor 'a.gPFEn'. O HTML do Google pode ter mudado.")
-    news_title = title_link_tag.get_text()
-
-    # O link da notícia está nesta mesma tag 'a'
-    relative_link = title_link_tag['href']
-    news_link = urljoin(BASE_URL, relative_link)
-    
-    # Passo 2: O snippet também pode ser encontrado com um seletor mais robusto
-    snippet_tag = first_result.select_one('span.xBbh9')
-    snippet = snippet_tag.get_text() if snippet_tag else "" 
-    # --- FIM DA CORREÇÃO FINAL ---
+    # A estrutura é sempre a mesma: <title>, <link>, <pubDate>
+    news_title = first_item.find('title').get_text()
+    news_link = first_item.find('link').get_text()
 
     print(f"Notícia encontrada: {news_title}")
 
     # --- 3. PROCESSAMENTO (IA) ---
-    print("Enviando texto para a IA para resumo...")
-    prompt_text = f"Título: \"{news_title}\"\nTrecho: \"{snippet}\""
-
-    prompt = f"""
-    Com base no título e no trecho a seguir de uma notícia, crie um resumo conciso e chamativo de no máximo duas frases para a homepage de um site.
+    print("Enviando título para a IA para resumo...")
     
-    {prompt_text}
+    prompt = f"""
+    Com base no seguinte título de uma notícia, crie um resumo conciso e chamativo de no máximo duas frases para a homepage de um site.
+    
+    Título: "{news_title}"
     
     Formate sua resposta EXATAMENTE assim, sem nenhuma palavra extra:
     RESUMO: [Seu resumo aqui]
@@ -79,7 +63,7 @@ try:
         "titulo": news_title,
         "resumo": resumo,
         "link": news_link,
-        "imagem_url": "img/projeto-enchente.jpg"
+        "imagem_url": "img/projeto-enchente.jpg" # Mantemos nossa imagem padrão
     }
 
     with open('noticias.json', 'w', encoding='utf-8') as f:
