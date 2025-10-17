@@ -17,17 +17,25 @@ SOURCE_URL = 'https://www.cultura.rs.gov.br/inicial'
 BASE_URL = 'https://www.cultura.rs.gov.br'
 
 # --- 2. COLETA (WEB SCRAPING) ---
-print("Buscando notícias...")
+print("Buscando notícias com o disfarce completo...")
 try:
-    # ADICIONAMOS O CABEÇALHO (O DISFARCE) AQUI
+    # O DISFARCE COMPLETO: CABEÇALHOS QUE IMITAM UM NAVEGADOR REAL
     headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+        'Accept-Language': 'en-US,en;q=0.9,pt-BR;q=0.8,pt;q=0.7',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Connection': 'keep-alive',
+        'Upgrade-Insecure-Requests': '1',
+        'DNT': '1', # Do Not Track
     }
 
-    response = requests.get(SOURCE_URL, headers=headers)
-    response.raise_for_status() # Verifica se a requisição foi bem sucedida
+    response = requests.get(SOURCE_URL, headers=headers, timeout=15) # Adiciona um timeout
+    response.raise_for_status()
     soup = BeautifulSoup(response.text, 'html.parser')
 
+    # ... (o resto do script continua exatamente igual) ...
+    
     latest_article = soup.find('article', class_='latest-news-item')
     if not latest_article:
         raise ValueError("Não foi possível encontrar o artigo de notícia mais recente.")
@@ -35,8 +43,7 @@ try:
     relative_link = latest_article.find('a')['href']
     news_link = urljoin(BASE_URL, relative_link)
 
-    # USAMOS O MESMO CABEÇALHO PARA A SEGUNDA REQUISIÇÃO
-    news_page_response = requests.get(news_link, headers=headers)
+    news_page_response = requests.get(news_link, headers=headers, timeout=15)
     news_page_response.raise_for_status()
     news_soup = BeautifulSoup(news_page_response.text, 'html.parser')
     
