@@ -7,7 +7,8 @@
 :root {
     --cor-laranja-destaque: #E58332;
     --cor-fundo-escuro: #1A1A1A;
-    --cor-fundo-claro: #F5F5F5;
+    /* Dentro de :root */
+    --cor-fundo-claro: #EAEAEA;
     --cor-texto-claro: #FFFFFF;
     --cor-texto-escuro: #333333;
     --cor-borda-suave: #E0E0E0;
