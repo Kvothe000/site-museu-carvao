@@ -1224,3 +1224,98 @@ textarea:focus {
 .service-item p strong { /* Destaca o "Como solicitar" */
     color: var(--cor-texto-escuro);
 }
+/* ==========================================================================
+   7. Rodapé (Versão Aprimorada)
+   ==========================================================================
+*/
+
+.site-footer {
+    background-color: var(--cor-fundo-escuro); /* Fundo escuro */
+    color: #a0a0a0; /* Cor de texto mais suave */
+    padding: 3rem 1rem 1rem 1rem; /* Mais padding no topo, menos embaixo */
+    margin-top: 4rem; /* Espaço acima do rodapé */
+    font-size: 0.95rem;
+}
+
+/* Container para as colunas */
+.footer-content-wrapper {
+    max-width: 1200px;
+    margin: 0 auto 2rem auto; /* Centraliza e adiciona espaço antes do copyright */
+    display: grid;
+    /* Cria 3 colunas, tentando dar mais espaço para o contato */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+    gap: 2.5rem; /* Espaço entre as colunas */
+}
+
+.footer-column h4 {
+    color: var(--cor-texto-claro); /* Títulos das colunas em branco */
+    font-size: 1.1rem;
+    margin-top: 0;
+    margin-bottom: 1.2rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+/* Linha sutil abaixo dos títulos h4 */
+.footer-column h4::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background-color: var(--cor-laranja-destaque);
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-column li {
+    margin-bottom: 0.6rem;
+}
+
+.footer-column a {
+    color: #a0a0a0; /* Cor padrão dos links */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-column a:hover {
+    color: var(--cor-laranja-destaque); /* Laranja no hover */
+}
+
+/* Estilo específico para endereço */
+.footer-column address {
+    font-style: normal;
+    line-height: 1.7;
+}
+
+/* Estilo dos ícones sociais no rodapé */
+.footer-social-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.footer-social-links a {
+    color: #a0a0a0;
+    font-size: 1.5rem; /* Ícones maiores */
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.footer-social-links a:hover {
+    color: var(--cor-laranja-destaque);
+    transform: scale(1.1);
+}
+
+/* Linha de Copyright */
+.footer-copyright {
+    text-align: center;
+    border-top: 1px solid #444; /* Linha separadora sutil */
+    padding-top: 1.5rem;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    color: #888;
+}
