@@ -1319,3 +1319,127 @@ textarea:focus {
     font-size: 0.9rem;
     color: #888;
 }
+/* ==========================================================================
+   17. Página de Serviços (VERSÃO COM CARDS E ÍCONES)
+   ==========================================================================
+*/
+
+.service-grid-container {
+    max-width: 1200px; /* Alinha com outros layouts de grid */
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.intro-paragraph { /* Estilo já existente, apenas confirmação */
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 3rem; /* Mais espaço antes dos cards */
+    color: #555;
+    text-align: center; /* Centraliza a introdução */
+    max-width: 800px; /* Limita largura do parágrafo */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* O grid que organiza os cards */
+/* REGRA CORRIGIDA PARA LAYOUT 2x2 */
+.service-grid {
+    display: grid;
+    /* Por padrão (mobile first), começa com 1 coluna */
+    grid-template-columns: 1fr; 
+    gap: 2rem; 
+}
+
+/* Media Query para telas maiores (tablets e desktops) */
+@media (min-width: 768px) { 
+    .service-grid {
+        /* Força 2 colunas de largura igual */
+        grid-template-columns: repeat(2, 1fr); 
+    }
+}
+
+/* Estilo individual do card de serviço */
+.service-card {
+    background-color: #fff;
+    padding: 2.5rem 2rem; /* Mais padding interno */
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+    border: 1px solid var(--cor-borda-suave);
+    display: flex;
+    flex-direction: column; /* Organiza o conteúdo verticalmente */
+    text-align: center; /* Centraliza o ícone e o título */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* Estilo do ícone */
+.service-icon {
+    font-size: 3rem; /* Tamanho grande para o ícone */
+    color: var(--cor-laranja-destaque);
+    margin-bottom: 1.5rem;
+}
+
+.service-card h2 {
+    font-size: 1.6rem;
+    color: var(--cor-texto-escuro);
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.service-card p {
+    line-height: 1.8;
+    color: #444;
+    text-align: left; /* Mantém o texto principal alinhado à esquerda */
+    flex-grow: 1; /* Faz o parágrafo empurrar a ação para baixo */
+    margin-bottom: 1.5rem;
+}
+
+/* Estilo destacado para a seção de ação */
+.service-action {
+    margin-top: auto; /* Empurra para o final do card */
+    padding: 1rem;
+    background-color: var(--cor-fundo-claro); /* Fundo cinza claro */
+    border-radius: 4px;
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+.service-action strong {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--cor-texto-escuro);
+}
+
+.service-action p {
+    margin-bottom: 0; /* Remove margem do último parágrafo */
+    line-height: 1.6;
+}
+
+.service-action a { /* Estilo para links dentro da ação */
+    color: var(--cor-laranja-destaque);
+    font-weight: bold;
+    text-decoration: none;
+}
+.service-action a:hover {
+    text-decoration: underline;
+}
+
+/* Opcional: Estilo para um botão dentro do service-action */
+.service-button {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.6rem 1.2rem;
+    background-color: var(--cor-laranja-destaque);
+    color: var(--cor-texto-claro);
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+.service-button:hover {
+     background-color: #d4690f;
+}
