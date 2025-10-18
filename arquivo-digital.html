@@ -6,77 +6,62 @@
     <title>Arquivo Digital - Museu Estadual do Carvão</title>
     
     <link rel="stylesheet" href="css/style.css">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-    
     <a href="#main-content" class="skip-link">Pular para o Conteúdo Principal</a>
-    
-    <header>
-        <div class="header-top">
-            <a href="#" class="logo">
-                <img src="img/logo-museu.png" alt="Logo Museu Estadual do Carvão">
-                <div>
-                    <span>Museu</span>
-                    <span>Estadual</span>
-                    <span>do Carvão</span>
-                </div>
-            </a>
-            <div class="header-controls">
-    <div class="search-bar">
-        <input type="text" placeholder="Buscar">
-        <button aria-label="Buscar"><i class="fa-solid fa-magnifying-glass"></i></button>
-    </div>
 
-    <div class="header-utilities">
-        <div class="language-selector">
-            <strong>PT</strong>
-            <span>|</span>
-            <a href="#">EN</a>
-        </div>
-        <div class="social-links">
-            <a href="#" target="_blank" aria-label="Siga-nos no Instagram">
-                <i class="fa-brands fa-instagram"></i>
-            </a>
-            <a href="#" target="_blank" aria-label="Siga-nos no Facebook">
-                <i class="fa-brands fa-facebook-f"></i>
-            </a>
-            <a href="mailto:museu-carvao@sedac.rs.gov.br" aria-label="Envie-nos um e-mail">
-                <i class="fa-solid fa-envelope"></i>
-            </a>
-        </div>
-    </div>
-</div>
-        </div>
-       <nav class="main-nav">
-    <ul>
-    <li><a href="index.html">Home</a></li> <li class="has-dropdown"><a href="nossa-historia.html">Nossa História <i class="fa-solid fa-caret-down"></i></a><ul class="dropdown-menu"><li><a href="#">O Museu</a></li><li><a href="#">Arquivo de Mineração</a></li></ul></li>
-    <li class="has-dropdown"><a href="nossos-fundos.html">Nossos Fundos <i class="fa-solid fa-caret-down"></i></a><ul class="dropdown-menu"><li><a href="#">Companhia Estrada de Ferro...</a></li><li><a href="#">Companhia Minas de Carvão...</a></li></ul></li>
-    <li><a href="arquivo-digital.html" class="active">Arquivo Digital</a></li> 
-    <li><a href="projetos.html">Projetos</a></li>
-    <li><a href="publicacoes.html">Publicações</a></li>
-    <li><a href="servicos.html">Serviços</a></li>
-    <li><a href="localizacao-contato.html">Localização e Contato</a></li>
-</ul>
-</nav>
+    <header>
+        <div class="header-top"><a href="index.html" class="logo"><img src="img/logo-museu.png" alt="Logo Museu Estadual do Carvão"><div><span>Museu</span><span>Estadual</span><span>do Carvão</span></div></a><div class="header-controls"><div class="search-bar"><input type="text" placeholder="Buscar"><button aria-label="Buscar"><i class="fa-solid fa-magnifying-glass"></i></button></div><div class="header-utilities"><div class="language-selector"><strong>PT</strong><span>|</span><a href="#">EN</a></div><div class="social-links"><a href="#" target="_blank" aria-label="Siga-nos no Instagram"><i class="fa-brands fa-instagram"></i></a><a href="#" target="_blank" aria-label="Siga-nos no Facebook"><i class="fa-brands fa-facebook-f"></i></a><a href="mailto:museu-carvao@sedac.rs.gov.br" aria-label="Envie-nos um e-mail"><i class="fa-solid fa-envelope"></i></a></div></div></div></div>
+        <nav class="main-nav"><ul><li><a href="index.html">Home</a></li><li class="has-dropdown"><a href="nossa-historia.html">Nossa História <i class="fa-solid fa-caret-down"></i></a><ul class="dropdown-menu"><li><a href="nossa-historia.html#inicio">Visão Geral</a></li><li><a href="nossa-historia.html#usina">A Usina</a></li><li><a href="nossa-historia.html#criacao-museu">O Museu</a></li></ul></li><li class="has-dropdown"><a href="nossos-fundos.html">Nossos Fundos <i class="fa-solid fa-caret-down"></i></a><ul class="dropdown-menu"><li><a href="nossos-fundos.html">Visão Geral</a></li><li><a href="#">Companhia Estrada de Ferro...</a></li><li><a href="#">Companhia Minas de Carvão...</a></li></ul></li><li><a href="arquivo-digital.html" class="active">Arquivo Digital</a></li><li><a href="projetos.html">Projetos</a></li><li><a href="publicacoes.html">Publicações</a></li><li><a href="servicos.html">Serviços</a></li><li><a href="localizacao-contato.html">Localização e Contato</a></li></ul></nav>
     </header>
 
     <main id="main-content">
         <section class="page-title">
-            <h1>Fundos Documentais</h1>
+            <h1>Arquivo Digital</h1>
         </section>
 
-        <div id="acervo-container" class="loading">
-            <div class="spinner"></div>
-        </div>
-    </main>
+        <div class="two-column-layout">
+
+            <aside class="sidebar-nav">
+                <h2>Explorar Acervo</h2>
+                
+                <div class="sidebar-search">
+                    <input type="search" placeholder="Buscar no acervo...">
+                    <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+
+                <h3>Categorias</h3>
+                <ul>
+                    <li><a href="#">Documentos Textuais</a></li>
+                    <li><a href="#">Fotografias</a></li>
+                    <li><a href="#">Mapas e Plantas</a></li>
+                    <li><a href="#">Iconografia</a></li>
+                    </ul>
+                
+                <h3>Fundos</h3>
+                <ul>
+                    <li><a href="#">Cia. Estrada de Ferro...</a></li>
+                     <li><a href="#">Cia. Minas de Carvão...</a></li>
+                     </ul>
+            </aside>
+
+            <section class="main-content archive-results">
+                <h2>Documentos em Destaque</h2>
+                
+                <div id="acervo-container" class="loading"> 
+                    <div class="spinner"></div> 
+                    <p>Carregando documentos do acervo...</p> 
+                </div>
+
+                </section>
+
+        </div> </main>
 
     <footer class="site-footer">
         <p>&copy; 2025 Museu do Carvão. Projeto desenvolvido por Matheus (UFRGS).</p>
     </footer>
 
-    <script src="js/script.js"></script>
-
+    <script src="js/script.js"></script> 
 </body>
 </html>

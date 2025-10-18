@@ -3,44 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <title>Nossa História - Museu Estadual do Carvão</title>
     
     <link rel="stylesheet" href="css/style.css">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-
     <a href="#main-content" class="skip-link">Pular para o Conteúdo Principal</a>
 
     <header>
         <div class="header-top">
-            <a href="#" class="logo">
+            <a href="index.html" class="logo">
                 <img src="img/logo-museu.png" alt="Logo Museu Estadual do Carvão">
-                <div>
-                    <span>Museu</span>
-                    <span>Estadual</span>
-                    <span>do Carvão</span>
-                </div>
+                <div><span>Museu</span><span>Estadual</span><span>do Carvão</span></div>
             </a>
             <div class="header-controls">
                 <div class="search-bar">
                     <input type="text" placeholder="Buscar">
-                    <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <button aria-label="Buscar"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
+                <div class="header-utilities">
+                    <div class="language-selector"><strong>PT</strong><span>|</span><a href="#">EN</a></div>
+                    <div class="social-links">
+                        <a href="#" target="_blank" aria-label="Siga-nos no Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" target="_blank" aria-label="Siga-nos no Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="mailto:museu-carvao@sedac.rs.gov.br" aria-label="Envie-nos um e-mail"><i class="fa-solid fa-envelope"></i></a>
+                    </div>
                 </div>
+            </div>
         </div>
-       <nav class="main-nav">
-    <ul>
-    <li><a href="index.html">Home</a></li> <li class="has-dropdown"><a href="nossa-historia.html " class="active">Nossa História <i class="fa-solid fa-caret-down"></i></a><ul class="dropdown-menu"><li><a href="#">O Museu</a></li><li><a href="#">Arquivo de Mineração</a></li></ul></li>
-    <li class="has-dropdown"><a href="nossos-fundos.html">Nossos Fundos <i class="fa-solid fa-caret-down"></i></a><ul class="dropdown-menu"><li><a href="#">Companhia Estrada de Ferro...</a></li><li><a href="#">Companhia Minas de Carvão...</a></li></ul></li>
-    <li><a href="arquivo-digital.html">Arquivo Digital</a></li> 
-    <li><a href="projetos.html">Projetos</a></li>
-    <li><a href="publicacoes.html">Publicações</a></li>
-    <li><a href="servicos.html">Serviços</a></li>
-    <li><a href="localizacao-contato.html">Localização e Contato</a></li>
-</ul>
-</nav>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li class="has-dropdown">
+                    <a href="nossa-historia.html" class="active">Nossa História <i class="fa-solid fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="nossa-historia.html#inicio">Visão Geral</a></li> 
+                        <li><a href="nossa-historia.html#usina">A Usina</a></li>
+                        <li><a href="nossa-historia.html#criacao-museu">O Museu</a></li>
+                    </ul>
+                </li>
+                <li class="has-dropdown">
+                    <a href="nossos-fundos.html">Nossos Fundos <i class="fa-solid fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="nossos-fundos.html">Visão Geral</a></li>
+                        <li><a href="#">Companhia Estrada de Ferro...</a></li>
+                        <li><a href="#">Companhia Minas de Carvão...</a></li>
+                        </ul>
+                </li>
+                <li><a href="arquivo-digital.html">Arquivo Digital</a></li>
+                <li><a href="projetos.html">Projetos</a></li>
+                <li><a href="publicacoes.html">Publicações</a></li>
+                <li><a href="servicos.html">Serviços</a></li>
+                <li><a href="localizacao-contato.html">Localização e Contato</a></li>
+            </ul>
+        </nav>
     </header>
 
     <main id="main-content">
@@ -48,10 +66,58 @@
             <h1>Nossa História</h1>
         </section>
 
-        <div style="padding: 2rem; text-align: center; min-height: 300px;">
-            <p>Página em construção.</p>
-        </div>
-    </main>
+        <div class="two-column-layout">
+
+            <aside class="sidebar-nav">
+                <h2>Tópicos</h2>
+                <ul>
+                    <li><a href="#inicio">O Início da Mineração</a></li>
+                    <li><a href="#usina">A Era da Usina Termelétrica</a></li>
+                    <li><a href="#criacao-museu">A Criação do Museu</a></li>
+                    <li><a href="#acervo">O Acervo Documental</a></li>
+                    <li><a href="#atualidade">O Museu Hoje</a></li>
+                </ul>
+            </aside>
+
+            <section class="main-content history-content">
+                
+                <article id="inicio">
+                    <h2>O Início da Mineração</h2>
+                    <p>A história da exploração de carvão no Rio Grande do Sul remonta ao século XIX, com as primeiras descobertas na região de Arroio dos Ratos e São Jerônimo. A Bacia Carbonífera do Baixo Jacuí logo se tornou um polo estratégico para o desenvolvimento energético do Brasil, atraindo investimentos e impulsionando o crescimento local.</p>
+                    <img src="img/inicio_mineracao.jpg" alt="Foto histórica das primeiras minas de carvão na região de Arroio dos Ratos"> 
+                    <p>Empresas pioneiras, como a Companhia Estrada de Ferro e Minas de São Jerônymo, estabeleceram as bases para uma indústria que marcaria profundamente a paisagem econômica e social da região por mais de um século.</p>
+                </article>
+
+                <article id="usina">
+                    <h2>A Era da Usina Termelétrica</h2>
+                    <p>No auge da exploração carbonífera, em meados do século XX, foi construída a Usina Termelétrica de Charqueadas. Operada pela então Comissão Estadual de Energia Elétrica (CEEE), a usina representou um marco tecnológico e industrial, utilizando o carvão extraído localmente para gerar energia essencial ao desenvolvimento do estado.</p>
+                    <img src="img/usina_antiga.jpg" alt="Foto da Usina Termelétrica de Charqueadas em pleno funcionamento, mostrando suas chaminés e estruturas"> 
+                    <p>Suas instalações imponentes e sua capacidade produtiva foram símbolos do progresso e da força da indústria carbonífera gaúcha durante décadas, moldando a vida de milhares de trabalhadores e suas famílias.</p>
+                </article>
+
+                <article id="criacao-museu">
+                    <h2>A Criação do Museu</h2>
+                    <p>Com a progressiva desativação das atividades da usina nas décadas seguintes, surgiu a consciência da necessidade de preservar esse importante legado industrial. Mobilizações da comunidade e o reconhecimento do valor histórico e cultural do local levaram à criação do Museu Estadual do Carvão, vinculado à Secretaria de Estado da Cultura (Sedac).</p>
+                    <img src="img/fachada_museu.jpg" alt="Foto da fachada do Museu Estadual do Carvão, mostrando o prédio histórico da antiga usina"> 
+                    <p>Fundado oficialmente em 1986, o museu estabeleceu-se nas próprias instalações da antiga usina, tornando-se pioneiro na preservação do patrimônio industrial da mineração de carvão no Brasil e na América Latina.</p>
+                </article>
+
+                <article id="acervo">
+                    <h2>O Acervo Documental</h2>
+                    <p>O coração do Museu Estadual do Carvão reside em seu vasto e inestimável acervo arquivístico. Composto por centenas de milhares de documentos, fotografias, mapas, plantas, livros e outros registros, ele salvaguarda a memória detalhada das principais companhias carboníferas que atuaram na região.</p>
+                    <img src="img/acervo_prateleiras.jpg" alt="Imagem de prateleiras repletas de caixas de arquivo marrons, representando o acervo documental do museu"> 
+                    <p>Este acervo monumental é uma fonte primária indispensável para pesquisadores, historiadores e todos que desejam compreender a fundo a história econômica, social e tecnológica da era do carvão no sul do Brasil.</p>
+                </article>
+
+                <article id="atualidade">
+                    <h2>O Museu Hoje</h2>
+                    <p>Atualmente, o Museu Estadual do Carvão continua sua missão de preservar e difundir a história da mineração. Além de guardar e disponibilizar seu rico acervo para consulta, o museu oferece exposições permanentes e temporárias que retratam a vida dos mineiros, a tecnologia da época e o impacto da indústria na sociedade.</p>
+                    <img src="img/museu_exposicao.jpg" alt="Foto recente de uma área de exposição interna do Museu do Carvão, mostrando painéis ou objetos em exibição"> 
+                    <p>Realiza atividades educativas, promove eventos culturais e se consolida como um centro de referência para estudos sobre patrimônio industrial. Mesmo diante de desafios, como a recente recuperação de parte do acervo após a enchente, o museu reafirma seu compromisso com a memória e a pesquisa, convidando a todos para uma viagem fascinante pela história do carvão.</p>
+                    <p>Explore as outras seções do site para conhecer nossos fundos documentais, projetos em andamento e publicações relacionadas.</p>
+                </article>
+
+            </section> </div> </main>
 
     <footer class="site-footer">
         <p>&copy; 2025 Museu do Carvão. Projeto desenvolvido por Matheus (UFRGS).</p>

@@ -78,9 +78,76 @@ header {
     color: #555;
 }
 
+/* ==========================================================================
+   2b. Cabeçalho Fixo (Sticky Header) na Rolagem
+   ==========================================================================
+*/
+
+/* Classe adicionada ao <header> via JavaScript */
+.sticky-header {
+    position: fixed; /* Fixa o cabeçalho no topo da janela */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1010; /* Z-index ainda mais alto para garantir */
+    
+    /* Estilo Minimalista */
+    background-color: var(--cor-fundo-escuro); /* Fundo escuro direto */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15); /* Sombra para destacar */
+    
+    /* Animação suave de entrada */
+    transform: translateY(-100%); /* Começa escondido acima da tela */
+    animation: slideDown 0.5s ease forwards; /* Animação para deslizar para baixo */
+}
+
+/* Esconde a parte superior do cabeçalho no modo fixo */
+.sticky-header .header-top {
+    display: none;
+}
+
+/* Ajusta o padding da navegação no modo fixo (opcional) */
+.sticky-header .main-nav li a {
+    padding: 0.8rem 1.2rem; /* Deixa a barra de navegação um pouco mais compacta */
+}
+
+/* Animação para o cabeçalho deslizar para baixo */
+@keyframes slideDown {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(0); }
+}
+
+/* Adiciona padding ao topo do <body> para evitar que o conteúdo
+   pule para baixo do cabeçalho fixo quando ele aparece */
+.body-padding-for-sticky {
+    /* A altura exata aqui depende da altura final do seu cabeçalho fixo.
+       Você precisará ajustar este valor (ex: 50px, 60px)
+       inspecionando a altura da .main-nav no modo fixo com F12. */
+    padding-top: 60px; /* Ajuste este valor! */
+}
+
 /* -- 3. Barra de Navegação Principal -- */
+/* -- 3. Barra de Navegação Principal (COM Z-INDEX ALTO) -- */
 .main-nav {
     background-color: var(--cor-fundo-escuro);
+    position: relative; /* Necessário para z-index e posicionamento do dropdown */
+    z-index: 1000;      /* <<< MUITO ALTO: Garante que fique na frente do carrossel e outros */
+}
+/* -- 3. Barra de Navegação Principal - Estilo dos Links -- */
+/* (Certifique-se que esta regra exista e esteja correta) */
+
+.main-nav li a {
+    display: block; /* Garante que o link ocupe todo o espaço do <li> */
+    padding: 1rem 1.5rem; /* Espaçamento interno (ajuste se necessário) */
+    color: var(--cor-texto-claro); /* Cor do texto (branco) */
+    text-decoration: none; /* <<< A CORREÇÃO PRINCIPAL: REMOVE O SUBLINHADO */
+    font-weight: 500; /* Peso da fonte (ajuste se necessário) */
+    transition: background-color 0.3s; /* Efeito suave no hover */
+}
+
+/* Estilo para o link ativo (página atual) e hover */
+.main-nav li a:hover, 
+.main-nav li a.active {
+    background-color: var(--cor-laranja-destaque); /* Fundo laranja no hover/ativo */
 }
 
 .main-nav ul {
@@ -91,16 +158,62 @@ header {
     justify-content: center;
 }
 
-.main-nav li a {
-    display: block;
-    padding: 1rem 1.5rem;
-    color: var(--cor-texto-claro);
-    text-decoration: none;
-    font-weight: 500;
-    transition: background-color 0.3s;
+/* ==========================================================================
+   3a. Estilos Dropdown (VERSÃO FINAL: FUNCIONAL E ELEGANTE)
+   ========================================================================== */
+
+/* Garante que o item de menu seja o "pai" de referência */
+.main-nav li.has-dropdown {
+    position: relative; /* Já deve existir */
 }
 
-.main-nav li a:hover, .main-nav li a.active {
+/* O container do submenu (começa escondido e ligeiramente deslocado) */
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 999; /* Mantém um z-index alto, mas ligeiramente menor que o pai para garantir */
+
+    background-color: var(--cor-fundo-escuro);
+    list-style: none;
+    padding: 0.5rem 0;
+    margin: 0;
+    min-width: 280px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    border-radius: 0 0 4px 4px;
+    display: flex; /* Necessário para flex-direction */
+    flex-direction: column; /* Garante o empilhamento vertical dos itens */
+
+    /* ESTADO INICIAL (ESCONDIDO COM ANIMAÇÃO) */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px); /* Começa ligeiramente abaixo */
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s; /* Animação suave */
+}
+
+/* O ESTADO VISÍVEL (QUANDO A CLASSE É ADICIONADA) */
+.has-dropdown.show-dropdown > .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0); /* Volta para a posição normal */
+}
+
+/* ITENS DENTRO DO DROPDOWN (Garantindo o comportamento de bloco) */
+.dropdown-menu li,
+.dropdown-menu li a {
+    display: block;
+    width: 100%;
+}
+
+.dropdown-menu li a {
+    padding: 0.8rem 1.5rem;
+    color: var(--cor-texto-claro);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color 0.2s ease; /* Adiciona transição suave no hover */
+}
+
+.dropdown-menu li a:hover {
     background-color: var(--cor-laranja-destaque);
 }
 
@@ -868,4 +981,246 @@ textarea:focus {
    font-size: 2.2rem;
    margin-top: 0;
    color: var(--cor-texto-escuro);
+}
+/* ==========================================================================
+   14. Layout de Duas Colunas e Navegação Lateral
+   ==========================================================================
+*/
+
+/* O container principal que cria as duas colunas */
+.two-column-layout {
+    display: grid;
+    /* Define as colunas: a 1ª (sidebar) tem 280px e a 2ª (conteúdo) ocupa o resto (1fr) */
+    grid-template-columns: 280px 1fr; 
+    gap: 2.5rem; /* Espaço entre as colunas */
+    max-width: 1200px; /* Mantém o alinhamento com o resto do site */
+    margin: 0 auto; /* Centraliza */
+    padding: 0 1rem; /* Espaçamento lateral */
+    align-items: flex-start; /* Alinha as colunas pelo topo */
+}
+
+/* --- Estilos da Coluna Lateral (Sidebar) --- */
+.sidebar-nav {
+    background-color: #fff; /* Fundo branco para destacar */
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    border: 1px solid var(--cor-borda-suave);
+}
+
+.sidebar-nav h2 {
+    font-size: 1.3rem;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 2px solid var(--cor-laranja-destaque);
+    color: var(--cor-texto-escuro);
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-nav li {
+    margin-bottom: 0.5rem;
+}
+
+.sidebar-nav a {
+    display: block;
+    padding: 0.7rem 1rem;
+    color: var(--cor-link);
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    font-weight: 500;
+}
+
+/* Efeito Hover */
+.sidebar-nav a:hover {
+    background-color: var(--cor-fundo-claro); /* Cinza claro no hover */
+    color: var(--cor-texto-escuro);
+}
+
+/* Estilo para o link ativo (pode ser adicionado via JS ou manualmente) */
+.sidebar-nav a.active-sidebar-link {
+    background-color: var(--cor-laranja-destaque);
+    color: var(--cor-texto-claro);
+    font-weight: bold;
+}
+
+/* --- Estilos da Coluna Principal (Conteúdo) --- */
+.main-content {
+    /* O conteúdo aqui pode precisar de estilos específicos dependendo do que for exibido */
+    background-color: #fff; /* Opcional: pode ter fundo branco ou não */
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    border: 1px solid var(--cor-borda-suave);
+}
+
+.main-content h2 {
+    margin-top: 0;
+    font-size: 1.8rem;
+}
+
+/* --- Responsividade para o Layout de Duas Colunas --- */
+@media (max-width: 992px) {
+    .two-column-layout {
+        grid-template-columns: 1fr; /* Coluna única em telas menores */
+    }
+
+    /* A sidebar agora fica acima do conteúdo */
+    .sidebar-nav {
+        margin-bottom: 2rem; /* Adiciona espaço abaixo da sidebar */
+    }
+}
+/* ==========================================================================
+   15. Estilos Específicos da Página "Nossa História"
+   ==========================================================================
+*/
+
+/* Melhora o espaçamento e a leitura do conteúdo principal */
+.history-content article {
+    margin-bottom: 3rem; /* Espaço entre as seções */
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--cor-borda-suave); /* Linha separadora sutil */
+}
+
+/* Remove a borda inferior do último artigo */
+.history-content article:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.history-content h2 {
+    /* O estilo padrão já deve funcionar bem, mas podemos ajustar se necessário */
+    margin-bottom: 1.5rem;
+}
+
+.history-content p {
+    line-height: 1.8; /* Aumenta o espaçamento entre linhas para textos longos */
+    margin-bottom: 1.5rem;
+}
+
+/* Estilo para imagens inseridas no texto (Exemplo) */
+.history-content img {
+    max-width: 100%; /* Garante que a imagem seja responsiva */
+    height: auto;
+    display: block; /* Remove espaço extra abaixo da imagem */
+    margin: 2rem auto; /* Centraliza a imagem com margens verticais */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+/* Dentro da seção 15 do CSS */
+.history-content img {
+    max-width: 100%; 
+    height: auto;
+    display: block; 
+    margin: 2rem auto; 
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+/* ==========================================================================
+   16. Página Arquivo Digital - Sidebar e Resultados
+   ==========================================================================
+*/
+
+.sidebar-search {
+    display: flex;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--cor-borda-suave);
+    border-radius: 4px;
+}
+.sidebar-search input {
+    flex-grow: 1;
+    border: none;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.95rem;
+    border-radius: 4px 0 0 4px;
+}
+.sidebar-search button {
+    background: transparent;
+    border: none;
+    padding: 0 0.8rem;
+    cursor: pointer;
+    color: #555;
+    border-left: 1px solid var(--cor-borda-suave);
+}
+
+.sidebar-nav h3 {
+    font-size: 1.1rem;
+    margin-top: 2rem;
+    margin-bottom: 0.8rem;
+    color: var(--cor-texto-escuro);
+}
+
+/* Garante que o container do acervo use o layout de grid que já definimos */
+#acervo-container.loading { /* Ajusta o estado de loading */
+    display: flex;
+    flex-direction: column; /* Empilha spinner e texto */
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    grid-template-columns: 1fr; /* Remove grid durante loading */
+}
+#acervo-container.loading p {
+    margin-top: 1rem;
+    color: #777;
+    font-style: italic;
+}
+#acervo-container:not(.loading) { /* Quando não está carregando, aplica o grid */
+     display: grid;
+     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+     gap: 1.5rem;
+}
+/* ==========================================================================
+   17. Página de Serviços
+   ==========================================================================
+*/
+
+.service-content {
+    max-width: 800px; /* Limita a largura do texto para melhor legibilidade */
+    margin: 0 auto; /* Centraliza */
+    background-color: #fff; /* Fundo branco para o conteúdo */
+    padding: 2rem 3rem; /* Mais padding interno */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    border: 1px solid var(--cor-borda-suave);
+}
+
+.intro-paragraph {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    color: #555;
+}
+
+.service-item {
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--cor-borda-suave);
+}
+
+.service-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.service-item h2 {
+    font-size: 1.6rem;
+    color: var(--cor-laranja-destaque);
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.service-item p {
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+.service-item p strong { /* Destaca o "Como solicitar" */
+    color: var(--cor-texto-escuro);
 }
