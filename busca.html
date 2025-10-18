@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado da Busca - Museu Estadual do Carvão</title>
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Estilos específicos para esta página */
+        .search-results-content {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            text-align: center;
+            min-height: 250px; /* Garante uma altura mínima */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .search-term-display {
+            font-style: italic;
+            color: #555;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Pular para o Conteúdo Principal</a>
+
+    <header>
+        <div class="header-top"><a href="index.html" class="logo"><img src="img/logo-museu.png" alt="Logo Museu Estadual do Carvão"><div><span>Museu</span><span>Estadual</span><span>do Carvão</span></div></a><div class="header-controls"><div class="search-bar"><input type="text" placeholder="Buscar"><button aria-label="Buscar"><i class="fa-solid fa-magnifying-glass"></i></button></div><div class="header-utilities"><div class="language-selector"><strong>PT</strong><span>|</span><a href="#">EN</a></div><div class="social-links"><a href="#" target="_blank" aria-label="Siga-nos no Instagram"><i class="fa-brands fa-instagram"></i></a><a href="#" target="_blank" aria-label="Siga-nos no Facebook"><i class="fa-brands fa-facebook-f"></i></a><a href="mailto:museu-carvao@sedac.rs.gov.br" aria-label="Envie-nos um e-mail"><i class="fa-solid fa-envelope"></i></a></div></div></div></div>
+        <nav class="main-nav"><ul><li><a href="index.html">Home</a></li><li class="has-dropdown"><a href="nossa-historia.html">Nossa História <i class="fa-solid fa-caret-down"></i></a><ul class="dropdown-menu"><li><a href="nossa-historia.html">Visão Geral</a></li><li><a href="nossa-historia.html#usina">A Usina</a></li><li><a href="nossa-historia.html#criacao-museu">O Museu</a></li></ul></li><li class="has-dropdown"><a href="nossos-fundos.html">Nossos Fundos <i class="fa-solid fa-caret-down"></i></a><ul class="dropdown-menu"><li><a href="nossos-fundos.html">Visão Geral</a></li><li><a href="#">Companhia Estrada de Ferro...</a></li><li><a href="#">Companhia Minas de Carvão...</a></li></ul></li><li><a href="arquivo-digital.html">Arquivo Digital</a></li><li><a href="projetos.html">Projetos</a></li><li><a href="publicacoes.html">Publicações</a></li><li><a href="servicos.html">Serviços</a></li><li><a href="localizacao-contato.html">Localização e Contato</a></li></ul></nav>
+    </header>
+
+    <main id="main-content">
+        <section class="page-title">
+            <h1>Resultado da Busca</h1>
+        </section>
+
+        <section class="search-results-content">
+            <p>A funcionalidade de busca completa no acervo ainda está em desenvolvimento.</p>
+            <p id="search-term-info">Você buscou por:</p>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-content-wrapper"><div class="footer-column"><h4>Navegação</h4><ul><li><a href="index.html">Home</a></li><li><a href="nossa-historia.html">Nossa História</a></li><li><a href="nossos-fundos.html">Nossos Fundos</a></li><li><a href="arquivo-digital.html">Arquivo Digital</a></li><li><a href="localizacao-contato.html">Contato</a></li></ul></div><div class="footer-column"><h4>Contato</h4><address>R. Prof. Péricles de Barcellos, 2780<br>Centro, Arroio dos Ratos - RS<br>CEP: 96740-000<br><a href="tel:+555136561215">(51) 3656-1215</a><br><a href="mailto:museu-carvao@sedac.rs.gov.br">museu-carvao@sedac.rs.gov.br</a></address></div><div class="footer-column"><h4>Siga-nos</h4><div class="footer-social-links"><a href="#" target="_blank" aria-label="Siga-nos no Instagram"><i class="fa-brands fa-instagram"></i></a><a href="#" target="_blank" aria-label="Siga-nos no Facebook"><i class="fa-brands fa-facebook-f"></i></a></div></div></div><div class="footer-copyright"><p>&copy; 2025 Museu Estadual do Carvão. Projeto desenvolvido por Matheus (UFRGS).</p></div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const query = urlParams.get('q'); // Pega o parâmetro 'q' da URL
+            const infoElement = document.getElementById('search-term-info');
+
+            if (query && infoElement) {
+                const termDisplay = document.createElement('span');
+                termDisplay.className = 'search-term-display';
+                termDisplay.textContent = `"${decodeURIComponent(query)}"`; // Exibe o termo
+                infoElement.appendChild(termDisplay);
+            } else if (infoElement) {
+                 infoElement.style.display = 'none'; // Esconde a linha se não houver termo
+            }
+        });
+    </script>
+    
+    <script src="js/script.js"></script> 
+</body>
+</html>

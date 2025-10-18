@@ -168,4 +168,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- (Seu código do dropdown vem aqui embaixo) ---
 
+    // No seu js/script.js, dentro do DOMContentLoaded
+
+    // --- FUNCIONALIDADE DA BARRA DE BUSCA (SIMULADA) ---
+    const searchBar = document.querySelector('.search-bar');
+    if (searchBar) {
+        const searchInput = searchBar.querySelector('input[type="text"]');
+        const searchButton = searchBar.querySelector('button');
+
+        function performSearch() {
+            const query = searchInput.value.trim(); // Pega o valor digitado e remove espaços extras
+            if (query) { // Só redireciona se algo foi digitado
+                // Redireciona para a página de busca, passando o termo como parâmetro 'q' na URL
+                window.location.href = `busca.html?q=${encodeURIComponent(query)}`; 
+            }
+        }
+
+        // Adiciona o ouvinte para o clique no botão
+        searchButton.addEventListener('click', performSearch);
+
+        // Adiciona o ouvinte para a tecla Enter no campo de input
+        searchInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault(); // Impede o envio padrão do formulário (que não temos)
+                performSearch();
+            }
+        });
+    }
+
+    // --- (Seu código do dropdown, etc., continua aqui) ---
 }); // Fim do DOMContentLoaded
