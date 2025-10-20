@@ -1443,3 +1443,48 @@ textarea:focus {
 .service-button:hover {
      background-color: #d4690f;
 }
+/* Adicionar ao final de style.css */
+
+/* Garante que a sidebar grude no lugar certo */
+.sidebar-nav {
+    position: -webkit-sticky; /* Para compatibilidade com Safari antigo */
+    position: sticky;
+    /* O valor 'top' PRECISA ser ajustado! */
+    /* Deve ser a altura do seu .sticky-header + margem */
+    top: 80px; /* VALOR EXEMPLO - AJUSTE NECESSÁRIO! */
+
+    /* Mitigação para sidebars altas */
+    max-height: calc(100vh - 100px); /* Ex: Altura da janela menos o 'top' e uma margem inferior */
+    overflow-y: auto; /* Adiciona scroll interno se necessário */
+}
+/* ==========================================================================
+   (Adicionado no Final) - FUNCIONALIDADE DA SIDEBAR FIXA (STICKY)
+   ==========================================================================
+*/
+
+/* Aplica o comportamento "sticky" à sidebar */
+.sidebar-nav {
+    position: -webkit-sticky; /* Para compatibilidade com Safari antigo */
+    position: sticky;
+    
+    /* === AJUSTE CRUCIAL AQUI === */
+    /* Defina o 'top' baseado na ALTURA REAL do seu CABEÇALHO FIXO + ~20px de margem */
+    /* Exemplo: Se o .sticky-header .main-nav tem 60px, use top: 80px; */
+    top: 80px; /* <--- AJUSTE ESTE VALOR! */
+
+    /* Garante que a sidebar não seja mais alta que a tela e tenha rolagem interna */
+    /* Use um valor um pouco maior que o 'top' no cálculo */
+    max-height: calc(100vh - 100px); /* <--- AJUSTE ESTE VALOR TAMBÉM! */
+    overflow-y: auto; /* Adiciona barra de rolagem se a lista for muito grande */
+}
+
+/* Ajuste de Responsividade para o Sticky Sidebar */
+@media (max-width: 992px) {
+    .sidebar-nav {
+        /* Desativa o 'sticky' em telas menores onde o layout é de 1 coluna */
+        position: static; 
+        max-height: none; 
+        overflow-y: visible;
+        margin-bottom: 2rem; /* Mantém o espaço abaixo */
+    }
+}
