@@ -15,12 +15,20 @@
 }
 
 body {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
+    /* Fonte principal para leitura (Limpa e moderna) */
+    font-family: 'Open Sans', sans-serif; 
     margin: 0;
     background-color: var(--cor-fundo-claro);
     color: var(--cor-texto-escuro);
+    line-height: 1.6;
 }
 
+/* --- Nova Regra para Títulos (Fonte Serifada e Elegante) --- */
+h1, h2, h3, h4, h5, h6, .logo div {
+    font-family: 'Merriweather', serif;
+    color: var(--cor-texto-escuro);
+    font-weight: 700; /* Negrito para destaque */
+}
 /* -- 2. Cabeçalho -- */
 header {
     background-color: var(--cor-fundo-claro);
@@ -140,6 +148,7 @@ header {
     padding: 1rem 1.5rem; /* Espaçamento interno (ajuste se necessário) */
     color: var(--cor-texto-claro); /* Cor do texto (branco) */
     text-decoration: none; /* <<< A CORREÇÃO PRINCIPAL: REMOVE O SUBLINHADO */
+    font-family: 'Open Sans', sans-serif;
     font-weight: 500; /* Peso da fonte (ajuste se necessário) */
     transition: background-color 0.3s; /* Efeito suave no hover */
 }
@@ -1567,3 +1576,169 @@ body.high-contrast .page-hero {
     background-image: none !important;
     background-color: #000 !important;
 }
+/* ==========================================================================
+   19. Estilos da Linha do Tempo (VERSÃO HORIZONTAL RESPONSIVA)
+   ==========================================================================
+*/
+
+.timeline {
+    position: relative;
+    margin: 4rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* --- ESTILO PARA CELULAR (PADRÃO - VERTICAL) --- */
+/* Mantemos o visual vertical para telas pequenas por questão de espaço */
+.timeline {
+    display: flex;
+    flex-direction: column;
+    border-left: 3px solid var(--cor-borda-suave);
+    padding-left: 2rem;
+    margin-left: 1rem;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 2.5rem;
+}
+
+/* O Ponto (Bolinha) */
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -2.6rem; /* Alinhado com a linha vertical */
+    top: 0;
+    width: 16px;
+    height: 16px;
+    background-color: var(--cor-laranja-destaque);
+    border: 3px solid #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px var(--cor-laranja-destaque);
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.timeline-date {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: var(--cor-laranja-destaque);
+    margin-bottom: 0.5rem;
+}
+
+.timeline-content {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    border: 1px solid var(--cor-borda-suave);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+/* Seta do balão (apenas estético) */
+.timeline-content::after {
+    content: '';
+    position: absolute;
+    left: -10px;
+    top: 10px;
+    width: 0; height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid var(--cor-borda-suave);
+}
+
+/* --- EFEITOS DE HOVER --- */
+.timeline-item:hover::before {
+    background-color: #fff;
+    border-color: var(--cor-laranja-destaque);
+    transform: scale(1.2);
+}
+
+.timeline-item:hover .timeline-content {
+    transform: translateX(10px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    border-color: var(--cor-laranja-destaque);
+}
+
+.timeline-content h3 { margin-top: 0; font-size: 1.1rem; color: var(--cor-texto-escuro); }
+.timeline-content p { margin-bottom: 0; font-size: 0.95rem; color: #555; }
+
+/* --- ESTILO PARA COMPUTADOR (HORIZONTAL - A MÁGICA ACONTECE AQUI) --- */
+@media (min-width: 1400px) {
+    .timeline {
+        flex-direction: row; /* Muda para horizontal */
+        border-left: none; /* Remove linha vertical */
+        padding-left: 0;
+        margin-left: 0;
+        justify-content: space-between; /* Espalha os itens */
+        align-items: flex-start;
+    }
+
+    /* A Linha Horizontal Central */
+    .timeline::after {
+        content: '';
+        position: absolute;
+        top: 20px; /* Posição da linha */
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background-color: var(--cor-borda-suave);
+        z-index: 1;
+        border-radius: 2px;
+    }
+
+    .timeline-item {
+        flex: 1; /* Cada item ocupa o mesmo espaço */
+        margin-bottom: 0;
+        padding: 0 10px; /* Espaço lateral entre itens */
+        text-align: center; /* Centraliza tudo */
+    }
+
+    /* Reposiciona a Bolinha para o centro superior */
+    .timeline-item::before {
+        left: 50%;
+        top: 14px; /* Centralizado na linha horizontal */
+        transform: translateX(-50%);
+        z-index: 3; /* Fica acima da linha */
+    }
+
+    /* Reposiciona a Data para cima da linha */
+    .timeline-date {
+        margin-bottom: 2.5rem; /* Empurra o conteúdo para baixo da linha */
+        position: relative;
+        top: -45px; /* Sobe a data para cima da linha */
+    }
+
+    /* Ajustes do Card de Conteúdo */
+    .timeline-content {
+        margin-top: 10px;
+        text-align: left; /* Texto interno continua alinhado à esquerda para leitura */
+    }
+    
+    /* Seta do balão aponta para cima agora */
+    .timeline-content::after {
+        left: 50%;
+        top: -10px;
+        margin-left: -10px;
+        border-right: 10px solid transparent;
+        border-left: 10px solid transparent;
+        border-bottom: 10px solid var(--cor-borda-suave);
+        border-top: none;
+    }
+
+    /* Hover no Desktop (move para cima) */
+    .timeline-item:hover .timeline-content {
+        transform: translateY(-10px); /* Pula para cima */
+    }
+    .timeline-item:hover::before {
+        transform: translateX(-50%) scale(1.3); /* Cresce mantendo o centro */
+    }
+}
+
+/* Ajuste Alto Contraste */
+body.high-contrast .timeline::after,
+body.high-contrast .timeline { border-color: #FFFF00; background-color: transparent; }
+body.high-contrast .timeline-item::before { background-color: #000; border-color: #FFFF00; box-shadow: none; }
+body.high-contrast .timeline-content { border: 1px solid #FFFF00; }
+body.high-contrast .timeline-content::after { border-bottom-color: #FFFF00; }
