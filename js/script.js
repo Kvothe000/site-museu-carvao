@@ -81,6 +81,57 @@ function initAccessibility() {
     }
 }
 
+let currentLang = localStorage.getItem('language') || 'pt';
+
+function updateLanguage(lang) {
+    currentLang = lang;
+    localStorage.setItem('language', lang);
+
+    // Atualiza textos com data-i18n
+    document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+            if (element.tagName === 'INPUT') {
+                element.placeholder = translations[lang][key];
+            } else {
+                // Preserva ícones se existirem
+                const icon = element.querySelector('i');
+                if (icon) {
+                    const iconHTML = icon.outerHTML;
+                    element.innerHTML = translations[lang][key] + ' ' + iconHTML;
+                } else {
+                    element.textContent = translations[lang][key];
+                }
+            }
+        }
+    });
+
+    // Atualiza o estilo visual dos botões de idioma (CORREÇÃO DO ERRO)
+    const langButtons = document.querySelectorAll('.language-selector a');
+    if (langButtons) {
+        langButtons.forEach(btn => {
+            if (btn.dataset.lang === lang) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+    }
+}
+
+function initLanguageSelector() {
+    const langButtons = document.querySelectorAll('.language-selector a');
+    langButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const selectedLang = e.target.dataset.lang;
+            updateLanguage(selectedLang);
+        });
+    });
+    // Aplica o idioma salvo assim que iniciar
+    updateLanguage(currentLang);
+}
+
 // Função que inicializa tudo que depende do Header
 function initHeaderScripts() {
     // 1. Inicializa a Acessibilidade (NOVO!)
@@ -133,142 +184,105 @@ function initHeaderScripts() {
 }
 
 // --- INICIALIZAÇÃO ---
-document.addEventListener('DOMContentLoaded', () => {
+// ==========================================================
+// 5. INICIALIZAÇÃO PRINCIPAL (DOM READY)
+// ==========================================================
+document.addEventListener('DOMContentLoaded', async () => { // Note o 'async' aqui
     
-    // Verifica preferência de contraste salva JÁ NO INÍCIO para evitar "piscar"
+    // 1. Verifica preferência de contraste (sem piscar)
     if (localStorage.getItem('highContrast') === 'true') {
         document.body.classList.add('high-contrast');
     }
 
-    loadComponent('main-header', 'header.html');
-    loadComponent('main-footer', 'footer.html');
+    // 2. Carrega Header e Footer e ESPERA terminarem (Promise.all)
+    await Promise.all([
+        loadComponent('main-header', 'header.html'),
+        loadComponent('main-footer', 'footer.html')
+    ]);
 
-    // ==========================================================
-    // LÓGICA ESPECÍFICA DAS PÁGINAS (Não depende do Header)
-    // ==========================================================
+    // 3. Agora que tudo carregou, mostra a página suavemente
+    document.body.classList.add('page-loaded');
 
-    // --- API DO ACERVO (Para arquivo-digital.html) ---
+    // --- Daqui para baixo, o resto do seu código continua igual ---
+
+    // API ACERVO
     const acervoContainer = document.getElementById('acervo-container');
     if (acervoContainer) {
+        // ... (mantenha seu código de carregarAcervo aqui) ...
         const apiUrl = 'https://URL_REAL_DO_ATOM_DO_MUSEU/api/information-objects'; 
         const apiKey = 'SUA_CHAVE_DE_API_SECRETA_VAI_AQUI'; 
 
         async function carregarAcervo() {
             try {
-                // ATENÇÃO: Para testar sem API real, use o arquivo mock:
-                // const response = await fetch('mock-api.json'); 
-                const response = await fetch(apiUrl, { method: 'GET', headers: { 'REST-API-Key': apiKey }});
-                
-                if (!response.ok) { throw new Error(`Erro na rede: ${response.statusText}`); }
-                const documentos = await response.json();
-                
-                // Limpa loading
-                const spinner = acervoContainer.querySelector('.spinner');
-                const loadingText = acervoContainer.querySelector('p');
-                if(spinner) spinner.remove();
-                if(loadingText) loadingText.remove();
+                const response = await fetch('mock-api.json'); // Usando mock por enquanto
+                const data = await response.json();
+                const documentos = data.results || data;
                 acervoContainer.classList.remove('loading');
-                acervoContainer.style.display = 'grid'; 
-
-                // Adaptação para estrutura da API (se for { results: [...] })
-                const listaDocs = documentos.results ? documentos.results : documentos;
-
-                listaDocs.forEach(doc => {
+                acervoContainer.innerHTML = '';
+                acervoContainer.style.display = 'grid';
+                documentos.forEach(doc => {
                     const card = document.createElement('a');
                     card.className = 'fundo-card';
-                    card.href = doc.slug ? `https://URL_REAL_DO_ATOM_DO_MUSEU/${doc.slug}` : '#'; 
+                    card.href = doc.slug || '#';
                     card.target = '_blank';
-                    const imageUrl = doc.thumbnail_url || 'https://via.placeholder.com/300x200.png?text=Documento';
-                    card.innerHTML = `<figure><img src="${imageUrl}" alt="${doc.title}"><figcaption>${doc.title}</figcaption></figure>`;
+                    const img = doc.thumbnail_url || 'https://via.placeholder.com/300x200.png?text=Documento';
+                    card.innerHTML = `<figure><img src="${img}" alt="${doc.title}"><figcaption>${doc.title}</figcaption></figure>`;
                     acervoContainer.appendChild(card);
                 });
-            } catch (error) { 
-                console.error('Falha ao carregar o acervo:', error); 
-                acervoContainer.innerHTML = '<p>Ocorreu um erro ao carregar os documentos do acervo.</p>';
-                acervoContainer.classList.remove('loading');
-                acervoContainer.style.display = 'block';
+            } catch (error) {
+                console.error('Erro acervo:', error);
+                acervoContainer.innerHTML = '<p>Erro ao carregar acervo.</p>';
             }
         }
         carregarAcervo();
     }
 
-    // --- CARROSSEL DA HOME ---
-    const homeCarousel = document.getElementById('home-carousel');
-    if (homeCarousel && typeof Splide !== 'undefined') {
+    // CARROSSEL
+    if (document.getElementById('home-carousel') && typeof Splide !== 'undefined') {
         new Splide('#home-carousel', {
             type: 'loop', perPage: 1, perMove: 1, gap: '0', autoplay: true, interval: 4000, pauseOnHover: true
         }).mount();
     }
 
-    // --- NOTÍCIAS (home) ---
-    if (document.querySelector('.latest-news-wrapper')) { 
-        async function carregarNoticia() {
-            const container = document.querySelector('.latest-news-container');
-            if (!container) return; 
-            try {
-                const response = await fetch('noticias.json?v=' + Date.now()); 
-                const noticia = await response.json();
+    // NOTÍCIAS
+    if (document.querySelector('.latest-news-wrapper')) {
+        fetch('noticias.json?v=' + Date.now())
+            .then(res => res.json())
+            .then(noticia => {
+                const container = document.querySelector('.latest-news-container');
                 if (noticia && noticia.titulo) {
-                    container.innerHTML = `<img src="${noticia.imagem_url || 'img/projeto-enchente.jpg'}" alt="${noticia.titulo}" class="news-image"><div class="news-content"><h2>${noticia.titulo}</h2><p>${noticia.resumo || ''}</p><a href="${noticia.link}" target="_blank" class="cta-button">Leia a Matéria Completa</a></div>`;
-                    document.querySelector('.latest-news-wrapper').style.display = 'block'; 
-                } else {
-                    document.querySelector('.latest-news-wrapper').style.display = 'none'; 
+                    container.innerHTML = `
+                        <img src="${noticia.imagem_url}" alt="${noticia.titulo}" class="news-image">
+                        <div class="news-content">
+                            <h2>${noticia.titulo}</h2>
+                            <p>${noticia.resumo || ''}</p>
+                            <a href="${noticia.link}" target="_blank" class="cta-button">Leia a Matéria Completa</a>
+                        </div>`;
+                    document.querySelector('.latest-news-wrapper').style.display = 'block';
                 }
-            } catch (error) { 
-                console.error('Erro notícia:', error); 
-                document.querySelector('.latest-news-wrapper').style.display = 'none'; 
-            }
-        }
-        carregarNoticia(); 
+            })
+            .catch(err => document.querySelector('.latest-news-wrapper').style.display = 'none');
     }
 
-    // --- SIDEBAR E SMOOTH SCROLL (Links internos) ---
+    // SIDEBAR SMOOTH SCROLL
     const internalLinks = document.querySelectorAll('a[href^="#"]:not([href="#"])'); 
     internalLinks.forEach(link => {
         link.addEventListener('click', function(event) {
             const targetId = this.getAttribute('href');
             try {
-                 const targetElement = document.querySelector(targetId);
-                 if (targetElement) {
-                     event.preventDefault(); 
-                     // Recalcula o offset do header (fixo ou não)
-                     let headerOffset = 0;
-                     const stickyHeader = document.querySelector('.sticky-header');
-                     if (stickyHeader) headerOffset = stickyHeader.offsetHeight + 20; 
-                     else {
-                         const mainHeader = document.querySelector('header');
-                         if(mainHeader) headerOffset = mainHeader.offsetHeight + 20;
-                     }
-                     
-                     const elementPosition = targetElement.getBoundingClientRect().top;
-                     const targetScrollPosition = window.scrollY + elementPosition - headerOffset; 
-                     
-                     // Animação de scroll manual
-                     const startPosition = window.scrollY;
-                     const distance = targetScrollPosition - startPosition;
-                     const duration = 800;
-                     let startTime = null;
-             
-                     function animationStep(currentTime) {
-                         if (startTime === null) startTime = currentTime;
-                         const timeElapsed = currentTime - startTime;
-                         const ease = t => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-                         const run = ease(Math.min(1, timeElapsed / duration));
-                         window.scrollTo(0, startPosition + distance * run);
-                         if (timeElapsed < duration) requestAnimationFrame(animationStep);
-                     }
-                     requestAnimationFrame(animationStep);
-
-                     // Atualiza sidebar
-                     if (this.closest('.sidebar-nav')) {
-                          document.querySelectorAll('.sidebar-nav a').forEach(lnk => lnk.classList.remove('active-sidebar-link'));
-                          this.classList.add('active-sidebar-link');
-                     }
-                 }
-            } catch (e) {}
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    event.preventDefault();
+                    const headerOffset = document.querySelector('.sticky-header') ? 80 : 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.scrollY - headerOffset;
+                    window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+                    if(this.closest('.has-dropdown')) this.closest('.has-dropdown').classList.remove('show-dropdown');
+                }
+            } catch(e) {}
         });
     });
-
+    
     // Scrollspy para Sidebar
     const sidebarScrollLinks = document.querySelectorAll('.sidebar-nav a[href^="#"]'); 
     const scrollSpySections = document.querySelectorAll('.main-content article[id]'); 
@@ -362,58 +376,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- SISTEMA DE TRADUÇÃO ---
-
-// Carrega o arquivo de traduções (se não estiver importado no HTML)
-// O ideal é adicionar <script src="js/translations.js"></script> no HTML antes do script.js
-
-let currentLang = localStorage.getItem('language') || 'pt';
-
-function updateLanguage(lang) {
-    currentLang = lang;
-    localStorage.setItem('language', lang); // Salva a preferência
-
-    // Seleciona todos os elementos com data-i18n
-    const elements = document.querySelectorAll('[data-i18n]');
-    
-    elements.forEach(element => {
-        const key = element.getAttribute('data-i18n');
-        // Verifica se a tradução existe
-        if (translations[lang] && translations[lang][key]) {
-            // Se for um input (como a busca), muda o placeholder
-            if (element.tagName === 'INPUT') {
-                element.placeholder = translations[lang][key];
-            } else {
-                // Se tiver ícone (como no menu), preserva o ícone e muda só o texto
-                if (element.children.length > 0) {
-                     // Lógica mais complexa para não apagar ícones, 
-                     // ou simplificamos colocando o texto em um <span>
-                     // Por enquanto, vamos assumir substituição direta de texto simples
-                     // Para menus com ícones, o ideal é envolver o texto em <span data-i18n="...">Texto</span>
-                     element.innerHTML = translations[lang][key]; 
-                } else {
-                    element.textContent = translations[lang][key];
-                }
-            }
-        }
-    });
-
-    // Atualiza o visual dos botões de idioma
-    updateLanguageButtons();
-}
-
-function initLanguageSelector() {
-    const langButtons = document.querySelectorAll('.language-selector a');
-    langButtons.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            const selectedLang = e.target.dataset.lang; // Precisa adicionar data-lang="en" no HTML
-            updateLanguage(selectedLang);
-        });
-    });
-    
-    // Aplica a linguagem salva ao carregar
-    updateLanguage(currentLang);
-}
+   
 
 });

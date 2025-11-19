@@ -21,6 +21,13 @@ body {
     background-color: var(--cor-fundo-claro);
     color: var(--cor-texto-escuro);
     line-height: 1.6;
+    /* --- ADICIONE ISTO PARA EVITAR A PISCADA --- */
+    opacity: 0; /* Começa invisível */
+    transition: opacity 0.4s ease-in-out; /* Transição suave para aparecer */
+}
+/* Classe que o JS vai adicionar quando tudo estiver pronto */
+body.page-loaded {
+    opacity: 1; /* Torna visível */
 }
 
 /* --- Nova Regra para Títulos (Fonte Serifada e Elegante) --- */
