@@ -181,6 +181,26 @@ function initHeaderScripts() {
         searchButton.addEventListener('click', performSearch);
         searchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') { e.preventDefault(); performSearch(); }});
     }
+    // --- D. MENU MOBILE (HAMBÚRGUER) ---
+    const mobileBtn = document.querySelector('.mobile-menu-toggle');
+    const navElement = document.querySelector('.main-nav');
+
+    if (mobileBtn && navElement) {
+        mobileBtn.addEventListener('click', function() {
+            // Alterna a classe 'mobile-active' na navegação
+            navElement.classList.toggle('mobile-active');
+            
+            // Troca o ícone de Barras para X (opcional, visual)
+            const icon = this.querySelector('i');
+            if (navElement.classList.contains('mobile-active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        });
+    }
 }
 
 // --- INICIALIZAÇÃO ---

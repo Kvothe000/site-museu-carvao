@@ -1806,3 +1806,100 @@ body.high-contrast .timeline-content::after { border-bottom-color: #FFFF00; }
         height: 300px; /* Altura menor em celulares */
     }
 }
+/* ==========================================================================
+   20. OTIMIZAÇÃO MOBILE (MENU HAMBÚRGUER E AJUSTES)
+   ==========================================================================
+*/
+
+/* Padrão (Desktop): Esconde o botão mobile */
+.mobile-menu-toggle {
+    display: none;
+}
+
+/* --- REGRAS APENAS PARA CELULARES E TABLETS (Abaixo de 992px) --- */
+@media (max-width: 992px) {
+    
+    /* 1. Ajustes Gerais de Espaço */
+    .header-top {
+        padding: 1rem; /* Menos padding */
+    }
+    
+    /* 2. Botão do Menu Mobile */
+    .mobile-menu-toggle {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        background: transparent;
+        border: none;
+        color: var(--cor-texto-claro);
+        font-size: 1.2rem;
+        padding: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        text-transform: uppercase;
+        font-family: 'Merriweather', serif;
+    }
+    
+    .mobile-menu-toggle:hover {
+        background-color: rgba(255,255,255,0.1);
+    }
+
+    /* 3. O Menu em si (A Lista <ul>) */
+    .main-nav ul {
+        display: none; /* ESCONDIDO POR PADRÃO */
+        flex-direction: column;
+        width: 100%;
+        background-color: #2c2c2c; /* Um tom levemente diferente para destacar */
+        border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* Quando a classe .active é adicionada pelo JS, o menu aparece */
+    .main-nav.mobile-active ul {
+        display: flex;
+        animation: slideDown 0.3s ease forwards;
+    }
+
+    /* 4. Itens do Menu no Mobile */
+    .main-nav li {
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .main-nav li a {
+        padding: 1.2rem; /* Mais fácil de clicar com o dedo */
+        font-size: 1rem;
+    }
+
+    /* 5. Ajuste dos Dropdowns no Mobile */
+    .dropdown-menu {
+        position: static; /* Não flutua mais, fica "dentro" da lista */
+        box-shadow: none;
+        background-color: #222; /* Mais escuro para diferenciar */
+        padding-left: 0;
+        transform: none;
+        opacity: 1;
+        visibility: visible;
+        display: none; /* Escondido até clicar */
+    }
+    
+    /* Mostra o dropdown quando ativo no mobile */
+    .has-dropdown.show-dropdown > .dropdown-menu {
+        display: block;
+    }
+    
+    .dropdown-menu li a {
+        padding-left: 2rem; /* Indentação para hierarquia */
+        font-size: 0.9rem;
+        color: #ccc;
+    }
+    
+    /* 6. Ajuste do Logo para não quebrar */
+    .logo img {
+        height: 40px; /* Logo um pouco menor */
+    }
+    .logo div {
+        font-size: 0.9rem; /* Texto menor */
+    }
+}
