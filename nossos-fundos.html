@@ -49,107 +49,113 @@
     </div>
 </div>
         </div>
-       <nav class="main-nav">
+<nav class="main-nav">
     <ul>
-    <li><a href="index.html">Home</a></li> 
-<li class="has-dropdown">
-    <a href="nossa-historia.html">Nossa História <i class="fa-solid fa-caret-down"></i></a>
-    <ul class="dropdown-menu">
-        <li><a href="nossa-historia.html">Visão Geral</a></li> 
-        <li><a href="#">O Museu</a></li>
-        <li><a href="#">Arquivo de Mineração</a></li>
+        <li><a href="index.html">Início</a></li>
+        
+        <li class="has-dropdown">
+            <a href="nossa-historia.html">Nossa História <i class="fa-solid fa-caret-down"></i></a>
+            <ul class="dropdown-menu">
+                <li><a href="nossa-historia.html#museu">Museu do Carvão</a></li>
+                <li><a href="nossa-historia.html#arquivo">Arquivo Histórico da Mineração</a></li>
+            </ul>
+        </li>
+
+        <li class="has-dropdown">
+            <a href="nossos-fundos.html">Nosso Acervo <i class="fa-solid fa-caret-down"></i></a>
+            <ul class="dropdown-menu">
+                <li><a href="nossos-fundos.html#tridimensional">Acervo Tridimensional</a></li>
+                <li><a href="nossos-fundos.html#fotografico">Acervo Fotográfico</a></li>
+                <li><a href="nossos-fundos.html#documental">Acervo Documental</a></li>
+            </ul>
+        </li>
+
+        <li><a href="arquivo-digital.html">Arquivo Digital</a></li>
+        <li><a href="projetos.html">Projetos</a></li>
+        <li><a href="publicacoes.html">Publicações</a></li>
+        <li><a href="servicos.html">Serviços</a></li>
+        <li><a href="localizacao-contato.html">Localização e Contato</a></li>
     </ul>
-</li>
-<li class="has-dropdown">
-    <a href="nossos-fundos.html" class="active">Nossos Fundos <i class="fa-solid fa-caret-down"></i></a>
-    <ul class="dropdown-menu">
-        <li><a href="nossos-fundos.html">Visão Geral</a></li>
-        <li><a href="#">Companhia Estrada de Ferro...</a></li>
-        <li><a href="#">Companhia Minas de Carvão...</a></li>
-        </ul>
-</li>
-    <li><a href="arquivo-digital.html">Arquivo Digital</a></li> 
-    <li><a href="projetos.html">Projetos</a></li>
-    <li><a href="publicacoes.html">Publicações</a></li>
-    <li><a href="servicos.html">Serviços</a></li>
-    <li><a href="localizacao-contato.html">Localização e Contato</a></li>
-</ul>
 </nav>
     </header>
 
    <main id="main-content">
     <section class="page-title">
-        <h1>Nossos Fundos</h1>
+        <h1>Nosso Acervo</h1>
     </section>
 
     <div class="two-column-layout">
-
         <aside class="sidebar-nav">
-            <h2>Fundos Documentais</h2>
+            <h2>Categorias do Acervo</h2>
             <ul>
-                <li><a href="#">Companhia Estrada de Ferro e Minas de São Jerônymo (CEFMSJ)</a></li>
-                <li><a href="#">Companhia Minas de Carvão do Jacuhy</a></li>
-                <li><a href="#">Companhia Carbonífera Rio Grandense (CCR)</a></li>
-                <li><a href="#">Estrada de Ferro Jacuhy</a></li>
-                <li><a href="#">Consórcio Administrativo de Empresas de Mineração (CADEM)</a></li>
-                <li><a href="#">Companhia Carbonífera Mina do Butiá (CCMB)</a></li>
-                <li><a href="#">Minas do Recreio</a></li>
-                <li><a href="#">Companhia de Engenharia e Equipamentos (COMPEQUI)</a></li>
-                <li><a href="#">Termoelétrica de Charqueadas</a></li>
-                <li><a href="#">Sindicatos</a></li>
-                <li><a href="#">Companhia de Pesquisas e Lavras Minerais (COPELMI)</a></li>
-                <li><a href="#">Fundo Plantas e Mapas da Bacia Carbonífera</a></li>
+                <li><a href="#tridimensional">Acervo Tridimensional</a></li>
+                <li><a href="#fotografico">Acervo Fotográfico</a></li>
+                <li><a href="#documental">Acervo Documental</a></li>
             </ul>
         </aside>
 
-        <section class="main-content">
-            <h2>Visão Geral dos Fundos</h2>
-            <p>O acervo do Museu Estadual do Carvão é composto por diversos fundos documentais que registram a história da exploração carbonífera no Rio Grande do Sul. Navegue pelos fundos listados na lateral para explorar coleções específicas.</p>
+        <section class="main-content history-content"> <article id="tridimensional">
+                <h2>Acervo Tridimensional</h2>
+                <p>Composto por objetos museológicos, ferramentas de mineração, equipamentos da antiga usina, mobiliário e utensílios que ilustram o cotidiano do trabalho nas minas e na termelétrica.</p>
+                <img src="img/museu_exposicao.jpg" alt="Exemplo de acervo tridimensional">
+            </article>
 
-            </section>
+            <article id="fotografico">
+                <h2>Acervo Fotográfico</h2>
+                <p>Uma vasta coleção de imagens que registram a evolução da mineração, as estruturas industriais, os trabalhadores e os eventos sociais da região carbonífera ao longo do século XX.</p>
+                <img src="img/inicio_mineracao.jpg" alt="Exemplo de acervo fotográfico">
+            </article>
 
-    </div> </main>
+            <article id="documental">
+                <h2>Acervo Documental</h2>
+                <p>Conjunto de documentos textuais, mapas, plantas e registros administrativos das companhias de mineração (CADEM, Copelmi, etc.) e sindicatos, fundamentais para a pesquisa histórica.</p>
+                <img src="img/acervo_prateleiras.jpg" alt="Exemplo de acervo documental">
+            </article>
+
+        </section>
+    </div>
+</main>
 
     <footer class="site-footer">
-    <div class="footer-content-wrapper">
-        <div class="footer-column">
-            <h4>Navegação</h4>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="nossa-historia.html">Nossa História</a></li>
-                <li><a href="nossos-fundos.html">Nossos Fundos</a></li>
-                <li><a href="arquivo-digital.html">Arquivo Digital</a></li>
-                <li><a href="localizacao-contato.html">Contato</a></li>
+<div class="footer-content-wrapper">
+    <div class="footer-column">
+        <h4>Navegação</h4>
+        <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="nossa-historia.html">Nossa História</a></li>
+            <li><a href="nossos-fundos.html">Nosso Acervo</a></li>
+            <li><a href="arquivo-digital.html">Arquivo Digital</a></li>
+            <li><a href="localizacao-contato.html">Contato</a></li>
+        </ul>
+    </div>
+
+    <div class="footer-column">
+        <h4>Contato</h4>
+        <address>
+            R. Prof. Péricles de Barcellos, 2780<br>
+            Centro, Arroio dos Ratos - RS<br>
+            CEP: 96740-000<br>
+            <a href="tel:+555136561215">(51) 3656-1215</a><br>
+            <a href="mailto:museu-carvao@sedac.rs.gov.br">museu-carvao@sedac.rs.gov.br</a>
+        </address>
+    </div>
+
+    <div class="footer-column">
+        <h4>Realização</h4>
+        <ul style="font-size: 0.95rem; line-height: 1.6;">
+            <li>Secretaria de Estado da Cultura (SEDAC)</li>
+            <li>Museu Estadual do Carvão</li>
             </ul>
-        </div>
-
-        <div class="footer-column">
-            <h4>Contato</h4>
-            <address>
-                R. Prof. Péricles de Barcellos, 2780<br>
-                Centro, Arroio dos Ratos - RS<br>
-                CEP: 96740-000<br>
-                <a href="tel:+555136561215">(51) 3656-1215</a><br>
-                <a href="mailto:museu-carvao@sedac.rs.gov.br">museu-carvao@sedac.rs.gov.br</a>
-            </address>
-        </div>
-
-        <div class="footer-column">
-            <h4>Siga-nos</h4>
-            <div class="footer-social-links">
-                <a href="#" target="_blank" aria-label="Siga-nos no Instagram">
-                    <i class="fa-brands fa-instagram"></i>
-                </a>
-                <a href="#" target="_blank" aria-label="Siga-nos no Facebook">
-                    <i class="fa-brands fa-facebook-f"></i>
-                </a>
-                </div>
-        </div>
     </div>
 
-    <div class="footer-copyright">
-        <p>&copy; 2025 Museu Estadual do Carvão. Projeto desenvolvido por Matheus (UFRGS).</p>
+    <div class="footer-column">
+        <h4>Siga-nos</h4>
+        <div class="footer-social-links">
+            <a href="#" target="_blank" aria-label="Siga-nos no Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" target="_blank" aria-label="Siga-nos no Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        </div>
     </div>
+</div>
 </footer>
 
     <script src="js/script.js"></script>

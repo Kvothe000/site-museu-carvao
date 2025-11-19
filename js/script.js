@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (homeCarousel && typeof Splide !== 'undefined') { // Verifica se Splide está carregado
         new Splide('#home-carousel', {
             type       : 'loop', 
-            perPage    : 3, 
+            perPage    : 1, 
             perMove    : 1, 
             gap        : '2rem', 
             autoplay   : true, 
