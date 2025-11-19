@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="description" content="Site oficial do Museu Estadual do Carvão...">
+    <meta name="keywords" content="Museu do Carvão, Arquivo Histórico...">
+    <meta name="author" content="Museu Estadual do Carvão">
+    <meta name="robots" content="index, follow">
+    <title>Mapa do Site - Museu Estadual do Carvão</title>
+    <link rel="icon" href="img/logo-museu.png" type="image/png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .sitemap-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        .sitemap-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .sitemap-list li {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        .sitemap-list a {
+            text-decoration: none;
+            color: var(--cor-link);
+            font-weight: bold;
+        }
+        .sitemap-list a:hover {
+            color: var(--cor-laranja-destaque);
+            text-decoration: underline;
+        }
+        /* Subníveis */
+        .sitemap-sublist {
+            list-style: circle;
+            margin-top: 0.5rem;
+            padding-left: 2rem;
+        }
+        .sitemap-sublist li {
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+        .sitemap-sublist a {
+            font-weight: normal;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Pular para o Conteúdo Principal</a>
+    <header id="main-header"></header>
+
+    <main id="main-content">
+        <section class="page-title">
+            <h1>Mapa do Site</h1>
+        </section>
+
+        <section class="main-content sitemap-content">
+            <ul class="sitemap-list">
+                <li><a href="index.html">Início</a></li>
+                
+                <li>
+                    <a href="nossa-historia.html">Nossa História</a>
+                    <ul class="sitemap-sublist">
+                        <li><a href="nossa-historia.html#museu">Museu do Carvão</a></li>
+                        <li><a href="nossa-historia.html#arquivo">Arquivo Histórico da Mineração</a></li>
+                    </ul>
+                </li>
+                
+                <li>
+                    <a href="nossos-fundos.html">Nosso Acervo</a>
+                    <ul class="sitemap-sublist">
+                        <li><a href="nossos-fundos.html#tridimensional">Acervo Tridimensional</a></li>
+                        <li><a href="nossos-fundos.html#fotografico">Acervo Fotográfico</a></li>
+                        <li><a href="nossos-fundos.html#documental">Acervo Documental</a></li>
+                    </ul>
+                </li>
+                
+                <li><a href="arquivo-digital.html">Arquivo Digital</a></li>
+                <li><a href="projetos.html">Projetos</a></li>
+                <li><a href="publicacoes.html">Publicações</a></li>
+                <li><a href="servicos.html">Serviços</a></li>
+                <li><a href="localizacao-contato.html">Localização e Contato</a></li>
+                <li><a href="busca.html">Busca</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer id="main-footer" class="site-footer"></footer>
+    <script src="js/script.js"></script>
+</body>
+</html>

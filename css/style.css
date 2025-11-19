@@ -1488,3 +1488,82 @@ textarea:focus {
         margin-bottom: 2rem; /* Mantém o espaço abaixo */
     }
 }
+/* ==========================================================================
+   18. Barra de Acessibilidade e Alto Contraste
+   ==========================================================================
+*/
+
+/* Estilo dos botões no cabeçalho */
+.accessibility-controls {
+    display: flex;
+    gap: 5px;
+    margin-right: 15px;
+    border-right: 1px solid #ccc;
+    padding-right: 15px;
+}
+
+.accessibility-controls button {
+    background: transparent;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--cor-texto-escuro);
+    padding: 2px 8px;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.accessibility-controls button:hover {
+    background-color: var(--cor-laranja-destaque);
+    color: #fff;
+    border-color: var(--cor-laranja-destaque);
+}
+
+/* --- TEMA DE ALTO CONTRASTE --- */
+/* Quando o body tiver a classe .high-contrast, essas variáveis mudam */
+body.high-contrast {
+    /* Fundo preto total */
+    --cor-fundo-claro: #000000;
+    --cor-fundo-escuro: #000000;
+    
+    /* Texto amarelo ou branco para máximo contraste */
+    --cor-texto-escuro: #FFFF00; /* Amarelo */
+    --cor-texto-claro: #000000; /* Preto (para fundos que eram escuros e viraram claros, se houver) */
+    
+    /* Links e Destaques */
+    --cor-laranja-destaque: #00FFFF; /* Ciano ou Amarelo forte se destacam bem no preto */
+    --cor-link: #FFFF00;
+    --cor-borda-suave: #FFFFFF;
+}
+
+/* Ajustes específicos para elementos no Alto Contraste */
+body.high-contrast header,
+body.high-contrast .main-nav,
+body.high-contrast .site-footer,
+body.high-contrast .service-card,
+body.high-contrast .info-card,
+body.high-contrast .sidebar-nav,
+body.high-contrast .publication-card,
+body.high-contrast .project-card {
+    background-color: #000 !important;
+    border: 1px solid #FFFF00 !important; /* Borda amarela para definir limites */
+    color: #FFF !important;
+}
+
+body.high-contrast a {
+    color: #FFFF00 !important;
+    text-decoration: underline;
+}
+
+body.high-contrast .main-nav li a:hover,
+body.high-contrast .hero-button:hover {
+    background-color: #333 !important;
+}
+
+/* Remove imagens de fundo que podem atrapalhar a leitura no alto contraste */
+body.high-contrast .cta-hero,
+body.high-contrast .page-hero {
+    background-image: none !important;
+    background-color: #000 !important;
+}

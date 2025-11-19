@@ -1,50 +1,97 @@
-// Função para carregar componentes HTML (Header e Footer)
+// --- FUNÇÕES AUXILIARES DE CARREGAMENTO (MODULARIZAÇÃO) ---
+
+// --- FUNÇÕES AUXILIARES ---
+
 async function loadComponent(elementId, filePath) {
     const element = document.getElementById(elementId);
     if (!element) return;
-
     try {
         const response = await fetch(filePath);
         if (response.ok) {
-            const html = await response.text();
-            element.innerHTML = html;
-            
-            // Se carregou o header, precisamos reativar os scripts que dependem dele
+            element.innerHTML = await response.text();
             if (elementId === 'main-header') {
-                initHeaderScripts(); // Função que vamos criar para reinicializar lógica do header
-                highlightActiveLink(); // Destaca o link da página atual
+                initHeaderScripts(); 
+                highlightActiveLink(); 
             }
-        } else {
-            console.error(`Erro ao carregar ${filePath}: ${response.status}`);
         }
-    } catch (error) {
-        console.error(`Erro na requisição de ${filePath}:`, error);
-    }
+    } catch (error) { console.error(`Erro ao carregar ${filePath}:`, error); }
 }
 
-// Função para destacar o link ativo no menu
 function highlightActiveLink() {
-    const path = window.location.pathname;
-    const page = path.split("/").pop() || 'index.html'; // Pega o nome do arquivo (ex: index.html)
-
-    const links = document.querySelectorAll('.main-nav a[data-page]');
-    links.forEach(link => {
-        if (link.getAttribute('data-page') === page) {
-            link.classList.add('active');
-        } else {
-            link.classList.remove('active');
-        }
+    const page = window.location.pathname.split("/").pop() || 'index.html';
+    document.querySelectorAll('.main-nav a').forEach(link => {
+        if (link.getAttribute('href') === page) link.classList.add('active');
+        else link.classList.remove('active');
     });
 }
 
-// Função para inicializar scripts que dependem do header (Dropdowns, Sticky Header, Busca)
+// --- NOVA FUNÇÃO DE ACESSIBILIDADE ---
+function initAccessibility() {
+    const body = document.body;
+    const btnContrast = document.getElementById('btn-contrast');
+    const btnIncrease = document.getElementById('btn-increase');
+    const btnDecrease = document.getElementById('btn-decrease');
+    const btnOriginal = document.getElementById('btn-original');
+
+    // 1. Alto Contraste (Botão)
+    if (btnContrast) {
+        btnContrast.addEventListener('click', () => {
+            body.classList.toggle('high-contrast');
+            if (body.classList.contains('high-contrast')) {
+                localStorage.setItem('highContrast', 'true');
+            } else {
+                localStorage.removeItem('highContrast');
+            }
+        });
+    }
+
+    // 2. Tamanho da Fonte
+    let currentFontSize = parseInt(localStorage.getItem('fontSize')) || 100;
+    
+    // Aplica o tamanho salvo imediatamente
+    document.documentElement.style.fontSize = currentFontSize + '%';
+
+    function updateFontSize(size) {
+        document.documentElement.style.fontSize = size + '%';
+        localStorage.setItem('fontSize', size);
+    }
+
+    if (btnIncrease) {
+        btnIncrease.addEventListener('click', () => {
+            if (currentFontSize < 150) {
+                currentFontSize += 10;
+                updateFontSize(currentFontSize);
+            }
+        });
+    }
+    if (btnDecrease) {
+        btnDecrease.addEventListener('click', () => {
+            if (currentFontSize > 70) {
+                currentFontSize -= 10;
+                updateFontSize(currentFontSize);
+            }
+        });
+    }
+    if (btnOriginal) {
+        btnOriginal.addEventListener('click', () => {
+            currentFontSize = 100;
+            updateFontSize(currentFontSize);
+            localStorage.removeItem('fontSize');
+        });
+    }
+}
+
+// Função que inicializa tudo que depende do Header
 function initHeaderScripts() {
-    // --- 1. STICKY HEADER ---
+    // 1. Inicializa a Acessibilidade (NOVO!)
+    initAccessibility();
+
+    // 2. Sticky Header
     const header = document.querySelector('header');
     if (header) { 
         const headerHeight = header.offsetHeight;
         const body = document.body;
-        function handleScroll() {
+        window.addEventListener('scroll', () => {
             if (window.scrollY > headerHeight) { 
                 if (!header.classList.contains('sticky-header')) {
                     header.classList.add('sticky-header'); 
@@ -56,100 +103,79 @@ function initHeaderScripts() {
                     body.classList.remove('body-padding-for-sticky'); 
                 }
             }
-        }
-        window.removeEventListener('scroll', handleScroll); // Remove para evitar duplicidade
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        handleScroll();
+        }, { passive: true });
     }
 
-    // --- 2. DROPDOWNS ---
+    // 3. Dropdown Simples
     const dropdownLinks = document.querySelectorAll('.main-nav .has-dropdown > a');
     dropdownLinks.forEach(link => {
-        // Remove listener anterior se houver (difícil sem referência, mas ok aqui)
-        // Adiciona novo listener
         link.addEventListener('click', function(event) {
             event.preventDefault();
             const parentLi = this.parentElement;
             dropdownLinks.forEach(otherLink => {
-                if (otherLink !== this) {
-                    otherLink.parentElement.classList.remove('show-dropdown');
-                }
+                if (otherLink !== this) otherLink.parentElement.classList.remove('show-dropdown');
             });
             parentLi.classList.toggle('show-dropdown');
         });
     });
 
-    // Fecha dropdown ao clicar fora
-    document.addEventListener('click', function(event) {
-        if (!event.target.closest('.has-dropdown')) {
-            document.querySelectorAll('.main-nav .has-dropdown').forEach(item => {
-                item.classList.remove('show-dropdown');
-            });
-        }
-    });
-
-    // --- 3. BARRA DE BUSCA ---
-    const searchBar = document.querySelector('.search-bar');
-    if (searchBar) {
-        const searchInput = searchBar.querySelector('input[type="text"]');
-        const searchButton = searchBar.querySelector('button');
-
-        function performSearch() {
-            const query = searchInput.value.trim();
-            if (query) {
-                window.location.href = `busca.html?q=${encodeURIComponent(query)}`; 
-            }
-        }
+    // 4. Busca
+    const searchButton = document.querySelector('.search-bar button');
+    const searchInput = document.querySelector('.search-bar input');
+    if (searchButton && searchInput) {
+        const performSearch = () => {
+            if (searchInput.value.trim()) window.location.href = `busca.html?q=${encodeURIComponent(searchInput.value.trim())}`;
+        };
         searchButton.addEventListener('click', performSearch);
-        searchInput.addEventListener('keypress', function(event) {
-            if (event.key === 'Enter') {
-                event.preventDefault();
-                performSearch();
-            }
-        });
+        searchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') { e.preventDefault(); performSearch(); }});
     }
 }
 
-// Carregar os componentes ao iniciar
+// --- INICIALIZAÇÃO ---
 document.addEventListener('DOMContentLoaded', () => {
+    
+    // Verifica preferência de contraste salva JÁ NO INÍCIO para evitar "piscar"
+    if (localStorage.getItem('highContrast') === 'true') {
+        document.body.classList.add('high-contrast');
+    }
+
     loadComponent('main-header', 'header.html');
     loadComponent('main-footer', 'footer.html');
 
-    // ... (MANTENHA O CÓDIGO DO CARROSSEL E DA API AQUI ABAIXO) ...
-    // MAS REMOVA O CÓDIGO DO HEADER/DROPDOWN/BUSCA QUE ESTAVA SOLTO NO FIM DO ARQUIVO
-    // POIS AGORA ELES ESTÃO DENTRO DE initHeaderScripts()
+    // ==========================================================
+    // LÓGICA ESPECÍFICA DAS PÁGINAS (Não depende do Header)
+    // ==========================================================
 
-    
-    // ==========================================================
-    // CARREGAMENTO DA API DO ACERVO (Ex: arquivo-digital.html)
-    // ==========================================================
+    // --- API DO ACERVO (Para arquivo-digital.html) ---
     const acervoContainer = document.getElementById('acervo-container');
     if (acervoContainer) {
-        // --- CONFIGURAÇÃO DA API ---
-        const apiUrl = 'https://URL_REAL_DO_ATOM_DO_MUSEU/api/information-objects'; // Substitua
-        const apiKey = 'SUA_CHAVE_DE_API_SECRETA_VAI_AQUI'; // Substitua
+        const apiUrl = 'https://URL_REAL_DO_ATOM_DO_MUSEU/api/information-objects'; 
+        const apiKey = 'SUA_CHAVE_DE_API_SECRETA_VAI_AQUI'; 
 
-        // --- FUNÇÃO PARA BUSCAR E EXIBIR OS DADOS ---
         async function carregarAcervo() {
             try {
+                // ATENÇÃO: Para testar sem API real, use o arquivo mock:
+                // const response = await fetch('mock-api.json'); 
                 const response = await fetch(apiUrl, { method: 'GET', headers: { 'REST-API-Key': apiKey }});
+                
                 if (!response.ok) { throw new Error(`Erro na rede: ${response.statusText}`); }
                 const documentos = await response.json();
                 
-                // Limpa o estado de loading (spinner e texto)
+                // Limpa loading
                 const spinner = acervoContainer.querySelector('.spinner');
                 const loadingText = acervoContainer.querySelector('p');
                 if(spinner) spinner.remove();
                 if(loadingText) loadingText.remove();
                 acervoContainer.classList.remove('loading');
-
-                // Garante que o container use o grid correto após carregar
                 acervoContainer.style.display = 'grid'; 
 
-                documentos.forEach(doc => {
+                // Adaptação para estrutura da API (se for { results: [...] })
+                const listaDocs = documentos.results ? documentos.results : documentos;
+
+                listaDocs.forEach(doc => {
                     const card = document.createElement('a');
-                    card.className = 'fundo-card'; // Usa a classe do CSS para cards de imagem
-                    card.href = `https://URL_REAL_DO_ATOM_DO_MUSEU/${doc.slug}`;
+                    card.className = 'fundo-card';
+                    card.href = doc.slug ? `https://URL_REAL_DO_ATOM_DO_MUSEU/${doc.slug}` : '#'; 
                     card.target = '_blank';
                     const imageUrl = doc.thumbnail_url || 'https://via.placeholder.com/300x200.png?text=Documento';
                     card.innerHTML = `<figure><img src="${imageUrl}" alt="${doc.title}"><figcaption>${doc.title}</figcaption></figure>`;
@@ -159,244 +185,234 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error('Falha ao carregar o acervo:', error); 
                 acervoContainer.innerHTML = '<p>Ocorreu um erro ao carregar os documentos do acervo.</p>';
                 acervoContainer.classList.remove('loading');
-                acervoContainer.style.display = 'block'; // Garante que a mensagem de erro seja visível
+                acervoContainer.style.display = 'block';
             }
         }
         carregarAcervo();
     }
 
-    // ==========================================================
-    // CARROSSEL DA HOMEPAGE (index.html)
-    // ==========================================================
+    // --- CARROSSEL DA HOME ---
     const homeCarousel = document.getElementById('home-carousel');
-    if (homeCarousel && typeof Splide !== 'undefined') { // Verifica se Splide está carregado
+    if (homeCarousel && typeof Splide !== 'undefined') {
         new Splide('#home-carousel', {
-            type       : 'loop', 
-            perPage    : 1, 
-            perMove    : 1, 
-            gap        : '2rem', 
-            autoplay   : true, 
-            interval   : 4000, 
-            pauseOnHover: true,
-            breakpoints: { 
-                992: { perPage: 2 }, 
-                768: { perPage: 1 } 
-            }
+            type: 'loop', perPage: 1, perMove: 1, gap: '0', autoplay: true, interval: 4000, pauseOnHover: true
         }).mount();
     }
 
-    // ==========================================================
-    // CARREGAMENTO DE NOTÍCIAS (index.html)
-    // ==========================================================
-    async function carregarNoticia() {
-        const container = document.querySelector('.latest-news-container');
-        if (!container) return; 
-        try {
-            // Adiciona um parâmetro anti-cache para garantir que o JSON mais recente seja lido
-            const response = await fetch('noticias.json?v=' + Date.now()); 
-            const noticia = await response.json();
-            
-            // Só exibe a seção se houver um título válido
-            if (noticia && noticia.titulo && noticia.titulo !== "Nenhuma notícia recente encontrada") {
-                container.innerHTML = `
-                    <img src="${noticia.imagem_url || 'img/projeto-enchente.jpg'}" alt="Imagem da notícia: ${noticia.titulo}" class="news-image">
-                    <div class="news-content">
-                        <h2>${noticia.titulo}</h2>
-                        ${noticia.resumo ? `<p>${noticia.resumo}</p>` : ''} 
-                        <a href="${noticia.link}" target="_blank" class="cta-button">Leia a Matéria Completa</a>
-                    </div>
-                `;
-                // Garante que o wrapper da seção esteja visível
-                const wrapper = document.querySelector('.latest-news-wrapper');
-                if(wrapper) wrapper.style.display = 'block'; 
-            } else {
-                 // Esconde a seção inteira se não houver notícia válida
-                 const wrapper = document.querySelector('.latest-news-wrapper');
-                 if(wrapper) wrapper.style.display = 'none'; 
-            }
-        } catch (error) { 
-            console.error('Erro ao carregar ou processar a notícia:', error); 
-            // Esconde a seção inteira se houver erro
-            const wrapper = document.querySelector('.latest-news-wrapper');
-            if(wrapper) wrapper.style.display = 'none'; 
-        }
-    }
-    // Verifica se o wrapper da seção existe antes de chamar a função
+    // --- NOTÍCIAS (home) ---
     if (document.querySelector('.latest-news-wrapper')) { 
+        async function carregarNoticia() {
+            const container = document.querySelector('.latest-news-container');
+            if (!container) return; 
+            try {
+                const response = await fetch('noticias.json?v=' + Date.now()); 
+                const noticia = await response.json();
+                if (noticia && noticia.titulo) {
+                    container.innerHTML = `<img src="${noticia.imagem_url || 'img/projeto-enchente.jpg'}" alt="${noticia.titulo}" class="news-image"><div class="news-content"><h2>${noticia.titulo}</h2><p>${noticia.resumo || ''}</p><a href="${noticia.link}" target="_blank" class="cta-button">Leia a Matéria Completa</a></div>`;
+                    document.querySelector('.latest-news-wrapper').style.display = 'block'; 
+                } else {
+                    document.querySelector('.latest-news-wrapper').style.display = 'none'; 
+                }
+            } catch (error) { 
+                console.error('Erro notícia:', error); 
+                document.querySelector('.latest-news-wrapper').style.display = 'none'; 
+            }
+        }
         carregarNoticia(); 
     }
 
-    // ==========================================================
-    // FUNCIONALIDADE DO CABEÇALHO FIXO (STICKY HEADER)
-    // ==========================================================
-    const header = document.querySelector('header');
-    if (header) { 
-        const headerHeight = header.offsetHeight;
-        const body = document.body;
-        function handleScroll() {
-            if (window.scrollY > headerHeight) { 
-                if (!header.classList.contains('sticky-header')) {
-                    header.classList.add('sticky-header'); 
-                    body.classList.add('body-padding-for-sticky'); 
-                }
-            } else { 
-                if (header.classList.contains('sticky-header')) {
-                    header.classList.remove('sticky-header'); 
-                    body.classList.remove('body-padding-for-sticky'); 
-                }
-            }
-        }
-        window.addEventListener('scroll', handleScroll, { passive: true }); // Otimização de performance
-        handleScroll(); // Verifica no carregamento inicial
-    } else { 
-        console.error("Elemento <header> não encontrado na página."); 
-    }
-
-    // ==========================================================
-    // SMOOTH SCROLL PARA LINKS INTERNOS E INTERATIVIDADE DA SIDEBAR
-    // ==========================================================
-    
-    // Função de Animação de Rolagem Suave Personalizada
-    function customSmoothScroll(targetPosition, duration) {
-        const startPosition = window.scrollY;
-        const distance = targetPosition - startPosition;
-        let startTime = null;
-
-        function animationStep(currentTime) {
-            if (startTime === null) startTime = currentTime;
-            const timeElapsed = currentTime - startTime;
-            const easeInOutQuad = t => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-            const run = easeInOutQuad(Math.min(1, timeElapsed / duration));
-            const nextScrollPosition = startPosition + distance * run;
-            window.scrollTo(0, nextScrollPosition);
-            if (timeElapsed < duration) { requestAnimationFrame(animationStep); }
-        }
-        requestAnimationFrame(animationStep);
-    }
-
-    // Seleciona TODOS os links que apontam para âncoras internas (#) na página
+    // --- SIDEBAR E SMOOTH SCROLL (Links internos) ---
     const internalLinks = document.querySelectorAll('a[href^="#"]:not([href="#"])'); 
-    
     internalLinks.forEach(link => {
         link.addEventListener('click', function(event) {
             const targetId = this.getAttribute('href');
             try {
                  const targetElement = document.querySelector(targetId);
-                 
-                 // Verifica se o elemento de destino REALMENTE existe na página atual
                  if (targetElement) {
-                     event.preventDefault(); // Impede o pulo instantâneo SOMENTE se for um link interno válido
-
+                     event.preventDefault(); 
+                     // Recalcula o offset do header (fixo ou não)
                      let headerOffset = 0;
                      const stickyHeader = document.querySelector('.sticky-header');
-                     if (stickyHeader) {
-                         headerOffset = stickyHeader.offsetHeight + 20; 
-                     } else {
+                     if (stickyHeader) headerOffset = stickyHeader.offsetHeight + 20; 
+                     else {
                          const mainHeader = document.querySelector('header');
                          if(mainHeader) headerOffset = mainHeader.offsetHeight + 20;
                      }
                      
                      const elementPosition = targetElement.getBoundingClientRect().top;
                      const targetScrollPosition = window.scrollY + elementPosition - headerOffset; 
-                 
-                     const scrollDuration = 800; // Duração da animação
-                     customSmoothScroll(targetScrollPosition, scrollDuration);
-
-                     // FECHA O DROPDOWN após clicar em um item interno
-                     const parentDropdown = this.closest('.has-dropdown');
-                     if (parentDropdown) {
-                         setTimeout(() => {
-                             parentDropdown.classList.remove('show-dropdown');
-                             const mainLink = parentDropdown.querySelector('a');
-                             // Futuramente, reativar ARIA aqui
-                             // if (mainLink) mainLink.setAttribute('aria-expanded', 'false');
-                         }, 100); 
+                     
+                     // Animação de scroll manual
+                     const startPosition = window.scrollY;
+                     const distance = targetScrollPosition - startPosition;
+                     const duration = 800;
+                     let startTime = null;
+             
+                     function animationStep(currentTime) {
+                         if (startTime === null) startTime = currentTime;
+                         const timeElapsed = currentTime - startTime;
+                         const ease = t => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+                         const run = ease(Math.min(1, timeElapsed / duration));
+                         window.scrollTo(0, startPosition + distance * run);
+                         if (timeElapsed < duration) requestAnimationFrame(animationStep);
                      }
+                     requestAnimationFrame(animationStep);
 
-                     // ATUALIZA O FOCO NA SIDEBAR
+                     // Atualiza sidebar
                      if (this.closest('.sidebar-nav')) {
-                          const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
-                          sidebarLinks.forEach(lnk => lnk.classList.remove('active-sidebar-link'));
+                          document.querySelectorAll('.sidebar-nav a').forEach(lnk => lnk.classList.remove('active-sidebar-link'));
                           this.classList.add('active-sidebar-link');
                      }
                  }
-            } catch (e) {
-                console.warn(`Erro ao tentar rolar para ${targetId}: ${e}`);
-                // Permite que o link funcione normalmente se o seletor for inválido
-            }
+            } catch (e) {}
         });
     });
 
-    // --- SCROLLSPY (APENAS PARA A SIDEBAR) ---
+    // Scrollspy para Sidebar
     const sidebarScrollLinks = document.querySelectorAll('.sidebar-nav a[href^="#"]'); 
     const scrollSpySections = document.querySelectorAll('.main-content article[id]'); 
-
     if (sidebarScrollLinks.length > 0 && scrollSpySections.length > 0) {
         function activateSidebarLink() {
             let currentSectionId = '';
             let headerHeightOffset = document.querySelector('.sticky-header')?.offsetHeight || document.querySelector('header')?.offsetHeight || 0;
             headerHeightOffset += 40; 
-
             scrollSpySections.forEach(section => {
                 const sectionTop = section.offsetTop - headerHeightOffset; 
-                if (window.scrollY >= sectionTop) { 
-                    currentSectionId = '#' + section.getAttribute('id');
-                }
+                if (window.scrollY >= sectionTop) currentSectionId = '#' + section.getAttribute('id');
             });
-
             sidebarScrollLinks.forEach(link => {
                 link.classList.remove('active-sidebar-link');
-                if (currentSectionId && link.getAttribute('href') === currentSectionId) {
-                    link.classList.add('active-sidebar-link');
-                }
+                if (currentSectionId && link.getAttribute('href') === currentSectionId) link.classList.add('active-sidebar-link');
             });
-             if (window.scrollY < scrollSpySections[0].offsetTop - headerHeightOffset) {
-                 sidebarScrollLinks.forEach(link => link.classList.remove('active-sidebar-link'));
-             }
         }
-        window.addEventListener('scroll', activateSidebarLink, { passive: true }); // Otimização
+        window.addEventListener('scroll', activateSidebarLink, { passive: true }); 
         activateSidebarLink(); 
     }
 
     // ==========================================================
-    // FUNCIONALIDADE DO MENU DROPDOWN (VERSÃO FINAL: CLIQUE APENAS ABRE/FECHA)
+    // ACESSIBILIDADE (ALTO CONTRASTE E FONTE)
     // ==========================================================
-    const dropdownLinks = document.querySelectorAll('.main-nav .has-dropdown > a');
-    dropdownLinks.forEach(link => {
-        link.addEventListener('click', function(event) {
-            // Impede a navegação do link principal!
-            event.preventDefault(); 
+    
+    const body = document.body;
+    const btnContrast = document.getElementById('btn-contrast');
+    const btnIncrease = document.getElementById('btn-increase');
+    const btnDecrease = document.getElementById('btn-decrease');
+    const btnOriginal = document.getElementById('btn-original');
+
+    // --- 1. ALTO CONTRASTE ---
+    
+    // Verifica se o usuário já tinha ativado antes (salvo no navegador)
+    if (localStorage.getItem('highContrast') === 'true') {
+        body.classList.add('high-contrast');
+    }
+
+    if (btnContrast) {
+        btnContrast.addEventListener('click', () => {
+            body.classList.toggle('high-contrast');
             
-            const parentLi = this.parentElement;
-
-            // Fecha outros menus abertos
-            dropdownLinks.forEach(otherLink => {
-                if (otherLink !== this) {
-                    otherLink.parentElement.classList.remove('show-dropdown');
-                    // Futuramente, reativar ARIA aqui
-                    // otherLink.setAttribute('aria-expanded', 'false');
-                }
-            });
-
-            // Alterna (abre/fecha) APENAS o menu clicado
-            parentLi.classList.toggle('show-dropdown');
-            
-            // Futuramente, reativar ARIA aqui
-            // const isOpened = parentLi.classList.contains('show-dropdown');
-            // this.setAttribute('aria-expanded', isOpened);
-
+            // Salva a preferência
+            if (body.classList.contains('high-contrast')) {
+                localStorage.setItem('highContrast', 'true');
+            } else {
+                localStorage.removeItem('highContrast');
+            }
         });
-    });
+    }
 
-    // Fecha todos os menus se o usuário clicar fora
-    document.addEventListener('click', function(event) {
-        if (!event.target.closest('.has-dropdown')) {
-            document.querySelectorAll('.main-nav .has-dropdown').forEach(item => {
-                item.classList.remove('show-dropdown');
-                // Futuramente, reativar ARIA aqui
-                // item.querySelector('a').setAttribute('aria-expanded', 'false');
-            });
+    // --- 2. TAMANHO DA FONTE ---
+    
+    let currentFontSize = 100; // Porcentagem inicial
+
+    // Verifica preferência salva
+    const savedFontSize = localStorage.getItem('fontSize');
+    if (savedFontSize) {
+        currentFontSize = parseInt(savedFontSize);
+        document.documentElement.style.fontSize = currentFontSize + '%';
+    }
+
+    function updateFontSize(size) {
+        document.documentElement.style.fontSize = size + '%';
+        localStorage.setItem('fontSize', size);
+    }
+
+    if (btnIncrease) {
+        btnIncrease.addEventListener('click', () => {
+            if (currentFontSize < 150) { // Limite máximo
+                currentFontSize += 10;
+                updateFontSize(currentFontSize);
+            }
+        });
+    }
+
+    if (btnDecrease) {
+        btnDecrease.addEventListener('click', () => {
+            if (currentFontSize > 70) { // Limite mínimo
+                currentFontSize -= 10;
+                updateFontSize(currentFontSize);
+            }
+        });
+    }
+
+    if (btnOriginal) {
+        btnOriginal.addEventListener('click', () => {
+            currentFontSize = 100; // Volta ao padrão (100% ou 16px)
+            updateFontSize(currentFontSize);
+            localStorage.removeItem('fontSize');
+        });
+    }
+
+    // --- SISTEMA DE TRADUÇÃO ---
+
+// Carrega o arquivo de traduções (se não estiver importado no HTML)
+// O ideal é adicionar <script src="js/translations.js"></script> no HTML antes do script.js
+
+let currentLang = localStorage.getItem('language') || 'pt';
+
+function updateLanguage(lang) {
+    currentLang = lang;
+    localStorage.setItem('language', lang); // Salva a preferência
+
+    // Seleciona todos os elementos com data-i18n
+    const elements = document.querySelectorAll('[data-i18n]');
+    
+    elements.forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        // Verifica se a tradução existe
+        if (translations[lang] && translations[lang][key]) {
+            // Se for um input (como a busca), muda o placeholder
+            if (element.tagName === 'INPUT') {
+                element.placeholder = translations[lang][key];
+            } else {
+                // Se tiver ícone (como no menu), preserva o ícone e muda só o texto
+                if (element.children.length > 0) {
+                     // Lógica mais complexa para não apagar ícones, 
+                     // ou simplificamos colocando o texto em um <span>
+                     // Por enquanto, vamos assumir substituição direta de texto simples
+                     // Para menus com ícones, o ideal é envolver o texto em <span data-i18n="...">Texto</span>
+                     element.innerHTML = translations[lang][key]; 
+                } else {
+                    element.textContent = translations[lang][key];
+                }
+            }
         }
     });
 
-}); // --- FIM DO DOMContentLoaded ---
+    // Atualiza o visual dos botões de idioma
+    updateLanguageButtons();
+}
+
+function initLanguageSelector() {
+    const langButtons = document.querySelectorAll('.language-selector a');
+    langButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const selectedLang = e.target.dataset.lang; // Precisa adicionar data-lang="en" no HTML
+            updateLanguage(selectedLang);
+        });
+    });
+    
+    // Aplica a linguagem salva ao carregar
+    updateLanguage(currentLang);
+}
+
+});

@@ -1,0 +1,50 @@
+const translations = {
+    "pt": {
+        "nav_home": "Início",
+        "nav_history": "Nossa História",
+        "nav_museum": "Museu do Carvão",
+        "nav_archive_hist": "Arquivo Histórico",
+        "nav_collection": "Nosso Acervo",
+        "nav_digital_archive": "Arquivo Digital",
+        "nav_projects": "Projetos",
+        "nav_publications": "Publicações",
+        "nav_services": "Serviços",
+        "nav_contact": "Contato",
+        "hero_title": "Preservando a história da era do carvão",
+        "hero_button": "Explore o Acervo",
+        "footer_realization": "Realização",
+        "search_placeholder": "Buscar..."
+    },
+    "en": {
+        "nav_home": "Home",
+        "nav_history": "Our History",
+        "nav_museum": "Coal Museum",
+        "nav_archive_hist": "Historical Archive",
+        "nav_collection": "Our Collection",
+        "nav_digital_archive": "Digital Archive",
+        "nav_projects": "Projects",
+        "nav_publications": "Publications",
+        "nav_services": "Services",
+        "nav_contact": "Contact",
+        "hero_title": "Preserving the history of the coal era",
+        "hero_button": "Explore Collection",
+        "footer_realization": "Realization",
+        "search_placeholder": "Search..."
+    },
+    "es": {
+        "nav_home": "Inicio",
+        "nav_history": "Nuestra Historia",
+        "nav_museum": "Museo del Carbón",
+        "nav_archive_hist": "Archivo Histórico",
+        "nav_collection": "Nuestro Acervo",
+        "nav_digital_archive": "Archivo Digital",
+        "nav_projects": "Proyectos",
+        "nav_publications": "Publicaciones",
+        "nav_services": "Servicios",
+        "nav_contact": "Contacto",
+        "hero_title": "Preservando la historia de la era del carbón",
+        "hero_button": "Explorar Acervo",
+        "footer_realization": "Realización",
+        "search_placeholder": "Buscar..."
+    }
+};
