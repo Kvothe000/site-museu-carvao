@@ -1,6 +1,125 @@
-// Espera que todo o conteúdo da página (DOM) seja carregado antes de executar o script.
-document.addEventListener('DOMContentLoaded', () => {
+// Função para carregar componentes HTML (Header e Footer)
+async function loadComponent(elementId, filePath) {
+    const element = document.getElementById(elementId);
+    if (!element) return;
 
+    try {
+        const response = await fetch(filePath);
+        if (response.ok) {
+            const html = await response.text();
+            element.innerHTML = html;
+            
+            // Se carregou o header, precisamos reativar os scripts que dependem dele
+            if (elementId === 'main-header') {
+                initHeaderScripts(); // Função que vamos criar para reinicializar lógica do header
+                highlightActiveLink(); // Destaca o link da página atual
+            }
+        } else {
+            console.error(`Erro ao carregar ${filePath}: ${response.status}`);
+        }
+    } catch (error) {
+        console.error(`Erro na requisição de ${filePath}:`, error);
+    }
+}
+
+// Função para destacar o link ativo no menu
+function highlightActiveLink() {
+    const path = window.location.pathname;
+    const page = path.split("/").pop() || 'index.html'; // Pega o nome do arquivo (ex: index.html)
+
+    const links = document.querySelectorAll('.main-nav a[data-page]');
+    links.forEach(link => {
+        if (link.getAttribute('data-page') === page) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+}
+
+// Função para inicializar scripts que dependem do header (Dropdowns, Sticky Header, Busca)
+function initHeaderScripts() {
+    // --- 1. STICKY HEADER ---
+    const header = document.querySelector('header');
+    if (header) { 
+        const headerHeight = header.offsetHeight;
+        const body = document.body;
+        function handleScroll() {
+            if (window.scrollY > headerHeight) { 
+                if (!header.classList.contains('sticky-header')) {
+                    header.classList.add('sticky-header'); 
+                    body.classList.add('body-padding-for-sticky'); 
+                }
+            } else { 
+                if (header.classList.contains('sticky-header')) {
+                    header.classList.remove('sticky-header'); 
+                    body.classList.remove('body-padding-for-sticky'); 
+                }
+            }
+        }
+        window.removeEventListener('scroll', handleScroll); // Remove para evitar duplicidade
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        handleScroll();
+    }
+
+    // --- 2. DROPDOWNS ---
+    const dropdownLinks = document.querySelectorAll('.main-nav .has-dropdown > a');
+    dropdownLinks.forEach(link => {
+        // Remove listener anterior se houver (difícil sem referência, mas ok aqui)
+        // Adiciona novo listener
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+            const parentLi = this.parentElement;
+            dropdownLinks.forEach(otherLink => {
+                if (otherLink !== this) {
+                    otherLink.parentElement.classList.remove('show-dropdown');
+                }
+            });
+            parentLi.classList.toggle('show-dropdown');
+        });
+    });
+
+    // Fecha dropdown ao clicar fora
+    document.addEventListener('click', function(event) {
+        if (!event.target.closest('.has-dropdown')) {
+            document.querySelectorAll('.main-nav .has-dropdown').forEach(item => {
+                item.classList.remove('show-dropdown');
+            });
+        }
+    });
+
+    // --- 3. BARRA DE BUSCA ---
+    const searchBar = document.querySelector('.search-bar');
+    if (searchBar) {
+        const searchInput = searchBar.querySelector('input[type="text"]');
+        const searchButton = searchBar.querySelector('button');
+
+        function performSearch() {
+            const query = searchInput.value.trim();
+            if (query) {
+                window.location.href = `busca.html?q=${encodeURIComponent(query)}`; 
+            }
+        }
+        searchButton.addEventListener('click', performSearch);
+        searchInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                performSearch();
+            }
+        });
+    }
+}
+
+// Carregar os componentes ao iniciar
+document.addEventListener('DOMContentLoaded', () => {
+    loadComponent('main-header', 'header.html');
+    loadComponent('main-footer', 'footer.html');
+
+    // ... (MANTENHA O CÓDIGO DO CARROSSEL E DA API AQUI ABAIXO) ...
+    // MAS REMOVA O CÓDIGO DO HEADER/DROPDOWN/BUSCA QUE ESTAVA SOLTO NO FIM DO ARQUIVO
+    // POIS AGORA ELES ESTÃO DENTRO DE initHeaderScripts()
+
+    
     // ==========================================================
     // CARREGAMENTO DA API DO ACERVO (Ex: arquivo-digital.html)
     // ==========================================================
