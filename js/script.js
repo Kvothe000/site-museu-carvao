@@ -85,6 +85,7 @@ function initAccessibility() {
 function initHeaderScripts() {
     // 1. Inicializa a Acessibilidade (NOVO!)
     initAccessibility();
+    initLanguageSelector();
 
     // 2. Sticky Header
     const header = document.querySelector('header');
