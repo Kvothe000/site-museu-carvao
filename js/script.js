@@ -237,10 +237,25 @@ document.addEventListener('DOMContentLoaded', async () => { // Note o 'async' aq
         carregarAcervo();
     }
 
-    // CARROSSEL
-    if (document.getElementById('home-carousel') && typeof Splide !== 'undefined') {
+    // --- CARROSSEL DA HOME ---
+    const homeCarousel = document.getElementById('home-carousel');
+    if (homeCarousel && typeof Splide !== 'undefined') {
         new Splide('#home-carousel', {
-            type: 'loop', perPage: 1, perMove: 1, gap: '0', autoplay: true, interval: 4000, pauseOnHover: true
+            type: 'loop', 
+            perPage: 1,        // Força 1 imagem por vez
+            perMove: 1, 
+            gap: '0',          // Sem espaço entre elas
+            autoplay: true, 
+            interval: 4000, 
+            pauseOnHover: true,
+            arrows: true,      // Garante setas de navegação
+            pagination: true,  // Garante bolinhas de navegação
+            width: '100%',     // Força a largura do container
+            fixedWidth: null,  // Remove qualquer largura fixa herdada
+            breakpoints: {     // Garante que em telas menores continue sendo 1
+                992: { perPage: 1 },
+                768: { perPage: 1 } 
+            }
         }).mount();
     }
 
