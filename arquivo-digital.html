@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <meta name="description" content="Site oficial do Museu Estadual do Carvão...">
     <meta name="keywords" content="Museu do Carvão, Arquivo Histórico...">
     <meta name="author" content="Museu Estadual do Carvão">
@@ -11,11 +12,14 @@
     <title>Arquivo Digital - Museu Estadual do Carvão</title>
     <link rel="icon" href="img/logo-museu.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
+
 <body>
     <a href="#main-content" class="skip-link">Pular para o Conteúdo Principal</a>
 
@@ -24,49 +28,51 @@
 
     <main id="main-content">
         <section class="page-title">
-            <h1>Arquivo Digital</h1>
+            <h1 data-i18n="archive_page_title">Arquivo Digital</h1>
         </section>
 
         <div class="two-column-layout">
 
             <aside class="sidebar-nav">
-                <h2>Explorar Acervo</h2>
-                
+                <h2 data-i18n="archive_explore">Explorar Acervo</h2>
+
                 <div class="sidebar-search">
-                    <input type="search" placeholder="Buscar no acervo...">
+                    <input type="search" placeholder="Buscar no acervo..." data-i18n="archive_search_placeholder">
                     <button><i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
 
-                <h3>Categorias</h3>
+                <h3 data-i18n="archive_categories">Categorias</h3>
                 <ul>
                     <li><a href="#">Documentos Textuais</a></li>
                     <li><a href="#">Fotografias</a></li>
                     <li><a href="#">Mapas e Plantas</a></li>
                     <li><a href="#">Iconografia</a></li>
-                    </ul>
-                
-                <h3>Fundos</h3>
+                </ul>
+
+                <h3 data-i18n="archive_funds">Fundos</h3>
                 <ul>
                     <li><a href="#">Cia. Estrada de Ferro...</a></li>
-                     <li><a href="#">Cia. Minas de Carvão...</a></li>
-                     </ul>
+                    <li><a href="#">Cia. Minas de Carvão...</a></li>
+                </ul>
             </aside>
 
             <section class="main-content archive-results">
-                <h2>Documentos em Destaque</h2>
-                
-                <div id="acervo-container" class="loading"> 
-                    <div class="spinner"></div> 
-                    <p>Carregando documentos do acervo...</p> 
+                <h2 data-i18n="archive_highlight">Documentos em Destaque</h2>
+
+                <div id="acervo-container" class="loading">
+                    <div class="spinner"></div>
+                    <p>Carregando documentos do acervo...</p>
                 </div>
 
-                </section>
+            </section>
 
-        </div> </main>
+        </div>
+    </main>
 
-<footer id="main-footer" class="site-footer">
+    <footer id="main-footer" class="site-footer">
     </footer>
-<script src="js/translations.js"></script>
-    <script src="js/script.js"></script> 
+    <script src="js/translations.js"></script>
+    <script src="js/script.js"></script>
 </body>
+
 </html>

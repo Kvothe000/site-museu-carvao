@@ -4,15 +4,29 @@ document.addEventListener('DOMContentLoaded', async () => {
     const query = urlParams.get('q');
     const resultsContainer = document.querySelector('.search-results-content');
 
+    // Helper para obter tradução
+    const getLanguage = () => localStorage.getItem('language') || 'pt';
+    const getTranslation = (key) => {
+        const lang = getLanguage();
+        // Fallback to 'pt' if key or lang missing
+        if (translations[lang] && translations[lang][key]) {
+            return translations[lang][key];
+        }
+        if (translations['pt'] && translations['pt'][key]) {
+            return translations['pt'][key];
+        }
+        return key; // Retorna a chave se não encontrar
+    };
+
     if (!query) {
-        resultsContainer.innerHTML = '<p>Por favor, digite um termo para buscar.</p>';
+        resultsContainer.innerHTML = `<p>${getTranslation('search_empty_query')}</p>`;
         return;
     }
 
     // Mostra indicador de carregamento
     resultsContainer.innerHTML = `
         <div class="search-loading">
-            <i class="fa-solid fa-spinner fa-spin"></i> Buscando por "<strong>${decodeURIComponent(query)}</strong>"...
+            <i class="fa-solid fa-spinner fa-spin"></i> ${getTranslation('search_searching')} "<strong>${decodeURIComponent(query)}</strong>"...
         </div>
     `;
 
@@ -20,15 +34,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     const results = [];
 
     // --- 1. Definição das Páginas Estáticas do Site ---
+    // Mapeamento de URL para chave de tradução do título
     const pagesToCrawl = [
-        { url: 'index.html', title: 'Página Inicial', type: 'Página' },
-        { url: 'nossa-historia.html', title: 'Nossa História', type: 'Página' },
-        { url: 'nossos-fundos.html', title: 'Nosso Acervo', type: 'Página' },
-        { url: 'arquivo-digital.html', title: 'Arquivo Digital', type: 'Página' },
-        { url: 'projetos.html', title: 'Projetos', type: 'Página' },
-        { url: 'publicacoes.html', title: 'Publicações', type: 'Página' },
-        { url: 'servicos.html', title: 'Serviços', type: 'Página' },
-        { url: 'localizacao-contato.html', title: 'Contato e Localização', type: 'Página' }
+        { url: 'index.html', titleKey: 'nav_home', typeKey: 'search_type_page' },
+        { url: 'nossa-historia.html', titleKey: 'nav_history', typeKey: 'search_type_page' },
+        { url: 'nossos-fundos.html', titleKey: 'nav_collection', typeKey: 'search_type_page' },
+        { url: 'arquivo-digital.html', titleKey: 'nav_digital_archive', typeKey: 'search_type_page' },
+        { url: 'projetos.html', titleKey: 'nav_projects', typeKey: 'search_type_page' },
+        { url: 'publicacoes.html', titleKey: 'nav_publications', typeKey: 'search_type_page' },
+        { url: 'servicos.html', titleKey: 'nav_services', typeKey: 'search_type_page' },
+        { url: 'localizacao-contato.html', titleKey: 'nav_contact', typeKey: 'search_type_page' }
     ];
 
     try {
@@ -56,10 +71,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                     let snippet = bodyText.substring(start, end).replace(/\s+/g, ' ').trim();
 
                     return {
-                        title: page.title,
+                        title: getTranslation(page.titleKey),
                         url: page.url,
                         snippet: `...${snippet}...`,
-                        type: page.type
+                        type: getTranslation(page.typeKey)
                     };
                 }
             } catch (e) {
@@ -69,13 +84,15 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
 
         // --- 3. Busca em Notícias (JSON) ---
+        // Notícias usam títulos fixos do JSON (que podem estar em PT), idealmente o JSON teria campos multilíngues, 
+        // mas por enquanto manteremos o original.
         const newsPromise = fetch('noticias.json').then(res => res.json()).then(news => {
             if (news && news.titulo && news.titulo.toLowerCase().includes(searchTerm)) {
                 return {
                     title: news.titulo,
                     url: news.link,
                     snippet: news.resumo || 'Notícia recente do museu.',
-                    type: 'Notícia'
+                    type: getTranslation('search_type_news')
                 };
             }
             return null;
@@ -92,7 +109,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                         title: item.title,
                         url: item.slug || '#', // Idealmente linkaria para a página do item
                         snippet: item.description || 'Item do acervo histórico.',
-                        type: 'Acervo'
+                        type: getTranslation('search_type_collection')
                     });
                 }
             });
@@ -114,9 +131,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // --- 5. Renderiza Resultados ---
         if (results.length > 0) {
+            const summaryText = getTranslation('search_summary').replace('{0}', results.length); // Simples replace
+
             resultsContainer.innerHTML = `
                 <div class="search-summary">
-                    Encontramos <strong>${results.length}</strong> resultado(s) para "<em>${decodeURIComponent(query)}</em>".
+                    ${summaryText} "<em>${decodeURIComponent(query)}</em>".
                 </div>
                 <ul class="search-results-list">
                     ${results.map(item => `
@@ -134,14 +153,14 @@ document.addEventListener('DOMContentLoaded', async () => {
             resultsContainer.innerHTML = `
                 <div class="no-results">
                     <i class="fa-regular fa-face-sad-tear"></i>
-                    <p>Nenhum resultado encontrado para "<strong>${decodeURIComponent(query)}</strong>".</p>
-                    <p>Tente buscar por "história", "minas", "fotos" ou "visitocão".</p>
+                    <p>${getTranslation('search_no_results')} "<strong>${decodeURIComponent(query)}</strong>".</p>
+                    <p>${getTranslation('search_try_terms')}</p>
                 </div>
             `;
         }
 
     } catch (error) {
         console.error('Erro fatal na busca:', error);
-        resultsContainer.innerHTML = '<p>Ocorreu um erro ao processar sua busca. Tente novamente.</p>';
+        resultsContainer.innerHTML = `<p>${getTranslation('search_error')}</p>`;
     }
 });

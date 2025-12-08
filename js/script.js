@@ -32,20 +32,16 @@ function initAccessibility() {
     const btnDecrease = document.getElementById('btn-decrease');
     const btnOriginal = document.getElementById('btn-original');
 
-    // 1. Alto Contraste (Botão)
+    // 1. Alto Contraste (Botão) - Usando onclick para evitar duplicidade
     if (btnContrast) {
-        // Remove ouvintes anteriores para evitar duplicação (boa prática em SPAs, útil aqui por segurança)
-        const newBtn = btnContrast.cloneNode(true);
-        btnContrast.parentNode.replaceChild(newBtn, btnContrast);
-
-        newBtn.addEventListener('click', () => {
+        btnContrast.onclick = () => {
             body.classList.toggle('high-contrast');
             if (body.classList.contains('high-contrast')) {
                 localStorage.setItem('highContrast', 'true');
             } else {
                 localStorage.removeItem('highContrast');
             }
-        });
+        };
     }
 
     // 2. Tamanho da Fonte
@@ -60,33 +56,27 @@ function initAccessibility() {
     }
 
     if (btnIncrease) {
-        const newBtn = btnIncrease.cloneNode(true);
-        btnIncrease.parentNode.replaceChild(newBtn, btnIncrease);
-        newBtn.addEventListener('click', () => {
+        btnIncrease.onclick = () => {
             if (currentFontSize < 150) {
                 currentFontSize += 10;
                 updateFontSize(currentFontSize);
             }
-        });
+        };
     }
     if (btnDecrease) {
-        const newBtn = btnDecrease.cloneNode(true);
-        btnDecrease.parentNode.replaceChild(newBtn, btnDecrease);
-        newBtn.addEventListener('click', () => {
+        btnDecrease.onclick = () => {
             if (currentFontSize > 70) {
                 currentFontSize -= 10;
                 updateFontSize(currentFontSize);
             }
-        });
+        };
     }
     if (btnOriginal) {
-        const newBtn = btnOriginal.cloneNode(true);
-        btnOriginal.parentNode.replaceChild(newBtn, btnOriginal);
-        newBtn.addEventListener('click', () => {
+        btnOriginal.onclick = () => {
             currentFontSize = 100;
             updateFontSize(currentFontSize);
             localStorage.removeItem('fontSize');
-        });
+        };
     }
 }
 
@@ -97,21 +87,33 @@ function updateLanguage(lang) {
     localStorage.setItem('language', lang);
 
     // Atualiza textos com data-i18n
+    // Atualiza textos com data-i18n
     document.querySelectorAll('[data-i18n]').forEach(element => {
         const key = element.getAttribute('data-i18n');
-        if (translations[lang] && translations[lang][key]) {
+        // Verifica se a chave existe na tradução
+        if (typeof translations !== 'undefined' && translations[lang] && translations[lang][key]) {
             if (element.tagName === 'INPUT') {
                 element.placeholder = translations[lang][key];
             } else {
-                // Preserva ícones se existirem
+                // Preserva ícones se existirem (ex: no menu dropdown)
                 const icon = element.querySelector('i');
                 if (icon) {
                     const iconHTML = icon.outerHTML;
+                    // Insere texto + ícone
                     element.innerHTML = translations[lang][key] + ' ' + iconHTML;
                 } else {
                     element.textContent = translations[lang][key];
                 }
             }
+        }
+    });
+
+    // Atualiza atributos aria-label e title com data-i18n-aria
+    document.querySelectorAll('[data-i18n-aria]').forEach(element => {
+        const key = element.getAttribute('data-i18n-aria');
+        if (typeof translations !== 'undefined' && translations[lang] && translations[lang][key]) {
+            element.setAttribute('aria-label', translations[lang][key]);
+            element.setAttribute('title', translations[lang][key]);
         }
     });
 

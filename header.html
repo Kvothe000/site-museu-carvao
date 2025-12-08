@@ -5,15 +5,30 @@
     </a>
     <div class="header-controls">
         <div class="search-bar" role="search">
-            <input type="text" placeholder="Buscar" aria-label="Digite sua busca" data-i18n="search_placeholder">
-            <button aria-label="Iniciar busca"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button>
+            <input type="text" name="q" placeholder="Buscar..." aria-label="Campo de busca"
+                data-i18n="search_placeholder" data-i18n-aria="search_aria_label">
+            <button type="submit" aria-label="Buscar" data-i18n-aria="search_button_aria">
+                <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            </button>
         </div>
         <div class="header-utilities">
             <div class="accessibility-controls" role="group" aria-label="Controles de Acessibilidade">
-                <button id="btn-decrease" title="Diminuir letra" aria-label="Diminuir tamanho da fonte">A-</button>
-                <button id="btn-original" title="Tamanho padrão" aria-label="Tamanho da fonte padrão">A</button>
-                <button id="btn-increase" title="Aumentar letra" aria-label="Aumentar tamanho da fonte">A+</button>
-                <button id="btn-contrast" title="Alto contraste" aria-label="Ativar alto contraste"><i class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i></button>
+                <button class="icon-button" id="btn-decrease" aria-label="Diminuir Fonte" title="Diminuir Fonte"
+                    data-i18n-aria="btn_font_dec">
+                    <i class="fa-solid fa-minus" aria-hidden="true"></i>
+                </button>
+                <button class="icon-button" id="btn-original" aria-label="Restaurar Fonte" title="Restaurar Fonte"
+                    data-i18n-aria="btn_font_reset">
+                    <i class="fa-solid fa-text-height" aria-hidden="true"></i>
+                </button>
+                <button class="icon-button" id="btn-increase" aria-label="Aumentar Fonte" title="Aumentar Fonte"
+                    data-i18n-aria="btn_font_inc">
+                    <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                </button>
+                <button class="icon-button" id="btn-contrast" aria-label="Alto Contraste" title="Alto Contraste"
+                    data-i18n-aria="btn_contrast">
+                    <i class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i>
+                </button>
             </div>
             <div class="language-selector" role="group" aria-label="Seletor de Idioma">
                 <a href="#" data-lang="pt" class="lang-btn active" aria-label="Português">PT</a>
@@ -23,9 +38,12 @@
                 <a href="#" data-lang="es" class="lang-btn" aria-label="Español">ES</a>
             </div>
             <div class="social-links">
-                <a href="#" target="_blank" aria-label="Visite nosso Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
-                <a href="#" target="_blank" aria-label="Visite nosso Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
-                <a href="mailto:museu-carvao@sedac.rs.gov.br" aria-label="Envie um e-mail para o museu"><i class="fa-solid fa-envelope" aria-hidden="true"></i></a>
+                <a href="#" target="_blank" aria-label="Visite nosso Instagram"><i class="fa-brands fa-instagram"
+                        aria-hidden="true"></i></a>
+                <a href="#" target="_blank" aria-label="Visite nosso Facebook"><i class="fa-brands fa-facebook-f"
+                        aria-hidden="true"></i></a>
+                <a href="mailto:museu-carvao@sedac.rs.gov.br" aria-label="Envie um e-mail para o museu"><i
+                        class="fa-solid fa-envelope" aria-hidden="true"></i></a>
             </div>
         </div>
     </div>
@@ -36,28 +54,34 @@
     </button>
     <ul>
         <li><a href="index.html" data-page="index.html" data-i18n="nav_home">Início</a></li>
-        
+
         <li class="has-dropdown">
-            <a href="nossa-historia.html" data-page="nossa-historia.html" data-i18n="nav_history">Nossa História <i class="fa-solid fa-caret-down"></i></a>
+            <a href="nossa-historia.html" data-page="nossa-historia.html" data-i18n="nav_history">Nossa História <i
+                    class="fa-solid fa-caret-down"></i></a>
             <ul class="dropdown-menu">
                 <li><a href="nossa-historia.html#museu" data-i18n="nav_museum">Museu do Carvão</a></li>
-                <li><a href="nossa-historia.html#arquivo" data-i18n="nav_archive_hist">Arquivo Histórico da Mineração</a></li>
+                <li><a href="nossa-historia.html#arquivo" data-i18n="nav_archive_hist">Arquivo Histórico da
+                        Mineração</a></li>
             </ul>
         </li>
 
         <li class="has-dropdown">
-            <a href="nossos-fundos.html" data-page="nossos-fundos.html" data-i18n="nav_collection">Nosso Acervo <i class="fa-solid fa-caret-down"></i></a>
+            <a href="nossos-fundos.html" data-page="nossos-fundos.html" data-i18n="nav_collection">Nosso Acervo <i
+                    class="fa-solid fa-caret-down"></i></a>
             <ul class="dropdown-menu">
-                <li><a href="nossos-fundos.html#tridimensional" data-i18n="nav_tridimensional">Acervo Tridimensional</a></li>
+                <li><a href="nossos-fundos.html#tridimensional" data-i18n="nav_tridimensional">Acervo Tridimensional</a>
+                </li>
                 <li><a href="nossos-fundos.html#fotografico" data-i18n="nav_photographic">Acervo Fotográfico</a></li>
                 <li><a href="nossos-fundos.html#documental" data-i18n="nav_documental">Acervo Documental</a></li>
             </ul>
         </li>
 
-        <li><a href="arquivo-digital.html" data-page="arquivo-digital.html" data-i18n="nav_digital_archive">Arquivo Digital</a></li>
+        <li><a href="arquivo-digital.html" data-page="arquivo-digital.html" data-i18n="nav_digital_archive">Arquivo
+                Digital</a></li>
         <li><a href="projetos.html" data-page="projetos.html" data-i18n="nav_projects">Projetos</a></li>
         <li><a href="publicacoes.html" data-page="publicacoes.html" data-i18n="nav_publications">Publicações</a></li>
         <li><a href="servicos.html" data-page="servicos.html" data-i18n="nav_services">Serviços</a></li>
-        <li><a href="localizacao-contato.html" data-page="localizacao-contato.html" data-i18n="nav_contact">Localização e Contato</a></li>
+        <li><a href="localizacao-contato.html" data-page="localizacao-contato.html" data-i18n="nav_contact">Localização
+                e Contato</a></li>
     </ul>
 </nav>
