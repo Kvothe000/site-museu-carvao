@@ -1,6 +1,5 @@
-// --- FUNÇÕES AUXILIARES DE CARREGAMENTO (MODULARIZAÇÃO) ---
 
-// --- FUNÇÕES AUXILIARES ---
+// --- FUNÇÕES AUXILIARES DE CARREGAMENTO (MODULARIZAÇÃO) ---
 
 async function loadComponent(elementId, filePath) {
     const element = document.getElementById(elementId);
@@ -25,7 +24,7 @@ function highlightActiveLink() {
     });
 }
 
-// --- NOVA FUNÇÃO DE ACESSIBILIDADE ---
+// --- FUNÇÃO CENTRAL DE ACESSIBILIDADE ---
 function initAccessibility() {
     const body = document.body;
     const btnContrast = document.getElementById('btn-contrast');
@@ -35,7 +34,11 @@ function initAccessibility() {
 
     // 1. Alto Contraste (Botão)
     if (btnContrast) {
-        btnContrast.addEventListener('click', () => {
+        // Remove ouvintes anteriores para evitar duplicação (boa prática em SPAs, útil aqui por segurança)
+        const newBtn = btnContrast.cloneNode(true);
+        btnContrast.parentNode.replaceChild(newBtn, btnContrast);
+
+        newBtn.addEventListener('click', () => {
             body.classList.toggle('high-contrast');
             if (body.classList.contains('high-contrast')) {
                 localStorage.setItem('highContrast', 'true');
@@ -57,7 +60,9 @@ function initAccessibility() {
     }
 
     if (btnIncrease) {
-        btnIncrease.addEventListener('click', () => {
+        const newBtn = btnIncrease.cloneNode(true);
+        btnIncrease.parentNode.replaceChild(newBtn, btnIncrease);
+        newBtn.addEventListener('click', () => {
             if (currentFontSize < 150) {
                 currentFontSize += 10;
                 updateFontSize(currentFontSize);
@@ -65,7 +70,9 @@ function initAccessibility() {
         });
     }
     if (btnDecrease) {
-        btnDecrease.addEventListener('click', () => {
+        const newBtn = btnDecrease.cloneNode(true);
+        btnDecrease.parentNode.replaceChild(newBtn, btnDecrease);
+        newBtn.addEventListener('click', () => {
             if (currentFontSize > 70) {
                 currentFontSize -= 10;
                 updateFontSize(currentFontSize);
@@ -73,7 +80,9 @@ function initAccessibility() {
         });
     }
     if (btnOriginal) {
-        btnOriginal.addEventListener('click', () => {
+        const newBtn = btnOriginal.cloneNode(true);
+        btnOriginal.parentNode.replaceChild(newBtn, btnOriginal);
+        newBtn.addEventListener('click', () => {
             currentFontSize = 100;
             updateFontSize(currentFontSize);
             localStorage.removeItem('fontSize');
@@ -106,7 +115,7 @@ function updateLanguage(lang) {
         }
     });
 
-    // Atualiza o estilo visual dos botões de idioma (CORREÇÃO DO ERRO)
+    // Atualiza o estilo visual dos botões de idioma
     const langButtons = document.querySelectorAll('.language-selector a');
     if (langButtons) {
         langButtons.forEach(btn => {
@@ -134,7 +143,7 @@ function initLanguageSelector() {
 
 // Função que inicializa tudo que depende do Header
 function initHeaderScripts() {
-    // 1. Inicializa a Acessibilidade (NOVO!)
+    // 1. Inicializa a Acessibilidade e Idioma
     initAccessibility();
     initLanguageSelector();
 
@@ -221,6 +230,7 @@ function initHeaderScripts() {
         searchButton.addEventListener('click', performSearch);
         searchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') { e.preventDefault(); performSearch(); } });
     }
+
     // --- D. MENU MOBILE (HAMBÚRGUER) ---
     const mobileBtn = document.querySelector('.mobile-menu-toggle');
     const navElement = document.querySelector('.main-nav');
@@ -247,7 +257,7 @@ function initHeaderScripts() {
 // ==========================================================
 // 5. INICIALIZAÇÃO PRINCIPAL (DOM READY)
 // ==========================================================
-document.addEventListener('DOMContentLoaded', async () => { // Note o 'async' aqui
+document.addEventListener('DOMContentLoaded', async () => {
 
     // 1. Verifica preferência de contraste (sem piscar)
     if (localStorage.getItem('highContrast') === 'true') {
@@ -263,18 +273,12 @@ document.addEventListener('DOMContentLoaded', async () => { // Note o 'async' aq
     // 3. Agora que tudo carregou, mostra a página suavemente
     document.body.classList.add('page-loaded');
 
-    // --- Daqui para baixo, o resto do seu código continua igual ---
-
     // API ACERVO
     const acervoContainer = document.getElementById('acervo-container');
     if (acervoContainer) {
-        // ... (mantenha seu código de carregarAcervo aqui) ...
-        const apiUrl = 'https://URL_REAL_DO_ATOM_DO_MUSEU/api/information-objects';
-        const apiKey = 'SUA_CHAVE_DE_API_SECRETA_VAI_AQUI';
-
         async function carregarAcervo() {
             try {
-                const response = await fetch('mock-api.json'); // Usando mock por enquanto
+                const response = await fetch('mock-api.json');
                 const data = await response.json();
                 const documentos = data.results || data;
                 acervoContainer.classList.remove('loading');
@@ -378,79 +382,4 @@ document.addEventListener('DOMContentLoaded', async () => { // Note o 'async' aq
         window.addEventListener('scroll', activateSidebarLink, { passive: true });
         activateSidebarLink();
     }
-
-    // ==========================================================
-    // ACESSIBILIDADE (ALTO CONTRASTE E FONTE)
-    // ==========================================================
-
-    const body = document.body;
-    const btnContrast = document.getElementById('btn-contrast');
-    const btnIncrease = document.getElementById('btn-increase');
-    const btnDecrease = document.getElementById('btn-decrease');
-    const btnOriginal = document.getElementById('btn-original');
-
-    // --- 1. ALTO CONTRASTE ---
-
-    // Verifica se o usuário já tinha ativado antes (salvo no navegador)
-    if (localStorage.getItem('highContrast') === 'true') {
-        body.classList.add('high-contrast');
-    }
-
-    if (btnContrast) {
-        btnContrast.addEventListener('click', () => {
-            body.classList.toggle('high-contrast');
-
-            // Salva a preferência
-            if (body.classList.contains('high-contrast')) {
-                localStorage.setItem('highContrast', 'true');
-            } else {
-                localStorage.removeItem('highContrast');
-            }
-        });
-    }
-
-    // --- 2. TAMANHO DA FONTE ---
-
-    let currentFontSize = 100; // Porcentagem inicial
-
-    // Verifica preferência salva
-    const savedFontSize = localStorage.getItem('fontSize');
-    if (savedFontSize) {
-        currentFontSize = parseInt(savedFontSize);
-        document.documentElement.style.fontSize = currentFontSize + '%';
-    }
-
-    function updateFontSize(size) {
-        document.documentElement.style.fontSize = size + '%';
-        localStorage.setItem('fontSize', size);
-    }
-
-    if (btnIncrease) {
-        btnIncrease.addEventListener('click', () => {
-            if (currentFontSize < 150) { // Limite máximo
-                currentFontSize += 10;
-                updateFontSize(currentFontSize);
-            }
-        });
-    }
-
-    if (btnDecrease) {
-        btnDecrease.addEventListener('click', () => {
-            if (currentFontSize > 70) { // Limite mínimo
-                currentFontSize -= 10;
-                updateFontSize(currentFontSize);
-            }
-        });
-    }
-
-    if (btnOriginal) {
-        btnOriginal.addEventListener('click', () => {
-            currentFontSize = 100; // Volta ao padrão (100% ou 16px)
-            updateFontSize(currentFontSize);
-            localStorage.removeItem('fontSize');
-        });
-    }
-
-
-
 });

@@ -1557,6 +1557,72 @@ textarea:focus {
     /* Laranja no hover */
 }
 
+/* ==========================================================================
+   22. Estilos da Página de Busca (Dynamic)
+   ==========================================================================
+*/
+.search-loading, .no-results {
+    text-align: center;
+    padding: 3rem;
+    color: #555;
+    font-size: 1.2rem;
+}
+.search-loading i {
+    color: var(--cor-laranja-destaque);
+    margin-right: 10px;
+}
+.search-summary {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+    color: var(--cor-texto-escuro);
+}
+.search-results-list {
+    list-style: none;
+    padding: 0;
+}
+.search-results-list li {
+    margin-bottom: 1.5rem;
+}
+.result-card {
+    display: block;
+    background: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    transition: all 0.3s ease;
+    text-align: left;
+}
+.result-card:hover {
+    background: #fff;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transform: translateY(-2px);
+    border-color: var(--cor-laranja-destaque);
+}
+.result-card h3 {
+    margin: 0.5rem 0;
+    color: var(--cor-texto-escuro);
+    font-size: 1.3rem;
+}
+.result-card p {
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 0;
+}
+.result-type {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #fff;
+    background-color: #999;
+}
+.tag-pagina { background-color: var(--cor-laranja-destaque); }
+.tag-noticia { background-color: #27ae60; } /* Verde */
+.tag-acervo { background-color: #8e44ad; } /* Roxo */
+
 /* Estilo específico para endereço */
 .footer-column address {
     font-style: normal;
@@ -1585,11 +1651,21 @@ textarea:focus {
 .footer-copyright {
     text-align: center;
     border-top: 1px solid #444;
-    /* Linha separadora sutil */
     padding-top: 1.5rem;
     margin-top: 2rem;
     font-size: 0.9rem;
     color: #888;
+}
+
+.footer-list-small {
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.update-info {
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+    opacity: 0.7;
 }
 
 /* ==========================================================================

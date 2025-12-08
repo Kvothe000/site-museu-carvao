@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <meta name="description" content="Site oficial do Museu Estadual do Carvão...">
     <meta name="keywords" content="Museu do Carvão, Arquivo Histórico...">
     <meta name="author" content="Museu Estadual do Carvão">
@@ -11,8 +12,10 @@
     <title>Resultado da Busca - Museu Estadual do Carvão</title>
     <link rel="icon" href="img/logo-museu.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
@@ -23,13 +26,15 @@
             padding: 2rem;
             background-color: #fff;
             border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
             text-align: center;
-            min-height: 250px; /* Garante uma altura mínima */
+            min-height: 250px;
+            /* Garante uma altura mínima */
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
+
         .search-term-display {
             font-style: italic;
             color: #555;
@@ -37,10 +42,11 @@
         }
     </style>
 </head>
+
 <body>
     <a href="#main-content" class="skip-link">Pular para o Conteúdo Principal</a>
 
-   <header id="main-header">
+    <header id="main-header">
     </header>
 
     <main id="main-content">
@@ -49,32 +55,17 @@
         </section>
 
         <section class="search-results-content">
-            <p>A funcionalidade de busca completa no acervo ainda está em desenvolvimento.</p>
-            <p id="search-term-info">Você buscou por:</p>
+            <!-- Os resultados serão injetados aqui via JS -->
         </section>
 
     </main>
 
-<footer id="main-footer" class="site-footer">
+    <footer id="main-footer" class="site-footer">
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            const query = urlParams.get('q'); // Pega o parâmetro 'q' da URL
-            const infoElement = document.getElementById('search-term-info');
-
-            if (query && infoElement) {
-                const termDisplay = document.createElement('span');
-                termDisplay.className = 'search-term-display';
-                termDisplay.textContent = `"${decodeURIComponent(query)}"`; // Exibe o termo
-                infoElement.appendChild(termDisplay);
-            } else if (infoElement) {
-                 infoElement.style.display = 'none'; // Esconde a linha se não houver termo
-            }
-        });
-    </script>
     <script src="js/translations.js"></script>
-    <script src="js/script.js"></script> 
+    <script src="js/script.js"></script>
+    <script src="js/search.js"></script>
 </body>
+
 </html>
