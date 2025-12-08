@@ -16,30 +16,42 @@
 
 body {
     /* Fonte principal para leitura (Limpa e moderna) */
-    font-family: 'Open Sans', sans-serif; 
+    font-family: 'Open Sans', sans-serif;
     margin: 0;
     background-color: var(--cor-fundo-claro);
     color: var(--cor-texto-escuro);
     line-height: 1.6;
     /* --- ADICIONE ISTO PARA EVITAR A PISCADA --- */
-    opacity: 0; /* Começa invisível */
-    transition: opacity 0.4s ease-in-out; /* Transição suave para aparecer */
+    opacity: 0;
+    /* Começa invisível */
+    transition: opacity 0.4s ease-in-out;
+    /* Transição suave para aparecer */
 }
+
 /* Classe que o JS vai adicionar quando tudo estiver pronto */
 body.page-loaded {
-    opacity: 1; /* Torna visível */
+    opacity: 1;
+    /* Torna visível */
 }
 
 /* --- Nova Regra para Títulos (Fonte Serifada e Elegante) --- */
-h1, h2, h3, h4, h5, h6, .logo div {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.logo div {
     font-family: 'Merriweather', serif;
     color: var(--cor-texto-claro);
-    font-weight: 700; /* Negrito para destaque */
+    font-weight: 700;
+    /* Negrito para destaque */
 }
+
 /* -- 2. Cabeçalho -- */
 header {
     background-color: var(--cor-fundo-claro);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .header-top {
@@ -59,7 +71,8 @@ header {
 }
 
 .logo img {
-    height: 60px; /* Altere este valor para ajustar o tamanho */
+    height: 60px;
+    /* Altere este valor para ajustar o tamanho */
     margin-right: 15px;
 }
 
@@ -100,19 +113,25 @@ header {
 
 /* Classe adicionada ao <header> via JavaScript */
 .sticky-header {
-    position: fixed; /* Fixa o cabeçalho no topo da janela */
+    position: fixed;
+    /* Fixa o cabeçalho no topo da janela */
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1010; /* Z-index ainda mais alto para garantir */
-    
+    z-index: 1010;
+    /* Z-index ainda mais alto para garantir */
+
     /* Estilo Minimalista */
-    background-color: var(--cor-fundo-escuro); /* Fundo escuro direto */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15); /* Sombra para destacar */
-    
+    background-color: var(--cor-fundo-escuro);
+    /* Fundo escuro direto */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    /* Sombra para destacar */
+
     /* Animação suave de entrada */
-    transform: translateY(-100%); /* Começa escondido acima da tela */
-    animation: slideDown 0.5s ease forwards; /* Animação para deslizar para baixo */
+    transform: translateY(-100%);
+    /* Começa escondido acima da tela */
+    animation: slideDown 0.5s ease forwards;
+    /* Animação para deslizar para baixo */
 }
 
 /* Esconde a parte superior do cabeçalho no modo fixo */
@@ -122,13 +141,19 @@ header {
 
 /* Ajusta o padding da navegação no modo fixo (opcional) */
 .sticky-header .main-nav li a {
-    padding: 0.8rem 1.2rem; /* Deixa a barra de navegação um pouco mais compacta */
+    padding: 0.8rem 1.2rem;
+    /* Deixa a barra de navegação um pouco mais compacta */
 }
 
 /* Animação para o cabeçalho deslizar para baixo */
 @keyframes slideDown {
-    from { transform: translateY(-100%); }
-    to { transform: translateY(0); }
+    from {
+        transform: translateY(-100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
 }
 
 /* Adiciona padding ao topo do <body> para evitar que o conteúdo
@@ -137,33 +162,44 @@ header {
     /* A altura exata aqui depende da altura final do seu cabeçalho fixo.
        Você precisará ajustar este valor (ex: 50px, 60px)
        inspecionando a altura da .main-nav no modo fixo com F12. */
-    padding-top: 60px; /* Ajuste este valor! */
+    padding-top: 60px;
+    /* Ajuste este valor! */
 }
 
 /* -- 3. Barra de Navegação Principal -- */
 /* -- 3. Barra de Navegação Principal (COM Z-INDEX ALTO) -- */
 .main-nav {
     background-color: var(--cor-fundo-escuro);
-    position: relative; /* Necessário para z-index e posicionamento do dropdown */
-    z-index: 1000;      /* <<< MUITO ALTO: Garante que fique na frente do carrossel e outros */
+    position: relative;
+    /* Necessário para z-index e posicionamento do dropdown */
+    z-index: 1000;
+    /* <<< MUITO ALTO: Garante que fique na frente do carrossel e outros */
 }
+
 /* -- 3. Barra de Navegação Principal - Estilo dos Links -- */
 /* (Certifique-se que esta regra exista e esteja correta) */
 
 .main-nav li a {
-    display: block; /* Garante que o link ocupe todo o espaço do <li> */
-    padding: 1rem 1.5rem; /* Espaçamento interno (ajuste se necessário) */
-    color: var(--cor-texto-claro); /* Cor do texto (branco) */
-    text-decoration: none; /* <<< A CORREÇÃO PRINCIPAL: REMOVE O SUBLINHADO */
+    display: block;
+    /* Garante que o link ocupe todo o espaço do <li> */
+    padding: 1rem 1.5rem;
+    /* Espaçamento interno (ajuste se necessário) */
+    color: var(--cor-texto-claro);
+    /* Cor do texto (branco) */
+    text-decoration: none;
+    /* <<< A CORREÇÃO PRINCIPAL: REMOVE O SUBLINHADO */
     font-family: 'Open Sans', sans-serif;
-    font-weight: 500; /* Peso da fonte (ajuste se necessário) */
-    transition: background-color 0.3s; /* Efeito suave no hover */
+    font-weight: 500;
+    /* Peso da fonte (ajuste se necessário) */
+    transition: background-color 0.3s;
+    /* Efeito suave no hover */
 }
 
 /* Estilo para o link ativo (página atual) e hover */
-.main-nav li a:hover, 
+.main-nav li a:hover,
 .main-nav li a.active {
-    background-color: var(--cor-laranja-destaque); /* Fundo laranja no hover/ativo */
+    background-color: var(--cor-laranja-destaque);
+    /* Fundo laranja no hover/ativo */
 }
 
 .main-nav ul {
@@ -180,7 +216,8 @@ header {
 
 /* Garante que o item de menu seja o "pai" de referência */
 .main-nav li.has-dropdown {
-    position: relative; /* Já deve existir */
+    position: relative;
+    /* Já deve existir */
 }
 
 /* O container do submenu (começa escondido e ligeiramente deslocado) */
@@ -188,30 +225,36 @@ header {
     position: absolute;
     top: 100%;
     left: 0;
-    z-index: 999; /* Mantém um z-index alto, mas ligeiramente menor que o pai para garantir */
+    z-index: 999;
+    /* Mantém um z-index alto, mas ligeiramente menor que o pai para garantir */
 
     background-color: var(--cor-fundo-escuro);
     list-style: none;
     padding: 0.5rem 0;
     margin: 0;
     min-width: 280px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     border-radius: 0 0 4px 4px;
-    display: flex; /* Necessário para flex-direction */
-    flex-direction: column; /* Garante o empilhamento vertical dos itens */
+    display: flex;
+    /* Necessário para flex-direction */
+    flex-direction: column;
+    /* Garante o empilhamento vertical dos itens */
 
     /* ESTADO INICIAL (ESCONDIDO COM ANIMAÇÃO) */
     opacity: 0;
     visibility: hidden;
-    transform: translateY(10px); /* Começa ligeiramente abaixo */
-    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s; /* Animação suave */
+    transform: translateY(10px);
+    /* Começa ligeiramente abaixo */
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+    /* Animação suave */
 }
 
 /* O ESTADO VISÍVEL (QUANDO A CLASSE É ADICIONADA) */
-.has-dropdown.show-dropdown > .dropdown-menu {
+.has-dropdown.show-dropdown>.dropdown-menu {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0); /* Volta para a posição normal */
+    transform: translateY(0);
+    /* Volta para a posição normal */
 }
 
 /* ITENS DENTRO DO DROPDOWN (Garantindo o comportamento de bloco) */
@@ -226,7 +269,8 @@ header {
     color: var(--cor-texto-claro);
     text-decoration: none;
     white-space: nowrap;
-    transition: background-color 0.2s ease; /* Adiciona transição suave no hover */
+    transition: background-color 0.2s ease;
+    /* Adiciona transição suave no hover */
 }
 
 .dropdown-menu li a:hover {
@@ -257,18 +301,20 @@ main {
 
 /* Card individual (será criado pelo JavaScript) */
 .fundo-card {
-    position: relative; /* Essencial para o posicionamento do texto sobre a imagem */
+    position: relative;
+    /* Essencial para o posicionamento do texto sobre a imagem */
     display: block;
     text-decoration: none;
     /*overflow: hidden;*/
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .fundo-card img {
     width: 100%;
     height: 200px;
-    object-fit: cover; /* Garante que a imagem cubra o espaço sem distorcer */
+    object-fit: cover;
+    /* Garante que a imagem cubra o espaço sem distorcer */
     display: block;
     transition: transform 0.4s ease;
 }
@@ -278,7 +324,7 @@ main {
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
     color: var(--cor-texto-claro);
     padding: 2rem 1rem 1rem 1rem;
     text-align: center;
@@ -292,7 +338,8 @@ main {
 }
 
 .fundo-card:hover figcaption {
-    background-color: rgba(229, 131, 50, 0.85); /* Laranja com transparência */
+    background-color: rgba(229, 131, 50, 0.85);
+    /* Laranja com transparência */
 }
 
 
@@ -301,7 +348,8 @@ main {
     display: flex;
     justify-content: center;
     padding: 3rem;
-    grid-template-columns: 1fr; /* Sobrescreve o grid durante o loading */
+    grid-template-columns: 1fr;
+    /* Sobrescreve o grid durante o loading */
 }
 
 .spinner {
@@ -314,8 +362,13 @@ main {
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 /* -- 7. Rodapé -- */
@@ -326,6 +379,7 @@ main {
     background-color: #e0e0e0;
     color: #555;
 }
+
 /* ==========================================================================
    3a. Estilos para Dropdown do Menu Principal (VERSÃO FINAL EXPLÍCITA)
    ==========================================================================
@@ -342,9 +396,9 @@ main {
     padding: 0.5rem 0;
     margin: 0;
     min-width: 280px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     border-radius: 0 0 4px 4px;
-    
+
     /* ESTADO INICIAL (ESCONDIDO) */
     opacity: 0;
     visibility: hidden;
@@ -353,7 +407,7 @@ main {
 }
 
 /* O ESTADO VISÍVEL (QUANDO A CLASSE É ADICIONADA) */
-.has-dropdown.show-dropdown > .dropdown-menu {
+.has-dropdown.show-dropdown>.dropdown-menu {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
@@ -363,9 +417,12 @@ main {
 /* Força os <li> e <a> a se comportarem como uma lista vertical */
 .dropdown-menu li,
 .dropdown-menu li a {
-    display: block;  /* <<< Força o empilhamento vertical */
-    width: 100%;     /* <<< Garante que ocupem todo o espaço */
-    height: auto;    /* <<< Garante que tenham altura */
+    display: block;
+    /* <<< Força o empilhamento vertical */
+    width: 100%;
+    /* <<< Garante que ocupem todo o espaço */
+    height: auto;
+    /* <<< Garante que tenham altura */
     text-align: left;
 }
 
@@ -422,7 +479,8 @@ main {
     text-align: center;
     /*overflow: hidden;*/
 
-    background-image: url('../img/fundo-museu.jpeg'); /* Use o nome do seu arquivo aqui! */
+    background-image: url('../img/fundo-museu.jpeg');
+    /* Use o nome do seu arquivo aqui! */
     background-size: cover;
     background-position: bottom center;
     background-attachment: fixed;
@@ -431,7 +489,10 @@ main {
 .page-hero::before {
     content: '';
     position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 1;
 }
@@ -442,7 +503,8 @@ main {
     font-size: 3rem;
     margin: 0 0 0.5rem 0;
     padding-bottom: 0;
-    z-index: 2; /* Garante que o texto fique acima do overlay */
+    z-index: 2;
+    /* Garante que o texto fique acima do overlay */
 }
 
 /* Esconde a linha laranja no hero */
@@ -452,7 +514,8 @@ main {
 
 .page-hero p {
     position: relative;
-    z-index: 2; /* Garante que o texto fique acima do overlay */
+    z-index: 2;
+    /* Garante que o texto fique acima do overlay */
     color: var(--cor-texto-claro);
     font-size: 1.2rem;
     max-width: 600px;
@@ -487,14 +550,16 @@ main {
     grid-row: 2;
 }
 
-.info-card, .map-section {
+.info-card,
+.map-section {
     background-color: #fff;
     padding: 2rem;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
-.info-card h2, .map-section h2 {
+.info-card h2,
+.map-section h2 {
     background-color: var(--cor-laranja-destaque);
     color: var(--cor-texto-claro);
     padding: 1rem 2rem;
@@ -503,34 +568,103 @@ main {
     border-top-right-radius: 8px;
 }
 
-.contact-details { list-style: none; padding: 0; margin: 0; }
-.contact-details li { display: flex; align-items: flex-start; margin-bottom: 1.2rem; }
-.contact-details i { font-size: 1.2rem; color: var(--cor-laranja-destaque); margin-top: 5px; width: 25px; text-align: center; margin-right: 15px; }
-.contact-details strong { display: block; }
-.contact-details p { margin: 0; color: #555; }
-.contact-form .form-group { margin-bottom: 1rem; }
-.contact-form label { display: block; margin-bottom: 0.5rem; }
-.contact-form input, .contact-form textarea { width: 100%; padding: 0.8rem; border: 1px solid var(--cor-borda-suave); border-radius: 4px; font-size: 1rem; box-sizing: border-box; }
-.submit-button { width: 100%; padding: 1rem; border: none; border-radius: 4px; background-color: var(--cor-laranja-destaque); color: var(--cor-texto-claro); font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: background-color 0.3s ease; }
-.submit-button:hover { background-color: #d47321; }
-.map-embed { flex-grow: 1; }
-.map-embed iframe { width: 100%; height: 100%; border: 0; }
+.contact-details {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.contact-details li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1.2rem;
+}
+
+.contact-details i {
+    font-size: 1.2rem;
+    color: var(--cor-laranja-destaque);
+    margin-top: 5px;
+    width: 25px;
+    text-align: center;
+    margin-right: 15px;
+}
+
+.contact-details strong {
+    display: block;
+}
+
+.contact-details p {
+    margin: 0;
+    color: #555;
+}
+
+.contact-form .form-group {
+    margin-bottom: 1rem;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--cor-borda-suave);
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.submit-button {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border-radius: 4px;
+    background-color: var(--cor-laranja-destaque);
+    color: var(--cor-texto-claro);
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #d47321;
+}
+
+.map-embed {
+    flex-grow: 1;
+}
+
+.map-embed iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
 
 @media (max-width: 992px) {
     .contact-grid {
         grid-template-columns: 1fr;
     }
-    .info-details, .info-form, .map-section {
+
+    .info-details,
+    .info-form,
+    .map-section {
         grid-column: auto;
         grid-row: auto;
     }
 }
+
 /* -- 9. Media Query para Responsividade (Contato) -- */
 @media (max-width: 992px) {
     .contact-grid {
-        grid-template-columns: 1fr; /* Colunas empilhadas em telas menores */
+        grid-template-columns: 1fr;
+        /* Colunas empilhadas em telas menores */
     }
 }
+
 /* ==========================================================================
    10. Estilos de Acessibilidade (a11y)
    ==========================================================================
@@ -552,6 +686,7 @@ main {
 .skip-link:focus {
     top: 0;
 }
+
 /* Melhora o indicador de foco padrão para links e botões */
 a:focus,
 button:focus,
@@ -570,14 +705,16 @@ textarea:focus {
 .header-controls {
     display: flex;
     align-items: center;
-    gap: 2rem; /* Espaço entre a busca e os outros itens */
+    gap: 2rem;
+    /* Espaço entre a busca e os outros itens */
 }
 
 /* Container para o seletor de idioma e redes sociais */
 .header-utilities {
     display: flex;
     align-items: center;
-    gap: 1.5rem; /* Espaço entre o idioma e os ícones */
+    gap: 1.5rem;
+    /* Espaço entre o idioma e os ícones */
 }
 
 /* Estilo do Seletor de Idiomas */
@@ -585,14 +722,17 @@ textarea:focus {
     font-size: 0.9rem;
     color: #555;
 }
+
 .language-selector strong {
     color: var(--cor-texto-escuro);
 }
+
 .language-selector a {
     text-decoration: none;
     color: #555;
     transition: color 0.3s;
 }
+
 .language-selector a:hover {
     color: var(--cor-laranja-destaque);
 }
@@ -600,13 +740,16 @@ textarea:focus {
 /* Estilo dos Ícones Sociais */
 .social-links {
     display: flex;
-    gap: 1rem; /* Espaço entre os ícones */
+    gap: 1rem;
+    /* Espaço entre os ícones */
 }
+
 .social-links a {
     color: var(--cor-texto-escuro);
     font-size: 1.2rem;
     transition: color 0.3s, transform 0.3s;
 }
+
 .social-links a:hover {
     color: var(--cor-laranja-destaque);
     transform: scale(1.1);
@@ -615,21 +758,28 @@ textarea:focus {
 /* --- Responsividade para o Cabeçalho --- */
 @media (max-width: 992px) {
     .header-top {
-        flex-direction: column; /* Empilha o logo e os controles */
+        flex-direction: column;
+        /* Empilha o logo e os controles */
         gap: 1rem;
     }
+
     .header-controls {
-        flex-direction: column; /* Empilha a busca e as utilidades */
+        flex-direction: column;
+        /* Empilha a busca e as utilidades */
         width: 100%;
     }
+
     .search-bar {
         width: 100%;
         justify-content: space-between;
     }
+
     .search-bar input {
-        flex-grow: 1; /* Faz o campo de busca crescer */
+        flex-grow: 1;
+        /* Faz o campo de busca crescer */
     }
 }
+
 /* ==========================================================================
    11. Página de Publicações (VERSÃO MODERNA COM GRID E EFEITOS)
    ==========================================================================
@@ -640,21 +790,23 @@ textarea:focus {
     display: grid;
     /* Cria colunas de no mínimo 350px. O navegador encaixa quantas couberem. */
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 2rem; /* Espaço entre os cards na grade */
+    gap: 2rem;
+    /* Espaço entre os cards na grade */
 }
 
 /* 2. O card de cada publicação, preparado para a interatividade */
 .publication-card {
     display: flex;
-    flex-direction: column; /* Itens empilhados para o layout de grade funcionar melhor */
+    flex-direction: column;
+    /* Itens empilhados para o layout de grade funcionar melhor */
     gap: 1.5rem;
 
     background-color: #fff;
     padding: 2rem;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
     border: 1px solid var(--cor-borda-suave);
-    
+
     /* Prepara o card para uma transição suave no hover */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -662,11 +814,12 @@ textarea:focus {
 /* 3. A imagem da capa, também preparada para a interatividade */
 .publication-cover {
     width: 150px;
-    align-self: center; /* Centraliza a capa no topo do card */
+    align-self: center;
+    /* Centraliza a capa no topo do card */
     flex-shrink: 0;
     border-radius: 4px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
     /* Prepara a imagem para uma transição suave no hover */
     transition: transform 0.3s ease;
 }
@@ -675,7 +828,8 @@ textarea:focus {
 .publication-content {
     display: flex;
     flex-direction: column;
-    flex-grow: 1; /* Faz o conteúdo ocupar o espaço restante, empurrando o link para baixo */
+    flex-grow: 1;
+    /* Faz o conteúdo ocupar o espaço restante, empurrando o link para baixo */
 }
 
 .publication-title {
@@ -694,12 +848,14 @@ textarea:focus {
 .publication-description {
     line-height: 1.7;
     color: #444;
-    flex-grow: 1; /* Garante que a descrição empurre o link para o final */
+    flex-grow: 1;
+    /* Garante que a descrição empurre o link para o final */
 }
 
 .publication-link {
     display: inline-block;
-    align-self: flex-start; /* Alinha o botão à esquerda */
+    align-self: flex-start;
+    /* Alinha o botão à esquerda */
     margin-top: 1.5rem;
     padding: 0.6rem 1.2rem;
     background-color: var(--cor-laranja-destaque);
@@ -724,14 +880,18 @@ textarea:focus {
 
 /* Quando o mouse passa sobre o card... */
 .publication-card:hover {
-    transform: translateY(-8px); /* ...ele levanta sutilmente */
-    box-shadow: 0 12px 24px rgba(0,0,0,0.1); /* ...e a sombra aumenta */
+    transform: translateY(-8px);
+    /* ...ele levanta sutilmente */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    /* ...e a sombra aumenta */
 }
 
 /* Quando o mouse passa sobre o card, a imagem dentro dele... */
 .publication-card:hover .publication-cover {
-    transform: scale(1.05); /* ...aumenta um pouco */
+    transform: scale(1.05);
+    /* ...aumenta um pouco */
 }
+
 /* ==========================================================================
    12. Página Inicial (Homepage)
    ==========================================================================
@@ -743,21 +903,28 @@ textarea:focus {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 450px; /* Altura da faixa principal */
+    min-height: 450px;
+    /* Altura da faixa principal */
     padding: 2rem;
     text-align: center;
     color: var(--cor-texto-claro);
-    background-image: url('../img/fundo-museu.jpeg'); /* Reutiliza a bela imagem que já temos */
+    background-image: url('../img/fundo-museu.jpeg');
+    /* Reutiliza a bela imagem que já temos */
     background-size: cover;
-    background-position: bottom center; /* Ajusta o foco da imagem */
+    background-position: bottom center;
+    /* Ajusta o foco da imagem */
     background-attachment: fixed;
 }
 
 .home-hero::before {
     content: '';
     position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background-color: rgba(0, 0, 0, 0.6); /* Overlay um pouco mais escuro para mais contraste */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    /* Overlay um pouco mais escuro para mais contraste */
     z-index: 1;
 }
 
@@ -814,43 +981,48 @@ textarea:focus {
     overflow: hidden;
     text-decoration: none;
     color: var(--cor-texto-claro);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .feature-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
 /* Usando placeholders para as imagens de fundo */
 /* --- Imagens dos Cards de Destaque (Home) --- */
 
 /* Card 1: Nosso Acervo */
-.feature-card:nth-child(1) { 
-    background-image: url('../img/acervo_prateleiras.jpg'); 
-    background-size: cover; 
+.feature-card:nth-child(1) {
+    background-image: url('../img/acervo_prateleiras.jpg');
+    background-size: cover;
     background-position: center;
 }
 
 /* Card 2: Projetos */
-.feature-card:nth-child(2) { 
-    background-image: url('../img/tecnica-inovadora.jpg'); 
-    background-size: cover; 
+.feature-card:nth-child(2) {
+    background-image: url('../img/tecnica-inovadora.jpg');
+    background-size: cover;
     background-position: center;
 }
 
 /* Card 3: Nossa História */
-.feature-card:nth-child(3) { 
-    background-image: url('../img/inicio_mineracao.jpg'); 
-    background-size: cover; 
-    background-position: top center; /* Foco no topo para fotos históricas */
+.feature-card:nth-child(3) {
+    background-image: url('../img/inicio_mineracao.jpg');
+    background-size: cover;
+    background-position: top center;
+    /* Foco no topo para fotos históricas */
 }
+
 .feature-card::before {
     content: '';
     position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
 }
 
 .card-content {
@@ -893,6 +1065,7 @@ textarea:focus {
     background-color: var(--cor-laranja-destaque);
     color: var(--cor-texto-claro);
 }
+
 /* --- Estilos do Carrossel da Homepage --- */
 #home-carousel {
     margin-bottom: 4rem;
@@ -902,24 +1075,31 @@ textarea:focus {
     position: relative;
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
+
 .splide__slide img {
     width: 100%;
     height: 400px;
     object-fit: cover;
     display: block;
 }
+
 .splide__slide a {
     text-decoration: none;
     color: var(--cor-texto-claro);
 }
+
 .splide__slide::before {
     content: '';
     position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
 }
+
 .splide__slide span {
     position: absolute;
     bottom: 2rem;
@@ -932,12 +1112,15 @@ textarea:focus {
 .splide__arrow {
     background: var(--cor-laranja-destaque);
 }
+
 .splide__arrow svg {
     fill: var(--cor-texto-claro);
 }
+
 .splide__pagination__page.is-active {
     background: var(--cor-laranja-destaque);
 }
+
 /* ==========================================================================
    13. Página de Projetos
    ==========================================================================
@@ -956,9 +1139,10 @@ textarea:focus {
 .project-card {
     background-color: #fff;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
     border: 1px solid var(--cor-borda-suave);
-    overflow: hidden; /* Garante que a imagem não "vaze" das bordas arredondadas */
+    overflow: hidden;
+    /* Garante que a imagem não "vaze" das bordas arredondadas */
     display: flex;
     flex-direction: column;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -966,17 +1150,19 @@ textarea:focus {
 
 .project-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
 }
 
 .project-image {
     width: 100%;
     height: 220px;
-    object-fit: cover; /* Garante que a imagem cubra o espaço sem distorcer */
+    object-fit: cover;
+    /* Garante que a imagem cubra o espaço sem distorcer */
 }
 
 .project-content {
-    padding: 1.5rem 2rem 2rem 2rem; /* Mais padding na parte de baixo */
+    padding: 1.5rem 2rem 2rem 2rem;
+    /* Mais padding na parte de baixo */
 }
 
 .project-title {
@@ -990,32 +1176,38 @@ textarea:focus {
     line-height: 1.7;
     color: #444;
 }
+
 /* --- Seção de Últimas Notícias --- */
 .latest-news-wrapper {
-   padding: 4rem 1rem;
-   background-color: #fff;
+    padding: 4rem 1rem;
+    background-color: #fff;
 }
+
 .latest-news-container {
-   max-width: 1200px;
-   margin: 0 auto;
-   display: flex;
-   align-items: center;
-   gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
 }
+
 .news-image {
-   flex: 1;
-   max-width: 500px;
-   border-radius: 8px;
-   box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    flex: 1;
+    max-width: 500px;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
+
 .news-content {
-   flex: 1;
+    flex: 1;
 }
+
 .news-content h2 {
-   font-size: 2.2rem;
-   margin-top: 0;
-   color: var(--cor-texto-escuro);
+    font-size: 2.2rem;
+    margin-top: 0;
+    color: var(--cor-texto-escuro);
 }
+
 /* ==========================================================================
    14. Layout de Duas Colunas e Navegação Lateral
    ==========================================================================
@@ -1025,20 +1217,26 @@ textarea:focus {
 .two-column-layout {
     display: grid;
     /* Define as colunas: a 1ª (sidebar) tem 280px e a 2ª (conteúdo) ocupa o resto (1fr) */
-    grid-template-columns: 280px 1fr; 
-    gap: 2.5rem; /* Espaço entre as colunas */
-    max-width: 1200px; /* Mantém o alinhamento com o resto do site */
-    margin: 0 auto; /* Centraliza */
-    padding: 0 1rem; /* Espaçamento lateral */
-    align-items: flex-start; /* Alinha as colunas pelo topo */
+    grid-template-columns: 280px 1fr;
+    gap: 2.5rem;
+    /* Espaço entre as colunas */
+    max-width: 1200px;
+    /* Mantém o alinhamento com o resto do site */
+    margin: 0 auto;
+    /* Centraliza */
+    padding: 0 1rem;
+    /* Espaçamento lateral */
+    align-items: flex-start;
+    /* Alinha as colunas pelo topo */
 }
 
 /* --- Estilos da Coluna Lateral (Sidebar) --- */
 .sidebar-nav {
-    background-color: #fff; /* Fundo branco para destacar */
+    background-color: #fff;
+    /* Fundo branco para destacar */
     padding: 1.5rem;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
     border: 1px solid var(--cor-borda-suave);
 }
 
@@ -1073,7 +1271,8 @@ textarea:focus {
 
 /* Efeito Hover */
 .sidebar-nav a:hover {
-    background-color: var(--cor-fundo-claro); /* Cinza claro no hover */
+    background-color: var(--cor-fundo-claro);
+    /* Cinza claro no hover */
     color: var(--cor-texto-escuro);
 }
 
@@ -1087,10 +1286,11 @@ textarea:focus {
 /* --- Estilos da Coluna Principal (Conteúdo) --- */
 .main-content {
     /* O conteúdo aqui pode precisar de estilos específicos dependendo do que for exibido */
-    background-color: #fff; /* Opcional: pode ter fundo branco ou não */
+    background-color: #fff;
+    /* Opcional: pode ter fundo branco ou não */
     padding: 2rem;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
     border: 1px solid var(--cor-borda-suave);
 }
 
@@ -1102,14 +1302,17 @@ textarea:focus {
 /* --- Responsividade para o Layout de Duas Colunas --- */
 @media (max-width: 992px) {
     .two-column-layout {
-        grid-template-columns: 1fr; /* Coluna única em telas menores */
+        grid-template-columns: 1fr;
+        /* Coluna única em telas menores */
     }
 
     /* A sidebar agora fica acima do conteúdo */
     .sidebar-nav {
-        margin-bottom: 2rem; /* Adiciona espaço abaixo da sidebar */
+        margin-bottom: 2rem;
+        /* Adiciona espaço abaixo da sidebar */
     }
 }
+
 /* ==========================================================================
    15. Estilos Específicos da Página "Nossa História"
    ==========================================================================
@@ -1117,9 +1320,11 @@ textarea:focus {
 
 /* Melhora o espaçamento e a leitura do conteúdo principal */
 .history-content article {
-    margin-bottom: 3rem; /* Espaço entre as seções */
+    margin-bottom: 3rem;
+    /* Espaço entre as seções */
     padding-bottom: 1.5rem;
-    border-bottom: 1px solid var(--cor-borda-suave); /* Linha separadora sutil */
+    border-bottom: 1px solid var(--cor-borda-suave);
+    /* Linha separadora sutil */
 }
 
 /* Remove a borda inferior do último artigo */
@@ -1135,28 +1340,34 @@ textarea:focus {
 }
 
 .history-content p {
-    line-height: 1.8; /* Aumenta o espaçamento entre linhas para textos longos */
+    line-height: 1.8;
+    /* Aumenta o espaçamento entre linhas para textos longos */
     margin-bottom: 1.5rem;
 }
 
 /* Estilo para imagens inseridas no texto (Exemplo) */
 .history-content img {
-    max-width: 100%; /* Garante que a imagem seja responsiva */
+    max-width: 100%;
+    /* Garante que a imagem seja responsiva */
     height: auto;
-    display: block; /* Remove espaço extra abaixo da imagem */
-    margin: 2rem auto; /* Centraliza a imagem com margens verticais */
+    display: block;
+    /* Remove espaço extra abaixo da imagem */
+    margin: 2rem auto;
+    /* Centraliza a imagem com margens verticais */
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
+
 /* Dentro da seção 15 do CSS */
 .history-content img {
-    max-width: 100%; 
+    max-width: 100%;
     height: auto;
-    display: block; 
-    margin: 2rem auto; 
+    display: block;
+    margin: 2rem auto;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
+
 /* ==========================================================================
    16. Página Arquivo Digital - Sidebar e Resultados
    ==========================================================================
@@ -1168,6 +1379,7 @@ textarea:focus {
     border: 1px solid var(--cor-borda-suave);
     border-radius: 4px;
 }
+
 .sidebar-search input {
     flex-grow: 1;
     border: none;
@@ -1175,6 +1387,7 @@ textarea:focus {
     font-size: 0.95rem;
     border-radius: 4px 0 0 4px;
 }
+
 .sidebar-search button {
     background: transparent;
     border: none;
@@ -1192,36 +1405,47 @@ textarea:focus {
 }
 
 /* Garante que o container do acervo use o layout de grid que já definimos */
-#acervo-container.loading { /* Ajusta o estado de loading */
+#acervo-container.loading {
+    /* Ajusta o estado de loading */
     display: flex;
-    flex-direction: column; /* Empilha spinner e texto */
+    flex-direction: column;
+    /* Empilha spinner e texto */
     align-items: center;
     justify-content: center;
     min-height: 200px;
-    grid-template-columns: 1fr; /* Remove grid durante loading */
+    grid-template-columns: 1fr;
+    /* Remove grid durante loading */
 }
+
 #acervo-container.loading p {
     margin-top: 1rem;
     color: #777;
     font-style: italic;
 }
-#acervo-container:not(.loading) { /* Quando não está carregando, aplica o grid */
-     display: grid;
-     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-     gap: 1.5rem;
+
+#acervo-container:not(.loading) {
+    /* Quando não está carregando, aplica o grid */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
 }
+
 /* ==========================================================================
    17. Página de Serviços
    ==========================================================================
 */
 
 .service-content {
-    max-width: 800px; /* Limita a largura do texto para melhor legibilidade */
-    margin: 0 auto; /* Centraliza */
-    background-color: #fff; /* Fundo branco para o conteúdo */
-    padding: 2rem 3rem; /* Mais padding interno */
+    max-width: 800px;
+    /* Limita a largura do texto para melhor legibilidade */
+    margin: 0 auto;
+    /* Centraliza */
+    background-color: #fff;
+    /* Fundo branco para o conteúdo */
+    padding: 2rem 3rem;
+    /* Mais padding interno */
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
     border: 1px solid var(--cor-borda-suave);
 }
 
@@ -1255,34 +1479,44 @@ textarea:focus {
     line-height: 1.8;
     margin-bottom: 1rem;
 }
-.service-item p strong { /* Destaca o "Como solicitar" */
+
+.service-item p strong {
+    /* Destaca o "Como solicitar" */
     color: var(--cor-texto-escuro);
 }
+
 /* ==========================================================================
    7. Rodapé (Versão Aprimorada)
    ==========================================================================
 */
 
 .site-footer {
-    background-color: var(--cor-fundo-escuro); /* Fundo escuro */
-    color: #a0a0a0; /* Cor de texto mais suave */
-    padding: 3rem 1rem 1rem 1rem; /* Mais padding no topo, menos embaixo */
-    margin-top: 4rem; /* Espaço acima do rodapé */
+    background-color: var(--cor-fundo-escuro);
+    /* Fundo escuro */
+    color: #a0a0a0;
+    /* Cor de texto mais suave */
+    padding: 3rem 1rem 1rem 1rem;
+    /* Mais padding no topo, menos embaixo */
+    margin-top: 4rem;
+    /* Espaço acima do rodapé */
     font-size: 0.95rem;
 }
 
 /* Container para as colunas */
 .footer-content-wrapper {
     max-width: 1200px;
-    margin: 0 auto 2rem auto; /* Centraliza e adiciona espaço antes do copyright */
+    margin: 0 auto 2rem auto;
+    /* Centraliza e adiciona espaço antes do copyright */
     display: grid;
     /* Cria 3 colunas, tentando dar mais espaço para o contato */
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-    gap: 2.5rem; /* Espaço entre as colunas */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2.5rem;
+    /* Espaço entre as colunas */
 }
 
 .footer-column h4 {
-    color: var(--cor-texto-claro); /* Títulos das colunas em branco */
+    color: var(--cor-texto-claro);
+    /* Títulos das colunas em branco */
     font-size: 1.1rem;
     margin-top: 0;
     margin-bottom: 1.2rem;
@@ -1312,13 +1546,15 @@ textarea:focus {
 }
 
 .footer-column a {
-    color: #a0a0a0; /* Cor padrão dos links */
+    color: #a0a0a0;
+    /* Cor padrão dos links */
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 .footer-column a:hover {
-    color: var(--cor-laranja-destaque); /* Laranja no hover */
+    color: var(--cor-laranja-destaque);
+    /* Laranja no hover */
 }
 
 /* Estilo específico para endereço */
@@ -1335,7 +1571,8 @@ textarea:focus {
 
 .footer-social-links a {
     color: #a0a0a0;
-    font-size: 1.5rem; /* Ícones maiores */
+    font-size: 1.5rem;
+    /* Ícones maiores */
     transition: color 0.3s ease, transform 0.3s ease;
 }
 
@@ -1347,30 +1584,37 @@ textarea:focus {
 /* Linha de Copyright */
 .footer-copyright {
     text-align: center;
-    border-top: 1px solid #444; /* Linha separadora sutil */
+    border-top: 1px solid #444;
+    /* Linha separadora sutil */
     padding-top: 1.5rem;
     margin-top: 2rem;
     font-size: 0.9rem;
     color: #888;
 }
+
 /* ==========================================================================
    17. Página de Serviços (VERSÃO COM CARDS E ÍCONES)
    ==========================================================================
 */
 
 .service-grid-container {
-    max-width: 1200px; /* Alinha com outros layouts de grid */
+    max-width: 1200px;
+    /* Alinha com outros layouts de grid */
     margin: 0 auto;
     padding: 0 1rem;
 }
 
-.intro-paragraph { /* Estilo já existente, apenas confirmação */
+.intro-paragraph {
+    /* Estilo já existente, apenas confirmação */
     font-size: 1.1rem;
     line-height: 1.7;
-    margin-bottom: 3rem; /* Mais espaço antes dos cards */
+    margin-bottom: 3rem;
+    /* Mais espaço antes dos cards */
     color: #555;
-    text-align: center; /* Centraliza a introdução */
-    max-width: 800px; /* Limita largura do parágrafo */
+    text-align: center;
+    /* Centraliza a introdução */
+    max-width: 800px;
+    /* Limita largura do parágrafo */
     margin-left: auto;
     margin-right: auto;
 }
@@ -1380,39 +1624,43 @@ textarea:focus {
 .service-grid {
     display: grid;
     /* Por padrão (mobile first), começa com 1 coluna */
-    grid-template-columns: 1fr; 
-    gap: 2rem; 
+    grid-template-columns: 1fr;
+    gap: 2rem;
 }
 
 /* Media Query para telas maiores (tablets e desktops) */
-@media (min-width: 768px) { 
+@media (min-width: 768px) {
     .service-grid {
         /* Força 2 colunas de largura igual */
-        grid-template-columns: repeat(2, 1fr); 
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
 /* Estilo individual do card de serviço */
 .service-card {
     background-color: #fff;
-    padding: 2.5rem 2rem; /* Mais padding interno */
+    padding: 2.5rem 2rem;
+    /* Mais padding interno */
     border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
     border: 1px solid var(--cor-borda-suave);
     display: flex;
-    flex-direction: column; /* Organiza o conteúdo verticalmente */
-    text-align: center; /* Centraliza o ícone e o título */
+    flex-direction: column;
+    /* Organiza o conteúdo verticalmente */
+    text-align: center;
+    /* Centraliza o ícone e o título */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .service-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 /* Estilo do ícone */
 .service-icon {
-    font-size: 3rem; /* Tamanho grande para o ícone */
+    font-size: 3rem;
+    /* Tamanho grande para o ícone */
     color: var(--cor-laranja-destaque);
     margin-bottom: 1.5rem;
 }
@@ -1427,16 +1675,20 @@ textarea:focus {
 .service-card p {
     line-height: 1.8;
     color: #444;
-    text-align: left; /* Mantém o texto principal alinhado à esquerda */
-    flex-grow: 1; /* Faz o parágrafo empurrar a ação para baixo */
+    text-align: left;
+    /* Mantém o texto principal alinhado à esquerda */
+    flex-grow: 1;
+    /* Faz o parágrafo empurrar a ação para baixo */
     margin-bottom: 1.5rem;
 }
 
 /* Estilo destacado para a seção de ação */
 .service-action {
-    margin-top: auto; /* Empurra para o final do card */
+    margin-top: auto;
+    /* Empurra para o final do card */
     padding: 1rem;
-    background-color: var(--cor-fundo-claro); /* Fundo cinza claro */
+    background-color: var(--cor-fundo-claro);
+    /* Fundo cinza claro */
     border-radius: 4px;
     text-align: left;
     font-size: 0.95rem;
@@ -1449,15 +1701,18 @@ textarea:focus {
 }
 
 .service-action p {
-    margin-bottom: 0; /* Remove margem do último parágrafo */
+    margin-bottom: 0;
+    /* Remove margem do último parágrafo */
     line-height: 1.6;
 }
 
-.service-action a { /* Estilo para links dentro da ação */
+.service-action a {
+    /* Estilo para links dentro da ação */
     color: var(--cor-laranja-destaque);
     font-weight: bold;
     text-decoration: none;
 }
+
 .service-action a:hover {
     text-decoration: underline;
 }
@@ -1474,23 +1729,30 @@ textarea:focus {
     border-radius: 4px;
     transition: background-color 0.3s ease;
 }
+
 .service-button:hover {
-     background-color: #d4690f;
+    background-color: #d4690f;
 }
+
 /* Adicionar ao final de style.css */
 
 /* Garante que a sidebar grude no lugar certo */
 .sidebar-nav {
-    position: -webkit-sticky; /* Para compatibilidade com Safari antigo */
+    position: -webkit-sticky;
+    /* Para compatibilidade com Safari antigo */
     position: sticky;
     /* O valor 'top' PRECISA ser ajustado! */
     /* Deve ser a altura do seu .sticky-header + margem */
-    top: 80px; /* VALOR EXEMPLO - AJUSTE NECESSÁRIO! */
+    top: 80px;
+    /* VALOR EXEMPLO - AJUSTE NECESSÁRIO! */
 
     /* Mitigação para sidebars altas */
-    max-height: calc(100vh - 100px); /* Ex: Altura da janela menos o 'top' e uma margem inferior */
-    overflow-y: auto; /* Adiciona scroll interno se necessário */
+    max-height: calc(100vh - 100px);
+    /* Ex: Altura da janela menos o 'top' e uma margem inferior */
+    overflow-y: auto;
+    /* Adiciona scroll interno se necessário */
 }
+
 /* ==========================================================================
    (Adicionado no Final) - FUNCIONALIDADE DA SIDEBAR FIXA (STICKY)
    ==========================================================================
@@ -1498,30 +1760,36 @@ textarea:focus {
 
 /* Aplica o comportamento "sticky" à sidebar */
 .sidebar-nav {
-    position: -webkit-sticky; /* Para compatibilidade com Safari antigo */
+    position: -webkit-sticky;
+    /* Para compatibilidade com Safari antigo */
     position: sticky;
-    
+
     /* === AJUSTE CRUCIAL AQUI === */
     /* Defina o 'top' baseado na ALTURA REAL do seu CABEÇALHO FIXO + ~20px de margem */
     /* Exemplo: Se o .sticky-header .main-nav tem 60px, use top: 80px; */
-    top: 80px; /* <--- AJUSTE ESTE VALOR! */
+    top: 80px;
+    /* <--- AJUSTE ESTE VALOR! */
 
     /* Garante que a sidebar não seja mais alta que a tela e tenha rolagem interna */
     /* Use um valor um pouco maior que o 'top' no cálculo */
-    max-height: calc(100vh - 100px); /* <--- AJUSTE ESTE VALOR TAMBÉM! */
-    overflow-y: auto; /* Adiciona barra de rolagem se a lista for muito grande */
+    max-height: calc(100vh - 100px);
+    /* <--- AJUSTE ESTE VALOR TAMBÉM! */
+    overflow-y: auto;
+    /* Adiciona barra de rolagem se a lista for muito grande */
 }
 
 /* Ajuste de Responsividade para o Sticky Sidebar */
 @media (max-width: 992px) {
     .sidebar-nav {
         /* Desativa o 'sticky' em telas menores onde o layout é de 1 coluna */
-        position: static; 
-        max-height: none; 
+        position: static;
+        max-height: none;
         overflow-y: visible;
-        margin-bottom: 2rem; /* Mantém o espaço abaixo */
+        margin-bottom: 2rem;
+        /* Mantém o espaço abaixo */
     }
 }
+
 /* ==========================================================================
    18. Barra de Acessibilidade e Alto Contraste
    ==========================================================================
@@ -1560,13 +1828,16 @@ body.high-contrast {
     /* Fundo preto total */
     --cor-fundo-claro: #000000;
     --cor-fundo-escuro: #000000;
-    
+
     /* Texto amarelo ou branco para máximo contraste */
-    --cor-texto-escuro: #FFFF00; /* Amarelo */
-    --cor-texto-claro: #000000; /* Preto (para fundos que eram escuros e viraram claros, se houver) */
-    
+    --cor-texto-escuro: #FFFF00;
+    /* Amarelo */
+    --cor-texto-claro: #000000;
+    /* Preto (para fundos que eram escuros e viraram claros, se houver) */
+
     /* Links e Destaques */
-    --cor-laranja-destaque: #00FFFF; /* Ciano ou Amarelo forte se destacam bem no preto */
+    --cor-laranja-destaque: #00FFFF;
+    /* Ciano ou Amarelo forte se destacam bem no preto */
     --cor-link: #FFFF00;
     --cor-borda-suave: #FFFFFF;
 }
@@ -1581,7 +1852,8 @@ body.high-contrast .sidebar-nav,
 body.high-contrast .publication-card,
 body.high-contrast .project-card {
     background-color: #000 !important;
-    border: 1px solid #FFFF00 !important; /* Borda amarela para definir limites */
+    border: 1px solid #FFFF00 !important;
+    /* Borda amarela para definir limites */
     color: #FFF !important;
 }
 
@@ -1601,6 +1873,91 @@ body.high-contrast .page-hero {
     background-image: none !important;
     background-color: #000 !important;
 }
+
+/* ==========================================================================
+   19. Estilos da Página 404 (Migrados do HTML)
+   ==========================================================================
+*/
+.error-container {
+    text-align: center;
+    padding: 5rem 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.error-code {
+    font-size: 6rem;
+    font-weight: bold;
+    color: var(--cor-laranja-destaque);
+    line-height: 1;
+    margin-bottom: 1rem;
+}
+
+.error-title {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--cor-texto-escuro);
+}
+
+.error-message {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 2.5rem;
+}
+
+.error-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   20. Estilos da Página Nossa História (Migrados do HTML)
+   ==========================================================================
+*/
+.org-structure-title {
+    font-size: 1.2rem;
+    color: var(--cor-texto-escuro);
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.5rem;
+}
+
+.org-structure-list {
+    list-style: none;
+    padding: 0;
+}
+
+.org-structure-item {
+    margin-bottom: 1rem;
+}
+
+.org-structure-role {
+    color: #555;
+}
+
+/* ==========================================================================
+   21. Utilitários (Para classes migradas do inline)
+   ==========================================================================
+*/
+.header-container-center {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 1rem;
+}
+
+.logo.logo-center {
+    justify-content: center;
+    width: 100%;
+    /* Garante que o flex container ocupe a largura para centralizar */
+}
+
+.logo.logo-center img {
+    height: 50px;
+}
+
 /* ==========================================================================
    19. Estilos da Linha do Tempo (VERSÃO HORIZONTAL RESPONSIVA)
    ==========================================================================
@@ -1632,7 +1989,8 @@ body.high-contrast .page-hero {
 .timeline-item::before {
     content: '';
     position: absolute;
-    left: -2.6rem; /* Alinhado com a linha vertical */
+    left: -2.6rem;
+    /* Alinhado com a linha vertical */
     top: 0;
     width: 16px;
     height: 16px;
@@ -1655,7 +2013,7 @@ body.high-contrast .page-hero {
     background-color: #fff;
     padding: 1.5rem;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
     border: 1px solid var(--cor-borda-suave);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
@@ -1667,7 +2025,8 @@ body.high-contrast .page-hero {
     position: absolute;
     left: -10px;
     top: 10px;
-    width: 0; height: 0;
+    width: 0;
+    height: 0;
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent;
     border-right: 10px solid var(--cor-borda-suave);
@@ -1682,21 +2041,33 @@ body.high-contrast .page-hero {
 
 .timeline-item:hover .timeline-content {
     transform: translateX(10px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     border-color: var(--cor-laranja-destaque);
 }
 
-.timeline-content h3 { margin-top: 0; font-size: 1.1rem; color: var(--cor-texto-escuro); }
-.timeline-content p { margin-bottom: 0; font-size: 0.95rem; color: #555; }
+.timeline-content h3 {
+    margin-top: 0;
+    font-size: 1.1rem;
+    color: var(--cor-texto-escuro);
+}
+
+.timeline-content p {
+    margin-bottom: 0;
+    font-size: 0.95rem;
+    color: #555;
+}
 
 /* --- ESTILO PARA COMPUTADOR (HORIZONTAL - A MÁGICA ACONTECE AQUI) --- */
 @media (min-width: 1400px) {
     .timeline {
-        flex-direction: row; /* Muda para horizontal */
-        border-left: none; /* Remove linha vertical */
+        flex-direction: row;
+        /* Muda para horizontal */
+        border-left: none;
+        /* Remove linha vertical */
         padding-left: 0;
         margin-left: 0;
-        justify-content: space-between; /* Espalha os itens */
+        justify-content: space-between;
+        /* Espalha os itens */
         align-items: flex-start;
     }
 
@@ -1704,7 +2075,8 @@ body.high-contrast .page-hero {
     .timeline::after {
         content: '';
         position: absolute;
-        top: 20px; /* Posição da linha */
+        top: 20px;
+        /* Posição da linha */
         left: 0;
         width: 100%;
         height: 4px;
@@ -1714,33 +2086,41 @@ body.high-contrast .page-hero {
     }
 
     .timeline-item {
-        flex: 1; /* Cada item ocupa o mesmo espaço */
+        flex: 1;
+        /* Cada item ocupa o mesmo espaço */
         margin-bottom: 0;
-        padding: 0 10px; /* Espaço lateral entre itens */
-        text-align: center; /* Centraliza tudo */
+        padding: 0 10px;
+        /* Espaço lateral entre itens */
+        text-align: center;
+        /* Centraliza tudo */
     }
 
     /* Reposiciona a Bolinha para o centro superior */
     .timeline-item::before {
         left: 50%;
-        top: 14px; /* Centralizado na linha horizontal */
+        top: 14px;
+        /* Centralizado na linha horizontal */
         transform: translateX(-50%);
-        z-index: 3; /* Fica acima da linha */
+        z-index: 3;
+        /* Fica acima da linha */
     }
 
     /* Reposiciona a Data para cima da linha */
     .timeline-date {
-        margin-bottom: 2.5rem; /* Empurra o conteúdo para baixo da linha */
+        margin-bottom: 2.5rem;
+        /* Empurra o conteúdo para baixo da linha */
         position: relative;
-        top: -45px; /* Sobe a data para cima da linha */
+        top: -45px;
+        /* Sobe a data para cima da linha */
     }
 
     /* Ajustes do Card de Conteúdo */
     .timeline-content {
         margin-top: 10px;
-        text-align: left; /* Texto interno continua alinhado à esquerda para leitura */
+        text-align: left;
+        /* Texto interno continua alinhado à esquerda para leitura */
     }
-    
+
     /* Seta do balão aponta para cima agora */
     .timeline-content::after {
         left: 50%;
@@ -1754,19 +2134,37 @@ body.high-contrast .page-hero {
 
     /* Hover no Desktop (move para cima) */
     .timeline-item:hover .timeline-content {
-        transform: translateY(-10px); /* Pula para cima */
+        transform: translateY(-10px);
+        /* Pula para cima */
     }
+
     .timeline-item:hover::before {
-        transform: translateX(-50%) scale(1.3); /* Cresce mantendo o centro */
+        transform: translateX(-50%) scale(1.3);
+        /* Cresce mantendo o centro */
     }
 }
 
 /* Ajuste Alto Contraste */
 body.high-contrast .timeline::after,
-body.high-contrast .timeline { border-color: #FFFF00; background-color: transparent; }
-body.high-contrast .timeline-item::before { background-color: #000; border-color: #FFFF00; box-shadow: none; }
-body.high-contrast .timeline-content { border: 1px solid #FFFF00; }
-body.high-contrast .timeline-content::after { border-bottom-color: #FFFF00; }
+body.high-contrast .timeline {
+    border-color: #FFFF00;
+    background-color: transparent;
+}
+
+body.high-contrast .timeline-item::before {
+    background-color: #000;
+    border-color: #FFFF00;
+    box-shadow: none;
+}
+
+body.high-contrast .timeline-content {
+    border: 1px solid #FFFF00;
+}
+
+body.high-contrast .timeline-content::after {
+    border-bottom-color: #FFFF00;
+}
+
 /* Força o slide a ocupar 100% do espaço disponível */
 .splide__slide {
     width: 100% !important;
@@ -1775,9 +2173,11 @@ body.high-contrast .timeline-content::after { border-bottom-color: #FFFF00; }
 /* Garante que a imagem cubra o slide sem esticar */
 .splide__slide img {
     width: 100%;
-    height: 500px; /* Altura fixa para consistência */
+    height: 500px;
+    /* Altura fixa para consistência */
     object-fit: cover;
 }
+
 /* ==========================================================================
    Ajustes Finais do Carrossel (Alta Definição e Encaixe)
    ==========================================================================
@@ -1785,27 +2185,35 @@ body.high-contrast .timeline-content::after { border-bottom-color: #FFFF00; }
 
 /* 1. Garante que cada slide ocupe 100% da largura da tela */
 .splide__slide {
-    width: 100% !important; /* Força a largura total */
+    width: 100% !important;
+    /* Força a largura total */
 }
 
 /* 2. Controla a imagem dentro do slide */
 .splide__slide img {
-    width: 100%;        /* A imagem deve tentar ocupar toda a largura */
-    height: 600px;      /* DEFINE A ALTURA FIXA DO CARROSSEL (Ajuste se quiser mais alto/baixo) */
-    
+    width: 100%;
+    /* A imagem deve tentar ocupar toda a largura */
+    height: 600px;
+    /* DEFINE A ALTURA FIXA DO CARROSSEL (Ajuste se quiser mais alto/baixo) */
+
     /* A MÁGICA DO ENCAIXE: */
-    object-fit: cover;  /* Corta as bordas se necessário para não esticar */
-    object-position: center; /* Centraliza a imagem no corte */
-    
-    display: block;     /* Remove espaços extras abaixo da imagem */
+    object-fit: cover;
+    /* Corta as bordas se necessário para não esticar */
+    object-position: center;
+    /* Centraliza a imagem no corte */
+
+    display: block;
+    /* Remove espaços extras abaixo da imagem */
 }
 
 /* Ajuste para celulares (diminui a altura para não ocupar a tela toda) */
 @media (max-width: 768px) {
     .splide__slide img {
-        height: 300px; /* Altura menor em celulares */
+        height: 300px;
+        /* Altura menor em celulares */
     }
 }
+
 /* ==========================================================================
    20. OTIMIZAÇÃO MOBILE (MENU HAMBÚRGUER E AJUSTES)
    ==========================================================================
@@ -1818,12 +2226,13 @@ body.high-contrast .timeline-content::after { border-bottom-color: #FFFF00; }
 
 /* --- REGRAS APENAS PARA CELULARES E TABLETS (Abaixo de 992px) --- */
 @media (max-width: 992px) {
-    
+
     /* 1. Ajustes Gerais de Espaço */
     .header-top {
-        padding: 1rem; /* Menos padding */
+        padding: 1rem;
+        /* Menos padding */
     }
-    
+
     /* 2. Botão do Menu Mobile */
     .mobile-menu-toggle {
         display: flex;
@@ -1840,18 +2249,20 @@ body.high-contrast .timeline-content::after { border-bottom-color: #FFFF00; }
         text-transform: uppercase;
         font-family: 'Merriweather', serif;
     }
-    
+
     .mobile-menu-toggle:hover {
-        background-color: rgba(255,255,255,0.1);
+        background-color: rgba(255, 255, 255, 0.1);
     }
 
     /* 3. O Menu em si (A Lista <ul>) */
     .main-nav ul {
-        display: none; /* ESCONDIDO POR PADRÃO */
+        display: none;
+        /* ESCONDIDO POR PADRÃO */
         flex-direction: column;
         width: 100%;
-        background-color: #2c2c2c; /* Um tom levemente diferente para destacar */
-        border-top: 1px solid rgba(255,255,255,0.1);
+        background-color: #2c2c2c;
+        /* Um tom levemente diferente para destacar */
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     /* Quando a classe .active é adicionada pelo JS, o menu aparece */
@@ -1864,42 +2275,50 @@ body.high-contrast .timeline-content::after { border-bottom-color: #FFFF00; }
     .main-nav li {
         width: 100%;
         text-align: center;
-        border-bottom: 1px solid rgba(255,255,255,0.05);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     .main-nav li a {
-        padding: 1.2rem; /* Mais fácil de clicar com o dedo */
+        padding: 1.2rem;
+        /* Mais fácil de clicar com o dedo */
         font-size: 1rem;
     }
 
     /* 5. Ajuste dos Dropdowns no Mobile */
     .dropdown-menu {
-        position: static; /* Não flutua mais, fica "dentro" da lista */
+        position: static;
+        /* Não flutua mais, fica "dentro" da lista */
         box-shadow: none;
-        background-color: #222; /* Mais escuro para diferenciar */
+        background-color: #222;
+        /* Mais escuro para diferenciar */
         padding-left: 0;
         transform: none;
         opacity: 1;
         visibility: visible;
-        display: none; /* Escondido até clicar */
+        display: none;
+        /* Escondido até clicar */
     }
-    
+
     /* Mostra o dropdown quando ativo no mobile */
-    .has-dropdown.show-dropdown > .dropdown-menu {
+    .has-dropdown.show-dropdown>.dropdown-menu {
         display: block;
     }
-    
+
     .dropdown-menu li a {
-        padding-left: 2rem; /* Indentação para hierarquia */
+        padding-left: 2rem;
+        /* Indentação para hierarquia */
         font-size: 0.9rem;
         color: #ccc;
     }
-    
+
     /* 6. Ajuste do Logo para não quebrar */
     .logo img {
-        height: 40px; /* Logo um pouco menor */
+        height: 40px;
+        /* Logo um pouco menor */
     }
+
     .logo div {
-        font-size: 0.9rem; /* Texto menor */
+        font-size: 0.9rem;
+        /* Texto menor */
     }
 }

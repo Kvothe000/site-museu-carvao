@@ -10,8 +10,8 @@ async function loadComponent(elementId, filePath) {
         if (response.ok) {
             element.innerHTML = await response.text();
             if (elementId === 'main-header') {
-                initHeaderScripts(); 
-                highlightActiveLink(); 
+                initHeaderScripts();
+                highlightActiveLink();
             }
         }
     } catch (error) { console.error(`Erro ao carregar ${filePath}:`, error); }
@@ -47,7 +47,7 @@ function initAccessibility() {
 
     // 2. Tamanho da Fonte
     let currentFontSize = parseInt(localStorage.getItem('fontSize')) || 100;
-    
+
     // Aplica o tamanho salvo imediatamente
     document.documentElement.style.fontSize = currentFontSize + '%';
 
@@ -140,35 +140,75 @@ function initHeaderScripts() {
 
     // 2. Sticky Header
     const header = document.querySelector('header');
-    if (header) { 
+    if (header) {
         const headerHeight = header.offsetHeight;
         const body = document.body;
         window.addEventListener('scroll', () => {
-            if (window.scrollY > headerHeight) { 
+            if (window.scrollY > headerHeight) {
                 if (!header.classList.contains('sticky-header')) {
-                    header.classList.add('sticky-header'); 
-                    body.classList.add('body-padding-for-sticky'); 
+                    header.classList.add('sticky-header');
+                    body.classList.add('body-padding-for-sticky');
                 }
-            } else { 
+            } else {
                 if (header.classList.contains('sticky-header')) {
-                    header.classList.remove('sticky-header'); 
-                    body.classList.remove('body-padding-for-sticky'); 
+                    header.classList.remove('sticky-header');
+                    body.classList.remove('body-padding-for-sticky');
                 }
             }
         }, { passive: true });
     }
 
-    // 3. Dropdown Simples
+    // 3. Dropdown Simples (Mouse + Teclado)
     const dropdownLinks = document.querySelectorAll('.main-nav .has-dropdown > a');
+
     dropdownLinks.forEach(link => {
-        link.addEventListener('click', function(event) {
-            event.preventDefault();
-            const parentLi = this.parentElement;
+        // Inicializa ARIA
+        link.setAttribute('aria-expanded', 'false');
+        link.setAttribute('role', 'button');
+        link.setAttribute('tabindex', '0');
+
+        function toggleDropdown(e) {
+            e.preventDefault();
+            const parentLi = link.parentElement;
+            const isOpen = parentLi.classList.contains('show-dropdown');
+
+            // Fecha outros dropdowns abertos
             dropdownLinks.forEach(otherLink => {
-                if (otherLink !== this) otherLink.parentElement.classList.remove('show-dropdown');
+                if (otherLink !== link) {
+                    otherLink.parentElement.classList.remove('show-dropdown');
+                    otherLink.setAttribute('aria-expanded', 'false');
+                }
             });
-            parentLi.classList.toggle('show-dropdown');
+
+            // Alterna o atual
+            if (isOpen) {
+                parentLi.classList.remove('show-dropdown');
+                link.setAttribute('aria-expanded', 'false');
+            } else {
+                parentLi.classList.add('show-dropdown');
+                link.setAttribute('aria-expanded', 'true');
+            }
+        }
+
+        // Evento de Clique (Mouse)
+        link.addEventListener('click', toggleDropdown);
+
+        // Evento de Teclado (Enter ou Espaço)
+        link.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter' || event.key === ' ') {
+                toggleDropdown(event);
+            }
         });
+    });
+
+    // Fecha dropdown ao clicar fora
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.has-dropdown')) {
+            dropdownLinks.forEach(link => {
+                link.parentElement.classList.remove('show-dropdown');
+                link.setAttribute('aria-expanded', 'false');
+            });
+        }
     });
 
     // 4. Busca
@@ -179,17 +219,17 @@ function initHeaderScripts() {
             if (searchInput.value.trim()) window.location.href = `busca.html?q=${encodeURIComponent(searchInput.value.trim())}`;
         };
         searchButton.addEventListener('click', performSearch);
-        searchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') { e.preventDefault(); performSearch(); }});
+        searchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') { e.preventDefault(); performSearch(); } });
     }
     // --- D. MENU MOBILE (HAMBÚRGUER) ---
     const mobileBtn = document.querySelector('.mobile-menu-toggle');
     const navElement = document.querySelector('.main-nav');
 
     if (mobileBtn && navElement) {
-        mobileBtn.addEventListener('click', function() {
+        mobileBtn.addEventListener('click', function () {
             // Alterna a classe 'mobile-active' na navegação
             navElement.classList.toggle('mobile-active');
-            
+
             // Troca o ícone de Barras para X (opcional, visual)
             const icon = this.querySelector('i');
             if (navElement.classList.contains('mobile-active')) {
@@ -208,7 +248,7 @@ function initHeaderScripts() {
 // 5. INICIALIZAÇÃO PRINCIPAL (DOM READY)
 // ==========================================================
 document.addEventListener('DOMContentLoaded', async () => { // Note o 'async' aqui
-    
+
     // 1. Verifica preferência de contraste (sem piscar)
     if (localStorage.getItem('highContrast') === 'true') {
         document.body.classList.add('high-contrast');
@@ -229,8 +269,8 @@ document.addEventListener('DOMContentLoaded', async () => { // Note o 'async' aq
     const acervoContainer = document.getElementById('acervo-container');
     if (acervoContainer) {
         // ... (mantenha seu código de carregarAcervo aqui) ...
-        const apiUrl = 'https://URL_REAL_DO_ATOM_DO_MUSEU/api/information-objects'; 
-        const apiKey = 'SUA_CHAVE_DE_API_SECRETA_VAI_AQUI'; 
+        const apiUrl = 'https://URL_REAL_DO_ATOM_DO_MUSEU/api/information-objects';
+        const apiKey = 'SUA_CHAVE_DE_API_SECRETA_VAI_AQUI';
 
         async function carregarAcervo() {
             try {
@@ -261,12 +301,12 @@ document.addEventListener('DOMContentLoaded', async () => { // Note o 'async' aq
     const homeCarousel = document.getElementById('home-carousel');
     if (homeCarousel && typeof Splide !== 'undefined') {
         new Splide('#home-carousel', {
-            type: 'loop', 
+            type: 'loop',
             perPage: 1,        // Força 1 imagem por vez
-            perMove: 1, 
+            perMove: 1,
             gap: '0',          // Sem espaço entre elas
-            autoplay: true, 
-            interval: 4000, 
+            autoplay: true,
+            interval: 4000,
             pauseOnHover: true,
             arrows: true,      // Garante setas de navegação
             pagination: true,  // Garante bolinhas de navegação
@@ -274,7 +314,7 @@ document.addEventListener('DOMContentLoaded', async () => { // Note o 'async' aq
             fixedWidth: null,  // Remove qualquer largura fixa herdada
             breakpoints: {     // Garante que em telas menores continue sendo 1
                 992: { perPage: 1 },
-                768: { perPage: 1 } 
+                768: { perPage: 1 }
             }
         }).mount();
     }
@@ -300,9 +340,9 @@ document.addEventListener('DOMContentLoaded', async () => { // Note o 'async' aq
     }
 
     // SIDEBAR SMOOTH SCROLL
-    const internalLinks = document.querySelectorAll('a[href^="#"]:not([href="#"])'); 
+    const internalLinks = document.querySelectorAll('a[href^="#"]:not([href="#"])');
     internalLinks.forEach(link => {
-        link.addEventListener('click', function(event) {
+        link.addEventListener('click', function (event) {
             const targetId = this.getAttribute('href');
             try {
                 const targetElement = document.querySelector(targetId);
@@ -312,22 +352,22 @@ document.addEventListener('DOMContentLoaded', async () => { // Note o 'async' aq
                     const elementPosition = targetElement.getBoundingClientRect().top;
                     const offsetPosition = elementPosition + window.scrollY - headerOffset;
                     window.scrollTo({ top: offsetPosition, behavior: "smooth" });
-                    if(this.closest('.has-dropdown')) this.closest('.has-dropdown').classList.remove('show-dropdown');
+                    if (this.closest('.has-dropdown')) this.closest('.has-dropdown').classList.remove('show-dropdown');
                 }
-            } catch(e) {}
+            } catch (e) { }
         });
     });
-    
+
     // Scrollspy para Sidebar
-    const sidebarScrollLinks = document.querySelectorAll('.sidebar-nav a[href^="#"]'); 
-    const scrollSpySections = document.querySelectorAll('.main-content article[id]'); 
+    const sidebarScrollLinks = document.querySelectorAll('.sidebar-nav a[href^="#"]');
+    const scrollSpySections = document.querySelectorAll('.main-content article[id]');
     if (sidebarScrollLinks.length > 0 && scrollSpySections.length > 0) {
         function activateSidebarLink() {
             let currentSectionId = '';
             let headerHeightOffset = document.querySelector('.sticky-header')?.offsetHeight || document.querySelector('header')?.offsetHeight || 0;
-            headerHeightOffset += 40; 
+            headerHeightOffset += 40;
             scrollSpySections.forEach(section => {
-                const sectionTop = section.offsetTop - headerHeightOffset; 
+                const sectionTop = section.offsetTop - headerHeightOffset;
                 if (window.scrollY >= sectionTop) currentSectionId = '#' + section.getAttribute('id');
             });
             sidebarScrollLinks.forEach(link => {
@@ -335,14 +375,14 @@ document.addEventListener('DOMContentLoaded', async () => { // Note o 'async' aq
                 if (currentSectionId && link.getAttribute('href') === currentSectionId) link.classList.add('active-sidebar-link');
             });
         }
-        window.addEventListener('scroll', activateSidebarLink, { passive: true }); 
-        activateSidebarLink(); 
+        window.addEventListener('scroll', activateSidebarLink, { passive: true });
+        activateSidebarLink();
     }
 
     // ==========================================================
     // ACESSIBILIDADE (ALTO CONTRASTE E FONTE)
     // ==========================================================
-    
+
     const body = document.body;
     const btnContrast = document.getElementById('btn-contrast');
     const btnIncrease = document.getElementById('btn-increase');
@@ -350,7 +390,7 @@ document.addEventListener('DOMContentLoaded', async () => { // Note o 'async' aq
     const btnOriginal = document.getElementById('btn-original');
 
     // --- 1. ALTO CONTRASTE ---
-    
+
     // Verifica se o usuário já tinha ativado antes (salvo no navegador)
     if (localStorage.getItem('highContrast') === 'true') {
         body.classList.add('high-contrast');
@@ -359,7 +399,7 @@ document.addEventListener('DOMContentLoaded', async () => { // Note o 'async' aq
     if (btnContrast) {
         btnContrast.addEventListener('click', () => {
             body.classList.toggle('high-contrast');
-            
+
             // Salva a preferência
             if (body.classList.contains('high-contrast')) {
                 localStorage.setItem('highContrast', 'true');
@@ -370,7 +410,7 @@ document.addEventListener('DOMContentLoaded', async () => { // Note o 'async' aq
     }
 
     // --- 2. TAMANHO DA FONTE ---
-    
+
     let currentFontSize = 100; // Porcentagem inicial
 
     // Verifica preferência salva
@@ -411,6 +451,6 @@ document.addEventListener('DOMContentLoaded', async () => { // Note o 'async' aq
         });
     }
 
-   
+
 
 });
