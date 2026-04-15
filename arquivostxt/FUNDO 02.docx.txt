@@ -1,0 +1,176 @@
+﻿Arquivo Histórico da Mineração Carbonífera 
+
+
+FUNDO   
+       COMPANHIA MINAS DE CARVÃO DO JACUHY   CMCJ
+
+
+ 
+
+
+CÓDIGO 
+	DENOMINAÇÃO 
+	NIVEL 
+	DATA
+	CAIXA
+	02
+	COMPANHIA MINAS DE CARVÃO DO JACUHY   CMCJ
+	FUNDO 
+	1916-1936
+	
+
+	02.00
+	COMISSÃO DE INSTALAÇÃO DAS MINAS
+	SERIE
+	1917-1919
+	
+
+	02.00.01
+	Cartas/borrador de correspondência
+	Subsérie 
+	1917-1919
+	Livro
+	02.00.02
+	Registro contábil (Livro)
+	Subsérie 
+	1917-1919
+	01
+	02.01
+	ADMINISTRAÇÃO DAS MINAS
+	SÉRIE
+	1916-1923
+	
+
+	02.01.01
+	Cartas
+	Subsérie
+	1917/1920/22
+	01
+	“
+	                            “
+	“
+	1917/1918/20
+	02
+	02.01.02
+	Telegramas
+	“
+	1917-19..
+	03
+	02.01.03
+	Código Telegráfico (Ribeiro)  
+	“
+	1918
+	03
+	02.01.04
+	Relatório de trabalhos nas minas
+	“
+	1919-1920
+	03
+	02.01.05
+	Diário de ocorrências
+	Subsérie
+	1919
+	03
+	02.02
+	ESCRIPTORIO CONTABILIDADE
+	SÉRIE
+	1917-1920
+	
+
+	02.02.01
+	Balancetes financeiros
+	Subsérie
+	1917-19.
+	03
+	02.02.02
+	Movimento de Caixa
+	“
+	191..-19.. 
+	04
+	02.02.03
+	Boletim de caixa
+	“
+	1919-1920
+	05
+	02.02.04
+	Inventário equipamentos materiais
+	Subsérie
+	1920
+	05
+	02.02.05
+	Cartas 
+	Subsérie
+	1919-1920
+	05
+	02.02.1
+	Pagamentos serviços e materiais
+	Dossiê
+	1918
+	06
+	02.03
+	ALMOXARIFADO GERAL
+	SÉRIE
+	1919-1926
+	
+
+	02.03.01
+	Relação de materiais
+	Subsérie
+	??
+	07
+	02.03.02
+	Controle materiais  
+	“
+	??
+	07
+	02.03.03
+	Inventário de materiais
+	“
+	1918-1919
+	07
+	02.03.04
+	Balancetes financeiros
+	“
+	1918
+	07
+	02.03.05
+	Faturas e recibos
+	“
+	??
+	07
+	02.03.06
+	Cartas
+	Subsérie
+	1918-1922
+	07
+	02.04
+	PESSOAL
+	SÉRIE
+	1918-1922
+	
+
+	02.04.01
+	Folha de pagamento 
+	Subsérie
+	1922
+	08
+	02.04.02
+	Recibo adiantamento salários (Vales)
+	“
+	19.. ??
+	08
+	02.04.03
+	Controle dias trabalhados 
+	“
+	19.. ??
+	09
+	02.04.04
+	Lista atraso de pagamento
+	“
+	1920
+	09
+	02.04.05
+	Folha de pagamento (outros)
+	Subsérie
+	1918-1922
+	09

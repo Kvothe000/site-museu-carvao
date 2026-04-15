@@ -1,0 +1,101 @@
+﻿Arquivo Histórico da Mineração Carbonífera 
+
+
+
+
+FUNDO  
+TERMOELÉTRICA DE CHARQUEADAS
+
+
+
+
+
+
+CÓDIGO
+	DENOMINAÇÃO
+	NÍVEL
+	DATA
+	CAIXA
+	11
+	TERMOELÉTRICA DE CHARQUEADAS
+	FUNDO 
+	1952-1971
+	
+
+	11.01
+	ADMINISTRATIVO
+	SÉRIE
+	1952-1971
+	
+
+	11.01.01
+	     Cartas /Telegramas
+	Subsérie 
+	1955-1962
+	01
+	
+
+	                              “
+	Subsérie 
+	1960-1962
+	02
+	
+
+	                              “
+	Subsérie 
+	1962-1963
+	03
+	
+
+	                              “
+	Subsérie 
+	1952-1971
+	04
+	11.02
+	CONSTRUÇÃO/PRODUÇÃO USINA
+	SÉRIE
+	1952-1965
+	
+
+	11.02.01
+	     Cartas
+	Subsérie 
+	1952-1953
+	05
+	11.02.02
+	     Relatórios/Pareceres Técnicos
+	Subsérie 
+	1940-1952
+	05-06
+	11.02.03
+	     Movimento Diário da Usina
+	Subsérie
+	1957-1965
+	06
+	11.03
+	 ALMOXARIFADO                            
+	SÉRIE
+	1958-1962
+	
+
+	11.03.01
+	     Controle De Materiais e Serviços 
+	Subsérie
+	1958-1962
+	06
+	11.04
+	CONTABILIDADE
+	SÉRIE
+	1957-1969
+	
+
+	11.04.01
+	     Relatório de Despesas
+	Subsérie 
+	1957-1958
+	07
+	11.04.02
+	     Balancetes Contábeis 
+	Subsérie 
+	1958-1969
+	08
