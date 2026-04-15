@@ -5,21 +5,20 @@
 
 /* -- 1. Variáveis de Cor e Configurações Globais -- */
 :root {
-    --cor-laranja-destaque: #D4690F;
-    --cor-fundo-escuro: #1A1A1A;
-    /* Dentro de :root */
-    --cor-fundo-claro: #EAEAEA;
-    --cor-texto-claro: #FFFFFF;
-    --cor-texto-escuro: #333333;
-    --cor-borda-suave: #E0E0E0;
+    --cor-laranja-destaque: #D89B42; /* Premium Amber */
+    --cor-fundo-escuro: #0A0A0A; /* Charcoal Deep Dark */
+    --cor-fundo-claro: #121212; /* Secondary Dark */
+    --cor-texto-claro: #F5F5F5; /* Off-white for general text */
+    --cor-texto-escuro: #B0B0B0; /* Very soft gray for secondary text */
+    --cor-borda-suave: #2A2A2A; /* Subtle dark border */
 }
 
 body {
     /* Fonte principal para leitura (Limpa e moderna) */
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Inter', sans-serif;
     margin: 0;
-    background-color: var(--cor-fundo-claro);
-    color: var(--cor-texto-escuro);
+    background-color: var(--cor-fundo-escuro); /* Override to the deep dark background */
+    color: var(--cor-texto-claro);
     line-height: 1.6;
     /* --- ADICIONE ISTO PARA EVITAR A PISCADA --- */
     opacity: 0;
@@ -42,7 +41,7 @@ h4,
 h5,
 h6,
 .logo div {
-    font-family: 'Merriweather', serif;
+    font-family: 'Playfair Display', serif;
     color: var(--cor-texto-claro);
     font-weight: 700;
     /* Negrito para destaque */
@@ -334,12 +333,12 @@ main {
 
 /* Efeito Hover */
 .fundo-card:hover img {
-    transform: scale(1.1);
+    transform: scale(1.05); /* Suavizado de 1.1 para 1.05 para elegância */
 }
 
 .fundo-card:hover figcaption {
-    background-color: rgba(229, 131, 50, 0.85);
-    /* Laranja com transparência */
+    background-color: rgba(216, 155, 66, 0.9); /* Premium amber com transparência e glassmorphism */
+    backdrop-filter: blur(8px);
 }
 
 
@@ -552,7 +551,7 @@ main {
 
 .info-card,
 .map-section {
-    background-color: #fff;
+    background-color: transparent;
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
@@ -801,7 +800,7 @@ textarea:focus {
     /* Itens empilhados para o layout de grade funcionar melhor */
     gap: 1.5rem;
 
-    background-color: #fff;
+    background-color: transparent;
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
@@ -958,7 +957,7 @@ textarea:focus {
 }
 
 .hero-button:hover {
-    background-color: #fff;
+    background-color: transparent;
     color: var(--cor-texto-escuro);
     transform: translateY(-3px);
 }
@@ -1038,7 +1037,7 @@ textarea:focus {
 
 /* --- Seção de Chamado para Ação (CTA) --- */
 .cta-section {
-    background-color: #fff;
+    background-color: transparent;
     text-align: center;
     padding: 4rem 2rem;
 }
@@ -1137,7 +1136,7 @@ textarea:focus {
 }
 
 .project-card {
-    background-color: #fff;
+    background-color: transparent;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
     border: 1px solid var(--cor-borda-suave);
@@ -1180,7 +1179,7 @@ textarea:focus {
 /* --- Seção de Últimas Notícias --- */
 .latest-news-wrapper {
     padding: 4rem 1rem;
-    background-color: #fff;
+    background-color: transparent;
 }
 
 .latest-news-container {
@@ -1232,7 +1231,7 @@ textarea:focus {
 
 /* --- Estilos da Coluna Lateral (Sidebar) --- */
 .sidebar-nav {
-    background-color: #fff;
+    background-color: transparent;
     /* Fundo branco para destacar */
     padding: 1.5rem;
     border-radius: 8px;
@@ -1286,7 +1285,7 @@ textarea:focus {
 /* --- Estilos da Coluna Principal (Conteúdo) --- */
 .main-content {
     /* O conteúdo aqui pode precisar de estilos específicos dependendo do que for exibido */
-    background-color: #fff;
+    background-color: transparent;
     /* Opcional: pode ter fundo branco ou não */
     padding: 2rem;
     border-radius: 8px;
@@ -1440,7 +1439,7 @@ textarea:focus {
     /* Limita a largura do texto para melhor legibilidade */
     margin: 0 auto;
     /* Centraliza */
-    background-color: #fff;
+    background-color: transparent;
     /* Fundo branco para o conteúdo */
     padding: 2rem 3rem;
     /* Mais padding interno */
@@ -1594,7 +1593,7 @@ textarea:focus {
     text-align: left;
 }
 .result-card:hover {
-    background: #fff;
+    background: transparent;
     box-shadow: 0 5px 15px rgba(0,0,0,0.08);
     transform: translateY(-2px);
     border-color: var(--cor-laranja-destaque);
@@ -1714,7 +1713,7 @@ textarea:focus {
 
 /* Estilo individual do card de serviço */
 .service-card {
-    background-color: #fff;
+    background-color: transparent;
     padding: 2.5rem 2rem;
     /* Mais padding interno */
     border-radius: 8px;
@@ -2086,7 +2085,7 @@ body.high-contrast .page-hero {
 }
 
 .timeline-content {
-    background-color: #fff;
+    background-color: transparent;
     padding: 1.5rem;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
@@ -2110,7 +2109,7 @@ body.high-contrast .page-hero {
 
 /* --- EFEITOS DE HOVER --- */
 .timeline-item:hover::before {
-    background-color: #fff;
+    background-color: transparent;
     border-color: var(--cor-laranja-destaque);
     transform: scale(1.2);
 }

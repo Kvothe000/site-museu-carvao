@@ -4,21 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta name="description"
-        content="Explore o acervo do Museu Estadual do Carvão: documentos históricos, fotografias e objetos tridimensionais da era do carvão.">
+    <meta name="description" content="Explore o acervo do Museu Estadual do Carvão.">
     <meta name="keywords" content="Museu do Carvão, Arquivo Histórico...">
     <meta name="author" content="Museu Estadual do Carvão">
-    <meta name="robots" content="index, follow">
     <title>Nosso Acervo - Museu Estadual do Carvão</title>
     <link rel="icon" href="img/logo-museu.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/premium.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .deep-tree details summary { font-size: 0.85rem; padding: 0.4rem 0; cursor: pointer; color: var(--cor-texto-claro); font-weight: 500; }
+        .deep-tree details summary:hover { color: var(--cor-laranja-destaque); }
+        .deep-tree details[open] > summary { color: var(--cor-laranja-destaque); }
+        .deep-tree .sub-links { padding-left: 1.5rem; border-left: 1px dotted rgba(255,255,255,0.1); margin-top: 0.2rem; margin-bottom: 0.8rem; }
+        .deep-tree .sub-links p { font-size: 0.8rem; margin-bottom: 0.4rem; padding-left: 0.5rem; border-radius: 4px; transition: background 0.2s; }
+        .deep-tree .sub-links p:hover { background: rgba(255,255,255,0.05); }
+        .deep-tree .sub-links a { color: #aaa; text-decoration: none; display: block; }
+        .deep-tree .sub-links a:hover { color: #fff; }
+        .archive-list-table { list-style: none; padding-left: 0; margin-bottom: 2rem; border-top: 1px solid rgba(255,255,255,0.05); }
+        .archive-list-table li { padding: 0.8rem 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center; }
+        .archive-list-table li:hover { background: rgba(255,255,255,0.02); }
+        .badge-info { font-size: 0.75rem; background: rgba(255,255,255,0.08); padding: 4px 8px; border-radius: 4px; margin-left: 10px; color: #ddd; white-space: nowrap; }
+    </style>
 </head>
 
 <body>
@@ -26,7 +36,7 @@
     <header id="main-header"></header>
 
     <main id="main-content">
-        <section class="page-title">
+        <section class="page-title fade-in-up">
             <h1 data-i18n="collection_page_title">Nosso Acervo</h1>
         </section>
 
@@ -36,45 +46,211 @@
                 <ul>
                     <li><a href="#tridimensional">Acervo Tridimensional</a></li>
                     <li><a href="#fotografico">Acervo Fotográfico</a></li>
-                    <li><a href="#documental">Acervo Documental</a></li>
+                    <li>
+                        <a href="#documental">Acervo Documental</a>
+                        <div class="archive-tree deep-tree" style="margin-top: 1rem; margin-left: -5px; padding: 1rem 0 0 0; background: transparent; border: none; backdrop-filter: none;">
+                            <details open>
+                                <summary style="font-size:0.9rem; padding: 0.5rem;"><i class="fa-solid fa-folder-open"></i> Fundo 01: CEFMSJ</summary>
+                                <div class="tree-content" style="padding-left: 1.5rem; margin-top: 0.2rem; border-left: 1px dashed rgba(255,255,255,0.2);">
+                                    
+                                    <details>
+                                        <summary><i class="fa-regular fa-folder"></i> 01.01 ADMINISTRAÇÃO</summary>
+                                        <div class="sub-links">
+                                            <p><a href="#s-01-01">01.01.01 Cartas/Telegramas</a></p>
+                                            <p><a href="#s-01-01">01.01.02 Reg. correspondência</a></p>
+                                            <p><a href="#s-01-01">01.01.03 Atestados de trabalho</a></p>
+                                            <p><a href="#s-01-01">01.01.04 Código Telegráfico</a></p>
+                                            <p><a href="#s-01-01">01.01.05 Inv. bens imóveis</a></p>
+                                            <p><a href="#s-01-01">01.01.1 Dossiê Força e Luz</a></p>
+                                        </div>
+                                    </details>
+
+                                    <details>
+                                        <summary><i class="fa-regular fa-folder"></i> 01.02 JURÍDICO</summary>
+                                        <div class="sub-links">
+                                            <p><a href="#s-01-02">01.02.01 Contratos de fornecimento</a></p>
+                                            <p><a href="#s-01-02">01.02.02 Decreto de concessão</a></p>
+                                            <p><a href="#s-01-02">01.02.03 Processos judiciais</a></p>
+                                            <p><a href="#s-01-02">01.02.04 Certidões de arrolamento</a></p>
+                                            <p><a href="#s-01-02">01.02.1 Dossiê Viação Férrea VFRGS</a></p>
+                                        </div>
+                                    </details>
+
+                                    <details>
+                                        <summary><i class="fa-regular fa-folder"></i> 01.03 CONTABILIDADE</summary>
+                                        <div class="sub-links">
+                                            <p><a href="#s-01-03">01.03.01 Faturas de compras</a></p>
+                                            <p><a href="#s-01-03">01.03.02 Materiais importados</a></p>
+                                            <p><a href="#s-01-03">01.03.03 Mapas extração carvão</a></p>
+                                            <p><a href="#s-01-03">01.03.04 Mapas consumo energia</a></p>
+                                            <p><a href="#s-01-03">01.03.05 Mapas despesas gerais</a></p>
+                                            <p><a href="#s-01-03">01.03.06 Req. restituições</a></p>
+                                            <p><a href="#s-01-03">01.03.07 Relação contas pagar</a></p>
+                                            <p><a href="#s-01-03">01.03.08-12 Notas e guias</a></p>
+                                        </div>
+                                    </details>
+
+                                    <details>
+                                        <summary><i class="fa-regular fa-folder"></i> 01.04 PESQUISAS DE MINERAÇÃO</summary>
+                                        <div class="sub-links">
+                                            <p><a href="#s-01-04">01.04.01 Relatórios pesquisa</a></p>
+                                            <p><a href="#s-01-04">01.04.02 Cartas</a></p>
+                                            <p><a href="#s-01-04">01.04.03 Triangulação do Poços</a></p>
+                                        </div>
+                                    </details>
+
+                                    <details>
+                                        <summary><i class="fa-regular fa-folder"></i> 01.05 PESSOAL</summary>
+                                        <div class="sub-links">
+                                            <p><a href="#s-01-05">01.05.01 Operários admitidos</a></p>
+                                            <p><a href="#s-01-05">01.05.02 Folhas de pagamento</a></p>
+                                            <p><a href="#s-01-05">01.05.03 Salários / Vales</a></p>
+                                            <p><a href="#s-01-05">01.05.04 Horas extras</a></p>
+                                            <p><a href="#s-01-05">01.05.05 Operários no subsolo</a></p>
+                                            <p><a href="#s-01-05">01.05.06-08 Caução, Atestados</a></p>
+                                        </div>
+                                    </details>
+
+                                    <details>
+                                        <summary><i class="fa-regular fa-folder"></i> 01.06 CONTROLE PRODUÇÃO</summary>
+                                        <div class="sub-links">
+                                            <p><a href="#s-01-06">01.06.01 Registros Movimentação</a></p>
+                                            <p><a href="#s-01-06">01.06.02 Reg. Transporte de carvão</a></p>
+                                        </div>
+                                    </details>
+
+                                    <details>
+                                        <summary><i class="fa-regular fa-folder"></i> 01.07 ALMOXARIFADO</summary>
+                                        <div class="sub-links">
+                                            <p><a href="#s-01-07">01.07.01 Notas de debito</a></p>
+                                            <p><a href="#s-01-07">01.07.02 Relação de compras</a></p>
+                                            <p><a href="#s-01-07">01.07.03 Inventários balanço</a></p>
+                                            <p><a href="#s-01-07">01.07.04 Entrada/saída materiais</a></p>
+                                            <p><a href="#s-01-07">01.07.05-07 Demonst. preços</a></p>
+                                        </div>
+                                    </details>
+
+                                </div>
+                            </details>
+                        </div>
+                    </li>
                 </ul>
             </aside>
 
             <section class="main-content history-content">
 
-                <div
-                    style="margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--cor-borda-suave);">
+                <div style="margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--cor-borda-suave);">
                     <p data-i18n="collection_intro_p1">O Arquivo Histórico do Museu Estadual do Carvão possui um
-                        importantíssimo acervo, constituído por
-                        mais de <strong>700 mil documentos</strong>. São registros únicos para o conhecimento da
-                        mineração no Estado do Rio Grande do Sul, abrangendo o período de <strong>1889 a 1996</strong>.
+                        importantíssimo acervo, constituído por mais de <strong>700 mil documentos</strong>.
                     </p>
                 </div>
 
                 <article id="tridimensional">
                     <h2 data-i18n="collection_tri_title">Acervo Tridimensional</h2>
-                    <p data-i18n="collection_tri_desc">Composto por objetos museológicos, ferramentas de mineração,
-                        equipamentos da antiga usina,
-                        mobiliário e utensílios que ilustram o cotidiano do trabalho nas minas e na termelétrica.</p>
-                    <img src="img/museu_exposicao.jpg" alt="Exemplo de acervo tridimensional">
+                    <p data-i18n="collection_tri_desc">Composto por objetos museológicos, ferramentas de mineração...</p>
+                    <img src="img/museu_exposicao.jpg" alt="Exemplo de acervo tridimensional" style="width:100%; border-radius:4px; margin-top:1rem;">
                 </article>
 
-                <article id="fotografico">
+                <article id="fotografico" style="margin-top:4rem;">
                     <h2 data-i18n="collection_photo_title">Acervo Fotográfico</h2>
                     <p data-i18n="collection_photo_desc">Uma vasta coleção de imagens que registram a evolução da
-                        mineração, as estruturas industriais, os
-                        trabalhadores e os eventos sociais da região carbonífera ao longo do século XX.</p>
-                    <img src="img/inicio_mineracao.jpg" alt="Exemplo de acervo fotográfico">
+                        mineração, as estruturas industriais...</p>
+                    <img src="img/inicio_mineracao.jpg" alt="Exemplo de acervo fotográfico" style="width:100%; border-radius:4px; margin-top:1rem;">
                 </article>
 
-                <article id="documental">
-                    <h2 data-i18n="collection_doc_title">Acervo Documental</h2>
-                    <p data-i18n="collection_doc_desc">Este é o núcleo do arquivo, contendo documentos administrativos e
-                        sindicais, plantas e mapas da
-                        região carbonífera. Inclui os fundos das principais companhias, como a Companhia Estrada de
-                        Ferro e Minas de São Jerônimo (CEFMSJ) e o Consórcio Administrador de Empresas de Mineração
-                        (CADEM).</p>
-                    <img src="img/acervo_prateleiras.jpg" alt="Exemplo de acervo documental">
+                <article id="documental" style="margin-top:4rem; padding-top: 2rem; border-top: 1px solid var(--cor-borda-suave);">
+                    <h2 data-i18n="collection_doc_title" style="font-size: 2.2rem; color:var(--cor-texto-claro);">Acervo Documental</h2>
+                    <p data-i18n="collection_doc_desc">Este é o núcleo do arquivo, contendo documentos administrativos...</p>
+
+                    <div id="fundo-01" style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--cor-borda-suave);">
+                        <h2 style="color: var(--cor-laranja-destaque); font-size: 1.8rem; margin-bottom: 2rem; line-height: 1.3;"><i class="fa-solid fa-folder-open"></i> FUNDO 01: COMPANHIA ESTRADA DE FERRO E MINAS DE SÃO JERÔNIMO - CEFMSJ (1891-1936)</h2>
+                        <h3 style="margin-top: 2rem;">Índice Descritivo de Taxonomia</h3>
+                        <p style="color: #ccc;">Abaixo você encontra a divisão completa estruturada hierarquicamente deste fundo (do Nível Série até as Sub-séries individuais), contendo as datas e as caixas originais dos registros.</p>
+
+                        <div style="background: rgba(255,255,255,0.02); padding: 15px 25px; border-left: 2px solid var(--cor-laranja-destaque); border-radius: 4px; margin-top: 1.5rem;">
+                            
+                            <!-- SERIE 01 -->
+                            <h4 id="s-01-01" style="margin-top:1rem; color: #fff; font-size: 1.1rem;"><i class="fa-solid fa-folder" style="color:var(--cor-laranja-destaque);"></i> 01.01 ADMINISTRAÇÃO / ADMINISTRATIVO <span style="font-size:0.8rem; color:#aaa; font-weight:normal;">(1891-1964)</span></h4>
+                            <ul class="archive-list-table">
+                                <li><span>01.01.01 Cartas/Telegramas</span> <div><span class="badge-info">1891-1937</span> <span class="badge-info">Cx 01, 02</span></div></li>
+                                <li><span>01.01.02 Registro de correspondência</span> <div><span class="badge-info">1934-1936</span> <span class="badge-info">Cx 02</span></div></li>
+                                <li><span>01.01.03 Atestados de trabalho</span> <div><span class="badge-info">1919-1935</span> <span class="badge-info">Cx 03</span></div></li>
+                                <li><span>01.01.04 Código Telegráfico (Ribeiro)</span> <div><span class="badge-info">S/ Data</span> <span class="badge-info">Livro</span></div></li>
+                                <li><span>01.01.05 Inventário de bens imóveis</span> <div><span class="badge-info">1944-1951</span> <span class="badge-info">Cx 03</span></div></li>
+                                <li><span>01.01.1 Dossiê Cia. Força e Luz Porto-alegrense</span> <div><span class="badge-info">1916-1931</span> <span class="badge-info">Cx 03</span></div></li>
+                            </ul>
+
+                            <!-- SERIE 02 -->
+                            <h4 id="s-01-02" style="margin-top:2rem; color: #fff; font-size: 1.1rem;"><i class="fa-solid fa-folder" style="color:var(--cor-laranja-destaque);"></i> 01.02 JURÍDICO <span style="font-size:0.8rem; color:#aaa; font-weight:normal;">(1918-1936)</span></h4>
+                            <ul class="archive-list-table">
+                                <li><span>01.02.01 Contratos de fornecimento/Empreitada</span> <div><span class="badge-info">1918-1923</span> <span class="badge-info">Cx 04</span></div></li>
+                                <li><span>01.02.02 Decreto de concessão</span> <div><span class="badge-info">1928</span> <span class="badge-info">Cx 04</span></div></li>
+                                <li><span>01.02.03 Processos judiciais</span> <div><span class="badge-info">1918-1936</span> <span class="badge-info">Cx 04</span></div></li>
+                                <li><span>01.02.04 Certidões de arrolamento capitania</span> <div><span class="badge-info">S/ Data</span> <span class="badge-info">Cx 04</span></div></li>
+                                <li><span>01.02.1 Dossiê Viação Férrea VFRGS</span> <div><span class="badge-info">1928-1935</span> <span class="badge-info">Cx 04</span></div></li>
+                            </ul>
+
+                            <!-- SERIE 03 -->
+                            <h4 id="s-01-03" style="margin-top:2rem; color: #fff; font-size: 1.1rem;"><i class="fa-solid fa-folder" style="color:var(--cor-laranja-destaque);"></i> 01.03 CONTABILIDADE <span style="font-size:0.8rem; color:#aaa; font-weight:normal;">(1921-1964)</span></h4>
+                            <ul class="archive-list-table">
+                                <li><span>01.03.01 Faturas de compras</span> <div><span class="badge-info">S/ Data</span> <span class="badge-info">Cx 04</span></div></li>
+                                <li><span>01.03.02 Reg. escritura materiais importados</span> <div><span class="badge-info">1935-1936</span> <span class="badge-info">Cx 04</span></div></li>
+                                <li><span>01.03.03 Mapas de extração de carvão</span> <div><span class="badge-info">1935-1938</span> <span class="badge-info">Cx 04</span></div></li>
+                                <li><span>01.03.04 Mapas de consumo de energia</span> <div><span class="badge-info">1928-1935</span> <span class="badge-info">Cx 05</span></div></li>
+                                <li><span>01.03.05 Mapas de despesas gerais</span> <div><span class="badge-info">1936</span> <span class="badge-info">Cx 05</span></div></li>
+                                <li><span>01.03.06 Requerimentos de restituições</span> <div><span class="badge-info">1921-19..</span> <span class="badge-info">Cx 05</span></div></li>
+                                <li><span>01.03.07 Relação contas a pagar</span> <div><span class="badge-info">1921-19..</span> <span class="badge-info">Cx 05</span></div></li>
+                                <li><span>01.03.08 Notas de contabilidade</span> <div><span class="badge-info">1936-1957</span> <span class="badge-info">Cx 06</span></div></li>
+                                <li><span>01.03.09 Faturas</span> <div><span class="badge-info">1936-1958</span> <span class="badge-info">Cx 07</span></div></li>
+                                <li><span>01.03.10 Rel. contas a pagar (CADEM)</span> <div><span class="badge-info">1941-1964</span> <span class="badge-info">Cx 08</span></div></li>
+                                <li><span>01.03.11 Guias de recolhimento</span> <div><span class="badge-info">1958-1964</span> <span class="badge-info">Cx 08</span></div></li>
+                                <li><span>01.03.12 Mapas devedores Força e luz</span> <div><span class="badge-info">1942</span> <span class="badge-info">Cx 08</span></div></li>
+                            </ul>
+
+                            <!-- SERIE 04 -->
+                            <h4 id="s-01-04" style="margin-top:2rem; color: #fff; font-size: 1.1rem;"><i class="fa-solid fa-folder" style="color:var(--cor-laranja-destaque);"></i> 01.04 PESQUISAS DE MINERAÇÃO <span style="font-size:0.8rem; color:#aaa; font-weight:normal;">(1930-193.)</span></h4>
+                            <ul class="archive-list-table">
+                                <li><span>01.04.01 Relatórios de pesquisa</span> <div><span class="badge-info">S/ Data</span> <span class="badge-info">Cx 09</span></div></li>
+                                <li><span>01.04.02 Cartas</span> <div><span class="badge-info">1930-1931</span> <span class="badge-info">Cx 09</span></div></li>
+                                <li><span>01.04.03 Triangulação do Poços</span> <div><span class="badge-info">S/ Data</span> <span class="badge-info">-</span></div></li>
+                            </ul>
+
+                            <!-- SERIE 05 -->
+                            <h4 id="s-01-05" style="margin-top:2rem; color: #fff; font-size: 1.1rem;"><i class="fa-solid fa-folder" style="color:var(--cor-laranja-destaque);"></i> 01.05 PESSOAL <span style="font-size:0.8rem; color:#aaa; font-weight:normal;">(1936-1958)</span></h4>
+                            <ul class="archive-list-table">
+                                <li><span>01.05.01 Rel. de operários admitidos</span> <div><span class="badge-info">S/ Data</span> <span class="badge-info">Cx 10</span></div></li>
+                                <li><span>01.05.02 Folhas de pagamento</span> <div><span class="badge-info">1936-1957</span> <span class="badge-info">Cx 10/11</span></div></li>
+                                <li><span>01.05.03 Relação salários/vales</span> <div><span class="badge-info">1944-1958</span> <span class="badge-info">Cx 11</span></div></li>
+                                <li><span>01.05.04 Tabelas horas extras</span> <div><span class="badge-info">S/ Data</span> <span class="badge-info">Cx 11</span></div></li>
+                                <li><span>01.05.05 Relação operários subsolo</span> <div><span class="badge-info">S/ Data</span> <span class="badge-info">Cx 11</span></div></li>
+                                <li><span>01.05.06-08 Caução, Atestados, Demissão</span> <div><span class="badge-info">S/ Data</span> <span class="badge-info">Cx 11</span></div></li>
+                            </ul>
+
+                            <!-- SERIE 06 -->
+                            <h4 id="s-01-06" style="margin-top:2rem; color: #fff; font-size: 1.1rem;"><i class="fa-solid fa-folder" style="color:var(--cor-laranja-destaque);"></i> 01.06 CONTROLE PRODUÇÃO/ESTOQUE <span style="font-size:0.8rem; color:#aaa; font-weight:normal;">(1936-1958)</span></h4>
+                            <ul class="archive-list-table">
+                                <li><span>01.06.01 Registros de Movimentação</span> <div><span class="badge-info">1936-1958</span> <span class="badge-info">Cx 12</span></div></li>
+                                <li><span>01.06.02 Registro Transporte de carvão</span> <div><span class="badge-info">1946-1947</span> <span class="badge-info">Livro</span></div></li>
+                            </ul>
+
+                            <!-- SERIE 07 -->
+                            <h4 id="s-01-07" style="margin-top:2rem; color: #fff; font-size: 1.1rem;"><i class="fa-solid fa-folder" style="color:var(--cor-laranja-destaque);"></i> 01.07 ALMOXARIFADO <span style="font-size:0.8rem; color:#aaa; font-weight:normal;">(1936-1964)</span></h4>
+                            <ul class="archive-list-table">
+                                <li><span>01.07.01 Notas de debito</span> <div><span class="badge-info">1936-1964</span> <span class="badge-info">Cx 13</span></div></li>
+                                <li><span>01.07.02 Relação de compras</span> <div><span class="badge-info">1938-1953</span> <span class="badge-info">Cx 14</span></div></li>
+                                <li><span>01.07.03 Inventários/balanço</span> <div><span class="badge ifno">1946-1959</span> <span class="badge-info">Cx 14</span></div></li>
+                                <li><span>01.07.04 Rel. entrada/saída materiais</span> <div><span class="badge-info">1960-1963</span> <span class="badge-info">Cx 15</span></div></li>
+                                <li><span>01.07.05 Demonst. preços (orçamentos)</span> <div><span class="badge-info">1958-1960</span> <span class="badge-info">Cx 15</span></div></li>
+                                <li><span>01.07.06 Fichas const. casas</span> <div><span class="badge-info">S/ Data</span> <span class="badge-info">Cx 15</span></div></li>
+                                <li><span>01.07.07 Reg. mercadorias importadas</span> <div><span class="badge-info">1942</span> <span class="badge-info">Cx 15</span></div></li>
+                            </ul>
+                        </div>
+
+                        <!-- AÇÕES -->
+                        <div style="margin-top: 2.5rem; padding-bottom: 2rem;">
+                            <a href="#" style="display: inline-flex; align-items: center; gap: 8px; padding: 0.8rem 1.5rem; background: var(--cor-laranja-destaque); color: #121212; font-weight: bold; text-decoration: none; border-radius: 4px; margin-right: 1rem;"><i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Diretório no AtoM</a>
+                        </div>
+                    </div>
                 </article>
 
             </section>

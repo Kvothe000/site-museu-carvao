@@ -325,25 +325,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }).mount();
     }
 
-    // NOTÍCIAS
-    if (document.querySelector('.latest-news-wrapper')) {
-        fetch('noticias.json?v=' + Date.now())
-            .then(res => res.json())
-            .then(noticia => {
-                const container = document.querySelector('.latest-news-container');
-                if (noticia && noticia.titulo) {
-                    container.innerHTML = `
-                        <img src="${noticia.imagem_url}" alt="${noticia.titulo}" class="news-image">
-                        <div class="news-content">
-                            <h2>${noticia.titulo}</h2>
-                            <p>${noticia.resumo || ''}</p>
-                            <a href="${noticia.link}" target="_blank" class="cta-button">Leia a Matéria Completa</a>
-                        </div>`;
-                    document.querySelector('.latest-news-wrapper').style.display = 'block';
-                }
-            })
-            .catch(err => document.querySelector('.latest-news-wrapper').style.display = 'none');
-    }
+
 
     // SIDEBAR SMOOTH SCROLL
     const internalLinks = document.querySelectorAll('a[href^="#"]:not([href="#"])');
@@ -384,4 +366,24 @@ document.addEventListener('DOMContentLoaded', async () => {
         window.addEventListener('scroll', activateSidebarLink, { passive: true });
         activateSidebarLink();
     }
+
+    // --- OBSERVER PARA ANIMAÇÕES DE SCROLL (FADE IN UP) ---
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.15
+    };
+    
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+    
+    document.querySelectorAll('.fade-in-up').forEach(el => {
+        observer.observe(el);
+    });
 });

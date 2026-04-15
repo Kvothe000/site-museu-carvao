@@ -13,10 +13,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300..800&display=swap"
         rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/premium.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="icon" href="img/logo-museu.png" type="image/png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
@@ -30,30 +31,28 @@
     </header>
 
     <main id="main-content">
-        <section id="home-carousel" class="splide" aria-label="Imagens do Museu do Carvão">
+        <section id="home-carousel" class="splide fade-in-up" aria-label="Imagens do Museu do Carvão">
+            <div class="hero-overlay-text">
+                <h1>Museu Estadual do Carvão</h1>
+            </div>
             <div class="splide__track">
                 <ul class="splide__list">
                     <li class="splide__slide">
                         <img src="img/fachada_museu.jpg" alt="Fachada histórica do Museu Estadual do Carvão"
-                            style="height: 500px; object-fit: cover;">
+                            style="width: 100%;">
                     </li>
                     <li class="splide__slide">
                         <img src="img/museu_exposicao.jpg" alt="Exposição interna do Museu"
-                            style="height: 500px; object-fit: cover;">
+                            style="width: 100%;">
                     </li>
                     <li class="splide__slide">
                         <img src="img/usina_antiga.jpg" alt="Antiga Usina Termelétrica"
-                            style="height: 500px; object-fit: cover;">
+                            style="width: 100%;">
                     </li>
                 </ul>
             </div>
         </section>
-
-        <section class="latest-news-wrapper">
-            <div class="latest-news-container">
-            </div>
-        </section>
-        <section class="featured-sections">
+        <section class="featured-sections fade-in-up">
             <a href="nossos-fundos.html" class="feature-card">
                 <div class="card-content">
                     <h3 data-i18n="nav_collection">Nosso Acervo</h3>
@@ -70,7 +69,7 @@
                 </div>
             </a>
         </section>
-        <section class="home-hero">
+        <section class="home-hero fade-in-up">
             <div class="hero-content">
                 <h2 data-i18n="home_visit_title">Planeje sua Visita</h2>
                 <p data-i18n="home_visit_desc">Conheça de perto nosso acervo e as instalações históricas da antiga usina
@@ -87,3 +86,4 @@
 </body>
 
 </html>
+
