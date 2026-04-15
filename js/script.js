@@ -31,6 +31,31 @@ function initAccessibility() {
     const btnIncrease = document.getElementById('btn-increase');
     const btnDecrease = document.getElementById('btn-decrease');
     const btnOriginal = document.getElementById('btn-original');
+    const btnTheme = document.getElementById('btn-theme');
+
+    // 0. Tema Escuro (Local Storage persist)
+    if (localStorage.getItem('theme') === 'dark') {
+        body.classList.add('dark-mode');
+        if (btnTheme) btnTheme.innerHTML = '<i class="fa-solid fa-sun" aria-hidden="true"></i>';
+    }
+
+    if (btnTheme) {
+        btnTheme.onclick = () => {
+            body.classList.toggle('dark-mode');
+            const isDark = body.classList.contains('dark-mode');
+            if (isDark) {
+                localStorage.setItem('theme', 'dark');
+                btnTheme.innerHTML = '<i class="fa-solid fa-sun" aria-hidden="true"></i>';
+                btnTheme.setAttribute('aria-label', 'Modo Claro');
+                btnTheme.setAttribute('title', 'Modo Claro');
+            } else {
+                localStorage.setItem('theme', 'light');
+                btnTheme.innerHTML = '<i class="fa-solid fa-moon" aria-hidden="true"></i>';
+                btnTheme.setAttribute('aria-label', 'Modo Escuro');
+                btnTheme.setAttribute('title', 'Modo Escuro');
+            }
+        };
+    }
 
     // 1. Alto Contraste (Botão) - Usando onclick para evitar duplicidade
     if (btnContrast) {

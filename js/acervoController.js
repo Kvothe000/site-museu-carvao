@@ -27,7 +27,7 @@ function renderDocumentalSidebar() {
     let html = '';
     ACERVO_DATA.fundos.forEach(fundo => {
         html += `
-        <div class="nf-fundo-toggle" onclick="loadDocumentalFundo('${fundo.id}', this)" style="cursor:pointer; padding:0.8rem; margin-bottom:0.5rem; background:rgba(255,255,255,0.05); border-radius:4px; transition:background 0.2s;">
+        <div class="nf-fundo-toggle" onclick="loadDocumentalFundo('${fundo.id}', this)" style="cursor:pointer; padding:0.8rem; margin-bottom:0.5rem; background:var(--cor-fundo-claro); border-radius:4px; transition:background 0.2s;">
             <i class="fa-regular fa-folder"></i> ${fundo.name}
         </div>
         `;
@@ -40,7 +40,7 @@ function loadDocumentalFundo(id, element) {
     if (!fundo) return;
 
     // Estilo ativo na sidebar
-    document.querySelectorAll('.nf-fundo-toggle').forEach(el => el.style.background = 'rgba(255,255,255,0.05)');
+    document.querySelectorAll('.nf-fundo-toggle').forEach(el => el.style.background = 'var(--cor-fundo-claro)');
     element.style.background = 'rgba(216, 155, 66, 0.2)'; // Laranja destaque transparente
 
     const placeholder = document.getElementById('nf-placeholder');
@@ -56,12 +56,12 @@ function loadDocumentalFundo(id, element) {
     let sinteseHtml = '<p>Síntese não cadastrada.</p>';
     if (fundo.sintesePrimeiro) {
         sinteseHtml = `
-           <div class="sintese-container">
+           <div class="sintese-container" style="background: var(--cor-fundo-claro); padding: 2rem; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border: 1px solid var(--cor-borda-suave); margin-bottom: 1.5rem;">
                ${fundo.sintesePrimeiro}
-               <div id="dynamic-sin-more" style="display:none; transition: all 0.3s; margin-top:1rem; padding-top:1rem; border-top:1px dashed #444;">
+               <div id="dynamic-sin-more" style="display:none; transition: all 0.3s; margin-top:1rem; padding-top:1rem; border-top:1px dashed var(--cor-borda-suave);">
                    ${fundo.sinteseRestante}
                </div>
-               ${fundo.sinteseRestante ? `<button onclick="toggleSintese(this)" style="margin-top:1rem; background:transparent; color:var(--cor-laranja-destaque); border:1px solid var(--cor-laranja-destaque); padding:5px 15px; border-radius:4px; cursor:pointer;">Ler Mais Síntese</button>` : ''}
+               ${fundo.sinteseRestante ? `<button onclick="toggleSintese(this)" style="margin-top:1.5rem; background:transparent; color:var(--cor-laranja-destaque); border:1px solid var(--cor-laranja-destaque); padding:5px 15px; border-radius:4px; cursor:pointer; font-weight: 500;">Ler Mais Síntese</button>` : ''}
            </div>
         `;
     }
@@ -117,24 +117,24 @@ function renderDigitalSidebar() {
             let subHtml = '';
             serie.subseries.forEach(sub => {
                 let sId = `ad-s-${fundo.id}-${sIndex}`;
-                subHtml += `<div style="margin-bottom: 0.3rem;"><a href="#${sId}" style="font-size: 0.85rem; color: #bbb; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#bbb'"><i class="fa-solid fa-file-lines" style="margin-right: 5px; opacity:0.6;"></i>${sub.code} ${sub.name.substring(0,25)}${sub.name.length>25?'...':''}</a></div>`;
+                subHtml += `<div style="margin-bottom: 0.3rem;"><a href="#${sId}" style="font-size: 0.85rem; color: var(--cor-texto-escuro); text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='var(--cor-texto-claro)'" onmouseout="this.style.color='var(--cor-texto-escuro)'"><i class="fa-solid fa-file-lines" style="margin-right: 5px; opacity:0.6;"></i>${sub.code} ${sub.name.substring(0,25)}${sub.name.length>25?'...':''}</a></div>`;
             });
             treeContent += `
             <details>
-                <summary style="font-size: 0.9rem; font-weight: 500; color: #eee; padding: 0.4rem 0;"><i class="fa-regular fa-folder"></i> ${serie.code} ${serie.name.substring(0,35)}</summary>
+                <summary style="font-size: 0.9rem; font-weight: 500; color: var(--cor-texto-claro); padding: 0.4rem 0;"><i class="fa-regular fa-folder"></i> ${serie.code} ${serie.name.substring(0,35)}</summary>
                 <div class="sub-links" style="padding-left: 1.5rem; margin-top: 0.3rem;">
-                    ${subHtml || '<p style="font-size:0.8rem; color:#888;">Sem subséries indexadas</p>'}
+                    ${subHtml || '<p style="font-size:0.8rem; color:var(--cor-texto-escuro);">Sem subséries indexadas</p>'}
                 </div>
             </details>
             `;
         });
         
-        if (!treeContent) treeContent = '<p style="padding:1rem; color:#aaa; font-size:0.9rem;">Taxonomia em Catalogação</p>';
+        if (!treeContent) treeContent = '<p style="padding:1rem; color:var(--cor-texto-escuro); font-size:0.9rem;">Taxonomia em Catalogação</p>';
 
         html += `
         <details class="ad-tree-toggle" data-target="${fundo.id}">
             <summary style="font-size:1rem; font-weight:600; color:var(--cor-laranja-destaque); padding: 0.5rem;" onclick="loadDigitalFundo('${fundo.id}')"><i class="fa-solid fa-folder-open"></i> ${fundo.name}</summary>
-            <div class="tree-content" style="padding-left: 1.5rem; margin-top: 0.2rem; border-left: 1px dashed rgba(255,255,255,0.2);">
+            <div class="tree-content" style="padding-left: 1.5rem; margin-top: 0.2rem; border-left: 1px dashed var(--cor-borda-suave);">
                 ${treeContent}
             </div>
         </details>
@@ -158,9 +158,9 @@ function loadDigitalFundo(id) {
     const container = document.getElementById('digital-content-area');
 
     let taxonomyTablesHtml = `
-      <div style="margin-bottom: 2rem; padding: 1.5rem; border: 1px dashed var(--cor-borda-suave); border-radius: 6px; text-align: center; background: rgba(0,0,0,0.2);">
+      <div style="margin-bottom: 2rem; padding: 1.5rem; border: 1px dashed var(--cor-borda-suave); border-radius: 6px; text-align: center; background: var(--cor-fundo-claro);">
          <p style="color:var(--cor-texto-escuro); margin-bottom:1rem;"><i class="fa-regular fa-image"></i> Espaço reservado para Imagem do Fundo.</p>
-         <a href="#" class="btn-atom" style="font-size:0.8rem; background:transparent; color:#bbb; border:1px solid #555; padding:4px 10px; border-radius:4px;"><i class="fa-solid fa-arrow-up-right-from-square"></i> Acessar Fundo no AtoM</a>
+         <a href="#" class="btn-atom" style="font-size:0.8rem; background:transparent; color:var(--cor-texto-escuro); border:1px solid var(--cor-borda-suave); padding:4px 10px; border-radius:4px;"><i class="fa-solid fa-arrow-up-right-from-square"></i> Acessar Fundo no AtoM</a>
       </div>
    `;
    
@@ -169,24 +169,24 @@ function loadDigitalFundo(id) {
        let subHtml = '';
        serie.subseries.forEach(sub => {
            subHtml += `
-            <li style="margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 1rem;">
+            <li style="margin-bottom: 1.5rem; border-bottom: 1px solid var(--cor-borda-suave); padding-bottom: 1rem;">
                 <div style="width:100%; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-bottom: 0.5rem;">
-                   <strong style="color:#ddd;">${sub.code} ${sub.name}</strong> 
+                   <strong style="color:var(--cor-texto-claro);">${sub.code} ${sub.name}</strong> 
                    <div><span class="badge-info">${sub.date}</span> <span class="badge-info">Cx ${sub.caixa}</span></div>
                 </div>
                 <div class="subserie-image-placeholder" style="width: 100%; padding: 1rem; border: 1px dashed var(--cor-borda-suave); border-radius: 4px; text-align: center; margin-top: 0.5rem;">
-                   <span style="color:#888; font-size:0.85rem; display:block; margin-bottom:0.5rem;"><i class="fa-regular fa-image"></i> Imagem da Subsérie Reservada</span>
-                   <a href="#" style="font-size:0.75rem; color:#aaa; text-decoration:none;"><i class="fa-solid fa-arrow-up-right-from-square"></i> Acessar no AtoM</a>
+                   <span style="color:var(--cor-texto-escuro); font-size:0.85rem; display:block; margin-bottom:0.5rem;"><i class="fa-regular fa-image"></i> Imagem da Subsérie Reservada</span>
+                   <a href="#" style="font-size:0.75rem; color:var(--cor-laranja-destaque); text-decoration:none;"><i class="fa-solid fa-arrow-up-right-from-square"></i> Acessar no AtoM</a>
                 </div>
             </li>
            `;
        });
        
        taxonomyTablesHtml += `
-        <h4 id="${sId}" style="margin-top:2rem; padding:1rem; background:rgba(255,255,255,0.03); color: #fff; font-size: 1.1rem; border-left:3px solid var(--cor-laranja-destaque);"><i class="fa-solid fa-folder" style="color:var(--cor-laranja-destaque);"></i> ${serie.code||''} ${serie.name} <span style="font-size:0.8rem; color:#aaa; font-weight:normal;">(${serie.date||''})</span></h4>
+        <h4 id="${sId}" style="margin-top:2rem; padding:1rem; background:var(--cor-fundo-claro); color: var(--cor-texto-claro); font-size: 1.1rem; border-left:3px solid var(--cor-laranja-destaque);"><i class="fa-solid fa-folder" style="color:var(--cor-laranja-destaque);"></i> ${serie.code||''} ${serie.name} <span style="font-size:0.8rem; font-weight:normal;">(${serie.date||''})</span></h4>
         <div class="serie-image-placeholder" style="width:100%; margin: 1rem 0; padding:1rem; border: 1px dashed var(--cor-borda-suave); border-radius:4px; text-align:center;">
-             <span style="color:#888; font-size:0.85rem; display:block; margin-bottom:0.5rem;"><i class="fa-regular fa-image"></i> Imagem da Série Reservada</span>
-             <a href="#" style="font-size:0.8rem; color:#aaa; text-decoration:none;"><i class="fa-solid fa-arrow-up-right-from-square"></i> Acessar Série no AtoM</a>
+             <span style="color:var(--cor-texto-escuro); font-size:0.85rem; display:block; margin-bottom:0.5rem;"><i class="fa-regular fa-image"></i> Imagem da Série Reservada</span>
+             <a href="#" style="font-size:0.8rem; color:var(--cor-laranja-destaque); text-decoration:none;"><i class="fa-solid fa-arrow-up-right-from-square"></i> Acessar Série no AtoM</a>
         </div>
         <ul class="archive-list-table" style="padding-left:0; list-style:none;">
             ${subHtml}
@@ -197,9 +197,9 @@ function loadDigitalFundo(id) {
     container.innerHTML = `
         <div class="ad-fundo-detail fade-in-up is-visible" style="margin-top: 1rem; padding-top: 2rem; animation: fadeInUp 0.5s ease forwards;">
             <h2 style="color: var(--cor-laranja-destaque); font-size: 1.8rem; margin-bottom: 2rem; line-height: 1.3;"><i class="fa-solid fa-folder-open"></i> ${fundo.title}</h2>
-            <h3 style="margin-top: 2rem; color:#eee;">Índice Descritivo de Taxonomia</h3>
-            <p style="color: #ccc; margin-bottom: 2rem;">Hierarquia técnica do fundo. Links apontam para diretórios do AtoM.</p>
-            <div style="background: rgba(255,255,255,0.01); border-radius: 4px;">
+            <h3 style="margin-top: 2rem; color:var(--cor-texto-claro);">Índice Descritivo de Taxonomia</h3>
+            <p style="color: var(--cor-texto-escuro); margin-bottom: 2rem;">Hierarquia técnica do fundo. Links apontam para diretórios do AtoM.</p>
+            <div style="background: var(--cor-fundo-claro); border-radius: 4px;">
                 ${fundo.taxonomia.length > 0 ? taxonomyTablesHtml : '<p style="padding:1rem;">Taxonomia em estruturação.</p>'}
             </div>
         </div>

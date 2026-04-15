@@ -61,6 +61,7 @@ body {
 }
 .hero-overlay-text h1 {
     font-size: 4rem;
+    color: #FFFFFF; /* Fixo por cima da global tag h1 */
     text-shadow: 2px 4px 10px rgba(0,0,0,0.8);
     margin-bottom: 2rem;
     animation: fadeInUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;

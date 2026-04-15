@@ -6,11 +6,21 @@
 /* -- 1. Variáveis de Cor e Configurações Globais -- */
 :root {
     --cor-laranja-destaque: #D89B42; /* Premium Amber */
-    --cor-fundo-escuro: #0A0A0A; /* Charcoal Deep Dark */
-    --cor-fundo-claro: #121212; /* Secondary Dark */
-    --cor-texto-claro: #F5F5F5; /* Off-white for general text */
-    --cor-texto-escuro: #B0B0B0; /* Very soft gray for secondary text */
-    --cor-borda-suave: #2A2A2A; /* Subtle dark border */
+    /* Nomes preservados: "escuro" atua como Fundo Principal e "claro" como Secundário */
+    --cor-fundo-escuro: #FFFFFF; /* Principal Background (Light) */
+    --cor-fundo-claro: #F8F9FA; /* Secondary Background (Light offset) */
+    --cor-texto-claro: #1A1A1A; /* Primary Text (Dark for contrast) */
+    --cor-texto-escuro: #4A4A4A; /* Secondary Text (Gray) */
+    --cor-borda-suave: #E2E2E2; /* Subtle border */
+}
+
+body.dark-mode {
+    --cor-laranja-destaque: #D89B42; /* Premium Amber */
+    --cor-fundo-escuro: #151515; /* Charcoal Dark Gray em vez de Preto puro */
+    --cor-fundo-claro: #1E1E1E; /* Cinza claro para blocos (Cards) */
+    --cor-texto-claro: #E6E6E6; /* Branco opaco super confortável */
+    --cor-texto-escuro: #B0B0B0; /* Suave para textos secundários */
+    --cor-borda-suave: #333333; /* Borda mais acinzentada */
 }
 
 body {
@@ -498,7 +508,7 @@ main {
 
 /* Sobrescreve o estilo padrão de H1 para o hero */
 .page-hero h1 {
-    color: var(--cor-texto-claro);
+    color: #FFFFFF; /* Fixo branco para leitura sob imagem */
     font-size: 3rem;
     margin: 0 0 0.5rem 0;
     padding-bottom: 0;
@@ -515,7 +525,7 @@ main {
     position: relative;
     z-index: 2;
     /* Garante que o texto fique acima do overlay */
-    color: var(--cor-texto-claro);
+    color: #E0E0E0; /* Fixo cinza muito claro para leitura sob imagem */
     font-size: 1.2rem;
     max-width: 600px;
     opacity: 0.9;
@@ -560,7 +570,7 @@ main {
 .info-card h2,
 .map-section h2 {
     background-color: var(--cor-laranja-destaque);
-    color: var(--cor-texto-claro);
+    color: #FFFFFF; /* Fixo fundo claro para contraste com laranja */
     padding: 1rem 2rem;
     margin: -2rem -2rem 1.5rem -2rem;
     border-top-left-radius: 8px;
@@ -936,12 +946,14 @@ textarea:focus {
 .hero-content h1 {
     font-size: 3.5rem;
     margin-bottom: 1rem;
+    color: #FFFFFF;
 }
 
 .hero-content p {
     font-size: 1.3rem;
     margin-bottom: 2rem;
     opacity: 0.9;
+    color: #E0E0E0;
 }
 
 .hero-button {
@@ -1033,6 +1045,7 @@ textarea:focus {
 .card-content h3 {
     font-size: 1.8rem;
     margin: 0;
+    color: #FFFFFF;
 }
 
 /* --- Seção de Chamado para Ação (CTA) --- */
