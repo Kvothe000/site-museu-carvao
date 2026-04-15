@@ -1,0 +1,207 @@
+// Controlador Principal Data-Driven para Nossos Fundos e Arquivo Digital
+
+document.addEventListener("DOMContentLoaded", () => {
+    // 1. Identificar em qual página estamos
+    const isDocumental = document.getElementById('documental-container') !== null;
+    const isDigital = document.getElementById('digital-container') !== null;
+    
+    if (!ACERVO_DATA || !ACERVO_DATA.fundos) {
+        console.error("Banco de Dados ACERVO_DATA não carregado.");
+        return;
+    }
+
+    if (isDocumental) {
+        renderDocumentalSidebar();
+    } else if (isDigital) {
+        renderDigitalSidebar();
+    }
+});
+
+// ==========================================
+// FUNÇÕES PARA NOSSO ACERVO DOCUMENTAL
+// ==========================================
+function renderDocumentalSidebar() {
+    const sidebar = document.getElementById('doc-sidebar-tree');
+    if (!sidebar) return;
+    
+    let html = '';
+    ACERVO_DATA.fundos.forEach(fundo => {
+        html += `
+        <div class="nf-fundo-toggle" onclick="loadDocumentalFundo('${fundo.id}', this)" style="cursor:pointer; padding:0.8rem; margin-bottom:0.5rem; background:rgba(255,255,255,0.05); border-radius:4px; transition:background 0.2s;">
+            <i class="fa-regular fa-folder"></i> ${fundo.name}
+        </div>
+        `;
+    });
+    sidebar.innerHTML = html;
+}
+
+function loadDocumentalFundo(id, element) {
+    const fundo = ACERVO_DATA.fundos.find(f => f.id === id);
+    if (!fundo) return;
+
+    // Estilo ativo na sidebar
+    document.querySelectorAll('.nf-fundo-toggle').forEach(el => el.style.background = 'rgba(255,255,255,0.05)');
+    element.style.background = 'rgba(216, 155, 66, 0.2)'; // Laranja destaque transparente
+
+    const placeholder = document.getElementById('nf-placeholder');
+    if (placeholder) placeholder.style.display = 'none';
+
+    const container = document.getElementById('documental-content-area');
+    
+    let btnRelatorioHtml = '';
+    if (fundo.relatorioCompletoHtml) {
+        btnRelatorioHtml = `<button onclick="openDocumentalModal('${fundo.id}')" style="background:var(--cor-laranja-destaque); margin-top:1rem; color:#121212; border:none; padding:12px 25px; font-weight:bold; cursor:pointer; font-size:1rem; border-radius:4px; box-shadow: 0 4px 10px rgba(216, 155, 66, 0.2); transition: transform 0.2s;"><i class="fa-solid fa-book-open"></i> Ler Relatório Completo</button>`;
+    }
+
+    let sinteseHtml = '<p>Síntese não cadastrada.</p>';
+    if (fundo.sintesePrimeiro) {
+        sinteseHtml = `
+           <div class="sintese-container">
+               ${fundo.sintesePrimeiro}
+               <div id="dynamic-sin-more" style="display:none; transition: all 0.3s; margin-top:1rem; padding-top:1rem; border-top:1px dashed #444;">
+                   ${fundo.sinteseRestante}
+               </div>
+               ${fundo.sinteseRestante ? `<button onclick="toggleSintese(this)" style="margin-top:1rem; background:transparent; color:var(--cor-laranja-destaque); border:1px solid var(--cor-laranja-destaque); padding:5px 15px; border-radius:4px; cursor:pointer;">Ler Mais Síntese</button>` : ''}
+           </div>
+        `;
+    }
+
+    container.innerHTML = `
+        <div class="nf-fundo-detail fade-in-up is-visible" style="margin-top: 1rem; padding-top: 2rem; border-top: 1px solid var(--cor-borda-suave); animation: fadeInUp 0.5s ease forwards;">
+            <h2 style="color: var(--cor-laranja-destaque); font-size: 1.8rem; margin-bottom: 2rem; line-height: 1.3;"><i class="fa-solid fa-folder-open"></i> ${fundo.title}</h2>
+            <h3 style="color:var(--cor-laranja-destaque);">Histórico e Resumo do Fundo</h3>
+            ${sinteseHtml}
+            <br>
+            ${btnRelatorioHtml}
+        </div>
+    `;
+}
+
+// Escopo Abstrato do Botão Ler Mais para evitar o erro const el
+function toggleSintese(btn) {
+    const el = document.getElementById('dynamic-sin-more');
+    if(el.style.display === 'none'){
+        el.style.display = 'block'; 
+        btn.innerText = 'Mostrar Menos';
+    } else {
+        el.style.display = 'none'; 
+        btn.innerText = 'Ler Mais Síntese';
+    }
+}
+
+function openDocumentalModal(id) {
+    const fundo = ACERVO_DATA.fundos.find(f => f.id === id);
+    if (!fundo) return;
+    
+    document.getElementById('global-modal-title').innerHTML = `<i class="fa-solid fa-folder-open"></i> Relatório Completo - ${fundo.name}`;
+    document.getElementById('global-modal-body').innerHTML = fundo.relatorioCompletoHtml;
+    document.getElementById('global-modal').classList.add('active');
+}
+
+function closeDocumentalModal() {
+    document.getElementById('global-modal').classList.remove('active');
+}
+
+
+// ==========================================
+// FUNÇÕES PARA ARQUIVO DIGITAL (TAXONOMIA)
+// ==========================================
+function renderDigitalSidebar() {
+    const sidebar = document.getElementById('ad-sidebar-tree');
+    if (!sidebar) return;
+    
+    let html = '';
+    ACERVO_DATA.fundos.forEach((fundo, fIndex) => {
+        let treeContent = '';
+        fundo.taxonomia.forEach((serie, sIndex) => {
+            let subHtml = '';
+            serie.subseries.forEach(sub => {
+                let sId = `ad-s-${fundo.id}-${sIndex}`;
+                subHtml += `<div style="margin-bottom: 0.3rem;"><a href="#${sId}" style="font-size: 0.85rem; color: #bbb; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#bbb'"><i class="fa-solid fa-file-lines" style="margin-right: 5px; opacity:0.6;"></i>${sub.code} ${sub.name.substring(0,25)}${sub.name.length>25?'...':''}</a></div>`;
+            });
+            treeContent += `
+            <details>
+                <summary style="font-size: 0.9rem; font-weight: 500; color: #eee; padding: 0.4rem 0;"><i class="fa-regular fa-folder"></i> ${serie.code} ${serie.name.substring(0,35)}</summary>
+                <div class="sub-links" style="padding-left: 1.5rem; margin-top: 0.3rem;">
+                    ${subHtml || '<p style="font-size:0.8rem; color:#888;">Sem subséries indexadas</p>'}
+                </div>
+            </details>
+            `;
+        });
+        
+        if (!treeContent) treeContent = '<p style="padding:1rem; color:#aaa; font-size:0.9rem;">Taxonomia em Catalogação</p>';
+
+        html += `
+        <details class="ad-tree-toggle" data-target="${fundo.id}">
+            <summary style="font-size:1rem; font-weight:600; color:var(--cor-laranja-destaque); padding: 0.5rem;" onclick="loadDigitalFundo('${fundo.id}')"><i class="fa-solid fa-folder-open"></i> ${fundo.name}</summary>
+            <div class="tree-content" style="padding-left: 1.5rem; margin-top: 0.2rem; border-left: 1px dashed rgba(255,255,255,0.2);">
+                ${treeContent}
+            </div>
+        </details>
+        `;
+    });
+    sidebar.innerHTML = html;
+}
+
+function loadDigitalFundo(id) {
+    const fundo = ACERVO_DATA.fundos.find(f => f.id === id);
+    if (!fundo) return;
+
+    // Close other details in sidebar
+    document.querySelectorAll('.ad-tree-toggle').forEach(el => {
+        if (el.getAttribute('data-target') !== id) el.open = false;
+    });
+
+    const placeholder = document.getElementById('ad-placeholder');
+    if (placeholder) placeholder.style.display = 'none';
+
+    const container = document.getElementById('digital-content-area');
+
+    let taxonomyTablesHtml = `
+      <div style="margin-bottom: 2rem; padding: 1.5rem; border: 1px dashed var(--cor-borda-suave); border-radius: 6px; text-align: center; background: rgba(0,0,0,0.2);">
+         <p style="color:var(--cor-texto-escuro); margin-bottom:1rem;"><i class="fa-regular fa-image"></i> Espaço reservado para Imagem do Fundo.</p>
+         <a href="#" class="btn-atom" style="font-size:0.8rem; background:transparent; color:#bbb; border:1px solid #555; padding:4px 10px; border-radius:4px;"><i class="fa-solid fa-arrow-up-right-from-square"></i> Acessar Fundo no AtoM</a>
+      </div>
+   `;
+   
+   fundo.taxonomia.forEach((serie, sIndex) => {
+       let sId = `ad-s-${fundo.id}-${sIndex}`;
+       let subHtml = '';
+       serie.subseries.forEach(sub => {
+           subHtml += `
+            <li style="margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 1rem;">
+                <div style="width:100%; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-bottom: 0.5rem;">
+                   <strong style="color:#ddd;">${sub.code} ${sub.name}</strong> 
+                   <div><span class="badge-info">${sub.date}</span> <span class="badge-info">Cx ${sub.caixa}</span></div>
+                </div>
+                <div class="subserie-image-placeholder" style="width: 100%; padding: 1rem; border: 1px dashed var(--cor-borda-suave); border-radius: 4px; text-align: center; margin-top: 0.5rem;">
+                   <span style="color:#888; font-size:0.85rem; display:block; margin-bottom:0.5rem;"><i class="fa-regular fa-image"></i> Imagem da Subsérie Reservada</span>
+                   <a href="#" style="font-size:0.75rem; color:#aaa; text-decoration:none;"><i class="fa-solid fa-arrow-up-right-from-square"></i> Acessar no AtoM</a>
+                </div>
+            </li>
+           `;
+       });
+       
+       taxonomyTablesHtml += `
+        <h4 id="${sId}" style="margin-top:2rem; padding:1rem; background:rgba(255,255,255,0.03); color: #fff; font-size: 1.1rem; border-left:3px solid var(--cor-laranja-destaque);"><i class="fa-solid fa-folder" style="color:var(--cor-laranja-destaque);"></i> ${serie.code||''} ${serie.name} <span style="font-size:0.8rem; color:#aaa; font-weight:normal;">(${serie.date||''})</span></h4>
+        <div class="serie-image-placeholder" style="width:100%; margin: 1rem 0; padding:1rem; border: 1px dashed var(--cor-borda-suave); border-radius:4px; text-align:center;">
+             <span style="color:#888; font-size:0.85rem; display:block; margin-bottom:0.5rem;"><i class="fa-regular fa-image"></i> Imagem da Série Reservada</span>
+             <a href="#" style="font-size:0.8rem; color:#aaa; text-decoration:none;"><i class="fa-solid fa-arrow-up-right-from-square"></i> Acessar Série no AtoM</a>
+        </div>
+        <ul class="archive-list-table" style="padding-left:0; list-style:none;">
+            ${subHtml}
+        </ul>
+       `;
+   });
+
+    container.innerHTML = `
+        <div class="ad-fundo-detail fade-in-up is-visible" style="margin-top: 1rem; padding-top: 2rem; animation: fadeInUp 0.5s ease forwards;">
+            <h2 style="color: var(--cor-laranja-destaque); font-size: 1.8rem; margin-bottom: 2rem; line-height: 1.3;"><i class="fa-solid fa-folder-open"></i> ${fundo.title}</h2>
+            <h3 style="margin-top: 2rem; color:#eee;">Índice Descritivo de Taxonomia</h3>
+            <p style="color: #ccc; margin-bottom: 2rem;">Hierarquia técnica do fundo. Links apontam para diretórios do AtoM.</p>
+            <div style="background: rgba(255,255,255,0.01); border-radius: 4px;">
+                ${fundo.taxonomia.length > 0 ? taxonomyTablesHtml : '<p style="padding:1rem;">Taxonomia em estruturação.</p>'}
+            </div>
+        </div>
+    `;
+}
