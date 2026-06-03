@@ -1,18 +1,18 @@
 const CACHE_NAME = 'museu-carvao-v1';
 const ASSETS_TO_CACHE = [
-    '/',
-    '/index.html',
-    '/css/style.css',
-    '/css/premium.css',
-    '/js/main.js',
-    '/js/modules/a11y.js',
-    '/js/modules/carousel.js',
-    '/js/translations.js',
-    '/manifest.json',
-    '/img/logo-museu.png',
-    '/img/fachada_museu.jpg',
-    '/img/museu_exposicao.jpg',
-    '/img/usina_antiga.jpg'
+    './',
+    'index.html',
+    'css/style.css',
+    'css/premium.css',
+    'js/main.js',
+    'js/modules/a11y.js',
+    'js/modules/carousel.js',
+    'js/translations.js',
+    'manifest.json',
+    'img/logo-museu.png',
+    'img/fachada_museu.jpg',
+    'img/museu_exposicao.jpg',
+    'img/usina_antiga.jpg'
 ];
 
 self.addEventListener('install', event => {
