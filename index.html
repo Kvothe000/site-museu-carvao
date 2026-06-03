@@ -35,16 +35,13 @@
         rel="stylesheet">
 
     <!-- CDNs Otimizados -->
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js" as="script">
+    <link rel="preload" href="img/fachada_museu.jpg" as="image">
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
-    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js" defer></script>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/premium.css">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
     <link rel="icon" href="img/logo-museu.png" type="image/png">
-    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css"></noscript>
 
 </head>
 
@@ -56,55 +53,68 @@
     </header>
 
     <main id="main-content">
-        <section id="home-carousel" class="splide fade-in-up" aria-label="Imagens do Museu do Carvão">
-            <div class="hero-overlay-text">
-                <h1>Museu Estadual do Carvão</h1>
-            </div>
-            <div class="splide__track">
-                <ul class="splide__list">
-                    <li class="splide__slide">
-                        <img src="img/fachada_museu.jpg" alt="Fachada histórica do Museu Estadual do Carvão" loading="eager">
-                    </li>
-                    <li class="splide__slide">
-                        <img src="img/museu_exposicao.jpg" alt="Exposição interna do Museu" loading="lazy" decoding="async">
-                    </li>
-                    <li class="splide__slide">
-                        <img src="img/usina_antiga.jpg" alt="Antiga Usina Termelétrica" loading="lazy" decoding="async">
-                    </li>
-                </ul>
-            </div>
-        </section>
-        <section class="featured-sections fade-in-up">
-            <a href="nossos-fundos.html" class="feature-card">
-                <div class="card-content">
-                    <h3 data-i18n="nav_collection">Nosso Acervo</h3>
-                </div>
-            </a>
-            <a href="projetos.html" class="feature-card">
-                <div class="card-content">
-                    <h3 data-i18n="nav_projects">Projetos</h3>
-                </div>
-            </a>
-            <a href="nossa-historia.html" class="feature-card">
-                <div class="card-content">
-                    <h3 data-i18n="nav_history">Nossa História</h3>
-                </div>
-            </a>
-        </section>
-        <section class="home-hero fade-in-up">
+        <!-- Nova Hero Section -->
+        <section class="home-hero-new fade-in-up">
             <div class="hero-content">
+                <h1 data-i18n="nav_museum">Museu Estadual do Carvão</h1>
+                <a href="arquivos-historicos.html" class="hero-cta-btn" data-i18n="hero_button">Explore o Acervo</a>
+            </div>
+        </section>
+
+        <!-- Seção de Acesso Rápido -->
+        <section class="quick-access-section fade-in-up">
+            <div class="quick-access-grid">
+                <a href="nossa-historia.html" class="quick-card">
+                    <div class="quick-card-icon"><i class="fa-solid fa-book-open"></i></div>
+                    <h3 data-i18n="nav_history">Nossa História</h3>
+                    <p>Conheça a trajetória da era carbonífera e do Museu.</p>
+                </a>
+                <a href="arquivos-historicos.html" class="quick-card">
+                    <div class="quick-card-icon"><i class="fa-solid fa-folder-open"></i></div>
+                    <h3 data-i18n="nav_documental">Acervo Histórico</h3>
+                    <p>Explore as descrições dos fundos e quadros de arranjo.</p>
+                </a>
+                <a href="arquivos-digitais.html" class="quick-card">
+                    <div class="quick-card-icon"><i class="fa-solid fa-images"></i></div>
+                    <h3 data-i18n="nav_digital_archive">Arquivos Digitais</h3>
+                    <p>Visualize as fotografias e documentos digitalizados.</p>
+                </a>
+                <a href="#" class="quick-card">
+                    <div class="quick-card-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                    <h3 data-i18n="nav_projects">Projetos Educativos</h3>
+                    <p>Conheça nossas ações pedagógicas e projetos culturais.</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- Seção Planeje sua Visita -->
+        <section class="visit-section fade-in-up">
+            <div class="visit-container">
                 <h2 data-i18n="home_visit_title">Planeje sua Visita</h2>
-                <p data-i18n="home_visit_desc">Conheça de perto nosso acervo e as instalações históricas da antiga usina
-                    termelétrica.</p>
-                <a href="localizacao-contato.html" class="hero-button" data-i18n="hero_button">Explore o Acervo</a>
+                <div class="visit-grid">
+                    <div class="visit-block">
+                        <div class="visit-icon"><i class="fa-regular fa-clock"></i></div>
+                        <h3>Horário</h3>
+                        <p>Terça a Domingo,<br>das 9h às 17h</p>
+                    </div>
+                    <div class="visit-block">
+                        <div class="visit-icon"><i class="fa-solid fa-ticket"></i></div>
+                        <h3>Ingresso</h3>
+                        <p>Entrada Gratuita</p>
+                    </div>
+                    <div class="visit-block">
+                        <div class="visit-icon"><i class="fa-solid fa-location-dot"></i></div>
+                        <h3>Localização</h3>
+                        <p>R. Prof. Péricles de Barcellos, 2780<br>Centro, Arroio dos Ratos - RS</p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Museu+Estadual+do+Carvao+Arroio+dos+Ratos" target="_blank" rel="noopener noreferrer" class="btn-map">Ver no Mapa</a>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
     <footer id="main-footer" class="site-footer">
         <load src="./footer.html" />
-    </footer>
-
     <!-- Widget de Acessibilidade -->
     <div id="ac-widget-container">
         <div class="ac-panel" id="ac-panel-menu">
