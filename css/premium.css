@@ -644,3 +644,352 @@ footer#main-footer.site-footer {
     }
 }
 
+/* ==========================================================
+   ARQUIVOS DIGITAIS - LAYOUT & GALERIA MASONRY
+   ========================================================== */
+
+body.digitais-page {
+    background: linear-gradient(var(--overlay-historico-1), var(--overlay-historico-2)), 
+                url('img/bg-acervo.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: var(--cor-texto-claro);
+}
+
+.digitais-layout {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 2.5rem;
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 0 1.5rem;
+    align-items: start;
+}
+
+body.digitais-page .sidebar-nav {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 100px;
+    max-height: calc(100vh - 140px);
+    overflow-y: auto;
+    background: var(--cor-fundo-claro);
+    backdrop-filter: blur(10px);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--cor-borda-suave);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+body.digitais-page .sidebar-nav h2 {
+    font-size: 1.25rem;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 2px solid var(--cor-laranja-destaque);
+    color: var(--cor-texto-claro);
+}
+
+body.digitais-page .fundo-item-btn {
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    border: none;
+    padding: 0.8rem 1rem;
+    color: var(--cor-texto-escuro);
+    font-size: 0.95rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    line-height: 1.3;
+}
+
+body.digitais-page .fundo-item-btn:hover {
+    background-color: rgba(216, 155, 66, 0.15);
+    color: var(--cor-laranja-destaque);
+}
+
+body.digitais-page .fundo-item-btn.active {
+    background-color: var(--cor-laranja-destaque);
+    color: #121212 !important;
+    font-weight: 700;
+}
+
+body.digitais-page .detail-section {
+    background: var(--cor-fundo-claro);
+    backdrop-filter: blur(10px);
+    padding: 2.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--cor-borda-suave);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+    min-height: 500px;
+    color: var(--cor-texto-claro);
+}
+
+/* Estado de Boas-vindas */
+.welcome-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    min-height: 400px;
+    color: var(--cor-texto-escuro);
+}
+
+.welcome-icon {
+    font-size: 4.5rem;
+    color: var(--cor-laranja-destaque);
+    margin-bottom: 1.5rem;
+    opacity: 0.85;
+}
+
+.welcome-container h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--cor-texto-claro);
+    margin-bottom: 1rem;
+}
+
+.welcome-container p {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.05rem;
+    max-width: 600px;
+    line-height: 1.6;
+}
+
+/* Galeria Masonry (Estilo Pinterest) */
+.masonry-gallery-container {
+    animation: fadeIn 0.4s ease-out;
+}
+
+.masonry-grid {
+    column-count: 3;
+    column-gap: 1.25rem;
+    width: 100%;
+}
+
+.masonry-item {
+    break-inside: avoid;
+    margin-bottom: 1.25rem;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    background: var(--cor-fundo-escuro);
+    border: 1px solid var(--cor-borda-suave);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.masonry-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+/* Efeito Hover nas miniaturas */
+.masonry-item:hover {
+    transform: scale(1.02);
+}
+
+.masonry-item:hover img {
+    filter: brightness(0.8);
+}
+
+.masonry-item-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem 0.8rem 0.8rem 0.8rem;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+    line-height: 1.4;
+}
+
+.masonry-item:hover .masonry-item-caption {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Lightbox Modal */
+.lightbox-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.92);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.lightbox-modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+.lightbox-content {
+    max-width: 90%;
+    max-height: 85%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: zoomIn 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.lightbox-content img {
+    max-width: 100%;
+    max-height: 80vh;
+    border-radius: 6px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+    display: block;
+    object-fit: contain;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.lightbox-caption {
+    color: #e2e8f0;
+    text-align: center;
+    margin-top: 1rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    max-width: 800px;
+    line-height: 1.5;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: -45px;
+    right: 0;
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 2.2rem;
+    cursor: pointer;
+    transition: color 0.2s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+}
+
+.lightbox-close:hover {
+    color: var(--cor-laranja-destaque);
+    transform: scale(1.1);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.95); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Responsividade do Acervo Digital */
+@media (max-width: 992px) {
+    .masonry-grid {
+        column-count: 2;
+    }
+}
+
+@media (max-width: 768px) {
+    .digitais-layout {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        margin: 1.5rem auto;
+        padding: 0 1rem;
+    }
+
+    body.digitais-page .sidebar-nav {
+        position: static;
+        max-height: none;
+        overflow: visible;
+        padding: 0.6rem;
+        margin-bottom: 0.5rem;
+        background: var(--cor-fundo-claro);
+        width: 100%;
+    }
+
+    body.digitais-page .sidebar-nav h2 {
+        display: none;
+    }
+
+    body.digitais-page .fundo-list {
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        white-space: nowrap;
+        gap: 0.5rem;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    body.digitais-page .fundo-list::-webkit-scrollbar {
+        display: none;
+    }
+
+    body.digitais-page .fundo-list li {
+        flex-shrink: 0;
+    }
+
+    body.digitais-page .fundo-item-btn {
+        width: auto;
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+        white-space: nowrap;
+    }
+
+    body.digitais-page .detail-section {
+        padding: 1.5rem;
+        width: 100%;
+    }
+
+    .welcome-container {
+        padding: 2.5rem 1rem;
+    }
+
+    .welcome-container h2 {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .masonry-grid {
+        column-count: 1;
+    }
+    
+    .lightbox-close {
+        top: -40px;
+        right: 10px;
+    }
+}
+

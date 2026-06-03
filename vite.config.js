@@ -12,7 +12,7 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'index.html'),
         '404': resolve(__dirname, '404.html'),
-        'arquivo-digital': resolve(__dirname, 'arquivo-digital.html'),
+        'arquivos-digitais': resolve(__dirname, 'arquivos-digitais.html'),
         'busca': resolve(__dirname, 'busca.html'),
         'localizacao-contato': resolve(__dirname, 'localizacao-contato.html'),
         'mapa-do-site': resolve(__dirname, 'mapa-do-site.html'),
