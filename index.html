@@ -10,17 +10,37 @@
     <meta name="keywords" content="Museu do Carvão, Arquivo Histórico...">
     <meta name="author" content="Museu Estadual do Carvão">
     <meta name="robots" content="index, follow">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Museu Estadual do Carvão">
+    <meta property="og:description" content="Conheça a história da mineração no Rio Grande do Sul, visite a antiga Usina Termelétrica e explore nosso acervo histórico.">
+    <meta property="og:image" content="img/og-image.jpg">
+    <meta property="og:url" content="https://museudocarvao.rs.gov.br/">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Cards Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Museu Estadual do Carvão">
+    <meta name="twitter:description" content="Conheça a história da mineração no Rio Grande do Sul, visite a antiga Usina Termelétrica e explore nosso acervo histórico.">
+    <meta name="twitter:image" content="img/og-image.jpg">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300..800&display=swap"
         rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+
+    <!-- CDNs Otimizados -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js" as="script">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js" defer></script>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/premium.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
     <link rel="icon" href="img/logo-museu.png" type="image/png">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css"></noscript>
 
 </head>
 
@@ -38,16 +58,13 @@
             <div class="splide__track">
                 <ul class="splide__list">
                     <li class="splide__slide">
-                        <img src="img/fachada_museu.jpg" alt="Fachada histórica do Museu Estadual do Carvão"
-                            style="width: 100%;">
+                        <img src="img/fachada_museu.jpg" alt="Fachada histórica do Museu Estadual do Carvão">
                     </li>
                     <li class="splide__slide">
-                        <img src="img/museu_exposicao.jpg" alt="Exposição interna do Museu"
-                            style="width: 100%;">
+                        <img src="img/museu_exposicao.jpg" alt="Exposição interna do Museu">
                     </li>
                     <li class="splide__slide">
-                        <img src="img/usina_antiga.jpg" alt="Antiga Usina Termelétrica"
-                            style="width: 100%;">
+                        <img src="img/usina_antiga.jpg" alt="Antiga Usina Termelétrica">
                     </li>
                 </ul>
             </div>
@@ -81,6 +98,31 @@
 
     <footer id="main-footer" class="site-footer">
     </footer>
+
+    <!-- Widget de Acessibilidade -->
+    <div id="ac-widget-container">
+        <div class="ac-panel" id="ac-panel-menu">
+            <button class="icon-button ac-btn" id="btn-decrease" aria-label="Diminuir Fonte" title="Diminuir Fonte">
+                <i class="fa-solid fa-minus"></i>
+            </button>
+            <button class="icon-button ac-btn" id="btn-original" aria-label="Restaurar Fonte" title="Restaurar Fonte">
+                <i class="fa-solid fa-text-height"></i>
+            </button>
+            <button class="icon-button ac-btn" id="btn-increase" aria-label="Aumentar Fonte" title="Aumentar Fonte">
+                <i class="fa-solid fa-plus"></i>
+            </button>
+            <button class="icon-button ac-btn" id="btn-theme" aria-label="Modo Escuro" title="Modo Escuro">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+            <button class="icon-button ac-btn" id="btn-contrast" aria-label="Alto Contraste" title="Alto Contraste">
+                <i class="fa-solid fa-circle-half-stroke"></i>
+            </button>
+        </div>
+        <button class="ac-fab" id="btn-ac-toggle" aria-label="Abrir Menu de Acessibilidade">
+            <i class="fa-solid fa-universal-access"></i>
+        </button>
+    </div>
+
     <script src="js/translations.js"></script>
     <script src="js/script.js"></script>
 </body>
