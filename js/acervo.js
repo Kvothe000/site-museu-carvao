@@ -17,8 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const button = document.createElement('button');
             button.className = 'fundo-item-btn';
             button.setAttribute('data-id', fundo.id);
-            button.setAttribute('aria-selected', index === 0 ? 'true' : 'false');
-            if (index === 0) button.classList.add('active');
+            button.setAttribute('aria-selected', 'false');
 
             // Set icon and truncated title
             button.innerHTML = `<i class="fa-regular fa-folder" aria-hidden="true"></i> <span>${fundo.titulo}</span>`;
@@ -128,7 +127,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize Master-Detail
     renderSidebar();
-    if (fundosHistoricos.length > 0) {
-        loadDetail(fundosHistoricos[0]);
-    }
 });
