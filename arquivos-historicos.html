@@ -142,12 +142,12 @@
             text-align: justify;
             max-height: 280px; /* Initial preview height */
             overflow: hidden;
-            transition: max-height 0.4s ease-in-out;
+            transition: max-height 0.6s cubic-bezier(0.25, 1, 0.5, 1);
             white-space: pre-line; /* Preserves line breaks from txt files */
         }
 
         body.historicos-page .sintese-text.expanded {
-            max-height: 6000px; /* Support long contents */
+            max-height: 1200px; /* Smooth height closer to real content */
         }
 
         body.historicos-page .sintese-fade-overlay {
@@ -243,22 +243,59 @@
             background-color: #e5ab58;
         }
 
-        /* Responsive */
+        /* Responsive Styles (Priority 1: Mobile Rolagem Horizontal e Tab Layout) */
         @media (max-width: 768px) {
             .historicos-layout {
-                grid-template-columns: 1fr;
+                display: flex;
+                flex-direction: column;
                 gap: 1.5rem;
                 margin: 1.5rem auto;
+                padding: 0 1rem;
             }
 
-            .sidebar-nav {
+            body.historicos-page .sidebar-nav {
                 position: static;
                 max-height: none;
-                overflow-y: visible;
+                overflow: visible;
+                padding: 0.6rem;
+                margin-bottom: 0.5rem;
+                background: rgba(20, 20, 20, 0.8);
+                width: 100%;
             }
 
-            .detail-section {
+            body.historicos-page .sidebar-nav h2 {
+                display: none; /* Hide heading for flat tab structure */
+            }
+
+            body.historicos-page .fundo-list {
+                display: flex;
+                flex-direction: row;
+                overflow-x: auto;
+                white-space: nowrap;
+                gap: 0.5rem;
+                scrollbar-width: none; /* Firefox */
+                -webkit-overflow-scrolling: touch;
+            }
+
+            body.historicos-page .fundo-list::-webkit-scrollbar {
+                display: none; /* Chrome/Edge/Safari */
+            }
+
+            body.historicos-page .fundo-list li {
+                flex-shrink: 0;
+                margin-bottom: 0;
+            }
+
+            body.historicos-page .fundo-item-btn {
+                width: auto;
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+                white-space: nowrap;
+            }
+
+            body.historicos-page .detail-section {
                 padding: 1.5rem;
+                width: 100%;
             }
 
             body.historicos-page .detail-title {

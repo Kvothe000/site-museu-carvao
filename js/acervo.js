@@ -114,8 +114,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     sinteseText.classList.remove('expanded');
                     btnToggle.querySelector('span').textContent = 'Ler Mais';
                     btnToggle.querySelector('i').className = 'fa-solid fa-chevron-down';
-                    // Scroll back to detail header smoothly
-                    document.querySelector('.detail-header').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    // Smooth scroll back to the top of the detail container to avoid losing reading position
+                    detailArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 } else {
                     sinteseText.classList.add('expanded');
                     btnToggle.querySelector('span').textContent = 'Ler Menos';
