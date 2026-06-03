@@ -2,18 +2,18 @@
   "name": "Museu Estadual do Carvão",
   "short_name": "Museu do Carvão",
   "description": "Conheça a história da mineração no Rio Grande do Sul e visite a antiga Usina Termelétrica.",
-  "start_url": "/",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#121212",
   "theme_color": "#f0a84d",
   "icons": [
     {
-      "src": "img/icon-192.png",
+      "src": "./img/icon-192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "img/icon-512.png",
+      "src": "./img/icon-512.png",
       "sizes": "512x512",
       "type": "image/png"
     }

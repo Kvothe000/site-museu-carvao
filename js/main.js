@@ -164,7 +164,7 @@ function initHeaderScripts() {
 document.addEventListener('DOMContentLoaded', async () => {
 
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/sw.js')
+        navigator.serviceWorker.register('/site-museu-carvao/sw.js')
             .then(reg => console.log('Service Worker Registrado com escopo:', reg.scope))
             .catch(err => console.error('Erro no registro do Service Worker:', err));
     }
