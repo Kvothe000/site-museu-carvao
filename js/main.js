@@ -73,17 +73,14 @@ function initHeaderScripts() {
     const header = document.querySelector('header');
     if (header) {
         const headerHeight = header.offsetHeight;
-        const body = document.body;
         window.addEventListener('scroll', () => {
             if (window.scrollY > headerHeight) {
                 if (!header.classList.contains('sticky-header')) {
                     header.classList.add('sticky-header');
-                    body.classList.add('body-padding-for-sticky');
                 }
             } else {
                 if (header.classList.contains('sticky-header')) {
                     header.classList.remove('sticky-header');
-                    body.classList.remove('body-padding-for-sticky');
                 }
             }
         }, { passive: true });
@@ -264,4 +261,44 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.querySelectorAll('.fade-in-up').forEach(el => {
         observer.observe(el);
     });
+
+    // Barra de progresso de leitura
+    function initReadingProgressBar() {
+        const progressBar = document.getElementById('reading-progress-bar');
+        if (!progressBar) return;
+
+        window.addEventListener('scroll', () => {
+            const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+            if (totalHeight > 0) {
+                const progress = (window.scrollY / totalHeight) * 100;
+                progressBar.style.width = `${progress}%`;
+            }
+        }, { passive: true });
+    }
+
+    // Scroll reveal com IntersectionObserver
+    function initScrollReveal() {
+        const reveals = document.querySelectorAll('.reveal');
+        if (reveals.length === 0) return;
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        reveals.forEach(el => revealObserver.observe(el));
+    }
+
+    initReadingProgressBar();
+    initScrollReveal();
 });

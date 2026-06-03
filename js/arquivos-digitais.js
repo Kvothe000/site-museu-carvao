@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const lightboxImage = document.getElementById('lightbox-image');
     const lightboxCaption = document.getElementById('lightbox-caption');
     const lightboxClose = document.getElementById('lightbox-close');
+    const lightboxDownload = document.getElementById('lightbox-download');
 
     if (!listContainer || !detailArea) {
         console.warn('Elements for Master-Detail UI not found on this page.');
@@ -177,12 +178,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Lógica do Lightbox Modal ---
-
     function openLightbox(imgData) {
         lightboxImage.src = imgData.src;
         lightboxImage.alt = imgData.alt;
         lightboxCaption.textContent = imgData.legenda;
+
+        if (lightboxDownload) {
+            lightboxDownload.href = imgData.src;
+            const filename = imgData.src.substring(imgData.src.lastIndexOf('/') + 1);
+            lightboxDownload.setAttribute('download', filename);
+        }
 
         lightboxModal.style.display = 'flex';
         // Forçar reflow para ativar a transição CSS
