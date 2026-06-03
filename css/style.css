@@ -25,6 +25,15 @@
     }
 }
 
+/* Manual Light Mode Override (Accessibility Toggle) */
+body.light-mode {
+    --cor-fundo-escuro: #fcfbf9;
+    --cor-fundo-claro: #f4f2ee;
+    --cor-texto-claro: #2d3748;
+    --cor-texto-escuro: #4a5568;
+    --cor-borda-suave: #e2e8f0;
+}
+
 /* Manual Dark Mode Override (Accessibility Toggle) */
 body.dark-mode {
     --cor-fundo-escuro: #121212;

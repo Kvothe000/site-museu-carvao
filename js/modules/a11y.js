@@ -20,25 +20,43 @@ export function initAccessibility() {
     const btnTheme = document.getElementById('btn-theme');
 
     // 0. Tema Escuro
-    if (localStorage.getItem('theme') === 'dark') {
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
         body.classList.add('dark-mode');
-        if (btnTheme) btnTheme.innerHTML = '<i class="fa-solid fa-sun" aria-hidden="true"></i>';
+        body.classList.remove('light-mode');
+        if (btnTheme) {
+            btnTheme.innerHTML = '<i class="fa-solid fa-sun" aria-hidden="true"></i>';
+            btnTheme.setAttribute('aria-label', 'Modo Claro');
+            btnTheme.setAttribute('title', 'Modo Claro');
+        }
+    } else {
+        body.classList.add('light-mode');
+        body.classList.remove('dark-mode');
+        if (btnTheme) {
+            btnTheme.innerHTML = '<i class="fa-solid fa-moon" aria-hidden="true"></i>';
+            btnTheme.setAttribute('aria-label', 'Modo Escuro');
+            btnTheme.setAttribute('title', 'Modo Escuro');
+        }
     }
 
     if (btnTheme) {
         btnTheme.onclick = () => {
-            body.classList.toggle('dark-mode');
-            const isDark = body.classList.contains('dark-mode');
-            if (isDark) {
-                localStorage.setItem('theme', 'dark');
-                btnTheme.innerHTML = '<i class="fa-solid fa-sun" aria-hidden="true"></i>';
-                btnTheme.setAttribute('aria-label', 'Modo Claro');
-                btnTheme.setAttribute('title', 'Modo Claro');
-            } else {
+            if (body.classList.contains('dark-mode')) {
+                body.classList.remove('dark-mode');
+                body.classList.add('light-mode');
                 localStorage.setItem('theme', 'light');
                 btnTheme.innerHTML = '<i class="fa-solid fa-moon" aria-hidden="true"></i>';
                 btnTheme.setAttribute('aria-label', 'Modo Escuro');
                 btnTheme.setAttribute('title', 'Modo Escuro');
+            } else {
+                body.classList.remove('light-mode');
+                body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+                btnTheme.innerHTML = '<i class="fa-solid fa-sun" aria-hidden="true"></i>';
+                btnTheme.setAttribute('aria-label', 'Modo Claro');
+                btnTheme.setAttribute('title', 'Modo Claro');
             }
         };
     }
