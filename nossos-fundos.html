@@ -40,12 +40,12 @@
 
         <div class="two-column-layout fade-in-up" id="documental-container">
             <aside class="sidebar-nav">
-                <h2>Categorias do Acervo</h2>
+                <h2 data-i18n="nf_categories_title">Categorias do Acervo</h2>
                 <ul>
-                    <li><a href="#tridimensional">Acervo Tridimensional</a></li>
-                    <li><a href="#fotografico">Acervo Fotográfico</a></li>
+                    <li><a href="#tridimensional" data-i18n="nav_tridimensional">Acervo Tridimensional</a></li>
+                    <li><a href="#fotografico" data-i18n="nav_photographic">Acervo Fotográfico</a></li>
                     <li>
-                        <a href="#documental">Acervo Documental</a>
+                        <a href="#documental" data-i18n="nav_documental">Acervo Documental</a>
                         <div id="doc-sidebar-tree" style="margin-top: 1rem; padding-left: 0.5rem;">
                              <!-- Menu populado via JS -->
                         </div>
@@ -60,8 +60,8 @@
 
                     <div id="nf-placeholder" style="margin-top:4rem; padding: 3rem; text-align:center; border:1px dashed var(--cor-borda-suave); border-radius:8px; color:var(--cor-texto-escuro);">
                         <i class="fa-solid fa-book-open-reader" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
-                        <h3>Selecione um Fundo na lateral para Ler</h3>
-                        <p>Acesse as sínteses detalhadas e relatórios completos da nossa história documental.</p>
+                        <h3 data-i18n="nf_select_fund_title">Selecione um Fundo na lateral para Ler</h3>
+                        <p data-i18n="nf_select_fund_desc">Acesse as sínteses detalhadas e relatórios completos da nossa história documental.</p>
                     </div>
 
                     <div id="documental-content-area">
@@ -77,10 +77,10 @@
     </footer>
 
     <!-- MODAL ÚNICO GLOBAL -->
-    <div id="global-modal" class="modal-overlay" onclick="if(event.target === this) closeDocumentalModal()">
+    <div id="global-modal" class="modal-overlay" data-i18n-aria="nf_report_modal_aria" aria-label="Visualizador de Relatório" onclick="if(event.target === this) closeDocumentalModal()">
         <div class="modal-content">
-            <span class="close-modal" onclick="closeDocumentalModal()">&times;</span>
-            <h2 id="global-modal-title" style="color:var(--cor-laranja-destaque); font-size:2.2rem; margin-bottom:1.5rem; padding-right:2rem;">Relatório Completo</h2>
+            <span class="close-modal" data-i18n-aria="nf_close_modal_aria" aria-label="Fechar" onclick="closeDocumentalModal()">&times;</span>
+            <h2 id="global-modal-title" style="color:var(--cor-laranja-destaque); font-size:2.2rem; margin-bottom:1.5rem; padding-right:2rem;"><span data-i18n="nf_report_title">Relatório Completo</span></h2>
             <div id="global-modal-body" class="modal-body" style="border-top:1px solid var(--cor-borda-suave); padding-top:1.5rem; text-align:justify;">
                 <!-- Conteúdo Modal populado via JS -->
             </div>

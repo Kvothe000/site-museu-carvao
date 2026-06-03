@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
             button.setAttribute('data-id', fundo.id);
             button.setAttribute('aria-selected', 'false');
 
-            button.innerHTML = `<i class="fa-regular fa-folder" aria-hidden="true"></i> <span>${fundo.titulo}</span>`;
+            button.innerHTML = `<i class="fa-regular fa-folder" aria-hidden="true"></i> <span data-i18n="fund_name_${fundo.id}">${fundo.titulo}</span>`;
             
             button.addEventListener('click', () => {
                 // Remove active classes
@@ -104,6 +104,10 @@ document.addEventListener('DOMContentLoaded', () => {
             li.appendChild(button);
             listContainer.appendChild(li);
         });
+
+        if (typeof window.updateLanguage === 'function') {
+            window.updateLanguage(localStorage.getItem('language') || 'pt');
+        }
     }
 
     // Exibe o Estado Inicial (Boas-vindas)
@@ -111,10 +115,13 @@ document.addEventListener('DOMContentLoaded', () => {
         detailArea.innerHTML = `
             <div class="welcome-container">
                 <i class="fa-regular fa-images welcome-icon" aria-hidden="true"></i>
-                <h2>Bem-vindo ao nosso Acervo Digital</h2>
-                <p>Selecione um Fundo na lateral para explorar os documentos históricos e fotografias digitalizadas que integram a memória da era do carvão.</p>
+                <h2 data-i18n="ad_welcome_title">Bem-vindo ao nosso Acervo Digital</h2>
+                <p data-i18n="ad_welcome_desc">Selecione um Fundo na lateral para explorar os documentos históricos e fotografias digitalizadas que integram a memória da era do carvão.</p>
             </div>
         `;
+        if (typeof window.updateLanguage === 'function') {
+            window.updateLanguage(localStorage.getItem('language') || 'pt');
+        }
     }
 
     // Carrega e renderiza a galeria de imagens (Masonry Grid)
@@ -124,15 +131,18 @@ document.addEventListener('DOMContentLoaded', () => {
         if (imagens.length === 0) {
             detailArea.innerHTML = `
                 <div class="detail-header">
-                    <p class="detail-subtitle">Acervo Digital</p>
-                    <h2 class="detail-title">${fundo.titulo}</h2>
+                    <p class="detail-subtitle" data-i18n="ad_subtitle">Acervo Digital</p>
+                    <h2 class="detail-title" data-i18n="fund_title_${fundo.id}">${fundo.titulo}</h2>
                 </div>
                 <div style="padding: 3rem; text-align: center; border: 1px dashed var(--cor-borda-suave); border-radius: 8px; color: var(--cor-texto-escuro);">
                     <i class="fa-regular fa-folder-open" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
-                    <h3>Nenhum documento digitalizado</h3>
-                    <p>Atualmente não há fotografias ou documentos digitalizados para este fundo no acervo online.</p>
+                    <h3 data-i18n="ad_no_docs_title">Nenhum documento digitalizado</h3>
+                    <p data-i18n="ad_no_docs_desc">Atualmente não há fotografias ou documentos digitalizados para este fundo no acervo online.</p>
                 </div>
             `;
+            if (typeof window.updateLanguage === 'function') {
+                window.updateLanguage(localStorage.getItem('language') || 'pt');
+            }
             return;
         }
 
@@ -140,17 +150,19 @@ document.addEventListener('DOMContentLoaded', () => {
         let gridItemsHtml = '';
         imagens.forEach((img, idx) => {
             gridItemsHtml += `
-                <div class="masonry-item" data-index="${idx}" role="button" tabindex="0" aria-label="Visualizar imagem: ${img.legenda}">
-                    <img src="${img.src}" loading="lazy" alt="${img.alt}">
-                    <div class="masonry-item-caption">${img.legenda}</div>
+                <div class="masonry-item" data-index="${idx}" role="button" tabindex="0"
+                    data-i18n-aria="fundo_${fundo.id}_img_${idx}_aria"
+                    aria-label="Visualizar imagem: ${img.legenda}">
+                    <img src="${img.src}" loading="lazy" data-i18n-alt="fundo_${fundo.id}_img_${idx}_alt" alt="${img.alt}">
+                    <div class="masonry-item-caption" data-i18n="fundo_${fundo.id}_img_${idx}_caption">${img.legenda}</div>
                 </div>
             `;
         });
 
         detailArea.innerHTML = `
             <div class="detail-header">
-                <p class="detail-subtitle">Acervo Digital</p>
-                <h2 class="detail-title">${fundo.titulo}</h2>
+                <p class="detail-subtitle" data-i18n="ad_subtitle">Acervo Digital</p>
+                <h2 class="detail-title" data-i18n="fund_title_${fundo.id}">${fundo.titulo}</h2>
             </div>
             
             <div class="masonry-gallery-container">
@@ -166,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const index = parseInt(item.getAttribute('data-index'), 10);
             const imgData = imagens[index];
 
-            const openHandler = () => openLightbox(imgData);
+            const openHandler = () => openLightbox(fundo.id, index, imgData);
 
             item.addEventListener('click', openHandler);
             item.addEventListener('keydown', (e) => {
@@ -176,12 +188,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
+
+        if (typeof window.updateLanguage === 'function') {
+            window.updateLanguage(localStorage.getItem('language') || 'pt');
+        }
     }
 
-    function openLightbox(imgData) {
+    function openLightbox(fundoId, index, imgData) {
         lightboxImage.src = imgData.src;
-        lightboxImage.alt = imgData.alt;
+        lightboxImage.setAttribute('data-i18n-alt', `fundo_${fundoId}_img_${index}_alt`);
+        lightboxCaption.setAttribute('data-i18n', `fundo_${fundoId}_img_${index}_caption`);
         lightboxCaption.textContent = imgData.legenda;
+
+        if (typeof window.updateLanguage === 'function') {
+            window.updateLanguage(localStorage.getItem('language') || 'pt');
+        }
 
         if (lightboxDownload) {
             lightboxDownload.href = imgData.src;
