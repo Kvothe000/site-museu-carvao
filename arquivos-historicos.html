@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore o Acervo de Arquivos Históricos do Museu Estadual do Carvão.">
+    <title>Arquivos Históricos - Museu Estadual do Carvão</title>
+    <link rel="icon" href="img/logo-museu.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/premium.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Premium Customizations for Master-Detail View */
+        .historicos-layout {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+            align-items: start;
+        }
+
+        .sidebar-nav {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 100px;
+            max-height: calc(100vh - 140px);
+            overflow-y: auto;
+            background: var(--cor-fundo-claro);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--cor-borda-suave);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .sidebar-nav h2 {
+            font-size: 1.25rem;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 2px solid var(--cor-laranja-destaque);
+            color: var(--cor-texto-claro);
+        }
+
+        .fundo-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .fundo-item-btn {
+            width: 100%;
+            text-align: left;
+            background: transparent;
+            border: none;
+            padding: 0.8rem 1rem;
+            color: var(--cor-texto-escuro);
+            font-size: 0.95rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            line-height: 1.3;
+        }
+
+        .fundo-item-btn:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+            color: var(--cor-laranja-destaque);
+        }
+
+        .fundo-item-btn.active {
+            background-color: var(--cor-laranja-destaque);
+            color: #121212 !important;
+            font-weight: 700;
+        }
+
+        .detail-section {
+            background: var(--cor-fundo-claro);
+            padding: 2.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--cor-borda-suave);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            min-height: 500px;
+        }
+
+        .detail-header {
+            border-bottom: 1px solid var(--cor-borda-suave);
+            padding-bottom: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .detail-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--cor-texto-claro);
+            margin: 0 0 0.5rem 0;
+            line-height: 1.2;
+        }
+
+        .detail-subtitle {
+            font-size: 0.85rem;
+            color: var(--cor-laranja-destaque);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0;
+        }
+
+        /* Collapsible text style */
+        .sintese-wrapper {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .sintese-text {
+            color: var(--cor-texto-claro);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            text-align: justify;
+            max-height: 280px; /* Initial preview height */
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out;
+            white-space: pre-line; /* Preserves line breaks from txt files */
+        }
+
+        .sintese-text.expanded {
+            max-height: 6000px; /* Support long contents */
+        }
+
+        .sintese-fade-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to top, var(--cor-fundo-claro), transparent);
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .sintese-text.expanded + .sintese-fade-overlay {
+            opacity: 0;
+        }
+
+        .btn-toggle-sintese {
+            background: transparent;
+            border: 1px solid var(--cor-laranja-destaque);
+            color: var(--cor-laranja-destaque);
+            padding: 0.6rem 1.4rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-top: 1.5rem;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-toggle-sintese:hover {
+            background-color: var(--cor-laranja-destaque);
+            color: #121212;
+        }
+
+        /* Action Buttons Area */
+        .actions-area {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            border-top: 1px solid var(--cor-borda-suave);
+            padding-top: 2rem;
+            margin-top: 2rem;
+        }
+
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0.8rem 1.5rem;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .btn-action:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .btn-pdf-desc {
+            background-color: #dc3545; /* Crimson Red for PDFs */
+            color: #ffffff !important;
+        }
+
+        .btn-pdf-desc:hover {
+            background-color: #c82333;
+        }
+
+        .btn-pdf-quadro {
+            background-color: #0d6efd; /* Blue for diagrams */
+            color: #ffffff !important;
+        }
+
+        .btn-pdf-quadro:hover {
+            background-color: #0b5ed7;
+        }
+
+        .btn-atom-link {
+            background-color: var(--cor-laranja-destaque);
+            color: #121212 !important;
+        }
+
+        .btn-atom-link:hover {
+            background-color: #e5ab58;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .historicos-layout {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                margin: 1.5rem auto;
+            }
+
+            .sidebar-nav {
+                position: static;
+                max-height: none;
+                overflow-y: visible;
+            }
+
+            .detail-section {
+                padding: 1.5rem;
+            }
+
+            .detail-title {
+                font-size: 1.6rem;
+            }
+
+            .actions-area {
+                flex-direction: column;
+            }
+
+            .btn-action {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* Dark Mode compatibility overrides for custom elements */
+        body.dark-mode .fundo-item-btn:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        body.dark-mode .sintese-fade-overlay {
+            background: linear-gradient(to top, var(--cor-fundo-claro), transparent);
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link">Pular para o Conteúdo Principal</a>
+
+    <header id="main-header">
+        <load src="./header.html" />
+    </header>
+
+    <main id="main-content">
+        <section class="page-title fade-in-up">
+            <h1 data-i18n="nav_documental">Arquivos Históricos</h1>
+        </section>
+
+        <div class="historicos-layout fade-in-up">
+            <!-- Coluna Esquerda: Master -->
+            <aside class="sidebar-nav" aria-label="Lista de Fundos Documentais">
+                <h2>Fundos Históricos</h2>
+                <ul class="fundo-list" id="fundo-list-container">
+                    <!-- Gerado dinamicamente via JS -->
+                </ul>
+            </aside>
+
+            <!-- Coluna Direita: Detail -->
+            <section class="detail-section" id="detail-area" aria-live="polite">
+                <!-- Populado dinamicamente via JS -->
+            </section>
+        </div>
+    </main>
+
+    <footer id="main-footer" class="site-footer">
+        <load src="./footer.html" />
+    </footer>
+
+    <!-- Scripts da Plataforma -->
+    <script src="js/translations.js"></script>
+    <script type="module" src="js/acervo.js"></script>
+    <script type="module" src="js/main.js"></script>
+</body>
+
+</html>

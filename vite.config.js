@@ -20,7 +20,10 @@ export default defineConfig({
         'nossos-fundos': resolve(__dirname, 'nossos-fundos.html'),
         'projetos': resolve(__dirname, 'projetos.html'),
         'publicacoes': resolve(__dirname, 'publicacoes.html'),
-        'servicos': resolve(__dirname, 'servicos.html')
+        'servicos': resolve(__dirname, 'servicos.html'),
+        'arquivos-historicos': resolve(__dirname, 'arquivos-historicos.html'),
+        'arquivos-fotograficos': resolve(__dirname, 'arquivos-fotograficos.html'),
+        'arquivos-tridimensionais': resolve(__dirname, 'arquivos-tridimensionais.html')
       }
     }
   }
