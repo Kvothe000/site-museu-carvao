@@ -24,6 +24,10 @@
     <meta name="twitter:description" content="Conheça a história da mineração no Rio Grande do Sul, visite a antiga Usina Termelétrica e explore nosso acervo histórico.">
     <meta name="twitter:image" content="img/og-image.jpg">
 
+    <!-- PWA Manifest & Theme -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#f0a84d">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -48,6 +52,7 @@
     <a href="#main-content" class="skip-link">Pular para o Conteúdo Principal</a>
 
     <header id="main-header">
+        <load src="./header.html" />
     </header>
 
     <main id="main-content">
@@ -58,13 +63,13 @@
             <div class="splide__track">
                 <ul class="splide__list">
                     <li class="splide__slide">
-                        <img src="img/fachada_museu.jpg" alt="Fachada histórica do Museu Estadual do Carvão">
+                        <img src="img/fachada_museu.jpg" alt="Fachada histórica do Museu Estadual do Carvão" loading="eager">
                     </li>
                     <li class="splide__slide">
-                        <img src="img/museu_exposicao.jpg" alt="Exposição interna do Museu">
+                        <img src="img/museu_exposicao.jpg" alt="Exposição interna do Museu" loading="lazy" decoding="async">
                     </li>
                     <li class="splide__slide">
-                        <img src="img/usina_antiga.jpg" alt="Antiga Usina Termelétrica">
+                        <img src="img/usina_antiga.jpg" alt="Antiga Usina Termelétrica" loading="lazy" decoding="async">
                     </li>
                 </ul>
             </div>
@@ -97,34 +102,35 @@
     </main>
 
     <footer id="main-footer" class="site-footer">
+        <load src="./footer.html" />
     </footer>
 
     <!-- Widget de Acessibilidade -->
     <div id="ac-widget-container">
         <div class="ac-panel" id="ac-panel-menu">
             <button class="icon-button ac-btn" id="btn-decrease" aria-label="Diminuir Fonte" title="Diminuir Fonte">
-                <i class="fa-solid fa-minus"></i>
+                <i class="fa-solid fa-minus" aria-hidden="true"></i>
             </button>
             <button class="icon-button ac-btn" id="btn-original" aria-label="Restaurar Fonte" title="Restaurar Fonte">
-                <i class="fa-solid fa-text-height"></i>
+                <i class="fa-solid fa-text-height" aria-hidden="true"></i>
             </button>
             <button class="icon-button ac-btn" id="btn-increase" aria-label="Aumentar Fonte" title="Aumentar Fonte">
-                <i class="fa-solid fa-plus"></i>
+                <i class="fa-solid fa-plus" aria-hidden="true"></i>
             </button>
             <button class="icon-button ac-btn" id="btn-theme" aria-label="Modo Escuro" title="Modo Escuro">
-                <i class="fa-solid fa-moon"></i>
+                <i class="fa-solid fa-moon" aria-hidden="true"></i>
             </button>
             <button class="icon-button ac-btn" id="btn-contrast" aria-label="Alto Contraste" title="Alto Contraste">
-                <i class="fa-solid fa-circle-half-stroke"></i>
+                <i class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i>
             </button>
         </div>
         <button class="ac-fab" id="btn-ac-toggle" aria-label="Abrir Menu de Acessibilidade">
-            <i class="fa-solid fa-universal-access"></i>
+            <i class="fa-solid fa-universal-access" aria-hidden="true"></i>
         </button>
     </div>
 
     <script src="js/translations.js"></script>
-    <script src="js/script.js"></script>
+    <script type="module" src="js/main.js"></script>
 </body>
 
 </html>
