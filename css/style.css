@@ -742,11 +742,13 @@ textarea:focus {
 .language-selector a {
     text-decoration: none;
     color: var(--cor-texto-escuro);
-    transition: color 0.3s;
+    transition: color 0.3s, font-weight 0.3s;
 }
 
-.language-selector a:hover {
+.language-selector a:hover,
+.language-selector a.active {
     color: var(--cor-laranja-destaque);
+    font-weight: 700;
 }
 
 /* Estilo dos Ícones Sociais */
