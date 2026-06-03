@@ -26,36 +26,11 @@ function highlightActiveLink() {
 
 // --- WIDGET FLUTUANTE DE ACESSIBILIDADE ---
 function injectFloatingAccessibility() {
-    if (document.getElementById('ac-widget-container')) return; // Already exists
-
-    const widget = document.createElement('div');
-    widget.id = 'ac-widget-container';
-    widget.innerHTML = `
-        <div class="ac-panel" id="ac-panel-menu">
-            <button class="icon-button ac-btn" id="btn-decrease" aria-label="Diminuir Fonte" title="Diminuir Fonte">
-                <i class="fa-solid fa-minus"></i>
-            </button>
-            <button class="icon-button ac-btn" id="btn-original" aria-label="Restaurar Fonte" title="Restaurar Fonte">
-                <i class="fa-solid fa-text-height"></i>
-            </button>
-            <button class="icon-button ac-btn" id="btn-increase" aria-label="Aumentar Fonte" title="Aumentar Fonte">
-                <i class="fa-solid fa-plus"></i>
-            </button>
-            <button class="icon-button ac-btn" id="btn-theme" aria-label="Modo Escuro" title="Modo Escuro">
-                <i class="fa-solid fa-moon"></i>
-            </button>
-            <button class="icon-button ac-btn" id="btn-contrast" aria-label="Alto Contraste" title="Alto Contraste">
-                <i class="fa-solid fa-circle-half-stroke"></i>
-            </button>
-        </div>
-        <button class="ac-fab" id="btn-ac-toggle" aria-label="Abrir Menu de Acessibilidade">
-            <i class="fa-solid fa-universal-access"></i>
-        </button>
-    `;
-    document.body.appendChild(widget);
-
     const toggleBtn = document.getElementById('btn-ac-toggle');
     const panel = document.getElementById('ac-panel-menu');
+    
+    if (!toggleBtn || !panel) return;
+
     toggleBtn.onclick = () => {
         panel.classList.toggle('active');
     };
