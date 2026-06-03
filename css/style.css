@@ -12,6 +12,8 @@
     --cor-texto-claro: #2d3748; /* Primary Text (Dark for contrast) */
     --cor-texto-escuro: #4a5568; /* Secondary Text (Gray) */
     --cor-borda-suave: #e2e8f0; /* Subtle border */
+    --overlay-historico-1: rgba(252, 251, 249, 0.9);
+    --overlay-historico-2: rgba(244, 242, 238, 0.95);
 }
 
 /* Native Dark Mode */
@@ -22,6 +24,8 @@
         --cor-texto-claro: #e2e8f0; /* readable light text */
         --cor-texto-escuro: #a0aec0; /* secondary text */
         --cor-borda-suave: #2d3748; /* Subtle dark border */
+        --overlay-historico-1: rgba(18, 18, 18, 0.9);
+        --overlay-historico-2: rgba(26, 32, 44, 0.95);
     }
 }
 
@@ -32,6 +36,8 @@ body.light-mode {
     --cor-texto-claro: #2d3748;
     --cor-texto-escuro: #4a5568;
     --cor-borda-suave: #e2e8f0;
+    --overlay-historico-1: rgba(252, 251, 249, 0.9);
+    --overlay-historico-2: rgba(244, 242, 238, 0.95);
 }
 
 /* Manual Dark Mode Override (Accessibility Toggle) */
@@ -41,6 +47,8 @@ body.dark-mode {
     --cor-texto-claro: #e2e8f0;
     --cor-texto-escuro: #a0aec0;
     --cor-borda-suave: #2d3748;
+    --overlay-historico-1: rgba(18, 18, 18, 0.9);
+    --overlay-historico-2: rgba(26, 32, 44, 0.95);
 }
 
 body {
@@ -123,7 +131,8 @@ header {
     border: none;
     padding: 0.5rem 1rem;
     font-size: 1rem;
-    background: #f1f1f1;
+    background: var(--cor-fundo-claro);
+    color: var(--cor-texto-claro);
 }
 
 .search-bar button {
@@ -132,7 +141,7 @@ header {
     padding: 0 0.8rem;
     cursor: pointer;
     font-size: 1rem;
-    color: #555;
+    color: var(--cor-texto-escuro);
 }
 
 /* ==========================================================================
@@ -405,8 +414,8 @@ main {
     text-align: center;
     padding: 2rem;
     margin-top: 2rem;
-    background-color: #e0e0e0;
-    color: #555;
+    background-color: var(--cor-fundo-claro);
+    color: var(--cor-texto-escuro);
 }
 
 /* ==========================================================================
@@ -624,7 +633,7 @@ main {
 
 .contact-details p {
     margin: 0;
-    color: #555;
+    color: var(--cor-texto-escuro);
 }
 
 .contact-form .form-group {
@@ -644,6 +653,8 @@ main {
     border-radius: 4px;
     font-size: 1rem;
     box-sizing: border-box;
+    background-color: var(--cor-fundo-escuro);
+    color: var(--cor-texto-claro);
 }
 
 .submit-button {
@@ -749,7 +760,7 @@ textarea:focus {
 /* Estilo do Seletor de Idiomas */
 .language-selector {
     font-size: 0.9rem;
-    color: #555;
+    color: var(--cor-texto-escuro);
 }
 
 .language-selector strong {
@@ -758,7 +769,7 @@ textarea:focus {
 
 .language-selector a {
     text-decoration: none;
-    color: #555;
+    color: var(--cor-texto-escuro);
     transition: color 0.3s;
 }
 
@@ -871,12 +882,12 @@ textarea:focus {
     margin-top: 0;
     margin-bottom: 1.5rem;
     font-style: italic;
-    color: #666;
+    color: var(--cor-texto-escuro);
 }
 
 .publication-description {
     line-height: 1.7;
-    color: #444;
+    color: var(--cor-texto-escuro);
     flex-grow: 1;
     /* Garante que a descrição empurre o link para o final */
 }
@@ -1418,6 +1429,8 @@ textarea:focus {
     padding: 0.6rem 0.8rem;
     font-size: 0.95rem;
     border-radius: 4px 0 0 4px;
+    background: var(--cor-fundo-claro);
+    color: var(--cor-texto-claro);
 }
 
 .sidebar-search button {
@@ -1425,7 +1438,7 @@ textarea:focus {
     border: none;
     padding: 0 0.8rem;
     cursor: pointer;
-    color: #555;
+    color: var(--cor-texto-escuro);
     border-left: 1px solid var(--cor-borda-suave);
 }
 
@@ -1485,7 +1498,7 @@ textarea:focus {
     font-size: 1.1rem;
     line-height: 1.7;
     margin-bottom: 2.5rem;
-    color: #555;
+    color: var(--cor-texto-escuro);
 }
 
 .service-item {
@@ -1596,7 +1609,7 @@ textarea:focus {
 .search-loading, .no-results {
     text-align: center;
     padding: 3rem;
-    color: #555;
+    color: var(--cor-texto-escuro);
     font-size: 1.2rem;
 }
 .search-loading i {
@@ -1606,7 +1619,7 @@ textarea:focus {
 .search-summary {
     margin-bottom: 2rem;
     padding-bottom: 1rem;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--cor-borda-suave);
     color: var(--cor-texto-escuro);
 }
 .search-results-list {
@@ -1618,10 +1631,10 @@ textarea:focus {
 }
 .result-card {
     display: block;
-    background: #f9f9f9;
+    background: var(--cor-fundo-claro);
     padding: 1.5rem;
     border-radius: 8px;
-    border: 1px solid #eee;
+    border: 1px solid var(--cor-borda-suave);
     transition: all 0.3s ease;
     text-align: left;
 }
@@ -1633,11 +1646,11 @@ textarea:focus {
 }
 .result-card h3 {
     margin: 0.5rem 0;
-    color: var(--cor-texto-escuro);
+    color: var(--cor-texto-claro);
     font-size: 1.3rem;
 }
 .result-card p {
-    color: #666;
+    color: var(--cor-texto-escuro);
     font-size: 0.95rem;
     margin-bottom: 0;
 }
@@ -1718,7 +1731,7 @@ textarea:focus {
     line-height: 1.7;
     margin-bottom: 3rem;
     /* Mais espaço antes dos cards */
-    color: #555;
+    color: var(--cor-texto-escuro);
     text-align: center;
     /* Centraliza a introdução */
     max-width: 800px;
@@ -2009,7 +2022,7 @@ body.high-contrast .page-hero {
 
 .error-message {
     font-size: 1.1rem;
-    color: #666;
+    color: var(--cor-texto-escuro);
     margin-bottom: 2.5rem;
 }
 
@@ -2028,7 +2041,7 @@ body.high-contrast .page-hero {
     font-size: 1.2rem;
     color: var(--cor-texto-escuro);
     margin-bottom: 1rem;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--cor-borda-suave);
     padding-bottom: 0.5rem;
 }
 
@@ -2042,7 +2055,7 @@ body.high-contrast .page-hero {
 }
 
 .org-structure-role {
-    color: #555;
+    color: var(--cor-texto-escuro);
 }
 
 /* ==========================================================================
@@ -2103,7 +2116,7 @@ body.high-contrast .page-hero {
     width: 16px;
     height: 16px;
     background-color: var(--cor-laranja-destaque);
-    border: 3px solid #fff;
+    border: 3px solid var(--cor-fundo-escuro);
     border-radius: 50%;
     box-shadow: 0 0 0 2px var(--cor-laranja-destaque);
     z-index: 2;
@@ -2156,13 +2169,13 @@ body.high-contrast .page-hero {
 .timeline-content h3 {
     margin-top: 0;
     font-size: 1.1rem;
-    color: var(--cor-texto-escuro);
+    color: var(--cor-texto-claro);
 }
 
 .timeline-content p {
     margin-bottom: 0;
     font-size: 0.95rem;
-    color: #555;
+    color: var(--cor-texto-escuro);
 }
 
 /* --- ESTILO PARA COMPUTADOR (HORIZONTAL - A MÁGICA ACONTECE AQUI) --- */

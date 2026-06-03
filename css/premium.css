@@ -28,7 +28,7 @@ body {
 
 /* --- OVERRIDE FOOTER --- */
 footer#main-footer.site-footer {
-    background-color: #121212; /* Premium Dark */
+    background-color: var(--cor-fundo-claro);
     color: var(--cor-texto-escuro);
     border-top: 1px solid var(--cor-borda-suave);
 }
@@ -92,7 +92,7 @@ footer#main-footer.site-footer {
 
 /* --- COMPONENTE DE ÁRVORE GENEALÓGICA / FUNDOS --- */
 .archive-tree {
-    background: rgba(20, 20, 20, 0.6);
+    background: var(--cor-fundo-claro);
     border: 1px solid var(--cor-borda-suave);
     border-radius: 8px;
     padding: 2rem;
@@ -238,14 +238,14 @@ footer#main-footer.site-footer {
    ========================================================== */
 
 .storytelling-page {
-    background-color: #121212; /* Dark Accessible Background */
-    color: #e5e5e5;
+    background-color: var(--cor-fundo-escuro);
+    color: var(--cor-texto-claro);
 }
 
 .story-hero {
     position: relative;
     height: 80vh;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(18, 18, 18, 1)), url('/site-museu-carvao/img/historia/historia-1.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), var(--cor-fundo-escuro)), url('/site-museu-carvao/img/historia/historia-1.jpg');
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -548,7 +548,7 @@ footer#main-footer.site-footer {
 }
 
 .timeline-content-box {
-    background: rgba(22, 22, 22, 0.85);
+    background: var(--cor-fundo-claro);
     border: 1px solid var(--cor-borda-suave);
     border-radius: 8px;
     padding: 1.5rem;
@@ -566,7 +566,7 @@ footer#main-footer.site-footer {
     font-family: 'Playfair Display', serif;
     font-size: 1.25rem;
     margin-top: 0;
-    color: #ffffff;
+    color: var(--cor-texto-claro);
     margin-bottom: 0.8rem;
     font-weight: 600;
 }
@@ -576,7 +576,7 @@ footer#main-footer.site-footer {
     font-size: 0.95rem;
     line-height: 1.6;
     margin: 0;
-    color: #c7c7c7;
+    color: var(--cor-texto-escuro);
     font-weight: 300;
 }
 
