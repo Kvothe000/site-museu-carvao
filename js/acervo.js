@@ -111,15 +111,37 @@ document.addEventListener('DOMContentLoaded', () => {
             btnToggle.addEventListener('click', () => {
                 const isExpanded = sinteseText.classList.contains('expanded');
                 if (isExpanded) {
+                    // Set current height as starting point for collapse animation
+                    sinteseText.style.maxHeight = sinteseText.scrollHeight + 'px';
                     sinteseText.classList.remove('expanded');
+                    
+                    // Force a reflow to make the transition work
+                    sinteseText.offsetHeight; 
+                    
+                    // Collapse back to baseline after a tiny delay
+                    setTimeout(() => {
+                        sinteseText.style.maxHeight = '280px';
+                    }, 10);
+
                     btnToggle.querySelector('span').textContent = 'Ler Mais';
                     btnToggle.querySelector('i').className = 'fa-solid fa-chevron-down';
+                    
                     // Smooth scroll back to the top of the detail container to avoid losing reading position
                     detailArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 } else {
+                    const alturaReal = sinteseText.scrollHeight + 'px';
+                    sinteseText.style.maxHeight = alturaReal;
                     sinteseText.classList.add('expanded');
+
                     btnToggle.querySelector('span').textContent = 'Ler Menos';
                     btnToggle.querySelector('i').className = 'fa-solid fa-chevron-up';
+
+                    // Once transition finishes, set height to none to prevent clipping on window resize/orientation change
+                    sinteseText.addEventListener('transitionend', () => {
+                        if (sinteseText.classList.contains('expanded')) {
+                            sinteseText.style.maxHeight = 'none';
+                        }
+                    }, { once: true });
                 }
             });
         }
