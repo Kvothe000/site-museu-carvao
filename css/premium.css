@@ -1471,4 +1471,72 @@ body.digitais-page .detail-section {
     }
 }
 
+/* ==========================================================
+   BARRA DE PROGRESSO DE LEITURA (READING PROGRESS BAR)
+   ========================================================== */
+#reading-progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 4px;
+    background-color: var(--cor-laranja-destaque);
+    z-index: 1001;
+    transition: width 0.1s ease-out;
+}
+
+/* ==========================================================
+   ANIMAÇÕES DE SCROLL REVEAL (INTERSECTION OBSERVER)
+   ========================================================== */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Efeito cascata para os cards de acesso rápido */
+.quick-card.reveal:nth-child(1) { transition-delay: 0.1s; }
+.quick-card.reveal:nth-child(2) { transition-delay: 0.2s; }
+.quick-card.reveal:nth-child(3) { transition-delay: 0.3s; }
+.quick-card.reveal:nth-child(4) { transition-delay: 0.4s; }
+
+/* ==========================================================
+   BOTOES DO LIGHTBOX (DOWNLOAD E FECHAR)
+   ========================================================== */
+.lightbox-download {
+    position: absolute;
+    top: -45px;
+    right: 50px;
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: color 0.2s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    text-decoration: none;
+    z-index: 10002;
+}
+
+.lightbox-download:hover {
+    color: var(--cor-laranja-destaque);
+    transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+    .lightbox-download {
+        right: 45px;
+        font-size: 1.6rem;
+    }
+}
+
 
