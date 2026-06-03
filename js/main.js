@@ -34,6 +34,20 @@ function updateLanguage(lang) {
         }
     });
 
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+        const key = element.getAttribute('data-i18n-placeholder');
+        if (typeof translations !== 'undefined' && translations[lang] && translations[lang][key]) {
+            element.placeholder = translations[lang][key];
+        }
+    });
+
+    document.querySelectorAll('[data-i18n-alt]').forEach(element => {
+        const key = element.getAttribute('data-i18n-alt');
+        if (typeof translations !== 'undefined' && translations[lang] && translations[lang][key]) {
+            element.alt = translations[lang][key];
+        }
+    });
+
     document.querySelectorAll('[data-i18n-aria]').forEach(element => {
         const key = element.getAttribute('data-i18n-aria');
         if (typeof translations !== 'undefined' && translations[lang] && translations[lang][key]) {
@@ -53,6 +67,9 @@ function updateLanguage(lang) {
         });
     }
 }
+
+// Expor função globalmente para chamadas dinâmicas pós-injeção de DOM
+window.updateLanguage = updateLanguage;
 
 function initLanguageSelector() {
     const langButtons = document.querySelectorAll('.language-selector a');

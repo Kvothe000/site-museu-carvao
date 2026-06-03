@@ -29,8 +29,8 @@
 
         <div class="digitais-layout fade-in-up">
             <!-- Coluna Esquerda: Master -->
-            <aside class="sidebar-nav" aria-label="Lista de Fundos Documentais">
-                <h2>Fundos Digitais</h2>
+            <aside class="sidebar-nav" data-i18n-aria="ad_sidebar_aria" aria-label="Lista de Fundos Documentais">
+                <h2 data-i18n="ad_sidebar_title">Fundos Digitais</h2>
                 <ul class="fundo-list" id="fundo-list-container">
                     <!-- Gerado dinamicamente via JS -->
                 </ul>
@@ -44,10 +44,10 @@
     </main>
 
     <!-- Modal Lightbox para visualização de imagem em tamanho grande -->
-    <div id="lightbox-modal" class="lightbox-modal" role="dialog" aria-modal="true" aria-label="Visualizador de Imagem">
+    <div id="lightbox-modal" class="lightbox-modal" role="dialog" aria-modal="true" data-i18n-aria="lightbox_aria" aria-label="Visualizador de Imagem">
         <div class="lightbox-content">
-            <a id="lightbox-download" class="lightbox-download" download aria-label="Baixar imagem"><i class="fa-solid fa-download"></i></a>
-            <button id="lightbox-close" class="lightbox-close" aria-label="Fechar visualizador"><i class="fa-solid fa-xmark"></i></button>
+            <a id="lightbox-download" class="lightbox-download" download data-i18n-aria="lightbox_download_aria" aria-label="Baixar imagem"><i class="fa-solid fa-download"></i></a>
+            <button id="lightbox-close" class="lightbox-close" data-i18n-aria="lightbox_close_aria" aria-label="Fechar visualizador"><i class="fa-solid fa-xmark"></i></button>
             <img id="lightbox-image" src="" alt="">
             <div id="lightbox-caption" class="lightbox-caption"></div>
         </div>

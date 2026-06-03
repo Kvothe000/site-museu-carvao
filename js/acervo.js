@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
             button.setAttribute('aria-selected', 'false');
 
             // Set icon and truncated title
-            button.innerHTML = `<i class="fa-regular fa-folder" aria-hidden="true"></i> <span>${fundo.titulo}</span>`;
+            button.innerHTML = `<i class="fa-regular fa-folder" aria-hidden="true"></i> <span data-i18n="fund_name_${fundo.id}">${fundo.titulo}</span>`;
             
             button.addEventListener('click', () => {
                 // Remove active classes
@@ -45,6 +45,10 @@ document.addEventListener('DOMContentLoaded', () => {
             li.appendChild(button);
             listContainer.appendChild(li);
         });
+
+        if (typeof window.updateLanguage === 'function') {
+            window.updateLanguage(localStorage.getItem('language') || 'pt');
+        }
     }
 
     // Load Detail Area
@@ -55,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (fundo.pdfDescricao) {
             actionButtonsHtml += `
                 <a href="${fundo.pdfDescricao}" target="_blank" class="btn-action btn-pdf-desc" rel="noopener noreferrer">
-                    <i class="fa-solid fa-file-pdf" aria-hidden="true"></i> Descrição Completa (PDF)
+                    <i class="fa-solid fa-file-pdf" aria-hidden="true"></i> <span data-i18n="nf_pdf_desc">Descrição Completa (PDF)</span>
                 </a>
             `;
         }
@@ -63,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (fundo.pdfQuadro) {
             actionButtonsHtml += `
                 <a href="${fundo.pdfQuadro}" target="_blank" class="btn-action btn-pdf-quadro" rel="noopener noreferrer">
-                    <i class="fa-solid fa-sitemap" aria-hidden="true"></i> Quadro de Arranjo (PDF)
+                    <i class="fa-solid fa-sitemap" aria-hidden="true"></i> <span data-i18n="nf_pdf_quadro">Quadro de Arranjo (PDF)</span>
                 </a>
             `;
         }
@@ -71,28 +75,32 @@ document.addEventListener('DOMContentLoaded', () => {
         if (fundo.linkAtom) {
             actionButtonsHtml += `
                 <a href="${fundo.linkAtom}" target="_blank" class="btn-action btn-atom-link" rel="noopener noreferrer">
-                    <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> Acessar no AtoM
+                    <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> <span data-i18n="nf_access_atom_detail">Acessar no AtoM</span>
                 </a>
             `;
         }
 
         detailArea.innerHTML = `
             <div class="detail-header">
-                <p class="detail-subtitle">Detalhes do Fundo Documental</p>
-                <h2 class="detail-title">${fundo.titulo}</h2>
+                <p class="detail-subtitle" data-i18n="nf_subtitle_detail">Detalhes do Fundo Documental</p>
+                <h2 class="detail-title" data-i18n="fund_title_${fundo.id}">${fundo.titulo}</h2>
             </div>
             
             <div class="sintese-wrapper">
-                <div class="sintese-text" id="sintese-text-element">${fundo.sintese}</div>
+                <div class="sintese-text" id="sintese-text-element" data-i18n="fund_sintese_${fundo.id}">${fundo.sintese}</div>
                 <div class="sintese-fade-overlay" id="sintese-fade-overlay-element"></div>
             </div>
 
             <button class="btn-toggle-sintese" id="btn-toggle-sintese-element">
-                <i class="fa-solid fa-chevron-down" aria-hidden="true"></i> <span>Ler Mais</span>
+                <i class="fa-solid fa-chevron-down" aria-hidden="true"></i> <span data-i18n="nf_read_more">Ler Mais</span>
             </button>
 
             ${actionButtonsHtml ? `<div class="actions-area">${actionButtonsHtml}</div>` : ''}
         `;
+
+        if (typeof window.updateLanguage === 'function') {
+            window.updateLanguage(localStorage.getItem('language') || 'pt');
+        }
 
         // Collapsible synthesis logic
         const sinteseText = document.getElementById('sintese-text-element');
@@ -123,7 +131,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         sinteseText.style.maxHeight = '280px';
                     }, 10);
 
-                    btnToggle.querySelector('span').textContent = 'Ler Mais';
+                    btnToggle.querySelector('span').setAttribute('data-i18n', 'nf_read_more');
+                    if (typeof window.updateLanguage === 'function') {
+                        window.updateLanguage(localStorage.getItem('language') || 'pt');
+                    }
                     btnToggle.querySelector('i').className = 'fa-solid fa-chevron-down';
                     
                     // Smooth scroll back to the top of the detail container to avoid losing reading position
@@ -133,7 +144,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     sinteseText.style.maxHeight = alturaReal;
                     sinteseText.classList.add('expanded');
 
-                    btnToggle.querySelector('span').textContent = 'Ler Menos';
+                    btnToggle.querySelector('span').setAttribute('data-i18n', 'nf_read_less');
+                    if (typeof window.updateLanguage === 'function') {
+                        window.updateLanguage(localStorage.getItem('language') || 'pt');
+                    }
                     btnToggle.querySelector('i').className = 'fa-solid fa-chevron-up';
 
                     // Once transition finishes, set height to none to prevent clipping on window resize/orientation change

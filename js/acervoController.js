@@ -15,6 +15,10 @@ document.addEventListener("DOMContentLoaded", () => {
     } else if (isDigital) {
         renderDigitalSidebar();
     }
+
+    if (typeof window.updateLanguage === 'function') {
+        window.updateLanguage(localStorage.getItem('language') || 'pt');
+    }
 });
 
 // ==========================================
@@ -28,11 +32,15 @@ function renderDocumentalSidebar() {
     ACERVO_DATA.fundos.forEach(fundo => {
         html += `
         <div class="nf-fundo-toggle" onclick="loadDocumentalFundo('${fundo.id}', this)" style="cursor:pointer; padding:0.8rem; margin-bottom:0.5rem; background:var(--cor-fundo-claro); border-radius:4px; transition:background 0.2s;">
-            <i class="fa-regular fa-folder"></i> ${fundo.name}
+            <i class="fa-regular fa-folder"></i> <span data-i18n="fund_name_${fundo.id}">${fundo.name}</span>
         </div>
         `;
     });
     sidebar.innerHTML = html;
+
+    if (typeof window.updateLanguage === 'function') {
+        window.updateLanguage(localStorage.getItem('language') || 'pt');
+    }
 }
 
 function loadDocumentalFundo(id, element) {
@@ -50,31 +58,35 @@ function loadDocumentalFundo(id, element) {
     
     let btnRelatorioHtml = '';
     if (fundo.relatorioCompletoHtml) {
-        btnRelatorioHtml = `<button onclick="openDocumentalModal('${fundo.id}')" style="background:var(--cor-laranja-destaque); margin-top:1rem; color:#121212; border:none; padding:12px 25px; font-weight:bold; cursor:pointer; font-size:1rem; border-radius:4px; box-shadow: 0 4px 10px rgba(216, 155, 66, 0.2); transition: transform 0.2s;"><i class="fa-solid fa-book-open"></i> Ler Relatório Completo</button>`;
+        btnRelatorioHtml = `<button onclick="openDocumentalModal('${fundo.id}')" style="background:var(--cor-laranja-destaque); margin-top:1rem; color:#121212; border:none; padding:12px 25px; font-weight:bold; cursor:pointer; font-size:1rem; border-radius:4px; box-shadow: 0 4px 10px rgba(216, 155, 66, 0.2); transition: transform 0.2s;"><i class="fa-solid fa-book-open"></i> <span data-i18n="nf_read_report">Ler Relatório Completo</span></button>`;
     }
 
-    let sinteseHtml = '<p>Síntese não cadastrada.</p>';
+    let sinteseHtml = '<p data-i18n="nf_no_summary">Síntese não cadastrada.</p>';
     if (fundo.sintesePrimeiro) {
         sinteseHtml = `
            <div class="sintese-container" style="background: var(--cor-fundo-claro); padding: 2rem; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border: 1px solid var(--cor-borda-suave); margin-bottom: 1.5rem;">
-               ${fundo.sintesePrimeiro}
+               <span data-i18n="fund_sintese_1_${fundo.id}">${fundo.sintesePrimeiro}</span>
                <div id="dynamic-sin-more" style="display:none; transition: all 0.3s; margin-top:1rem; padding-top:1rem; border-top:1px dashed var(--cor-borda-suave);">
-                   ${fundo.sinteseRestante}
+                   <span data-i18n="fund_sintese_2_${fundo.id}">${fundo.sinteseRestante}</span>
                </div>
-               ${fundo.sinteseRestante ? `<button onclick="toggleSintese(this)" style="margin-top:1.5rem; background:transparent; color:var(--cor-laranja-destaque); border:1px solid var(--cor-laranja-destaque); padding:5px 15px; border-radius:4px; cursor:pointer; font-weight: 500;">Ler Mais Síntese</button>` : ''}
+               ${fundo.sinteseRestante ? `<button onclick="toggleSintese(this)" data-i18n="nf_read_more" style="margin-top:1.5rem; background:transparent; color:var(--cor-laranja-destaque); border:1px solid var(--cor-laranja-destaque); padding:5px 15px; border-radius:4px; cursor:pointer; font-weight: 500;">Ler Mais Síntese</button>` : ''}
            </div>
         `;
     }
 
     container.innerHTML = `
         <div class="nf-fundo-detail fade-in-up is-visible" style="margin-top: 1rem; padding-top: 2rem; border-top: 1px solid var(--cor-borda-suave); animation: fadeInUp 0.5s ease forwards;">
-            <h2 style="color: var(--cor-laranja-destaque); font-size: 1.8rem; margin-bottom: 2rem; line-height: 1.3;"><i class="fa-solid fa-folder-open"></i> ${fundo.title}</h2>
-            <h3 style="color:var(--cor-laranja-destaque);">Histórico e Resumo do Fundo</h3>
+            <h2 style="color: var(--cor-laranja-destaque); font-size: 1.8rem; margin-bottom: 2rem; line-height: 1.3;"><i class="fa-solid fa-folder-open"></i> <span data-i18n="fund_name_${fundo.id}">${fundo.title}</span></h2>
+            <h3 style="color:var(--cor-laranja-destaque);" data-i18n="nf_history_title">Histórico e Resumo do Fundo</h3>
             ${sinteseHtml}
             <br>
             ${btnRelatorioHtml}
         </div>
     `;
+
+    if (typeof window.updateLanguage === 'function') {
+        window.updateLanguage(localStorage.getItem('language') || 'pt');
+    }
 }
 
 // Escopo Abstrato do Botão Ler Mais para evitar o erro const el
@@ -82,10 +94,13 @@ function toggleSintese(btn) {
     const el = document.getElementById('dynamic-sin-more');
     if(el.style.display === 'none'){
         el.style.display = 'block'; 
-        btn.innerText = 'Mostrar Menos';
+        btn.setAttribute('data-i18n', 'nf_read_less');
     } else {
         el.style.display = 'none'; 
-        btn.innerText = 'Ler Mais Síntese';
+        btn.setAttribute('data-i18n', 'nf_read_more');
+    }
+    if (typeof window.updateLanguage === 'function') {
+        window.updateLanguage(localStorage.getItem('language') || 'pt');
     }
 }
 
@@ -93,9 +108,13 @@ function openDocumentalModal(id) {
     const fundo = ACERVO_DATA.fundos.find(f => f.id === id);
     if (!fundo) return;
     
-    document.getElementById('global-modal-title').innerHTML = `<i class="fa-solid fa-folder-open"></i> Relatório Completo - ${fundo.name}`;
-    document.getElementById('global-modal-body').innerHTML = fundo.relatorioCompletoHtml;
+    document.getElementById('global-modal-title').innerHTML = `<i class="fa-solid fa-folder-open"></i> <span data-i18n="nf_report_title">Relatório Completo</span> - <span data-i18n="fund_name_${fundo.id}">${fundo.name}</span>`;
+    document.getElementById('global-modal-body').innerHTML = `<div data-i18n="fund_report_${fundo.id}">${fundo.relatorioCompletoHtml}</div>`;
     document.getElementById('global-modal').classList.add('active');
+
+    if (typeof window.updateLanguage === 'function') {
+        window.updateLanguage(localStorage.getItem('language') || 'pt');
+    }
 }
 
 function closeDocumentalModal() {
@@ -123,17 +142,17 @@ function renderDigitalSidebar() {
             <details>
                 <summary style="font-size: 0.9rem; font-weight: 500; color: var(--cor-texto-claro); padding: 0.4rem 0;"><i class="fa-regular fa-folder"></i> ${serie.code} ${serie.name.substring(0,35)}</summary>
                 <div class="sub-links" style="padding-left: 1.5rem; margin-top: 0.3rem;">
-                    ${subHtml || '<p style="font-size:0.8rem; color:var(--cor-texto-escuro);">Sem subséries indexadas</p>'}
+                    ${subHtml || '<p style="font-size:0.8rem; color:var(--cor-texto-escuro);" data-i18n="nf_no_subseries">Sem subséries indexadas</p>'}
                 </div>
             </details>
             `;
         });
         
-        if (!treeContent) treeContent = '<p style="padding:1rem; color:var(--cor-texto-escuro); font-size:0.9rem;">Taxonomia em Catalogação</p>';
+        if (!treeContent) treeContent = '<p style="padding:1rem; color:var(--cor-texto-escuro); font-size:0.9rem;" data-i18n="nf_cataloging">Taxonomia em Catalogação</p>';
 
         html += `
         <details class="ad-tree-toggle" data-target="${fundo.id}">
-            <summary style="font-size:1rem; font-weight:600; color:var(--cor-laranja-destaque); padding: 0.5rem;" onclick="loadDigitalFundo('${fundo.id}')"><i class="fa-solid fa-folder-open"></i> ${fundo.name}</summary>
+            <summary style="font-size:1rem; font-weight:600; color:var(--cor-laranja-destaque); padding: 0.5rem;" onclick="loadDigitalFundo('${fundo.id}')"><i class="fa-solid fa-folder-open"></i> <span data-i18n="fund_name_${fundo.id}">${fundo.name}</span></summary>
             <div class="tree-content" style="padding-left: 1.5rem; margin-top: 0.2rem; border-left: 1px dashed var(--cor-borda-suave);">
                 ${treeContent}
             </div>
@@ -141,6 +160,10 @@ function renderDigitalSidebar() {
         `;
     });
     sidebar.innerHTML = html;
+
+    if (typeof window.updateLanguage === 'function') {
+        window.updateLanguage(localStorage.getItem('language') || 'pt');
+    }
 }
 
 function loadDigitalFundo(id) {
@@ -159,8 +182,8 @@ function loadDigitalFundo(id) {
 
     let taxonomyTablesHtml = `
       <div style="margin-bottom: 2rem; padding: 1.5rem; border: 1px dashed var(--cor-borda-suave); border-radius: 6px; text-align: center; background: var(--cor-fundo-claro);">
-         <p style="color:var(--cor-texto-escuro); margin-bottom:1rem;"><i class="fa-regular fa-image"></i> Espaço reservado para Imagem do Fundo.</p>
-         <a href="#" class="btn-atom" style="font-size:0.8rem; background:transparent; color:var(--cor-texto-escuro); border:1px solid var(--cor-borda-suave); padding:4px 10px; border-radius:4px;"><i class="fa-solid fa-arrow-up-right-from-square"></i> Acessar Fundo no AtoM</a>
+         <p style="color:var(--cor-texto-escuro); margin-bottom:1rem;" data-i18n="nf_image_reserved"><i class="fa-regular fa-image"></i> Espaço reservado para Imagem do Fundo.</p>
+         <a href="#" class="btn-atom" style="font-size:0.8rem; background:transparent; color:var(--cor-texto-escuro); border:1px solid var(--cor-borda-suave); padding:4px 10px; border-radius:4px;" data-i18n="nf_access_atom"><i class="fa-solid fa-arrow-up-right-from-square"></i> Acessar Fundo no AtoM</a>
       </div>
    `;
    
@@ -172,11 +195,11 @@ function loadDigitalFundo(id) {
             <li style="margin-bottom: 1.5rem; border-bottom: 1px solid var(--cor-borda-suave); padding-bottom: 1rem;">
                 <div style="width:100%; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-bottom: 0.5rem;">
                    <strong style="color:var(--cor-texto-claro);">${sub.code} ${sub.name}</strong> 
-                   <div><span class="badge-info">${sub.date}</span> <span class="badge-info">Cx ${sub.caixa}</span></div>
+                   <div><span class="badge-info">${sub.date}</span> <span class="badge-info" data-i18n="nf_badge_caixa">Cx</span><span class="badge-info">&nbsp;${sub.caixa}</span></div>
                 </div>
                 <div class="subserie-image-placeholder" style="width: 100%; padding: 1rem; border: 1px dashed var(--cor-borda-suave); border-radius: 4px; text-align: center; margin-top: 0.5rem;">
-                   <span style="color:var(--cor-texto-escuro); font-size:0.85rem; display:block; margin-bottom:0.5rem;"><i class="fa-regular fa-image"></i> Imagem da Subsérie Reservada</span>
-                   <a href="#" style="font-size:0.75rem; color:var(--cor-laranja-destaque); text-decoration:none;"><i class="fa-solid fa-arrow-up-right-from-square"></i> Acessar no AtoM</a>
+                   <span style="color:var(--cor-texto-escuro); font-size:0.85rem; display:block; margin-bottom:0.5rem;" data-i18n="nf_subseries_image"><i class="fa-regular fa-image"></i> Imagem da Subsérie Reservada</span>
+                   <a href="#" style="font-size:0.75rem; color:var(--cor-laranja-destaque); text-decoration:none;" data-i18n="nf_access_atom_short"><i class="fa-solid fa-arrow-up-right-from-square"></i> Acessar no AtoM</a>
                 </div>
             </li>
            `;
@@ -185,8 +208,8 @@ function loadDigitalFundo(id) {
        taxonomyTablesHtml += `
         <h4 id="${sId}" style="margin-top:2rem; padding:1rem; background:var(--cor-fundo-claro); color: var(--cor-texto-claro); font-size: 1.1rem; border-left:3px solid var(--cor-laranja-destaque);"><i class="fa-solid fa-folder" style="color:var(--cor-laranja-destaque);"></i> ${serie.code||''} ${serie.name} <span style="font-size:0.8rem; font-weight:normal;">(${serie.date||''})</span></h4>
         <div class="serie-image-placeholder" style="width:100%; margin: 1rem 0; padding:1rem; border: 1px dashed var(--cor-borda-suave); border-radius:4px; text-align:center;">
-             <span style="color:var(--cor-texto-escuro); font-size:0.85rem; display:block; margin-bottom:0.5rem;"><i class="fa-regular fa-image"></i> Imagem da Série Reservada</span>
-             <a href="#" style="font-size:0.8rem; color:var(--cor-laranja-destaque); text-decoration:none;"><i class="fa-solid fa-arrow-up-right-from-square"></i> Acessar Série no AtoM</a>
+             <span style="color:var(--cor-texto-escuro); font-size:0.85rem; display:block; margin-bottom:0.5rem;" data-i18n="nf_series_image"><i class="fa-regular fa-image"></i> Imagem da Série Reservada</span>
+             <a href="#" style="font-size:0.8rem; color:var(--cor-laranja-destaque); text-decoration:none;" data-i18n="nf_access_series_atom"><i class="fa-solid fa-arrow-up-right-from-square"></i> Acessar Série no AtoM</a>
         </div>
         <ul class="archive-list-table" style="padding-left:0; list-style:none;">
             ${subHtml}
@@ -196,12 +219,16 @@ function loadDigitalFundo(id) {
 
     container.innerHTML = `
         <div class="ad-fundo-detail fade-in-up is-visible" style="margin-top: 1rem; padding-top: 2rem; animation: fadeInUp 0.5s ease forwards;">
-            <h2 style="color: var(--cor-laranja-destaque); font-size: 1.8rem; margin-bottom: 2rem; line-height: 1.3;"><i class="fa-solid fa-folder-open"></i> ${fundo.title}</h2>
-            <h3 style="margin-top: 2rem; color:var(--cor-texto-claro);">Índice Descritivo de Taxonomia</h3>
-            <p style="color: var(--cor-texto-escuro); margin-bottom: 2rem;">Hierarquia técnica do fundo. Links apontam para diretórios do AtoM.</p>
+            <h2 style="color: var(--cor-laranja-destaque); font-size: 1.8rem; margin-bottom: 2rem; line-height: 1.3;"><i class="fa-solid fa-folder-open"></i> <span data-i18n="fund_name_${fundo.id}">${fundo.title}</span></h2>
+            <h3 style="margin-top: 2rem; color:var(--cor-texto-claro);" data-i18n="nf_taxonomy_index">Índice Descritivo de Taxonomia</h3>
+            <p style="color: var(--cor-texto-escuro); margin-bottom: 2rem;" data-i18n="nf_taxonomy_desc">Hierarquia técnica do fundo. Links apontam para diretórios do AtoM.</p>
             <div style="background: var(--cor-fundo-claro); border-radius: 4px;">
-                ${fundo.taxonomia.length > 0 ? taxonomyTablesHtml : '<p style="padding:1rem;">Taxonomia em estruturação.</p>'}
+                ${fundo.taxonomia.length > 0 ? taxonomyTablesHtml : '<p style="padding:1rem;" data-i18n="nf_taxonomy_structuring">Taxonomia em estruturação.</p>'}
             </div>
         </div>
     `;
+
+    if (typeof window.updateLanguage === 'function') {
+        window.updateLanguage(localStorage.getItem('language') || 'pt');
+    }
 }
