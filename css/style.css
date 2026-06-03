@@ -6,21 +6,32 @@
 /* -- 1. Variáveis de Cor e Configurações Globais -- */
 :root {
     --cor-laranja-destaque: #D89B42; /* Premium Amber */
-    /* Nomes preservados: "escuro" atua como Fundo Principal e "claro" como Secundário */
-    --cor-fundo-escuro: #FFFFFF; /* Principal Background (Light) */
-    --cor-fundo-claro: #F8F9FA; /* Secondary Background (Light offset) */
-    --cor-texto-claro: #1A1A1A; /* Primary Text (Dark for contrast) */
-    --cor-texto-escuro: #4A4A4A; /* Secondary Text (Gray) */
-    --cor-borda-suave: #E2E2E2; /* Subtle border */
+    /* Light Mode design tokens (Warm off-white and dark charcoal text) */
+    --cor-fundo-escuro: #fcfbf9; /* Principal Background (Light) */
+    --cor-fundo-claro: #f4f2ee; /* Secondary Background (Light offset) */
+    --cor-texto-claro: #2d3748; /* Primary Text (Dark for contrast) */
+    --cor-texto-escuro: #4a5568; /* Secondary Text (Gray) */
+    --cor-borda-suave: #e2e8f0; /* Subtle border */
 }
 
+/* Native Dark Mode */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --cor-fundo-escuro: #121212; /* Premium dark background */
+        --cor-fundo-claro: #1a202c; /* Secondary dark background (Cards) */
+        --cor-texto-claro: #e2e8f0; /* readable light text */
+        --cor-texto-escuro: #a0aec0; /* secondary text */
+        --cor-borda-suave: #2d3748; /* Subtle dark border */
+    }
+}
+
+/* Manual Dark Mode Override (Accessibility Toggle) */
 body.dark-mode {
-    --cor-laranja-destaque: #D89B42; /* Premium Amber */
-    --cor-fundo-escuro: #151515; /* Charcoal Dark Gray em vez de Preto puro */
-    --cor-fundo-claro: #1E1E1E; /* Cinza claro para blocos (Cards) */
-    --cor-texto-claro: #E6E6E6; /* Branco opaco super confortável */
-    --cor-texto-escuro: #B0B0B0; /* Suave para textos secundários */
-    --cor-borda-suave: #333333; /* Borda mais acinzentada */
+    --cor-fundo-escuro: #121212;
+    --cor-fundo-claro: #1a202c;
+    --cor-texto-claro: #e2e8f0;
+    --cor-texto-escuro: #a0aec0;
+    --cor-borda-suave: #2d3748;
 }
 
 body {
@@ -33,8 +44,8 @@ body {
     /* --- ADICIONE ISTO PARA EVITAR A PISCADA --- */
     opacity: 0;
     /* Começa invisível */
-    transition: opacity 0.4s ease-in-out;
-    /* Transição suave para aparecer */
+    transition: opacity 0.4s ease-in-out, background-color 0.3s ease, color 0.3s ease;
+    /* Transição suave para aparecer e mudar de tema */
 }
 
 /* Classe que o JS vai adicionar quando tudo estiver pronto */
