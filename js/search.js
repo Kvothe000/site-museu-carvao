@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         { url: 'index.html', titleKey: 'nav_home', typeKey: 'search_type_page' },
         { url: 'nossa-historia.html', titleKey: 'nav_history', typeKey: 'search_type_page' },
         { url: 'nossos-fundos.html', titleKey: 'nav_collection', typeKey: 'search_type_page' },
-        { url: 'arquivo-digital.html', titleKey: 'nav_digital_archive', typeKey: 'search_type_page' },
+        { url: 'arquivos-digitais.html', titleKey: 'nav_digital_archive', typeKey: 'search_type_page' },
         { url: 'projetos.html', titleKey: 'nav_projects', typeKey: 'search_type_page' },
         { url: 'publicacoes.html', titleKey: 'nav_publications', typeKey: 'search_type_page' },
         { url: 'servicos.html', titleKey: 'nav_services', typeKey: 'search_type_page' },
