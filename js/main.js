@@ -11,11 +11,37 @@ function highlightActiveLink() {
     });
 }
 
-let currentLang = localStorage.getItem('language') || 'pt';
+// Determinar idioma padrão: prioriza localStorage, depois navegador (apenas se for en ou es, senão pt)
+let currentLang = localStorage.getItem('language');
+if (!currentLang) {
+    const browserLang = navigator.language || navigator.userLanguage || 'pt';
+    const shortLang = browserLang.substring(0, 2).toLowerCase();
+    currentLang = ['pt', 'en', 'es'].includes(shortLang) ? shortLang : 'pt';
+    localStorage.setItem('language', currentLang);
+}
 
 function updateLanguage(lang) {
     currentLang = lang;
     localStorage.setItem('language', lang);
+
+    // Tradução dinâmica de Metadados (Título e Meta Description)
+    const rawPage = window.location.pathname.split("/").pop().replace(".html", "") || 'index';
+    // Mapeia páginas sem sufixo ou diretórios para index
+    const pageName = ['index', '404', 'arquivos-digitais', 'arquivos-fotograficos', 'arquivos-historicos', 'arquivos-tridimensionais', 'busca', 'localizacao-contato', 'mapa-do-site', 'nossa-historia', 'nossos-fundos', 'projetos', 'publicacoes', 'servicos'].includes(rawPage) ? rawPage : 'index';
+    const titleKey = `meta_title_${pageName}`;
+    const descKey = `meta_desc_${pageName}`;
+
+    if (typeof translations !== 'undefined' && translations[lang]) {
+        if (translations[lang][titleKey]) {
+            document.title = translations[lang][titleKey];
+        }
+        if (translations[lang][descKey]) {
+            const metaDesc = document.querySelector('meta[name="description"]');
+            if (metaDesc) {
+                metaDesc.setAttribute('content', translations[lang][descKey]);
+            }
+        }
+    }
 
     document.querySelectorAll('[data-i18n]').forEach(element => {
         const key = element.getAttribute('data-i18n');
@@ -133,6 +159,16 @@ function initHeaderScripts() {
         link.addEventListener('click', toggleDropdown);
         link.addEventListener('keydown', function (event) {
             if (event.key === 'Enter' || event.key === ' ') toggleDropdown(event);
+        });
+
+        // Fecha o dropdown quando o foco do teclado sai de dentro do container
+        parentLi.addEventListener('focusout', function () {
+            setTimeout(() => {
+                if (!parentLi.contains(document.activeElement)) {
+                    parentLi.classList.remove('show-dropdown');
+                    link.setAttribute('aria-expanded', 'false');
+                }
+            }, 50);
         });
     });
 
