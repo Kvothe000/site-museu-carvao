@@ -699,13 +699,25 @@ main {
     top: 0;
 }
 
-/* Melhora o indicador de foco padrão para links e botões */
+/* Melhora o indicador de foco apenas para navegação por teclado (Acessibilidade WCAG) */
 a:focus,
 button:focus,
 input:focus,
+select:focus,
 textarea:focus {
+    outline: none;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[role="button"]:focus-visible,
+[tabindex="0"]:focus-visible {
     outline: 3px solid var(--cor-laranja-destaque);
-    outline-offset: 2px;
+    outline-offset: 3px;
+    box-shadow: 0 0 0 5px rgba(216, 155, 66, 0.4);
 }
 
 /* ==========================================================================
@@ -2417,3 +2429,35 @@ body.high-contrast .timeline-content::after {
         /* Texto menor */
     }
 }
+
+/* ==========================================================================
+   Acessibilidade e Contraste - Overrides WCAG 2.1
+   ========================================================================== */
+
+/* Correções críticas de contraste de cores (Texto escuro sobre Fundo Laranja) */
+.skip-link {
+    color: #1a202c !important; /* Contraste preto no laranja (~4.79:1) */
+}
+
+.info-card h2,
+.map-section h2 {
+    color: #1a202c !important; /* Contraste preto no laranja (~4.79:1) */
+}
+
+.main-nav li a:hover,
+.main-nav li a.active,
+.dropdown-menu li a:hover,
+.dropdown-menu li a:focus {
+    color: #1a202c !important; /* Contraste nítido sob o hover/active laranja */
+}
+
+.publication-link,
+.hero-button {
+    color: #1a202c !important; /* Contraste sob fundo laranja */
+}
+
+.publication-link:hover,
+.hero-button:hover {
+    color: #1a202c !important; /* Contraste sob fundo laranja hover */
+}
+
