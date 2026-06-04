@@ -134,10 +134,10 @@ function initHeaderScripts() {
         link.setAttribute('aria-expanded', 'false');
         link.setAttribute('role', 'button');
         link.setAttribute('tabindex', '0');
+        const parentLi = link.parentElement;
 
         function toggleDropdown(e) {
             e.preventDefault();
-            const parentLi = link.parentElement;
             const isOpen = parentLi.classList.contains('show-dropdown');
 
             dropdownLinks.forEach(otherLink => {
