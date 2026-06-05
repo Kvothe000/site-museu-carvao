@@ -1,5 +1,8 @@
 import { initAccessibility } from './modules/a11y.js';
 import { initCarousel } from './modules/carousel.js';
+import { translations } from './translations.js';
+
+window.translations = translations;
 
 // A lógica de loadComponent foi removida pois o Vite cuidará da injeção no Build-time.
 
@@ -214,7 +217,7 @@ function initHeaderScripts() {
 document.addEventListener('DOMContentLoaded', async () => {
 
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register(`${import.meta.env.BASE_URL}sw.js`)
+        navigator.serviceWorker.register(import.meta.env.BASE_URL + 'sw.js')
             .then(reg => console.log('Service Worker Registrado com escopo:', reg.scope))
             .catch(err => console.error('Erro no registro do Service Worker:', err));
     }

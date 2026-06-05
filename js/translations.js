@@ -1,4 +1,4 @@
-const translations = {
+export const translations = {
     "pt": {
         "meta_title_index": "Museu Estadual do Carvão - Início",
         "meta_desc_index": "Site oficial do Museu Estadual do Carvão em Arroio dos Ratos, RS. Conheça a história da mineração de carvão no Brasil, visite a Usina Termelétrica e explore nosso acervo.",
