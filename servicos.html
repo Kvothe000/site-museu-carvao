@@ -140,6 +140,7 @@
             width: 100%;
             box-sizing: border-box;
             justify-content: center;
+            min-height: 44px;
         }
 
         .service-action-btn:hover {
@@ -239,6 +240,23 @@
 
         .faq-content p {
             margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .service-card {
+                padding: 1.5rem 1rem;
+            }
+            .faq-title {
+                font-size: 1.8rem;
+                margin-bottom: 2rem;
+            }
+            .page-hero h1 {
+                font-size: 2rem !important;
+            }
         }
     </style>
 </head>

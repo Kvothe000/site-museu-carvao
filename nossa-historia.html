@@ -209,8 +209,32 @@
 
             .story-sidebar-nav .sidebar-link {
                 white-space: nowrap;
-                padding: 0.5rem 1rem;
+                display: inline-flex !important;
+                align-items: center !important;
+                min-height: 44px !important;
+                padding: 0 1.2rem !important;
                 font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .story-sidebar {
+                position: static !important;
+                box-shadow: none !important;
+                border: none !important;
+                padding: 0.5rem 0 !important;
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+            }
+            .story-hero-content h1 {
+                font-size: 2.2rem !important;
+            }
+            .story-hero-subtitle {
+                font-size: 1.1rem !important;
+            }
+            .story-section-title {
+                font-size: 1.8rem !important;
+                margin: 2.5rem 0 1.5rem !important;
             }
         }
     </style>
