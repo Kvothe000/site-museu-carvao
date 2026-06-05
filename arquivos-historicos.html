@@ -252,36 +252,40 @@
             }
 
             body.historicos-page .sidebar-nav {
-                position: static;
-                max-height: none;
-                overflow: visible;
-                padding: 0.6rem;
-                margin-bottom: 0.5rem;
-                background: var(--cor-fundo-claro);
-                width: 100%;
-            }
-
-            body.historicos-page .sidebar-nav h2 {
-                display: none; /* Hide heading for flat tab structure */
-            }
-
-            body.historicos-page .fundo-list {
-                display: flex;
-                flex-direction: row;
-                overflow-x: auto;
-                white-space: nowrap;
-                gap: 0.5rem;
-                scrollbar-width: none; /* Firefox */
+                position: relative !important;
+                max-height: none !important;
+                background: var(--cor-fundo-claro) !important;
+                width: 100% !important;
+                display: flex !important;
+                flex-direction: row !important;
+                overflow-x: auto !important;
+                white-space: nowrap !important;
+                padding: 0.6rem 1rem !important;
+                margin-bottom: 1rem !important;
+                padding-bottom: 10px !important;
+                scrollbar-width: none;
                 -webkit-overflow-scrolling: touch;
             }
 
-            body.historicos-page .fundo-list::-webkit-scrollbar {
-                display: none; /* Chrome/Edge/Safari */
+            body.historicos-page .sidebar-nav::-webkit-scrollbar {
+                display: none;
+            }
+
+            body.historicos-page .sidebar-nav h2 {
+                display: none !important; /* Hide heading for flat tab structure */
+            }
+
+            body.historicos-page .fundo-list {
+                display: flex !important;
+                flex-direction: row !important;
+                gap: 0.5rem !important;
+                padding: 0 !important;
+                margin: 0 !important;
             }
 
             body.historicos-page .fundo-list li {
-                flex-shrink: 0;
-                margin-bottom: 0;
+                flex-shrink: 0 !important;
+                margin-bottom: 0 !important;
             }
 
             body.historicos-page .fundo-item-btn {

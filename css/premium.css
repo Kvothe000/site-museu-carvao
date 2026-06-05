@@ -704,6 +704,8 @@ body.digitais-page .fundo-item-btn {
     align-items: center;
     gap: 10px;
     line-height: 1.3;
+    min-height: 44px;
+    box-sizing: border-box;
 }
 
 body.digitais-page .fundo-item-btn:hover {
@@ -962,7 +964,10 @@ body.digitais-page .detail-section {
 
     body.digitais-page .fundo-item-btn {
         width: auto;
-        padding: 0.6rem 1rem;
+        display: inline-flex !important;
+        align-items: center !important;
+        min-height: 44px !important;
+        padding: 0 1.2rem !important;
         font-size: 0.9rem;
         white-space: nowrap;
     }
@@ -978,6 +983,10 @@ body.digitais-page .detail-section {
 
     .welcome-container h2 {
         font-size: 1.6rem;
+    }
+
+    .masonry-grid {
+        column-count: 1 !important;
     }
 }
 
