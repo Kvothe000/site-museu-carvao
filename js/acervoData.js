@@ -3123,3 +3123,5 @@ const ACERVO_DATA = {
     }
   ]
 };
+
+export { ACERVO_DATA };

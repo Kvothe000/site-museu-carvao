@@ -1,4 +1,5 @@
 import { fundosHistoricos } from './dados-fundos.js';
+import { renderSidebar } from './modules/sidebar.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const listContainer = document.getElementById('fundo-list-container');
@@ -69,45 +70,14 @@ document.addEventListener('DOMContentLoaded', () => {
         ]
     };
 
-    // Renderiza a Sidebar lateral
-    function renderSidebar() {
-        listContainer.innerHTML = '';
-        fundosHistoricos.forEach((fundo) => {
-            const li = document.createElement('li');
-            const button = document.createElement('button');
-            button.className = 'fundo-item-btn';
-            button.setAttribute('data-id', fundo.id);
-            button.setAttribute('aria-selected', 'false');
-
-            button.innerHTML = `<i class="fa-regular fa-folder" aria-hidden="true"></i> <span data-i18n="fund_name_${fundo.id}">${fundo.titulo}</span>`;
-            
-            button.addEventListener('click', () => {
-                // Remove active classes
-                document.querySelectorAll('.fundo-item-btn').forEach(btn => {
-                    btn.classList.remove('active');
-                    btn.setAttribute('aria-selected', 'false');
-                });
-                
-                // Ativa o botão selecionado
-                button.classList.add('active');
-                button.setAttribute('aria-selected', 'true');
-
-                // Carrega a galeria do Fundo
-                loadGallery(fundo);
-                
-                // Scroll para a área de detalhes em dispositivos móveis
-                if (window.innerWidth <= 768) {
-                    detailArea.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-
-            li.appendChild(button);
-            listContainer.appendChild(li);
+    // Render Master Sidebar Items using unified module
+    function initSidebar() {
+        renderSidebar({
+            listContainer,
+            detailArea,
+            dataList: fundosHistoricos,
+            onSelect: (item) => loadGallery(item)
         });
-
-        if (typeof window.updateLanguage === 'function') {
-            window.updateLanguage(localStorage.getItem('language') || 'pt');
-        }
     }
 
     // Exibe o Estado Inicial (Boas-vindas)
@@ -258,7 +228,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Inicialização da tela
-    renderSidebar();
+    // Initialize Master-Detail
+    initSidebar();
     renderWelcomeState();
 });

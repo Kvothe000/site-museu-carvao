@@ -118,17 +118,7 @@ function initHeaderScripts() {
 
     const header = document.querySelector('header');
     if (header) {
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                if (!header.classList.contains('sticky-header')) {
-                    header.classList.add('sticky-header');
-                }
-            } else {
-                if (header.classList.contains('sticky-header')) {
-                    header.classList.remove('sticky-header');
-                }
-            }
-        }, { passive: true });
+        // Scroll logic movido para o listener global usando requestAnimationFrame no DOMContentLoaded
     }
 
     const dropdownLinks = document.querySelectorAll('.main-nav .has-dropdown > a');
@@ -295,80 +285,83 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const sidebarScrollLinks = document.querySelectorAll('.sidebar-nav a[href^="#"]');
     const scrollSpySections = document.querySelectorAll('.main-content article[id]');
-    if (sidebarScrollLinks.length > 0 && scrollSpySections.length > 0) {
-        function activateSidebarLink() {
-            let currentSectionId = '';
-            let headerHeightOffset = document.querySelector('.sticky-header')?.offsetHeight || document.querySelector('header')?.offsetHeight || 0;
-            headerHeightOffset += 40;
-            scrollSpySections.forEach(section => {
-                const sectionTop = section.offsetTop - headerHeightOffset;
-                if (window.scrollY >= sectionTop) currentSectionId = '#' + section.getAttribute('id');
-            });
-            sidebarScrollLinks.forEach(link => {
-                link.classList.remove('active-sidebar-link');
-                if (currentSectionId && link.getAttribute('href') === currentSectionId) link.classList.add('active-sidebar-link');
-            });
-        }
-        window.addEventListener('scroll', activateSidebarLink, { passive: true });
-        activateSidebarLink();
-    }
+    const progressBar = document.getElementById('reading-progress-bar');
+    const header = document.querySelector('header');
 
+    let ticking = false;
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                const scrollY = window.scrollY;
+
+                // 1. Sticky Header
+                if (header) {
+                    if (scrollY > 50) {
+                        if (!header.classList.contains('sticky-header')) header.classList.add('sticky-header');
+                    } else {
+                        if (header.classList.contains('sticky-header')) header.classList.remove('sticky-header');
+                    }
+                }
+
+                // 2. Sidebar ScrollSpy
+                if (sidebarScrollLinks.length > 0 && scrollSpySections.length > 0) {
+                    let currentSectionId = '';
+                    let headerHeightOffset = header?.classList.contains('sticky-header') ? header.offsetHeight : header?.offsetHeight || 0;
+                    headerHeightOffset += 40;
+                    scrollSpySections.forEach(section => {
+                        if (scrollY >= section.offsetTop - headerHeightOffset) {
+                            currentSectionId = '#' + section.getAttribute('id');
+                        }
+                    });
+                    sidebarScrollLinks.forEach(link => {
+                        if (currentSectionId && link.getAttribute('href') === currentSectionId) {
+                            link.classList.add('active-sidebar-link');
+                        } else {
+                            link.classList.remove('active-sidebar-link');
+                        }
+                    });
+                }
+
+                // 3. Reading Progress Bar
+                if (progressBar) {
+                    const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+                    if (totalHeight > 0) {
+                        progressBar.style.width = `${(scrollY / totalHeight) * 100}%`;
+                    }
+                }
+
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }, { passive: true });
+
+    // Dispara scroll inicial para definir os estados corretos
+    window.dispatchEvent(new Event('scroll'));
+
+    // 4. Unificação dos IntersectionObservers (.fade-in-up e .reveal)
     const observerOptions = {
         root: null,
         rootMargin: '0px',
         threshold: 0.15
     };
     
-    const observer = new IntersectionObserver((entries, observer) => {
+    const unifiedObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
+                if (entry.target.classList.contains('fade-in-up')) {
+                    entry.target.classList.add('is-visible');
+                }
+                if (entry.target.classList.contains('reveal')) {
+                    entry.target.classList.add('active');
+                }
                 observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
     
-    document.querySelectorAll('.fade-in-up').forEach(el => {
-        observer.observe(el);
+    document.querySelectorAll('.fade-in-up, .reveal').forEach(el => {
+        unifiedObserver.observe(el);
     });
-
-    // Barra de progresso de leitura
-    function initReadingProgressBar() {
-        const progressBar = document.getElementById('reading-progress-bar');
-        if (!progressBar) return;
-
-        window.addEventListener('scroll', () => {
-            const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-            if (totalHeight > 0) {
-                const progress = (window.scrollY / totalHeight) * 100;
-                progressBar.style.width = `${progress}%`;
-            }
-        }, { passive: true });
-    }
-
-    // Scroll reveal com IntersectionObserver
-    function initScrollReveal() {
-        const reveals = document.querySelectorAll('.reveal');
-        if (reveals.length === 0) return;
-
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.15
-        };
-
-        const revealObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        reveals.forEach(el => revealObserver.observe(el));
-    }
-
-    initReadingProgressBar();
-    initScrollReveal();
 });
