@@ -5,12 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="Veja as referências bibliográficas recomendadas e publicações teóricas e práticas sobre Arquivologia, preservação e história da mineração de carvão.">
-    <title>Publicações - Museu Estadual do Carvão</title>
+    <meta name="description"
+        content="Consulte as publicações teóricas e práticas, teses recomendadas e guias de fontes sobre a mineração de carvão e a arquivologia no Museu Estadual do Carvão.">
+    <meta name="keywords" content="Museu do Carvão, Publicações, Teses, Artigos, Arquivologia, Baixo Jacuí">
+    <meta name="author" content="Museu Estadual do Carvão">
+    <meta name="robots" content="index, follow">
+    <title data-i18n="meta_title_publicacoes">Publicações e Pesquisas - Museu Estadual do Carvão</title>
 
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Publicações - Museu Estadual do Carvão">
-    <meta property="og:description" content="Veja as referências bibliográficas recomendadas e publicações teóricas e práticas sobre Arquivologia, preservação e história da mineração de carvão.">
+    <meta property="og:title" content="Publicações e Pesquisas - Museu Estadual do Carvão" data-i18n="meta_title_publicacoes">
+    <meta property="og:description"
+        content="Consulte as publicações teóricas e práticas, teses recomendadas e guias de fontes sobre a mineração de carvão e a arquivologia no Museu Estadual do Carvão."
+        data-i18n="meta_desc_publicacoes">
     <meta property="og:image" content="https://kvothe000.github.io/site-museu-carvao/img/fachada_museu.jpg">
     <meta property="og:url" content="https://kvothe000.github.io/site-museu-carvao/publicacoes.html">
     <meta property="og:type" content="website">
@@ -18,8 +24,10 @@
 
     <!-- Twitter Cards Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Publicações - Museu Estadual do Carvão">
-    <meta name="twitter:description" content="Veja as referências bibliográficas recomendadas e publicações teóricas e práticas sobre Arquivologia, preservação e história da mineração de carvão.">
+    <meta name="twitter:title" content="Publicações e Pesquisas - Museu Estadual do Carvão" data-i18n="meta_title_publicacoes">
+    <meta name="twitter:description"
+        content="Consulte as publicações teóricas e práticas, teses recomendadas e guias de fontes sobre a mineração de carvão e a arquivologia no Museu Estadual do Carvão."
+        data-i18n="meta_desc_publicacoes">
     <meta name="twitter:image" content="https://kvothe000.github.io/site-museu-carvao/img/fachada_museu.jpg">
 
     <link rel="icon" href="img/logo-museu.png" type="image/png">
@@ -30,73 +38,353 @@
         rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/premium.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
+
+    <style>
+        /* Toolbar de Filtros */
+        .pubs-toolbar {
+            background: var(--cor-fundo-claro);
+            border: 1px solid var(--cor-borda-suave);
+            border-radius: 8px;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .search-group {
+            flex-grow: 1;
+            position: relative;
+        }
+
+        .search-group i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--cor-texto-escuro);
+            opacity: 0.7;
+        }
+
+        .search-group input {
+            width: 100%;
+            padding: 0.8rem 1rem 0.8rem 2.8rem;
+            border: 1px solid var(--cor-borda-suave);
+            border-radius: 6px;
+            background: var(--cor-fundo-escuro);
+            color: var(--cor-texto-claro);
+            font-size: 0.95rem;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+
+        .filter-group {
+            min-width: 180px;
+        }
+
+        .filter-group select {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--cor-borda-suave);
+            border-radius: 6px;
+            background: var(--cor-fundo-escuro);
+            color: var(--cor-texto-claro);
+            font-size: 0.95rem;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        .search-group input:focus,
+        .filter-group select:focus {
+            border-color: var(--cor-laranja-destaque);
+            outline: none;
+        }
+
+        /* Lista Vertical */
+        .publications-list-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .publication-horizontal-card {
+            background: var(--cor-fundo-claro);
+            border: 1px solid var(--cor-borda-suave);
+            border-radius: 12px;
+            display: flex;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+        }
+
+        .publication-horizontal-card:hover {
+            transform: translateX(6px);
+            box-shadow: 0 10px 25px rgba(216, 155, 66, 0.12);
+            border-color: var(--cor-laranja-destaque);
+        }
+
+        .pub-icon-side {
+            background: rgba(216, 155, 66, 0.08);
+            width: 120px;
+            min-width: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-right: 1px solid var(--cor-borda-suave);
+            color: var(--cor-laranja-destaque);
+            font-size: 3rem;
+        }
+
+        .publication-card-content {
+            padding: 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pub-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+            gap: 1.5rem;
+        }
+
+        .pub-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--cor-laranja-destaque);
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        .pub-meta {
+            font-size: 0.85rem;
+            color: var(--cor-texto-escuro);
+            opacity: 0.85;
+            margin: 0 0 1.25rem 0;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .pub-meta span i {
+            margin-right: 4px;
+            color: var(--cor-laranja-destaque);
+        }
+
+        .pub-desc {
+            color: var(--cor-texto-escuro);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0 0 1.5rem 0;
+        }
+
+        .pub-actions-row {
+            margin-top: auto;
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .pub-download-btn {
+            background-color: var(--cor-laranja-destaque);
+            color: var(--cor-fundo-escuro);
+            padding: 0.75rem 1.5rem;
+            font-size: 0.9rem;
+            font-weight: 700;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            text-decoration: none;
+        }
+
+        .pub-download-btn:hover {
+            background-color: #d47321;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .pubs-toolbar {
+                flex-direction: column;
+                align-items: stretch;
+                padding: 1.5rem;
+            }
+
+            .filter-group {
+                min-width: unset;
+            }
+
+            .publication-horizontal-card {
+                flex-direction: column;
+            }
+
+            .pub-icon-side {
+                width: 100%;
+                height: 80px;
+                min-width: unset;
+                border-right: none;
+                border-bottom: 1px solid var(--cor-borda-suave);
+                font-size: 2.5rem;
+            }
+
+            .pub-header-row {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
+    <a href="#main-content" class="skip-link">Pular para o Conteúdo Principal</a>
 
     <header id="main-header">
         <load src="./header.html" />
     </header>
 
     <main id="main-content">
-        <section class="page-title">
-            <h1 data-i18n="pubs_page_title">Publicações</h1>
+        <section class="page-title page-hero" style="min-height: 40vh; height: 40vh;">
+            <h1 data-i18n="pubs_hero_title">Publicações e Pesquisas</h1>
         </section>
 
-        <section class="publications-list">
-            <article class="publication-card">
-                <img src="https://via.placeholder.com/150x220.png?text=Capa+Livro"
-                    alt="Capa da publicação Estudos Avançados em Arquivologia" class="publication-cover">
-                <div class="publication-content">
-                    <h2 class="publication-title" data-i18n="pubs_valentim_title">Estudos Avançados em Arquivologia</h2>
-                    <p class="publication-author">Marta Ligia Pomim Valentim</p>
-                    <p class="publication-description" data-i18n="pubs_valentim_desc">O profissional arquivista tem um
-                        amplo espaço de trabalho, tanto na iniciativa pública quanto na iniciativa privada. Entretanto
-                        tem atuado em mercados arquivísticos mais tradicionais como, por exemplo, arquivos municipais,
-                        arquivos universitários, arquivos cartorários, arquivos contábeis e arquivos pessoais...</p>
-                    <a href="#" class="publication-link"><span data-i18n="pubs_access_link">Link para Acesso</span> <i
-                            class="fa-solid fa-arrow-right-long"></i></a>
+        <div class="container fade-in-up">
+            <!-- Barra de Ferramentas / Filtros (UI Apenas) -->
+            <section class="pubs-toolbar" aria-label="Filtros de pesquisa">
+                <div class="search-group">
+                    <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                    <input type="text" placeholder="Buscar publicação..." data-i18n="[placeholder]pubs_search_placeholder" aria-label="Buscar publicação">
                 </div>
-            </article>
+                <div class="filter-group">
+                    <select aria-label="Filtrar por Ano">
+                        <option value="" data-i18n="pubs_filter_all_years">Todos os Anos</option>
+                        <option value="2024">2024</option>
+                        <option value="2023">2023</option>
+                        <option value="2022">2022</option>
+                        <option value="anterior">Anteriores</option>
+                    </select>
+                </div>
+            </section>
 
-            <article class="publication-card">
-                <img src="https://via.placeholder.com/150x220.png?text=Capa+Livro"
-                    alt="Capa da publicação Arquivo: Teoria e Prática" class="publication-cover">
-                <div class="publication-content">
-                    <h2 class="publication-title" data-i18n="pubs_paes_title">Arquivo: Teoria e Prática</h2>
-                    <p class="publication-author">Marilena Leite Paes</p>
-                    <p class="publication-description" data-i18n="pubs_paes_desc">Destinada aos alunos dos cursos de
-                        Arquivologia, Biblioteconomia e Documentação, esta obra de cunho didático supre a falta de
-                        publicações especializadas na área, apresentando técnicas, teorias e métodos arquivísticos...
-                    </p>
-                    <a href="#" class="publication-link"><span data-i18n="pubs_access_link">Link para Acesso</span> <i
-                            class="fa-solid fa-arrow-right-long"></i></a>
-                </div>
-            </article>
+            <!-- Lista de Publicações -->
+            <section class="publications-list-vertical" aria-label="Lista de Publicações Acadêmicas">
+                
+                <!-- Item 1 -->
+                <article class="publication-horizontal-card">
+                    <div class="pub-icon-side" aria-hidden="true">
+                        <i class="fa-solid fa-file-pdf"></i>
+                    </div>
+                    <div class="publication-card-content">
+                        <div class="pub-header-row">
+                            <h2 class="pub-title" data-i18n="pubs_item1_title">O Carvão e o Vapor: A Região Carbonífera na Segunda Guerra</h2>
+                        </div>
+                        <div class="pub-meta">
+                            <span><i class="fa-solid fa-user" aria-hidden="true"></i> <strong data-i18n="pubs_item1_author">Dr. Aloísio Mendes</strong></span>
+                            <span><i class="fa-solid fa-calendar" aria-hidden="true"></i> 2023</span>
+                        </div>
+                        <p class="pub-desc" data-i18n="pubs_item1_desc">
+                            Uma análise aprofundada sobre a importância geopolítica e socioeconômica das minas do Baixo Jacuí durante o esforço de guerra brasileiro, destacando a logística ferroviária e energética alimentada pelo carvão.
+                        </p>
+                        <div class="pub-actions-row">
+                            <a href="Pdfs_Txts/FUNDO 01  Def.pdf" download="Mendes_O_Carvao_e_o_Vapor.pdf" class="pub-download-btn">
+                                <i class="fa-solid fa-cloud-arrow-down" aria-hidden="true"></i>
+                                <span data-i18n="pubs_btn_download">Baixar PDF</span>
+                            </a>
+                        </div>
+                    </div>
+                </article>
 
-            <article class="publication-card">
-                <img src="https://via.placeholder.com/150x220.png?text=Capa+Livro"
-                    alt="Capa da publicação A Mediação da Informação na Arquivologia" class="publication-cover">
-                <div class="publication-content">
-                    <h2 class="publication-title" data-i18n="pubs_lousada_title">A Mediação da Informação na
-                        Arquivologia</h2>
-                    <p class="publication-author">Mariana Lousada</p>
-                    <p class="publication-description" data-i18n="pubs_lousada_desc">A Arquivologia perdeu o status de
-                        disciplina auxiliar da História há algum tempo. No entanto, alguns pesquisadores considerados
-                        mais conservadores ainda apresentam dificuldades para discutir aspectos mais contemporâneos
-                        dessa disciplina. Por essa razão, muitos temas ainda não foram devidamente explorados pela área.
-                    </p>
-                    <a href="#" class="publication-link"><span data-i18n="pubs_access_link">Link para Acesso</span> <i
-                            class="fa-solid fa-arrow-right-long"></i></a>
-                </div>
-            </article>
-        </section>
+                <!-- Item 2 -->
+                <article class="publication-horizontal-card">
+                    <div class="pub-icon-side" aria-hidden="true">
+                        <i class="fa-solid fa-book-open"></i>
+                    </div>
+                    <div class="publication-card-content">
+                        <div class="pub-header-row">
+                            <h2 class="pub-title" data-i18n="pubs_item2_title">Guia de Fontes do Arquivo Histórico do Carvão</h2>
+                        </div>
+                        <div class="pub-meta">
+                            <span><i class="fa-solid fa-user" aria-hidden="true"></i> <strong data-i18n="pubs_item2_author">Profa. Clarissa Werlang</strong></span>
+                            <span><i class="fa-solid fa-calendar" aria-hidden="true"></i> 2022</span>
+                        </div>
+                        <p class="pub-desc" data-i18n="pubs_item2_desc">
+                            Instrumento de pesquisa indispensável para historiadores e arquivistas, detalhando a taxonomia, as subséries e os fundos documentais das antigas companhias mineradoras sob guarda do museu.
+                        </p>
+                        <div class="pub-actions-row">
+                            <a href="Quadro Arranjo.pdf" download="Guia_Fontes_Arquivo_Historico_Carvao.pdf" class="pub-download-btn">
+                                <i class="fa-solid fa-cloud-arrow-down" aria-hidden="true"></i>
+                                <span data-i18n="pubs_btn_download">Baixar PDF</span>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Item 3 -->
+                <article class="publication-horizontal-card">
+                    <div class="pub-icon-side" aria-hidden="true">
+                        <i class="fa-solid fa-file-pdf"></i>
+                    </div>
+                    <div class="publication-card-content">
+                        <div class="pub-header-row">
+                            <h2 class="pub-title" data-i18n="pubs_item3_title">Sindicalismo e Luta Operária em Arroio dos Ratos (1940-1960)</h2>
+                        </div>
+                        <div class="pub-meta">
+                            <span><i class="fa-solid fa-user" aria-hidden="true"></i> <strong data-i18n="pubs_item3_author">Carlos Henrique Silva</strong></span>
+                            <span><i class="fa-solid fa-calendar" aria-hidden="true"></i> 2021</span>
+                        </div>
+                        <p class="pub-desc" data-i18n="pubs_item3_desc">
+                            Estudo sociopolítico sobre os movimentos grevistas de mineiros, a estruturação dos primeiros sindicatos regionais e a repressão estatal na era Vargas e no período democrático subsequente.
+                        </p>
+                        <div class="pub-actions-row">
+                            <a href="Pdfs_Txts/08 FUNDO  SINDICATOS DA MINERAÇÃO  Def.pdf" download="Silva_Sindicalismo_e_Luta_Operaria.pdf" class="pub-download-btn">
+                                <i class="fa-solid fa-cloud-arrow-down" aria-hidden="true"></i>
+                                <span data-i18n="pubs_btn_download">Baixar PDF</span>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Item 4 -->
+                <article class="publication-horizontal-card">
+                    <div class="pub-icon-side" aria-hidden="true">
+                        <i class="fa-solid fa-file-pdf"></i>
+                    </div>
+                    <div class="publication-card-content">
+                        <div class="pub-header-row">
+                            <h2 class="pub-title" data-i18n="pubs_item4_title">Manual de Conservação Preventiva de Documentos Ferroviários</h2>
+                        </div>
+                        <div class="pub-meta">
+                            <span><i class="fa-solid fa-user" aria-hidden="true"></i> <strong data-i18n="pubs_item4_author">Dra. Beatriz Ramos</strong></span>
+                            <span><i class="fa-solid fa-calendar" aria-hidden="true"></i> 2024</span>
+                        </div>
+                        <p class="pub-desc" data-i18n="pubs_item4_desc">
+                            Diretrizes práticas aplicadas no resgate, higienização, desinfecção e acondicionamento de acervos cartográficos e administrativos expostos a intempéries ou desastres climáticos.
+                        </p>
+                        <div class="pub-actions-row">
+                            <a href="Pdfs_Txts/FUNDO 06 Def.pdf" download="Manual_Conservacao_Preventiva_Documentos.pdf" class="pub-download-btn">
+                                <i class="fa-solid fa-cloud-arrow-down" aria-hidden="true"></i>
+                                <span data-i18n="pubs_btn_download">Baixar PDF</span>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+            </section>
+        </div>
     </main>
 
     <footer id="main-footer" class="site-footer">
         <load src="./footer.html" />
     </footer>
+
     <script type="module" src="js/main.js"></script>
 </body>
 

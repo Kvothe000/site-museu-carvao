@@ -5,12 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="Conheça os projetos de preservação, conservação documental e extensão do Museu Estadual do Carvão, incluindo 'Uma Luz no Fim do Túnel'.">
-    <title>Projetos - Museu Estadual do Carvão</title>
+    <meta name="description"
+        content="Conheça os projetos de preservação, conservação documental e as exposições do Museu Estadual do Carvão, incluindo 'Cartas do Fundo do Poço'.">
+    <meta name="keywords" content="Museu do Carvão, Projetos, Exposições, Cartas do Fundo do Poço, Arroio dos Ratos">
+    <meta name="author" content="Museu Estadual do Carvão">
+    <meta name="robots" content="index, follow">
+    <title data-i18n="meta_title_projetos">Projetos e Exposições - Museu Estadual do Carvão</title>
 
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Projetos - Museu Estadual do Carvão">
-    <meta property="og:description" content="Conheça os projetos de preservação, conservação documental e extensão do Museu Estadual do Carvão, incluindo 'Uma Luz no Fim do Túnel'.">
+    <meta property="og:title" content="Projetos e Exposições - Museu Estadual do Carvão" data-i18n="meta_title_projetos">
+    <meta property="og:description"
+        content="Conheça os projetos de preservação, conservação documental e as exposições do Museu Estadual do Carvão, incluindo 'Cartas do Fundo do Poço'."
+        data-i18n="meta_desc_projetos">
     <meta property="og:image" content="https://kvothe000.github.io/site-museu-carvao/img/fachada_museu.jpg">
     <meta property="og:url" content="https://kvothe000.github.io/site-museu-carvao/projetos.html">
     <meta property="og:type" content="website">
@@ -18,9 +24,12 @@
 
     <!-- Twitter Cards Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Projetos - Museu Estadual do Carvão">
-    <meta name="twitter:description" content="Conheça os projetos de preservação, conservação documental e extensão do Museu Estadual do Carvão, incluindo 'Uma Luz no Fim do Túnel'.">
+    <meta name="twitter:title" content="Projetos e Exposições - Museu Estadual do Carvão" data-i18n="meta_title_projetos">
+    <meta name="twitter:description"
+        content="Conheça os projetos de preservação, conservação documental e as exposições do Museu Estadual do Carvão, incluindo 'Cartas do Fundo do Poço'."
+        data-i18n="meta_desc_projetos">
     <meta name="twitter:image" content="https://kvothe000.github.io/site-museu-carvao/img/fachada_museu.jpg">
+
     <link rel="icon" href="img/logo-museu.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,64 +38,421 @@
         rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/premium.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
+
+    <style>
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            margin: 3rem 0;
+        }
+
+        .project-card {
+            background: var(--cor-fundo-claro);
+            border: 1px solid var(--cor-borda-suave);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(216, 155, 66, 0.15);
+            border-color: var(--cor-laranja-destaque);
+        }
+
+        .project-image-wrapper {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.08);
+        }
+
+        .project-tag {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--cor-laranja-destaque);
+            color: var(--cor-fundo-escuro);
+            padding: 0.4rem 0.8rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            border-radius: 20px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .project-card-body {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .project-card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--cor-laranja-destaque);
+            margin: 0 0 1rem 0;
+            line-height: 1.3;
+        }
+
+        .project-card-desc {
+            color: var(--cor-texto-escuro);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0 0 1.5rem 0;
+            flex-grow: 1;
+        }
+
+        .project-btn-wrapper {
+            margin-top: auto;
+        }
+
+        .project-action-btn {
+            background: transparent;
+            border: 2px solid var(--cor-laranja-destaque);
+            color: var(--cor-texto-claro);
+            padding: 0.75rem 1.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s, color 0.3s, transform 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .project-action-btn:hover {
+            background: var(--cor-laranja-destaque);
+            color: var(--cor-fundo-escuro);
+            transform: translateY(-2px);
+        }
+
+        /* Modal Acessível */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(6px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            padding: 1.5rem;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            animation: fadeInOverlay 0.3s ease forwards;
+        }
+
+        .modal-container {
+            background: var(--cor-fundo-claro);
+            border: 1px solid var(--cor-borda-suave);
+            border-radius: 12px;
+            width: 100%;
+            max-width: 650px;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            transform: translateY(30px);
+            opacity: 0;
+        }
+
+        .modal-overlay.active .modal-container {
+            animation: slideInModal 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .modal-header {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--cor-borda-suave);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: var(--cor-laranja-destaque);
+            margin: 0;
+        }
+
+        .modal-close-btn {
+            background: transparent;
+            border: none;
+            color: var(--cor-texto-escuro);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.2s, transform 0.2s;
+            border-radius: 50%;
+        }
+
+        .modal-close-btn:hover {
+            color: var(--cor-laranja-destaque);
+            transform: rotate(90deg);
+            background: rgba(216, 155, 66, 0.1);
+        }
+
+        .modal-body {
+            padding: 2rem;
+            overflow-y: auto;
+            color: var(--cor-texto-escuro);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .modal-body p {
+            margin: 0 0 1.5rem 0;
+        }
+
+        .modal-body p:last-child {
+            margin: 0;
+        }
+
+        .modal-info-block {
+            background: rgba(216, 155, 66, 0.08);
+            border-left: 4px solid var(--cor-laranja-destaque);
+            padding: 1.25rem 1.5rem;
+            border-radius: 4px;
+            margin-top: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        @keyframes fadeInOverlay {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInModal {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
     <a href="#main-content" class="skip-link">Pular para o Conteúdo Principal</a>
+
     <header id="main-header">
         <load src="./header.html" />
     </header>
 
     <main id="main-content">
-        <section class="page-title">
-            <h1 data-i18n="projects_page_title">Projetos</h1>
+        <section class="page-title page-hero" style="min-height: 40vh; height: 40vh;">
+            <h1 data-i18n="projects_hero_title">Projetos e Exposições</h1>
         </section>
 
-        <section class="projects-list">
+        <div class="container fade-in-up">
+            <section class="projects-grid" aria-label="Lista de Projetos e Exposições">
+                
+                <!-- Card 1: Exposição Real (Cartas do Fundo do Poço) -->
+                <article class="project-card">
+                    <div class="project-image-wrapper">
+                        <img src="img/acervo_prateleiras.jpg" alt="Caixas organizadas no Arquivo Histórico" class="project-image">
+                        <span class="project-tag" data-i18n="projects_tag_exhibition">Exposição</span>
+                    </div>
+                    <div class="project-card-body">
+                        <h2 class="project-card-title" data-i18n="projects_cartas_title">Cartas do Fundo do Poço</h2>
+                        <p class="project-card-desc" data-i18n="projects_cartas_desc">
+                            A exposição reconstrói a história da mineração no Rio Grande do Sul através de cartas e documentos originais (1891-1964) do Arquivo Histórico do Museu Estadual do Carvão.
+                        </p>
+                        <div class="project-btn-wrapper">
+                            <button class="project-action-btn" id="open-cartas-modal" aria-haspopup="dialog" aria-controls="cartas-modal">
+                                <span data-i18n="projects_btn_learn_more">Saber Mais</span>
+                                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                </article>
 
-            <article class="project-card">
-                <img src="img/acervo_prateleiras.jpg" alt="Documentos sendo organizados" class="project-image">
-                <div class="project-content">
-                    <h2 class="project-title" data-i18n="project_light_title">Projeto "Uma Luz no Fim do Túnel"</h2>
-                    <p class="project-description" data-i18n="project_light_desc">Iniciado em 2008, este projeto foi
-                        fundamental para a salvaguarda do acervo. O nome é uma alusão ao trabalho do mineiro que, após a
-                        jornada no escuro, encontra a luz. Universitários voluntários realizaram a higienização,
-                        registro e inventário inicial do acervo CADEM, que corria risco de perda.</p>
-                </div>
-            </article>
+                <!-- Card 2: Mockup 1 (Projeto Escola no Museu) -->
+                <article class="project-card">
+                    <div class="project-image-wrapper">
+                        <img src="img/museu_exposicao.jpg" alt="Alunos visitando a galeria de arte e acervo" class="project-image">
+                        <span class="project-tag" data-i18n="projects_tag_education">Educação</span>
+                    </div>
+                    <div class="project-card-body">
+                        <h2 class="project-card-title" data-i18n="projects_school_title">Projeto Escola no Museu</h2>
+                        <p class="project-card-desc" data-i18n="projects_school_desc">
+                            Ações educativas integradas com escolas da região do Jacuí, promovendo visitas guiadas e oficinas didáticas sobre a história da mineração e preservação ambiental.
+                        </p>
+                        <div class="project-btn-wrapper">
+                            <a href="servicos.html" class="project-action-btn">
+                                <span data-i18n="projects_btn_learn_more">Saber Mais</span>
+                                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
 
-            <article class="project-card">
-                <img src="img/projeto-enchente.webp" alt="Foto de prateleiras de arquivo com caixas de documentos."
-                    class="project-image">
-                <div class="project-content">
-                    <h2 class="project-title" data-i18n="project_flood_title">Recuperação de Acervo Danificado pela
-                        Enchente</h2>
-                    <p class="project-description" data-i18n="project_flood_desc">Após a segunda quinzena de dezembro,
-                        um processo de secagem e desinfecção de parte do acervo foi iniciado, recuperando 650 caixas de
-                        documentos e 100 volumes de grandes formatos. O trabalho representa um marco na preservação de
-                        documentos atingidos por desastres climáticos.</p>
-                </div>
-            </article>
+                <!-- Card 3: Mockup 2 (Restauração do Acervo CADEM) -->
+                <article class="project-card">
+                    <div class="project-image-wrapper">
+                        <img src="img/projeto-enchente.webp" alt="Técnicos realizando restauração de documentos históricos" class="project-image">
+                        <span class="project-tag" data-i18n="projects_tag_preservation">Preservação</span>
+                    </div>
+                    <div class="project-card-body">
+                        <h2 class="project-card-title" data-i18n="projects_restoration_title">Restauração do Acervo CADEM</h2>
+                        <p class="project-card-desc" data-i18n="projects_restoration_desc">
+                            Trabalho contínuo de conservação preventiva, higienização e restauro físico de documentos cartográficos e manuscritos raros do fundo documental CADEM.
+                        </p>
+                        <div class="project-btn-wrapper">
+                            <a href="nossos-fundos.html" class="project-action-btn">
+                                <span data-i18n="projects_btn_learn_more">Saber Mais</span>
+                                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
 
-            <article class="project-card">
-                <img src="img/acervo-ccr.jpg"
-                    alt="Processo de organização e digitalização de caixas do Fundo CCR" class="project-image">
-                <div class="project-content">
-                    <h2 class="project-title">Digitalização do Fundo Documental CCR</h2>
-                    <p class="project-description">Um esforço contínuo para digitalizar e disponibilizar online os
-                        documentos históricos da Companhia Carbonífera Rio Grandense, garantindo o acesso a
-                        pesquisadores de todo o mundo e a preservação digital para as futuras gerações.</p>
-                </div>
-            </article>
-
-        </section>
+            </section>
+        </div>
     </main>
+
+    <!-- Modal Acessível para Exposição Cartas do Fundo do Poço -->
+    <div class="modal-overlay" id="cartas-modal-overlay" aria-hidden="true" role="dialog" aria-labelledby="modal-title-el">
+        <div class="modal-container" id="cartas-modal">
+            <header class="modal-header">
+                <h2 class="modal-title" id="modal-title-el" data-i18n="projects_cartas_modal_title">Exposição: Cartas do Fundo do Poço</h2>
+                <button class="modal-close-btn" id="close-cartas-modal" aria-label="Fechar modal" data-i18n="[aria-label]projects_modal_close">
+                    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                </button>
+            </header>
+            <div class="modal-body">
+                <p data-i18n="projects_cartas_modal_p1">A exposição 'Cartas do Fundo do Poço: As correspondências das minas de carvão do Baixo Jacuí (1891-1964)' reconstrói aspectos fundamentais da história social da mineração no Rio Grande do Sul. O acervo exposto é constituído por uma seleção de correspondências originais trocadas entre trabalhadores, empresas de mineração e suas famílias.</p>
+                <p data-i18n="projects_cartas_modal_p2"><strong>A Bacia do Rio Jacuí:</strong> As minas localizadas nos municípios que compõem a bacia do Rio Jacuí, como Arroio dos Ratos e Butiá, foram o núcleo dessa rica trajetória. As cartas expostas retratam o cotidiano penoso nas vilas operárias, a forte presença da imigração europeia e as técnicas utilizadas na extração subterrânea do carvão.</p>
+                <p data-i18n="projects_cartas_modal_p3"><strong>O Esforço na Segunda Guerra Mundial:</strong> Durante a Segunda Guerra Mundial (1939-1945), a mineração no Jacuí assumiu relevância geopolítica estratégica para o Brasil. Com o bloqueio marítimo internacional e a escassez do carvão importado da Europa, o mineral extraído na região tornou-se vital para mover as ferrovias e alimentar as usinas termoelétricas que sustentavam a infraestrutura brasileira.</p>
+                <p data-i18n="projects_cartas_modal_p4"><strong>Greves e Lutas Sociais:</strong> As cartas também documentam as relações de trabalho tensas, os movimentos grevistas organizados em busca de melhorias salariais e segurança, e a mobilização dos sindicatos de mineiros ao longo das décadas de 1940 a 1960.</p>
+                
+                <div class="modal-info-block" data-i18n="projects_cartas_modal_info">
+                    <strong>ONDE/QUANDO:</strong> Exposição concebida em parceria com a ONG Arquivistas Sem Fronteiras e Surya Projetos, exibida originalmente no Memorial do Rio Grande do Sul (Porto Alegre). O acervo documental original encontra-se sob guarda permanente e está disponível para consulta no Arquivo Histórico do Museu Estadual do Carvão, em Arroio dos Ratos/RS.
+                </div>
+            </div>
+        </div>
+    </div>
 
     <footer id="main-footer" class="site-footer">
         <load src="./footer.html" />
     </footer>
+
     <script type="module" src="js/main.js"></script>
+    <script>
+        // Lógica de gerenciamento do Modal de forma acessível
+        const openBtn = document.getElementById('open-cartas-modal');
+        const overlay = document.getElementById('cartas-modal-overlay');
+        const modalContainer = document.getElementById('cartas-modal');
+        const closeBtn = document.getElementById('close-cartas-modal');
+
+        // Focus Trap Elements
+        const focusableElementsString = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+        
+        function getFocusableElements() {
+            return Array.from(modalContainer.querySelectorAll(focusableElementsString));
+        }
+
+        function handleTabKey(e) {
+            const focusableElements = getFocusableElements();
+            const firstElement = focusableElements[0];
+            const lastElement = focusableElements[focusableElements.length - 1];
+
+            if (e.key === 'Tab') {
+                if (e.shiftKey) { // Shift + Tab
+                    if (document.activeElement === firstElement) {
+                        lastElement.focus();
+                        e.preventDefault();
+                    }
+                } else { // Tab
+                    if (document.activeElement === lastElement) {
+                        firstElement.focus();
+                        e.preventDefault();
+                    }
+                }
+            }
+        }
+
+        function openModal() {
+            overlay.classList.add('active');
+            overlay.removeAttribute('aria-hidden');
+            document.body.style.overflow = 'hidden';
+            
+            // Foco inicial no botão de fechar do modal
+            setTimeout(() => {
+                closeBtn.focus();
+            }, 100);
+
+            overlay.addEventListener('keydown', handleTabKey);
+        }
+
+        function closeModal() {
+            overlay.classList.remove('active');
+            overlay.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+            
+            // Retorna o foco para o botão acionador
+            openBtn.focus();
+
+            overlay.removeEventListener('keydown', handleTabKey);
+        }
+
+        openBtn.addEventListener('click', openModal);
+        closeBtn.addEventListener('click', closeModal);
+
+        // Fechar ao clicar no overlay escuro (fora do modal-container)
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                closeModal();
+            }
+        });
+
+        // Fechar com a tecla ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && overlay.classList.contains('active')) {
+                closeModal();
+            }
+        });
+    </script>
 </body>
 
 </html>
