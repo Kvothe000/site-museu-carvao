@@ -238,23 +238,38 @@ document.addEventListener('DOMContentLoaded', async () => {
         async function carregarAcervo() {
             try {
                 const response = await fetch('mock-api.json');
+                // Verifica status HTTP antes de parsear (previne erros silenciosos em 404/500)
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 const data = await response.json();
                 const documentos = data.results || data;
                 acervoContainer.classList.remove('loading');
                 acervoContainer.innerHTML = '';
                 acervoContainer.style.display = 'grid';
                 documentos.forEach(doc => {
+                    // Criação segura via DOM (previne XSS de dados externos)
                     const card = document.createElement('a');
                     card.className = 'fundo-card';
                     card.href = doc.slug || '#';
                     card.target = '_blank';
-                    const img = doc.thumbnail_url || 'https://via.placeholder.com/300x200.png?text=Documento';
-                    card.innerHTML = `<figure><img src="${img}" alt="${doc.title}"><figcaption>${doc.title}</figcaption></figure>`;
+                    card.rel = 'noopener noreferrer';
+                    const figure = document.createElement('figure');
+                    const img = document.createElement('img');
+                    // Imagem placeholder local — sem dependência de serviço externo
+                    img.src = doc.thumbnail_url || 'img/placeholder-documento.svg';
+                    img.alt = doc.title || ''; // textContent equivalente para alt
+                    const figcaption = document.createElement('figcaption');
+                    figcaption.textContent = doc.title || ''; // seguro: textContent
+                    figure.appendChild(img);
+                    figure.appendChild(figcaption);
+                    card.appendChild(figure);
                     acervoContainer.appendChild(card);
                 });
             } catch (error) {
                 console.error('Erro acervo:', error);
-                acervoContainer.innerHTML = '<p>Erro ao carregar acervo.</p>';
+                const p = document.createElement('p');
+                p.textContent = 'Erro ao carregar acervo.';
+                acervoContainer.innerHTML = '';
+                acervoContainer.appendChild(p);
             }
         }
         carregarAcervo();
