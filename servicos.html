@@ -5,12 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="Conheça os serviços prestados pelo Museu Estadual do Carvão, como atendimento a pesquisadores, visitas escolares guiadas e fornecimento de reproduções.">
-    <title>Serviços - Museu Estadual do Carvão</title>
+    <meta name="description"
+        content="Conheça os serviços prestados pelo Museu Estadual do Carvão, como visitação guiada, pesquisa no acervo, cessão de imagens e ações educativas.">
+    <meta name="keywords" content="Museu do Carvão, Serviços, Visitação Guiada, Pesquisa, Acervo, Cessão de Imagens, Ações Educativas, Arroio dos Ratos">
+    <meta name="author" content="Museu Estadual do Carvão">
+    <meta name="robots" content="index, follow">
+    <title>Nossos Serviços - Museu Estadual do Carvão</title>
 
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Serviços - Museu Estadual do Carvão">
-    <meta property="og:description" content="Conheça os serviços prestados pelo Museu Estadual do Carvão, como atendimento a pesquisadores, visitas escolares guiadas e fornecimento de reproduções.">
+    <meta property="og:title" content="Nossos Serviços - Museu Estadual do Carvão">
+    <meta property="og:description"
+        content="Conheça os serviços prestados pelo Museu Estadual do Carvão, como visitação guiada, pesquisa no acervo, cessão de imagens e ações educativas.">
     <meta property="og:image" content="https://kvothe000.github.io/site-museu-carvao/img/fachada_museu.jpg">
     <meta property="og:url" content="https://kvothe000.github.io/site-museu-carvao/servicos.html">
     <meta property="og:type" content="website">
@@ -18,8 +23,9 @@
 
     <!-- Twitter Cards Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Serviços - Museu Estadual do Carvão">
-    <meta name="twitter:description" content="Conheça os serviços prestados pelo Museu Estadual do Carvão, como atendimento a pesquisadores, visitas escolares guiadas e fornecimento de reproduções.">
+    <meta name="twitter:title" content="Nossos Serviços - Museu Estadual do Carvão">
+    <meta name="twitter:description"
+        content="Conheça os serviços prestados pelo Museu Estadual do Carvão, como visitação guiada, pesquisa no acervo, cessão de imagens e ações educativas.">
     <meta name="twitter:image" content="https://kvothe000.github.io/site-museu-carvao/img/fachada_museu.jpg">
 
     <link rel="icon" href="img/logo-museu.png" type="image/png">
@@ -30,7 +36,211 @@
         rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/premium.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
+
+    <style>
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            box-sizing: border-box;
+        }
+
+        /* Grid de Serviços */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2.5rem;
+            margin: 4rem 0;
+        }
+
+        .service-card {
+            background: var(--cor-fundo-claro);
+            border: 1px solid var(--cor-borda-suave);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            padding: 2.5rem 2rem;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(216, 155, 66, 0.15);
+            border-color: var(--cor-laranja-destaque);
+        }
+
+        .service-icon-wrapper {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: rgba(216, 155, 66, 0.1);
+            color: var(--cor-laranja-destaque);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .service-card:hover .service-icon-wrapper {
+            background: var(--cor-laranja-destaque);
+            color: var(--cor-fundo-escuro);
+        }
+
+        .service-card-body {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            width: 100%;
+        }
+
+        .service-card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--cor-laranja-destaque);
+            margin: 0 0 1rem 0;
+            line-height: 1.3;
+        }
+
+        .service-card-desc {
+            color: var(--cor-texto-escuro);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0 0 1.5rem 0;
+            flex-grow: 1;
+        }
+
+        .service-btn-wrapper {
+            margin-top: auto;
+            width: 100%;
+        }
+
+        .service-action-btn {
+            background: transparent;
+            border: 2px solid var(--cor-laranja-destaque);
+            color: var(--cor-texto-claro);
+            padding: 0.75rem 1.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 6px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.3s, color 0.3s, transform 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            width: 100%;
+            box-sizing: border-box;
+            justify-content: center;
+        }
+
+        .service-action-btn:hover {
+            background: var(--cor-laranja-destaque);
+            color: var(--cor-fundo-escuro);
+            transform: translateY(-2px);
+        }
+
+        /* Seção FAQ */
+        .faq-section {
+            margin: 6rem auto;
+            max-width: 800px;
+        }
+
+        .faq-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--cor-laranja-destaque);
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .faq-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: var(--cor-laranja-destaque);
+            margin: 0.8rem auto 0 auto;
+        }
+
+        .faq-accordion {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .faq-item {
+            background: var(--cor-fundo-claro);
+            border: 1px solid var(--cor-borda-suave);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item[open] {
+            border-color: var(--cor-laranja-destaque);
+            box-shadow: 0 4px 20px rgba(216, 155, 66, 0.1);
+        }
+
+        .faq-item summary {
+            padding: 1.2rem 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--cor-texto-claro);
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            outline: none;
+            transition: color 0.3s ease;
+        }
+
+        .faq-item summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-item summary:hover {
+            color: var(--cor-laranja-destaque);
+        }
+
+        /* Ícone de Seta Giratória via FontAwesome */
+        .faq-item summary::after {
+            content: "\f078";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            font-size: 0.9rem;
+            color: var(--cor-texto-escuro);
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .faq-item[open] summary::after {
+            transform: rotate(180deg);
+            color: var(--cor-laranja-destaque);
+        }
+
+        .faq-content {
+            padding: 0 1.5rem 1.5rem 1.5rem;
+            color: var(--cor-texto-escuro);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            border-top: 1px solid rgba(216, 155, 66, 0.15);
+            padding-top: 1.2rem;
+        }
+
+        .faq-content p {
+            margin: 0;
+        }
+    </style>
 </head>
 
 <body>
@@ -41,87 +251,114 @@
     </header>
 
     <main id="main-content">
-        <section class="page-title">
-            <h1 data-i18n="services_page_title">Serviços</h1>
+        <section class="page-title page-hero" style="min-height: 40vh; height: 40vh; background-image: url('img/fundo-museu.jpeg');">
+            <h1 data-i18n="services_hero_title">Nossos Serviços</h1>
         </section>
 
-        <section class="service-grid-container">
+        <div class="container fade-in-up">
+            
+            <p class="intro-paragraph text-center" data-i18n="services_intro" style="max-width: 800px; margin: 3rem auto; font-size: 1.15rem; line-height: 1.6; color: var(--cor-texto-escuro);">
+                O Museu Estadual do Carvão oferece uma série de serviços para apoiar a pesquisa acadêmica, visitas de grupos e a difusão educativa sobre a história do carvão no país.
+            </p>
 
-            <p class="intro-paragraph" data-i18n="services_intro">O Museu Estadual do Carvão oferece uma gama de
-                serviços voltados a pesquisadores, estudantes e ao público em geral, visando facilitar o acesso ao
-                acervo e promover o conhecimento sobre a história da mineração.</p>
-
-            <div class="service-grid">
-
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fa-solid fa-book-open"></i>
+            <section class="services-grid" aria-label="Lista de Serviços">
+                
+                <!-- Card 1: Visitação Guiada -->
+                <article class="service-card">
+                    <div class="service-icon-wrapper">
+                        <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
                     </div>
-                    <h2 data-i18n="services_consultation_title">Consulta ao Acervo</h2>
-                    <p data-i18n="services_consultation_desc">Pesquisadores e interessados podem agendar visitas para
-                        consulta presencial aos documentos textuais, iconográficos e cartográficos do nosso acervo.
-                        Nossa equipe técnica está disponível para auxiliar na localização e manuseio dos materiais.</p>
-                    <div class="service-action">
-                        <strong data-i18n="services_how_to">Como solicitar:</strong>
-                        <p>Entre em contato por <a href="mailto:museu-carvao@sedac.rs.gov.br">e-mail</a> ou <a
-                                href="tel:+555136561215">telefone</a> para agendamento prévio, informando o tema de sua
-                            pesquisa.</p>
+                    <div class="service-card-body">
+                        <h2 class="service-card-title" data-i18n="services_card_1_title">Visitação Guiada</h2>
+                        <p class="service-card-desc" data-i18n="services_card_1_desc">
+                            Agendamento de visitas mediadas para escolas, universidades e grupos turísticos pelas dependências históricas do museu.
+                        </p>
+                        <div class="service-btn-wrapper">
+                            <a href="contato.html" class="service-action-btn">
+                                <span data-i18n="services_card_1_btn">Agendar Visita</span>
+                                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                            </a>
+                        </div>
                     </div>
+                </article>
+
+                <!-- Card 2: Pesquisa no Acervo -->
+                <article class="service-card">
+                    <div class="service-icon-wrapper">
+                        <i class="fa-solid fa-book-open" aria-hidden="true"></i>
+                    </div>
+                    <div class="service-card-body">
+                        <h2 class="service-card-title" data-i18n="services_card_2_title">Pesquisa no Acervo</h2>
+                        <p class="service-card-desc" data-i18n="services_card_2_desc">
+                            Consulta presencial aos fundos documentais, cartográficos e fotográficos sob agendamento e com suporte técnico de arquivistas.
+                        </p>
+                    </div>
+                </article>
+
+                <!-- Card 3: Cessão de Imagens -->
+                <article class="service-card">
+                    <div class="service-icon-wrapper">
+                        <i class="fa-solid fa-images" aria-hidden="true"></i>
+                    </div>
+                    <div class="service-card-body">
+                        <h2 class="service-card-title" data-i18n="services_card_3_title">Cessão de Imagens</h2>
+                        <p class="service-card-desc" data-i18n="services_card_3_desc">
+                            Solicitação de reproduções digitais de fotografias e documentos históricos do acervo para fins acadêmicos, editoriais ou comerciais.
+                        </p>
+                    </div>
+                </article>
+
+                <!-- Card 4: Ações Educativas -->
+                <article class="service-card">
+                    <div class="service-icon-wrapper">
+                        <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
+                    </div>
+                    <div class="service-card-body">
+                        <h2 class="service-card-title" data-i18n="services_card_4_title">Ações Educativas</h2>
+                        <p class="service-card-desc" data-i18n="services_card_4_desc">
+                            Oficinas temáticas, palestras históricas e cursos de capacitação integrados ao patrimônio industrial e cultural carbonífero.
+                        </p>
+                    </div>
+                </article>
+
+            </section>
+
+            <!-- Seção de Dúvidas Frequentes (FAQ) -->
+            <section class="faq-section" aria-labelledby="faq-heading">
+                <h2 id="faq-heading" class="faq-title" data-i18n="services_faq_title">Dúvidas Frequentes</h2>
+                <div class="faq-accordion">
+                    
+                    <details class="faq-item">
+                        <summary data-i18n="services_faq_q1">Preciso pagar para visitar o museu?</summary>
+                        <div class="faq-content">
+                            <p data-i18n="services_faq_a1">A entrada para o Museu Estadual do Carvão é totalmente gratuita para todos os públicos.</p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary data-i18n="services_faq_q2">Como faço para agendar uma visita escolar?</summary>
+                        <div class="faq-content">
+                            <p data-i18n="services_faq_a2">O agendamento escolar pode ser realizado através da nossa página de contato, selecionando a opção "Agendamento Escolar" no formulário.</p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary data-i18n="services_faq_q3">Posso tirar fotos do acervo?</summary>
+                        <div class="faq-content">
+                            <p data-i18n="services_faq_a3">Sim, é permitido tirar fotos para fins de pesquisa ou registro pessoal, desde que sem o uso de flash para garantir a preservação física dos documentos.</p>
+                        </div>
+                    </details>
+
                 </div>
+            </section>
 
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fa-solid fa-camera-retro"></i>
-                    </div>
-                    <h2 data-i18n="services_reproduction_title">Reprodução de Documentos</h2>
-                    <p data-i18n="services_reproduction_desc">Oferecemos serviços de reprodução (digitalização ou
-                        fotocópia) de documentos do acervo para fins de pesquisa, respeitando as normas de preservação e
-                        a legislação de direitos autorais. Consulte nossa tabela de preços e condições.</p>
-                    <div class="service-action">
-                        <strong data-i18n="services_how_to">Como solicitar:</strong>
-                        <p>Preencha o formulário de solicitação [link] ou entre em contato.</p>
-                    </div>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fa-solid fa-users"></i>
-                    </div>
-                    <h2 data-i18n="services_visits_title">Visitas Mediadas e Ações Educativas</h2>
-                    <p data-i18n="services_visits_desc">Instituições de ensino e grupos podem agendar visitas mediadas
-                        às exposições e instalações do museu. Desenvolvemos também ações educativas adaptadas a
-                        diferentes públicos, buscando aproximar a comunidade da história do carvão.</p>
-                    <div class="service-action">
-                        <strong data-i18n="services_how_to">Como solicitar:</strong>
-                        <p>Entre em contato com o setor educativo pelo <a
-                                href="mailto:museu-carvao@sedac.rs.gov.br">e-mail</a> ou <a
-                                href="tel:+555136561215">telefone</a> para verificar a disponibilidade e agendar sua
-                            visita.</p>
-                    </div>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fa-solid fa-magnifying-glass-chart"></i>
-                    </div>
-                    <h2 data-i18n="services_research_title">Pesquisa e Referência</h2>
-                    <p data-i18n="services_research_desc">Nossa equipe técnica pode auxiliar pesquisadores na
-                        identificação de fontes relevantes dentro do acervo para seus temas de estudo, oferecendo
-                        orientação e suporte à pesquisa.</p>
-                    <div class="service-action">
-                        <strong data-i18n="services_how_to">Como solicitar:</strong>
-                        <p>Envie sua dúvida ou solicitação de pesquisa para <a
-                                href="mailto:museu-carvao@sedac.rs.gov.br">nosso e-mail</a>.</p>
-                    </div>
-                </div>
-
-            </div>
-        </section>
+        </div>
     </main>
 
     <footer id="main-footer" class="site-footer">
         <load src="./footer.html" />
     </footer>
+
     <script type="module" src="js/main.js"></script>
 </body>
 
