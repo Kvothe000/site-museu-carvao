@@ -118,9 +118,8 @@ function initHeaderScripts() {
 
     const header = document.querySelector('header');
     if (header) {
-        const headerHeight = header.offsetHeight;
         window.addEventListener('scroll', () => {
-            if (window.scrollY > headerHeight) {
+            if (window.scrollY > 50) {
                 if (!header.classList.contains('sticky-header')) {
                     header.classList.add('sticky-header');
                 }
