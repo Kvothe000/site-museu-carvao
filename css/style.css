@@ -55,6 +55,20 @@ body.dark-mode {
     --cor-header-bg: rgba(26, 32, 44, 0.85);
 }
 
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+img, video {
+    max-width: 100%;
+    height: auto;
+}
+
+iframe {
+    max-width: 100%;
+}
+
 body {
     /* Fonte principal para leitura (Limpa e moderna) */
     font-family: 'Inter', sans-serif;
@@ -757,6 +771,11 @@ textarea:focus-visible,
     text-decoration: none;
     color: var(--cor-texto-escuro);
     transition: color 0.3s, font-weight 0.3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
 }
 
 .language-selector a:hover,
@@ -776,6 +795,11 @@ textarea:focus-visible,
     color: var(--cor-texto-escuro);
     font-size: 1.2rem;
     transition: color 0.3s, transform 0.3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
 }
 
 .social-links a:hover {
@@ -1142,6 +1166,8 @@ textarea:focus-visible,
 /* Personaliza as setas e os pontos de navegação */
 .splide__arrow {
     background: var(--cor-laranja-destaque);
+    width: 44px !important;
+    height: 44px !important;
 }
 
 .splide__arrow svg {
@@ -1291,7 +1317,10 @@ textarea:focus-visible,
 }
 
 .sidebar-nav a {
-    display: block;
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    box-sizing: border-box;
     padding: 0.7rem 1rem;
     color: var(--cor-link);
     text-decoration: none;
@@ -1673,6 +1702,11 @@ textarea:focus-visible,
     font-size: 1.5rem;
     /* Ícones maiores */
     transition: color 0.3s ease, transform 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
 }
 
 .footer-social-links a:hover {
@@ -2461,5 +2495,51 @@ body.high-contrast .timeline-content::after {
 .publication-link:hover,
 .hero-button:hover {
     color: #1a202c !important; /* Contraste sob fundo laranja hover */
+}
+
+/* ==========================================================================
+   21. RETROFIT DE RESPONSIVIDADE MOBILE-FIRST (AUDITORIA E CORREÇÕES PROFUNDAS)
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* Tipografia de Hero Sections e Títulos de Páginas */
+    .page-hero h1 {
+        font-size: 2rem !important;
+    }
+    .page-title h1 {
+        font-size: 2rem !important;
+    }
+    .home-hero-new h1 {
+        font-size: 2.2rem !important;
+    }
+
+    /* Forçar Grids para Coluna Única no Mobile */
+    .publications-list,
+    .projects-list,
+    .contact-grid,
+    #acervo-container,
+    .two-column-layout,
+    .service-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Ajuste de Espaçamento das Colunas Desmembradas */
+    .two-column-layout {
+        gap: 1.5rem !important;
+    }
+    
+    /* Touch Target para o Botão do Menu Hamburguer */
+    .mobile-menu-toggle {
+        min-height: 48px !important;
+        padding: 0.8rem 1.2rem !important;
+    }
+
+    /* Área de toque do botão de busca */
+    .search-bar button {
+        min-width: 44px !important;
+        min-height: 44px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
 }
 

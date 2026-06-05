@@ -147,6 +147,7 @@
             gap: 0.5rem;
             width: 100%;
             justify-content: center;
+            min-height: 44px;
         }
 
         .project-action-btn:hover {
@@ -212,12 +213,13 @@
             color: var(--cor-texto-escuro);
             font-size: 1.5rem;
             cursor: pointer;
-            padding: 0.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: color 0.2s, transform 0.2s;
             border-radius: 50%;
+            min-width: 44px;
+            min-height: 44px;
         }
 
         .modal-close-btn:hover {
@@ -260,6 +262,20 @@
             to {
                 transform: translateY(0);
                 opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .page-hero h1 {
+                font-size: 2rem !important;
+            }
+            .modal-content {
+                width: 95%;
+                margin: 1rem;
             }
         }
     </style>
