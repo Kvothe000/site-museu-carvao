@@ -1,13 +1,27 @@
 // Controlador Principal Data-Driven para Nossos Fundos e Arquivo Digital
 // Refatorado: removidas funções globais e onclick inline.
 // Padrão de Event Delegation aplicado em todos os containers.
+// acervoData.js carregado sob demanda via import() dinâmico (não bloqueia o parser).
 
-document.addEventListener('DOMContentLoaded', () => {
+let ACERVO_DATA = null;
+
+document.addEventListener('DOMContentLoaded', async () => {
     const isDocumental = document.getElementById('documental-container') !== null;
     const isDigital = document.getElementById('digital-container') !== null;
 
-    if (typeof ACERVO_DATA === 'undefined' || !ACERVO_DATA.fundos) {
-        console.error('Banco de Dados ACERVO_DATA não carregado.');
+    if (!isDocumental && !isDigital) return;
+
+    // Import dinâmico: o arquivo de 770KB só é baixado quando necessário
+    try {
+        const module = await import('./acervoData.js');
+        ACERVO_DATA = module.ACERVO_DATA || module.default;
+    } catch (e) {
+        console.error('Erro ao carregar acervoData.js:', e);
+        return;
+    }
+
+    if (!ACERVO_DATA || !ACERVO_DATA.fundos) {
+        console.error('Banco de Dados ACERVO_DATA não carregado corretamente.');
         return;
     }
 

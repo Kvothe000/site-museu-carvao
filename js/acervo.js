@@ -1,4 +1,5 @@
 import { fundosHistoricos } from './dados-fundos.js';
+import { renderSidebar } from './modules/sidebar.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const listContainer = document.getElementById('fundo-list-container');
@@ -9,46 +10,14 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    // Render Master Sidebar Items
-    function renderSidebar() {
-        listContainer.innerHTML = '';
-        fundosHistoricos.forEach((fundo, index) => {
-            const li = document.createElement('li');
-            const button = document.createElement('button');
-            button.className = 'fundo-item-btn';
-            button.setAttribute('data-id', fundo.id);
-            button.setAttribute('aria-selected', 'false');
-
-            // Set icon and truncated title
-            button.innerHTML = `<i class="fa-regular fa-folder" aria-hidden="true"></i> <span data-i18n="fund_name_${fundo.id}">${fundo.titulo}</span>`;
-            
-            button.addEventListener('click', () => {
-                // Remove active classes
-                document.querySelectorAll('.fundo-item-btn').forEach(btn => {
-                    btn.classList.remove('active');
-                    btn.setAttribute('aria-selected', 'false');
-                });
-                
-                // Set current active
-                button.classList.add('active');
-                button.setAttribute('aria-selected', 'true');
-
-                // Load Details
-                loadDetail(fundo);
-                
-                // On mobile, scroll to detail section
-                if (window.innerWidth <= 768) {
-                    detailArea.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-
-            li.appendChild(button);
-            listContainer.appendChild(li);
+    // Render Master Sidebar Items using unified module
+    function initSidebar() {
+        renderSidebar({
+            listContainer,
+            detailArea,
+            dataList: fundosHistoricos,
+            onSelect: (item) => loadDetail(item)
         });
-
-        if (typeof window.updateLanguage === 'function') {
-            window.updateLanguage(localStorage.getItem('language') || 'pt');
-        }
     }
 
     // Load Detail Area
@@ -162,5 +131,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Initialize Master-Detail
-    renderSidebar();
+    initSidebar();
 });

@@ -91,9 +91,9 @@
     </footer>
 
     <!-- MODAL ÚNICO GLOBAL -->
-    <div id="global-modal" class="modal-overlay" data-i18n-aria="nf_report_modal_aria" aria-label="Visualizador de Relatório" onclick="if(event.target === this) closeDocumentalModal()">
+    <div id="global-modal" class="modal-overlay" data-i18n-aria="nf_report_modal_aria" aria-label="Visualizador de Relatório">
         <div class="modal-content">
-            <span class="close-modal" data-i18n-aria="nf_close_modal_aria" aria-label="Fechar" onclick="closeDocumentalModal()">&times;</span>
+            <span class="close-modal" data-action="close-modal" data-i18n-aria="nf_close_modal_aria" aria-label="Fechar">&times;</span>
             <h2 id="global-modal-title" style="color:var(--cor-laranja-destaque); font-size:2.2rem; margin-bottom:1.5rem; padding-right:2rem;"><span data-i18n="nf_report_title">Relatório Completo</span></h2>
             <div id="global-modal-body" class="modal-body" style="border-top:1px solid var(--cor-borda-suave); padding-top:1.5rem; text-align:justify;">
                 <!-- Conteúdo Modal populado via JS -->
@@ -101,9 +101,8 @@
         </div>
     </div>
 
-    <!-- Scripts de Dados (Data-Driven Architecture) -->
-    <script src="js/acervoData.js"></script>
-    <script src="js/acervoController.js"></script>
+    <!-- Scripts: acervoController carrega acervoData dinamicamente (on-demand) -->
+    <script type="module" src="js/acervoController.js"></script>
     <script type="module" src="js/main.js"></script>
 </body>
 
