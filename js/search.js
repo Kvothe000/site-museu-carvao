@@ -8,33 +8,50 @@ document.addEventListener('DOMContentLoaded', async () => {
     const getLanguage = () => localStorage.getItem('language') || 'pt';
     const getTranslation = (key) => {
         const lang = getLanguage();
-        // Fallback to 'pt' if key or lang missing
-        if (translations[lang] && translations[lang][key]) {
-            return translations[lang][key];
-        }
-        if (translations['pt'] && translations['pt'][key]) {
-            return translations['pt'][key];
-        }
-        return key; // Retorna a chave se não encontrar
+        if (translations[lang] && translations[lang][key]) return translations[lang][key];
+        if (translations['pt'] && translations['pt'][key]) return translations['pt'][key];
+        return key;
     };
 
+    // Helper seguro: cria elemento com textContent (previne XSS)
+    function createSafeTextNode(tag, className, text) {
+        const el = document.createElement(tag);
+        if (className) el.className = className;
+        el.textContent = text;
+        return el;
+    }
+
     if (!query) {
-        resultsContainer.innerHTML = `<p>${getTranslation('search_empty_query')}</p>`;
+        const p = document.createElement('p');
+        p.textContent = getTranslation('search_empty_query');
+        resultsContainer.appendChild(p);
         return;
     }
 
-    // Mostra indicador de carregamento
-    resultsContainer.innerHTML = `
-        <div class="search-loading">
-            <i class="fa-solid fa-spinner fa-spin"></i> ${getTranslation('search_searching')} "<strong>${decodeURIComponent(query)}</strong>"...
-        </div>
-    `;
+    // --- Mostra indicador de carregamento (sem dados do usuário no innerHTML) ---
+    const loadingDiv = document.createElement('div');
+    loadingDiv.className = 'search-loading';
+    const spinner = document.createElement('i');
+    spinner.className = 'fa-solid fa-spinner fa-spin';
+    spinner.setAttribute('aria-hidden', 'true');
+    const loadingText = document.createTextNode(
+        ` ${getTranslation('search_searching')} "`
+    );
+    const boldQuery = document.createElement('strong');
+    // textContent garante que o valor da URL não seja interpretado como HTML
+    boldQuery.textContent = decodeURIComponent(query);
+    const loadingTextEnd = document.createTextNode('"...');
+    loadingDiv.appendChild(spinner);
+    loadingDiv.appendChild(loadingText);
+    loadingDiv.appendChild(boldQuery);
+    loadingDiv.appendChild(loadingTextEnd);
+    resultsContainer.innerHTML = '';
+    resultsContainer.appendChild(loadingDiv);
 
     const searchTerm = query.toLowerCase();
     const results = [];
 
     // --- 1. Definição das Páginas Estáticas do Site ---
-    // Mapeamento de URL para chave de tradução do título
     const pagesToCrawl = [
         { url: 'index.html', titleKey: 'nav_home', typeKey: 'search_type_page' },
         { url: 'nossa-historia.html', titleKey: 'nav_history', typeKey: 'search_type_page' },
@@ -53,23 +70,15 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const response = await fetch(page.url);
                 if (!response.ok) return null;
                 const text = await response.text();
-
-                // Parser para transformar texto em HTML navegável
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(text, 'text/html');
-
-                // Remove scripts e estilos para não poluir a busca
                 doc.querySelectorAll('script, style, header, footer, nav').forEach(el => el.remove());
-
-                const bodyText = doc.body.textContent || "";
-
+                const bodyText = doc.body.textContent || '';
                 if (bodyText.toLowerCase().includes(searchTerm)) {
-                    // Tenta extrair um trecho relevante (snippet)
                     const index = bodyText.toLowerCase().indexOf(searchTerm);
                     const start = Math.max(0, index - 50);
                     const end = Math.min(bodyText.length, index + 150);
-                    let snippet = bodyText.substring(start, end).replace(/\s+/g, ' ').trim();
-
+                    const snippet = bodyText.substring(start, end).replace(/\s+/g, ' ').trim();
                     return {
                         title: getTranslation(page.titleKey),
                         url: page.url,
@@ -84,38 +93,39 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
 
         // --- 3. Busca em Notícias (JSON) ---
-        // Notícias usam títulos fixos do JSON (que podem estar em PT), idealmente o JSON teria campos multilíngues, 
-        // mas por enquanto manteremos o original.
-        const newsPromise = fetch('noticias.json').then(res => res.json()).then(news => {
-            if (news && news.titulo && news.titulo.toLowerCase().includes(searchTerm)) {
-                return {
-                    title: news.titulo,
-                    url: news.link,
-                    snippet: news.resumo || 'Notícia recente do museu.',
-                    type: getTranslation('search_type_news')
-                };
-            }
-            return null;
-        }).catch(() => null);
+        const newsPromise = fetch('noticias.json')
+            .then(res => res.json())
+            .then(news => {
+                if (news && news.titulo && news.titulo.toLowerCase().includes(searchTerm)) {
+                    return {
+                        title: news.titulo,
+                        url: news.link,
+                        snippet: news.resumo || 'Notícia recente do museu.',
+                        type: getTranslation('search_type_news')
+                    };
+                }
+                return null;
+            })
+            .catch(() => null);
 
         // --- 4. Busca no Acervo (Mock API JSON) ---
-        const collectionPromise = fetch('mock-api.json').then(res => res.json()).then(data => {
-            const items = data.results || data;
-            const matches = [];
-            items.forEach(item => {
-                if ((item.title && item.title.toLowerCase().includes(searchTerm)) ||
-                    (item.description && item.description.toLowerCase().includes(searchTerm))) {
-                    matches.push({
+        const collectionPromise = fetch('mock-api.json')
+            .then(res => res.json())
+            .then(data => {
+                const items = data.results || data;
+                return items
+                    .filter(item =>
+                        (item.title && item.title.toLowerCase().includes(searchTerm)) ||
+                        (item.description && item.description.toLowerCase().includes(searchTerm))
+                    )
+                    .map(item => ({
                         title: item.title,
-                        url: item.slug || '#', // Idealmente linkaria para a página do item
+                        url: item.slug || '#',
                         snippet: item.description || 'Item do acervo histórico.',
                         type: getTranslation('search_type_collection')
-                    });
-                }
-            });
-            return matches;
-        }).catch(() => []);
-
+                    }));
+            })
+            .catch(() => []);
 
         // Executa todas as buscas em paralelo
         const [pageResults, newsResult, collectionResults] = await Promise.all([
@@ -124,43 +134,92 @@ document.addEventListener('DOMContentLoaded', async () => {
             collectionPromise
         ]);
 
-        // Compila resultados
         if (newsResult) results.push(newsResult);
         results.push(...collectionResults);
         results.push(...pageResults.filter(r => r !== null));
 
-        // --- 5. Renderiza Resultados ---
-        if (results.length > 0) {
-            const summaryText = getTranslation('search_summary').replace('{0}', results.length); // Simples replace
+        // --- 5. Renderiza Resultados com DOM seguro ---
+        resultsContainer.innerHTML = '';
 
-            resultsContainer.innerHTML = `
-                <div class="search-summary">
-                    ${summaryText} "<em>${decodeURIComponent(query)}</em>".
-                </div>
-                <ul class="search-results-list">
-                    ${results.map(item => `
-                        <li>
-                            <a href="${item.url}" class="result-card">
-                                <span class="result-type tag-${item.type.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")}">${item.type}</span>
-                                <h3>${item.title}</h3>
-                                <p>${item.snippet}</p>
-                            </a>
-                        </li>
-                    `).join('')}
-                </ul>
-            `;
+        if (results.length > 0) {
+            // Sumário — query exibida com textContent
+            const summaryDiv = document.createElement('div');
+            summaryDiv.className = 'search-summary';
+            const summaryText = getTranslation('search_summary').replace('{0}', results.length);
+            summaryDiv.appendChild(document.createTextNode(`${summaryText} "`));
+            const em = document.createElement('em');
+            em.textContent = decodeURIComponent(query); // seguro: textContent
+            summaryDiv.appendChild(em);
+            summaryDiv.appendChild(document.createTextNode('".'));
+            resultsContainer.appendChild(summaryDiv);
+
+            // Lista de resultados
+            const ul = document.createElement('ul');
+            ul.className = 'search-results-list';
+
+            results.forEach(item => {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                // Validar URL do resultado — aceita apenas caminhos relativos e URLs seguras
+                const safeUrl = /^(https?:\/\/|[a-zA-Z0-9_\-./]+\.html)/.test(item.url)
+                    ? item.url
+                    : '#';
+                a.href = safeUrl;
+                a.className = 'result-card';
+
+                const typeSlug = (item.type || '')
+                    .toLowerCase()
+                    .normalize('NFD')
+                    .replace(/[\u0300-\u036f]/g, '');
+                const typeSpan = document.createElement('span');
+                typeSpan.className = `result-type tag-${typeSlug}`;
+                typeSpan.textContent = item.type; // textContent — seguro
+
+                const h3 = document.createElement('h3');
+                h3.textContent = item.title; // textContent — seguro
+
+                const p = document.createElement('p');
+                p.textContent = item.snippet; // textContent — seguro (snippet vem de textContent das páginas)
+
+                a.appendChild(typeSpan);
+                a.appendChild(h3);
+                a.appendChild(p);
+                li.appendChild(a);
+                ul.appendChild(li);
+            });
+
+            resultsContainer.appendChild(ul);
+
         } else {
-            resultsContainer.innerHTML = `
-                <div class="no-results">
-                    <i class="fa-regular fa-face-sad-tear"></i>
-                    <p>${getTranslation('search_no_results')} "<strong>${decodeURIComponent(query)}</strong>".</p>
-                    <p>${getTranslation('search_try_terms')}</p>
-                </div>
-            `;
+            // Sem resultados — query exibida com textContent
+            const noResultsDiv = document.createElement('div');
+            noResultsDiv.className = 'no-results';
+
+            const icon = document.createElement('i');
+            icon.className = 'fa-regular fa-face-sad-tear';
+            icon.setAttribute('aria-hidden', 'true');
+
+            const p1 = document.createElement('p');
+            p1.appendChild(document.createTextNode(`${getTranslation('search_no_results')} "`));
+            const strong = document.createElement('strong');
+            strong.textContent = decodeURIComponent(query); // textContent — seguro
+            p1.appendChild(strong);
+            p1.appendChild(document.createTextNode('".'));
+
+            const p2 = document.createElement('p');
+            p2.textContent = getTranslation('search_try_terms');
+
+            noResultsDiv.appendChild(icon);
+            noResultsDiv.appendChild(p1);
+            noResultsDiv.appendChild(p2);
+            resultsContainer.appendChild(noResultsDiv);
         }
 
     } catch (error) {
         console.error('Erro fatal na busca:', error);
-        resultsContainer.innerHTML = `<p>${getTranslation('search_error')}</p>`;
+        resultsContainer.innerHTML = '';
+        const p = document.createElement('p');
+        p.textContent = getTranslation('search_error');
+        resultsContainer.appendChild(p);
     }
 });

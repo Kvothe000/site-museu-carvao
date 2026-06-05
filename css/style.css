@@ -2533,6 +2533,7 @@ body.high-contrast .timeline-content::after {
         padding: 0.8rem 1.2rem !important;
     }
 
+
     /* Área de toque do botão de busca */
     .search-bar button {
         min-width: 44px !important;
@@ -2543,3 +2544,18 @@ body.high-contrast .timeline-content::after {
     }
 }
 
+/* ==========================================================
+   ACESSIBILIDADE — PREFERÊNCIA DE MOVIMENTO REDUZIDO (WCAG 2.1)
+   Desativa animações e transições para usuários com
+   fotossensibilidade, epilepsia ou distúrbios vestibulares.
+   ========================================================== */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
