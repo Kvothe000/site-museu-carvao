@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         { url: 'projetos.html', titleKey: 'nav_projects', typeKey: 'search_type_page' },
         { url: 'publicacoes.html', titleKey: 'nav_publications', typeKey: 'search_type_page' },
         { url: 'servicos.html', titleKey: 'nav_services', typeKey: 'search_type_page' },
-        { url: 'localizacao-contato.html', titleKey: 'nav_contact', typeKey: 'search_type_page' }
+        { url: 'contato.html', titleKey: 'contact_scheduling_title', typeKey: 'search_type_page' }
     ];
 
     try {

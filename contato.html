@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Entre em contato conosco e agende sua visita guiada ou pesquisa acadêmica no Museu Estadual do Carvão.">
+    <meta name="keywords" content="Museu do Carvão, Arquivo Histórico, Contato, Agendamento">
+    <meta name="author" content="Museu Estadual do Carvão">
+    <meta name="robots" content="index, follow">
+    <title>Contatos e Agendamentos - Museu Estadual do Carvão</title>
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Contatos e Agendamentos - Museu Estadual do Carvão">
+    <meta property="og:description" content="Entre em contato conosco e agende sua visita guiada ou pesquisa acadêmica no Museu Estadual do Carvão.">
+    <meta property="og:image" content="https://kvothe000.github.io/site-museu-carvao/img/fachada_museu.jpg">
+    <meta property="og:url" content="https://kvothe000.github.io/site-museu-carvao/contato.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Museu Estadual do Carvão">
+
+    <!-- Twitter Cards Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Contatos e Agendamentos - Museu Estadual do Carvão">
+    <meta name="twitter:description" content="Entre em contato conosco e agende sua visita guiada ou pesquisa acadêmica no Museu Estadual do Carvão.">
+    <meta name="twitter:image" content="https://kvothe000.github.io/site-museu-carvao/img/fachada_museu.jpg">
+    
+    <link rel="icon" href="img/logo-museu.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/premium.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        .contact-page-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .contact-left-col, .contact-right-col {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .info-block {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.2rem;
+            padding: 1.5rem;
+            background: var(--cor-fundo-claro);
+            border-radius: 8px;
+            border: 1px solid var(--cor-borda-suave);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .info-block i {
+            font-size: 1.5rem;
+            color: var(--cor-laranja-destaque);
+            margin-top: 3px;
+            width: 24px;
+            text-align: center;
+        }
+
+        .info-block div h3 {
+            margin: 0 0 0.5rem 0;
+            color: var(--cor-laranja-destaque);
+            font-size: 1.1rem;
+        }
+
+        .info-block div p {
+            margin: 0;
+            color: var(--cor-texto-escuro);
+        }
+
+        .social-block {
+            padding: 1.5rem;
+            background: var(--cor-fundo-claro);
+            border-radius: 8px;
+            border: 1px solid var(--cor-borda-suave);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .social-block h3 {
+            margin: 0 0 1rem 0;
+            color: var(--cor-laranja-destaque);
+            font-size: 1.1rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .social-icons a {
+            font-size: 1.8rem;
+            color: var(--cor-texto-escuro);
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: var(--cor-laranja-destaque);
+            transform: translateY(-3px);
+        }
+
+        .map-card {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--cor-borda-suave);
+        }
+
+        .map-card iframe {
+            width: 100%;
+            height: 300px;
+            border: 0;
+            display: block;
+        }
+
+        .contact-form-card {
+            padding: 2.5rem;
+            background: var(--cor-fundo-claro);
+            border-radius: 8px;
+            border: 1px solid var(--cor-borda-suave);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-form-card h2 {
+            margin: 0 0 2rem 0;
+            color: var(--cor-laranja-destaque);
+            font-size: 1.8rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--cor-texto-escuro);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--cor-borda-suave);
+            border-radius: 4px;
+            background: var(--cor-fundo-escuro);
+            color: var(--cor-texto-claro);
+            font-size: 1rem;
+            font-family: inherit;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--cor-laranja-destaque);
+            outline: none;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 4px;
+            background-color: var(--cor-laranja-destaque);
+            color: var(--cor-fundo-escuro);
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .submit-btn:hover {
+            background-color: #d47321;
+        }
+
+        #scheduling-fields-container {
+            padding: 1.5rem;
+            background: rgba(216, 155, 66, 0.05);
+            border-left: 3px solid var(--cor-laranja-destaque);
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 992px) {
+            .contact-page-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <a href="#main-content" class="skip-link">Pular para o Conteúdo Principal</a>
+
+    <header id="main-header">
+        <load src="./header.html" />
+    </header>
+
+    <main id="main-content">
+        <section class="page-title page-hero" style="min-height: 40vh; height: 40vh;">
+            <h1 data-i18n="contact_scheduling_title">Fale Conosco e Agendamentos</h1>
+            <p data-i18n="contact_page_desc">Estamos prontos para atender você. Encontre-nos no mapa ou envie uma mensagem.</p>
+        </section>
+
+        <div class="contact-page-container fade-in-up">
+            <!-- Coluna Esquerda: Informações e Mapa -->
+            <div class="contact-left-col">
+                <div class="info-block">
+                    <i class="fa-solid fa-map-marker-alt" aria-hidden="true"></i>
+                    <div>
+                        <h3 data-i18n="contact_address">Endereço:</h3>
+                        <p>R. Prof. Péricles de Barcellos, 2780 - Centro, Arroio dos Ratos - RS, 96740-000</p>
+                    </div>
+                </div>
+
+                <div class="info-block">
+                    <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                    <div>
+                        <h3 data-i18n="contact_phone">Telefone:</h3>
+                        <p>(51) 3656-1215</p>
+                    </div>
+                </div>
+
+                <div class="info-block">
+                    <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                    <div>
+                        <h3 data-i18n="contact_email">E-mail:</h3>
+                        <p>museu-carvao@sedac.rs.gov.br</p>
+                    </div>
+                </div>
+
+                <div class="info-block">
+                    <i class="fa-solid fa-clock" aria-hidden="true"></i>
+                    <div>
+                        <h3 data-i18n="contact_hours">Horário de Funcionamento:</h3>
+                        <p data-i18n="contact_hours_value">Terça a Sexta: 9h às 17h | Sábados: 13h às 17h</p>
+                    </div>
+                </div>
+
+                <div class="social-block">
+                    <h3 data-i18n="contact_social_title">Redes Sociais</h3>
+                    <div class="social-icons">
+                        <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+                        <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+                        <a href="https://youtube.com" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+
+                <div class="map-card">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3453.793730706222!2d-51.72877962454659!3d-30.04278487492543!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9519553f185c7075%3A0x6b490f2095a9477b!2sMuseu%20Estadual%20do%20Carv%C3%A3o!5e0!3m2!1spt-BR!2sbr!4v1729124032549!5m2!1spt-BR!2sbr"
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                        title="Google Maps - Localização do Museu Estadual do Carvão">
+                    </iframe>
+                </div>
+            </div>
+
+            <!-- Coluna Direita: Formulário -->
+            <div class="contact-right-col">
+                <section class="contact-form-card" aria-labelledby="form-title">
+                    <h2 id="form-title" data-i18n="contact_msg_title">Envie uma Mensagem</h2>
+                    <form class="contact-form" action="#" method="post">
+                        <div class="form-group">
+                            <label for="name" data-i18n="contact_form_name_label">Nome Completo</label>
+                            <input type="text" id="name" name="Nome" required autocomplete="name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" data-i18n="contact_email">E-mail</label>
+                            <input type="email" id="email" name="Email" required autocomplete="email">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone" data-i18n="contact_form_phone">Telefone (opcional)</label>
+                            <input type="tel" id="phone" name="Telefone" autocomplete="tel">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject" data-i18n="contact_form_subject">Assunto</label>
+                            <select id="subject" name="Assunto" required>
+                                <option value="" disabled selected data-i18n="contact_subject_default">Selecione o assunto...</option>
+                                <option value="Dúvida Geral" data-i18n="contact_subject_general">Dúvida Geral</option>
+                                <option value="Agendamento Escolar" data-i18n="contact_subject_school">Agendamento Escolar</option>
+                                <option value="Pesquisa Acadêmica" data-i18n="contact_subject_academic">Pesquisa Acadêmica</option>
+                                <option value="Outros" data-i18n="contact_subject_other">Outros</option>
+                            </select>
+                        </div>
+
+                        <!-- Campos dinâmicos específicos para Agendamento Escolar -->
+                        <div id="scheduling-fields-container">
+                            <div class="form-group">
+                                <label for="student_count" data-i18n="contact_form_students">Número estimado de alunos</label>
+                                <input type="number" id="student_count" name="NumeroAlunos" min="1">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="visit_date" data-i18n="contact_form_date">Data pretendida</label>
+                                <input type="date" id="visit_date" name="DataPretendida">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message" data-i18n="contact_form_message">Mensagem</label>
+                            <textarea id="message" name="Mensagem" rows="5" required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            <span data-i18n="contact_form_send">Enviar Mensagem</span>
+                            <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+                        </button>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer id="main-footer" class="site-footer">
+        <load src="./footer.html" />
+    </footer>
+
+    <script type="module" src="js/contato.js"></script>
+    <script type="module" src="js/main.js"></script>
+</body>
+
+</html>

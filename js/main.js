@@ -30,7 +30,7 @@ function updateLanguage(lang) {
     // Tradução dinâmica de Metadados (Título e Meta Description)
     const rawPage = window.location.pathname.split("/").pop().replace(".html", "") || 'index';
     // Mapeia páginas sem sufixo ou diretórios para index
-    const pageName = ['index', '404', 'arquivos-digitais', 'arquivos-fotograficos', 'arquivos-historicos', 'arquivos-tridimensionais', 'busca', 'localizacao-contato', 'mapa-do-site', 'nossa-historia', 'nossos-fundos', 'projetos', 'publicacoes', 'servicos'].includes(rawPage) ? rawPage : 'index';
+    const pageName = ['index', '404', 'arquivos-digitais', 'arquivos-fotograficos', 'arquivos-historicos', 'arquivos-tridimensionais', 'busca', 'localizacao-contato', 'mapa-do-site', 'nossa-historia', 'nossos-fundos', 'projetos', 'publicacoes', 'servicos', 'contato'].includes(rawPage) ? rawPage : 'index';
     const titleKey = `meta_title_${pageName}`;
     const descKey = `meta_desc_${pageName}`;
 

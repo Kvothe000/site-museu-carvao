@@ -15,6 +15,7 @@ export default defineConfig({
         'arquivos-digitais': resolve(__dirname, 'arquivos-digitais.html'),
         'busca': resolve(__dirname, 'busca.html'),
         'localizacao-contato': resolve(__dirname, 'localizacao-contato.html'),
+        'contato': resolve(__dirname, 'contato.html'),
         'mapa-do-site': resolve(__dirname, 'mapa-do-site.html'),
         'nossa-historia': resolve(__dirname, 'nossa-historia.html'),
         'nossos-fundos': resolve(__dirname, 'nossos-fundos.html'),
