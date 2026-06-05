@@ -1,4 +1,4 @@
-const CACHE_NAME = 'museu-carvao-v2';
+const CACHE_NAME = 'museu-carvao-v3';
 const ASSETS_TO_CACHE = [
     './',
     'index.html',
