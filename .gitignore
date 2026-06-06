@@ -26,3 +26,7 @@ Thumbs.db
 __pycache__/
 .vscode/
 .env
+
+# Executáveis / Instaladores
+*.msi
+*.exe
