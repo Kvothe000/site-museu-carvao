@@ -48,20 +48,28 @@
             align-items: start;
         }
 
-        /* Coluna Esquerda: Sidebar Sticky */
+        /* Sidebar: APENAS o container que estica no grid (invisível) */
         .story-sidebar {
+            align-self: stretch;
+            padding: 0;
+            background: none;
+            border: none;
+            box-shadow: none;
+        }
+
+        /* Sidebar Inner: elemento visual com sticky + altura limitada */
+        .story-sidebar-inner {
             position: -webkit-sticky;
             position: sticky;
             top: 110px;
+            max-height: calc(100vh - 150px);
+            overflow-y: auto;
             background: var(--cor-fundo-claro);
             border: 1px solid var(--cor-borda-suave);
             border-radius: 8px;
             padding: 1.5rem;
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
-            max-height: calc(100vh - 150px);
-            overflow-y: auto;
             z-index: 10;
-            align-self: stretch; /* ← ADICIONAR esta linha */
         }
 
         .story-sidebar-nav ul {
@@ -496,16 +504,18 @@
             
             <!-- Coluna Esquerda: Sidebar Sticky -->
             <aside class="story-sidebar" aria-label="Índice da História">
-                <nav class="story-sidebar-nav">
-                    <ul>
-                        <li><a href="#inicio" class="sidebar-link active" data-i18n="hist_sidebar_inicio">Início da Mineração</a></li>
-                        <li><a href="#museu" class="sidebar-link" data-i18n="hist_sidebar_museu">Museu do Carvão</a></li>
-                        <li><a href="#hoje" class="sidebar-link" data-i18n="hist_sidebar_hoje">O Museu Hoje</a></li>
-                        <li><a href="#arquivo" class="sidebar-link" data-i18n="hist_sidebar_arquivo">Arquivo da Mineração</a></li>
-                        <li><a href="#enchente" class="sidebar-link" data-i18n="hist_sidebar_enchente">A Enchente de 2024</a></li>
-                        <li><a href="#linha-tempo" class="sidebar-link" data-i18n="hist_sidebar_linha_tempo">Linha do Tempo</a></li>
-                    </ul>
-                </nav>
+                <div class="story-sidebar-inner">
+                    <nav class="story-sidebar-nav">
+                        <ul>
+                            <li><a href="#inicio" class="sidebar-link active" data-i18n="hist_sidebar_inicio">Início da Mineração</a></li>
+                            <li><a href="#museu" class="sidebar-link" data-i18n="hist_sidebar_museu">Museu do Carvão</a></li>
+                            <li><a href="#hoje" class="sidebar-link" data-i18n="hist_sidebar_hoje">O Museu Hoje</a></li>
+                            <li><a href="#arquivo" class="sidebar-link" data-i18n="hist_sidebar_arquivo">Arquivo da Mineração</a></li>
+                            <li><a href="#enchente" class="sidebar-link" data-i18n="hist_sidebar_enchente">A Enchente de 2024</a></li>
+                            <li><a href="#linha-tempo" class="sidebar-link" data-i18n="hist_sidebar_linha_tempo">Linha do Tempo</a></li>
+                        </ul>
+                    </nav>
+                </div>
             </aside>
 
             <!-- Coluna Direita: Narrativa de Conteúdo -->
@@ -820,7 +830,7 @@
                 </section>
             </div>
         </div>
-        <button id="scrollToTopBtn" class="scroll-to-top-btn" aria-label="Voltar ao topo" title="Voltar ao topo">
+        <button id="scrollToTopBtn" class="scroll-to-top-btn" aria-label="Voltar ao topo" title="Voltar ao topo" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">
             <i class="fa-solid fa-chevron-up"></i>
         </button>
     </main>
@@ -867,20 +877,16 @@
         });
     </script>
     <script>
-        // Botão Voltar ao Topo
-        document.addEventListener('DOMContentLoaded', () => {
-            const scrollBtn = document.getElementById('scrollToTopBtn');
+        // Botão Voltar ao Topo (controle de visibilidade)
+        document.addEventListener('DOMContentLoaded', function() {
+            var scrollBtn = document.getElementById('scrollToTopBtn');
             if (scrollBtn) {
-                window.addEventListener('scroll', () => {
+                window.addEventListener('scroll', function() {
                     if (window.scrollY > 500) {
                         scrollBtn.classList.add('visible');
                     } else {
                         scrollBtn.classList.remove('visible');
                     }
-                });
-
-                scrollBtn.addEventListener('click', () => {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
                 });
             }
         });
