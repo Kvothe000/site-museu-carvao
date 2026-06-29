@@ -352,8 +352,8 @@ footer#main-footer.site-footer {
 .story-para {
     font-family: 'Inter', sans-serif;
     font-size: 1.15rem;
-    line-height: 1.9;
-    margin-bottom: 2.2rem;
+    line-height: 1.6;
+    margin-bottom: 0.8rem;
     text-align: justify;
     font-weight: 300;
 }
@@ -609,8 +609,8 @@ footer#main-footer.site-footer {
 
     .story-para {
         font-size: 1.05rem;
-        line-height: 1.8;
-        margin-bottom: 1.8rem;
+        line-height: 1.6;
+        margin-bottom: 0.8rem;
         text-align: left;
     }
 
@@ -1545,6 +1545,75 @@ body.digitais-page .detail-section {
         right: 45px;
         font-size: 1.6rem;
     }
+}
+
+/* ==========================================================================
+   Estilização dos Fundos Documentais (Nossos Fundos)
+   ========================================================================== */
+
+.nf-fundo-toggle {
+    text-align: center;
+    justify-content: center;
+    border-left: 4px solid transparent;
+    transition: all 0.3s ease;
+}
+
+/* Sistema de cores para cada fundo histórico ao ficar ativo */
+.fundo-color-cefmsj.active {
+    border-left: 4px solid #D89B42;
+    background: rgba(216, 155, 66, 0.1);
+}
+.fundo-color-cmcj.active {
+    border-left: 4px solid #E74C3C;
+    background: rgba(231, 76, 60, 0.1);
+}
+.fundo-color-ccr.active {
+    border-left: 4px solid #2ECC71;
+    background: rgba(46, 204, 113, 0.1);
+}
+.fundo-color-efj.active {
+    border-left: 4px solid #3498DB;
+    background: rgba(52, 152, 219, 0.1);
+}
+.fundo-color-cadem.active {
+    border-left: 4px solid #9B59B6;
+    background: rgba(155, 89, 182, 0.1);
+}
+.fundo-color-compequi.active {
+    border-left: 4px solid #1ABC9C;
+    background: rgba(26, 188, 156, 0.1);
+}
+.fundo-color-ccmb.active {
+    border-left: 4px solid #F1C40F;
+    background: rgba(241, 196, 15, 0.1);
+}
+.fundo-color-sindicatos.active {
+    border-left: 4px solid #E67E22;
+    background: rgba(230, 126, 34, 0.1);
+}
+.fundo-color-copelmi.active {
+    border-left: 4px solid #34495E;
+    background: rgba(52, 73, 94, 0.1);
+}
+.fundo-color-minas-do-recreio.active {
+    border-left: 4px solid #16A085;
+    background: rgba(22, 160, 133, 0.1);
+}
+.fundo-color-termoeletrica-charqueadas.active {
+    border-left: 4px solid #7F8C8D;
+    background: rgba(127, 140, 141, 0.1);
+}
+
+/* Estilo para a observação de síntese */
+.sintese-obs {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: rgba(216, 155, 66, 0.05);
+    border-left: 3px solid var(--cor-laranja-destaque);
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--cor-texto-escuro);
+    border-radius: 0 4px 4px 0;
 }
 
 

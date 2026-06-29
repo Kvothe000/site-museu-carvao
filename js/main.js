@@ -1,5 +1,6 @@
 import { initAccessibility } from './modules/a11y.js';
 import { initCarousel } from './modules/carousel.js';
+import { initStoryCarousel } from './modules/story-carousel.js';
 import { translations } from './translations.js';
 
 window.translations = translations;
@@ -222,6 +223,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.body.classList.add('page-loaded');
 
     initCarousel();
+    initStoryCarousel();
 
     const acervoContainer = document.getElementById('acervo-container');
     if (acervoContainer) {

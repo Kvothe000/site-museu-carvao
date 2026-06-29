@@ -98,7 +98,7 @@ function renderDocumentalSidebar() {
     sidebar.innerHTML = '';
     ACERVO_DATA.fundos.forEach(fundo => {
         const div = document.createElement('div');
-        div.className = 'nf-fundo-toggle';
+        div.className = `nf-fundo-toggle fundo-color-${fundo.id}`;
         // data-fundo-id usado pelo event delegation (sem onclick)
         div.dataset.fundoId = fundo.id;
 
@@ -199,6 +199,13 @@ function loadDocumentalFundo(id, element) {
         noSintese.textContent = 'Síntese não cadastrada.';
         detailDiv.appendChild(noSintese);
     }
+
+    // Inserção da observação padrão sobre o PDF
+    const obsPara = document.createElement('p');
+    obsPara.className = 'sintese-obs';
+    obsPara.dataset.i18n = 'fund_sintese_obs';
+    obsPara.textContent = 'Obs. Para acessar o conteúdo completo do Fundo, Séries, Subséries e/ou dossiês clique em "Descrição completa (PDF)"';
+    detailDiv.appendChild(obsPara);
 
     // Botão Relatório com data-action (sem onclick inline)
     if (fundo.relatorioCompletoHtml) {
