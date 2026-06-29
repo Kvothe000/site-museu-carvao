@@ -428,6 +428,45 @@
                 height: 36px;
             }
         }
+
+        /* 
+        BOTÃO VOLTAR AO TOPO
+        */
+        #scrollToTopBtn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 9999;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--cor-laranja-destaque, #d89b42);
+            color: var(--cor-fundo-escuro, #121212);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        #scrollToTopBtn.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        #scrollToTopBtn:hover {
+            background: var(--cor-laranja-claro, #e8b85e);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(216, 155, 66, 0.4);
+        }
+        #scrollToTopBtn:focus-visible {
+            outline: 3px solid var(--cor-laranja-destaque);
+            outline-offset: 3px;
+        }
     </style>
 
     <noscript><style>body { opacity: 1 !important; visibility: visible !important; }</style></noscript>
@@ -830,9 +869,9 @@
                 </section>
             </div>
         </div>
-        <button id="scrollToTopBtn" class="scroll-to-top-btn" aria-label="Voltar ao topo" title="Voltar ao topo" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">
+        <a href="#" id="scrollToTopBtn" class="scroll-to-top-btn" aria-label="Voltar ao topo" title="Voltar ao topo">
             <i class="fa-solid fa-chevron-up"></i>
-        </button>
+        </a>
     </main>
 
     <footer id="main-footer" class="site-footer">
@@ -875,21 +914,20 @@
 
             sections.forEach(section => observer.observe(section));
         });
-    </script>
-    <script>
-        // Botão Voltar ao Topo (controle de visibilidade)
-        document.addEventListener('DOMContentLoaded', function() {
-            var scrollBtn = document.getElementById('scrollToTopBtn');
-            if (scrollBtn) {
+
+        // Botão Voltar ao Topo (usando <a href="#"> navegação nativa)
+        (function() {
+            var btn = document.getElementById('scrollToTopBtn');
+            if (btn) {
                 window.addEventListener('scroll', function() {
                     if (window.scrollY > 500) {
-                        scrollBtn.classList.add('visible');
+                        btn.classList.add('visible');
                     } else {
-                        scrollBtn.classList.remove('visible');
+                        btn.classList.remove('visible');
                     }
                 });
             }
-        });
+        })();
     </script>
 </body>
 
