@@ -61,13 +61,7 @@
             max-height: calc(100vh - 150px);
             overflow-y: auto;
             z-index: 10;
-            align-self: start;
-            height: auto;
-        }
-
-        /* Garante que a primeira coluna do grid tenha a altura total da linha */
-        .story-layout-wrapper > aside:first-child {
-            align-self: stretch;
+            align-self: stretch; /* ← ADICIONAR esta linha */
         }
 
         .story-sidebar-nav ul {
@@ -844,7 +838,7 @@
 
             const observerOptions = {
                 root: null,
-                rootMargin: '-15% 0px -35% 0px', // Aciona quando a seção está visível na parte central/superior da viewport
+                rootMargin: '-10% 0px -40% 0px', // Aciona quando a seção está visível na parte central/superior da viewport
                 threshold: 0
             };
 
@@ -874,20 +868,22 @@
     </script>
     <script>
         // Botão Voltar ao Topo
-        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
-        if (scrollToTopBtn) {
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 500) {
-                    scrollToTopBtn.classList.add('visible');
-                } else {
-                    scrollToTopBtn.classList.remove('visible');
-                }
-            });
+        document.addEventListener('DOMContentLoaded', () => {
+            const scrollBtn = document.getElementById('scrollToTopBtn');
+            if (scrollBtn) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 500) {
+                        scrollBtn.classList.add('visible');
+                    } else {
+                        scrollBtn.classList.remove('visible');
+                    }
+                });
 
-            scrollToTopBtn.addEventListener('click', () => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        }
+                scrollBtn.addEventListener('click', () => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+        });
     </script>
 </body>
 
