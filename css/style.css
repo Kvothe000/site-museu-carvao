@@ -55,8 +55,12 @@ body.dark-mode {
     --cor-header-bg: rgba(26, 32, 44, 0.85);
 }
 
-html, body {
+html {
     overflow-x: hidden;
+    width: 100%;
+}
+body {
+    overflow-x: clip; /* 'clip' evita scroll horizontal SEM quebrar position: sticky */
     width: 100%;
 }
 

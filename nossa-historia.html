@@ -61,6 +61,13 @@
             max-height: calc(100vh - 150px);
             overflow-y: auto;
             z-index: 10;
+            align-self: start;
+            height: auto;
+        }
+
+        /* Garante que a primeira coluna do grid tenha a altura total da linha */
+        .story-layout-wrapper > aside:first-child {
+            align-self: stretch;
         }
 
         .story-sidebar-nav ul {
@@ -819,6 +826,9 @@
                 </section>
             </div>
         </div>
+        <button id="scrollToTopBtn" class="scroll-to-top-btn" aria-label="Voltar ao topo" title="Voltar ao topo">
+            <i class="fa-solid fa-chevron-up"></i>
+        </button>
     </main>
 
     <footer id="main-footer" class="site-footer">
@@ -834,7 +844,7 @@
 
             const observerOptions = {
                 root: null,
-                rootMargin: '-20% 0px -55% 0px', // Aciona quando a seção está visível na parte central/superior da viewport
+                rootMargin: '-15% 0px -35% 0px', // Aciona quando a seção está visível na parte central/superior da viewport
                 threshold: 0
             };
 
@@ -861,6 +871,23 @@
 
             sections.forEach(section => observer.observe(section));
         });
+    </script>
+    <script>
+        // Botão Voltar ao Topo
+        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+        if (scrollToTopBtn) {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 500) {
+                    scrollToTopBtn.classList.add('visible');
+                } else {
+                    scrollToTopBtn.classList.remove('visible');
+                }
+            });
+
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
     </script>
 </body>
 
