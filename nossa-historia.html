@@ -272,6 +272,153 @@
                 margin: 2.5rem 0 1.5rem !important;
             }
         }
+
+        /* CSS do Carrossel de Fotos (CSS Scroll Snap) */
+        .hero-carousel {
+            position: relative;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+            box-sizing: border-box;
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--cor-borda-suave);
+        }
+
+        .carousel-track {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; /* Firefox */
+        }
+
+        .carousel-track::-webkit-scrollbar {
+            display: none; /* Chrome/Safari */
+        }
+
+        .carousel-slide {
+            flex: 0 0 100%;
+            width: 100%;
+            height: 400px;
+            scroll-snap-align: start;
+            position: relative;
+            background-color: var(--cor-fundo-claro);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+        }
+
+        .carousel-placeholder-content {
+            text-align: center;
+            color: var(--cor-texto-escuro);
+            padding: 2rem;
+        }
+
+        .carousel-placeholder-content i {
+            font-size: 3rem;
+            color: var(--cor-laranja-destaque);
+            margin-bottom: 1rem;
+        }
+
+        .carousel-placeholder-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .carousel-placeholder-content p {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            opacity: 0.8;
+        }
+
+        /* Setas de navegação */
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 44px;
+            height: 44px;
+            background-color: rgba(25, 23, 20, 0.7);
+            color: #fff;
+            border: 1px solid var(--cor-borda-suave);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+            outline: none;
+        }
+
+        .carousel-btn:hover {
+            background-color: var(--cor-laranja-destaque);
+            color: var(--cor-fundo-escuro);
+            box-shadow: 0 0 15px rgba(216, 155, 66, 0.4);
+        }
+
+        .carousel-btn-prev {
+            left: 15px;
+        }
+
+        .carousel-btn-next {
+            right: 15px;
+        }
+
+        /* Indicadores (bolinhas) */
+        .carousel-indicators {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .indicator-dot {
+            width: 10px;
+            height: 10px;
+            background-color: rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0;
+        }
+
+        .indicator-dot.active {
+            background-color: var(--cor-laranja-destaque);
+            transform: scale(1.2);
+            box-shadow: 0 0 8px rgba(216, 155, 66, 0.5);
+        }
+
+        /* Responsividade para o carrossel */
+        @media (max-width: 768px) {
+            .carousel-slide {
+                height: 280px;
+            }
+            .carousel-placeholder-content i {
+                font-size: 2.2rem;
+            }
+            .carousel-placeholder-content h3 {
+                font-size: 1.2rem;
+            }
+            .carousel-btn {
+                width: 36px;
+                height: 36px;
+            }
+        }
     </style>
 
     <noscript><style>body { opacity: 1 !important; visibility: visible !important; }</style></noscript>
@@ -295,6 +442,53 @@
                 </div>
             </div>
         </section>
+
+        <!-- Carrossel de Fotos da História -->
+        <div id="hero-carousel" class="hero-carousel" data-i18n-aria="hist_carousel_aria" aria-label="Carrossel de Fotos da História">
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    <div id="story-slide-1" class="carousel-slide">
+                        <!-- IMAGEM: [foto-1] -->
+                        <div class="carousel-placeholder-content">
+                            <i class="fa-regular fa-image"></i>
+                            <h3>Patrimônio da Mineração 1</h3>
+                            <p>Imagem histórica do complexo de Arroio dos Ratos</p>
+                        </div>
+                    </div>
+                    <div id="story-slide-2" class="carousel-slide">
+                        <!-- IMAGEM: [foto-2] -->
+                        <div class="carousel-placeholder-content">
+                            <i class="fa-regular fa-image"></i>
+                            <h3>Patrimônio da Mineração 2</h3>
+                            <p>Trabalhadores e poços de extração de carvão</p>
+                        </div>
+                    </div>
+                    <div id="story-slide-3" class="carousel-slide">
+                        <!-- IMAGEM: [foto-3] -->
+                        <div class="carousel-placeholder-content">
+                            <i class="fa-regular fa-image"></i>
+                            <h3>Patrimônio da Mineração 3</h3>
+                            <p>Prédios históricos e usina termoelétrica</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Setas de navegação -->
+                <button class="carousel-btn carousel-btn-prev" data-i18n-aria="carousel_prev_aria" aria-label="Foto anterior">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button class="carousel-btn carousel-btn-next" data-i18n-aria="carousel_next_aria" aria-label="Próxima foto">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+                
+                <!-- Indicadores -->
+                <div class="carousel-indicators">
+                    <button class="indicator-dot active" data-slide="0" data-i18n-aria="carousel_dot_1_aria" aria-label="Ir para slide 1"></button>
+                    <button class="indicator-dot" data-slide="1" data-i18n-aria="carousel_dot_2_aria" aria-label="Ir para slide 2"></button>
+                    <button class="indicator-dot" data-slide="2" data-i18n-aria="carousel_dot_3_aria" aria-label="Ir para slide 3"></button>
+                </div>
+            </div>
+        </div>
 
         <!-- Layout Unificado em Duas Colunas (Sidebar + Conteúdo) -->
         <div class="story-layout-wrapper">
@@ -415,7 +609,7 @@
 
                 <!-- Seção 4: Arquivo da Mineração -->
                 <section id="arquivo" class="story-section-new">
-                    <h2 class="story-section-title fade-in-up" data-i18n="hist_collection_title">Arquivo Histórico da Mineração</h2>
+                    <h2 class="story-section-title fade-in-up" data-i18n="hist_collection_title">Arquivo da Mineração</h2>
                     
                     <p class="story-para story-dropcap fade-in-up" data-i18n="hist_archive_p1_full">
                         O Arquivo Histórico do Museu Estadual do Carvão guarda um dos mais importantes conjuntos documentais sobre a mineração carbonífera no Rio Grande do Sul. Formado por centenas de milhares de documentos de diferentes tipos, o acervo registra a trajetória da exploração do carvão mineral e preserva parte fundamental da memória social, econômica e cultural da região carbonífera gaúcha.
@@ -468,7 +662,7 @@
 
                 <!-- Seção 5: A Enchente de 2024 e o Resgate -->
                 <section id="enchente" class="story-section-new">
-                    <h2 class="story-section-title fade-in-up" data-i18n="hist_flood_title">A Enchente de 2024 e o Resgate</h2>
+                    <h2 class="story-section-title fade-in-up" data-i18n="hist_flood_title">A Enchente de 2024</h2>
                     
                     <p class="story-para story-dropcap fade-in-up" data-i18n="hist_flood_p1_full">
                         No mês de maio de 2024, o Rio Grande do Sul enfrentou uma das maiores inundações da história na maioria dos municípios do Estado, que causou mortes e a destruição de cidades inteiras. A calamidade climática provocou eventos nunca registrados, onde as perdas sofridas foram incalculáveis para o Estado e a população gaúcha. A gravidade das inundações e enchentes ocasionaram também danos irreparáveis à memória a partir da destruição, e em alguns casos, do desaparecimento dos arquivos que levaram consigo uma parte valiosa de sua história.
