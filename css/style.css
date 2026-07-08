@@ -81,17 +81,8 @@ body {
     background-color: var(--cor-fundo-escuro); /* Override to the deep dark background */
     color: var(--cor-texto-claro);
     line-height: 1.6;
-    /* --- ADICIONE ISTO PARA EVITAR A PISCADA --- */
-    opacity: 0;
-    /* Começa invisível */
-    transition: opacity 0.4s ease-in-out, background-color 0.3s ease, color 0.3s ease;
-    /* Transição suave para aparecer e mudar de tema */
-}
-
-/* Classe que o JS vai adicionar quando tudo estiver pronto */
-body.page-loaded {
-    opacity: 1;
-    /* Torna visível */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    /* Transição suave para mudar de tema */
 }
 
 /* --- Nova Regra para Títulos (Fonte Serifada e Elegante) --- */
