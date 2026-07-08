@@ -5,13 +5,19 @@
 
 /* -- 1. Variáveis de Cor e Configurações Globais -- */
 :root {
-    --cor-laranja-destaque: #D89B42; /* Premium Amber */
+    --cor-laranja-destaque: #D89B42;
+    /* Premium Amber */
     /* Light Mode design tokens (Warm off-white and dark charcoal text) */
-    --cor-fundo-escuro: #fcfbf9; /* Principal Background (Light) */
-    --cor-fundo-claro: #f4f2ee; /* Secondary Background (Light offset) */
-    --cor-texto-claro: #2d3748; /* Primary Text (Dark for contrast) */
-    --cor-texto-escuro: #4a5568; /* Secondary Text (Gray) */
-    --cor-borda-suave: #e2e8f0; /* Subtle border */
+    --cor-fundo-escuro: #fcfbf9;
+    /* Principal Background (Light) */
+    --cor-fundo-claro: #f4f2ee;
+    /* Secondary Background (Light offset) */
+    --cor-texto-claro: #2d3748;
+    /* Primary Text (Dark for contrast) */
+    --cor-texto-escuro: #4a5568;
+    /* Secondary Text (Gray) */
+    --cor-borda-suave: #e2e8f0;
+    /* Subtle border */
     --overlay-historico-1: rgba(252, 251, 249, 0.9);
     --overlay-historico-2: rgba(244, 242, 238, 0.95);
     --cor-header-bg: rgba(244, 242, 238, 0.85);
@@ -20,11 +26,16 @@
 /* Native Dark Mode */
 @media (prefers-color-scheme: dark) {
     :root {
-        --cor-fundo-escuro: #121212; /* Premium dark background */
-        --cor-fundo-claro: #1a202c; /* Secondary dark background (Cards) */
-        --cor-texto-claro: #e2e8f0; /* readable light text */
-        --cor-texto-escuro: #a0aec0; /* secondary text */
-        --cor-borda-suave: #2d3748; /* Subtle dark border */
+        --cor-fundo-escuro: #121212;
+        /* Premium dark background */
+        --cor-fundo-claro: #1a202c;
+        /* Secondary dark background (Cards) */
+        --cor-texto-claro: #e2e8f0;
+        /* readable light text */
+        --cor-texto-escuro: #a0aec0;
+        /* secondary text */
+        --cor-borda-suave: #2d3748;
+        /* Subtle dark border */
         --overlay-historico-1: rgba(18, 18, 18, 0.9);
         --overlay-historico-2: rgba(26, 32, 44, 0.95);
         --cor-header-bg: rgba(26, 32, 44, 0.85);
@@ -59,12 +70,15 @@ html {
     overflow-x: hidden;
     width: 100%;
 }
+
 body {
-    overflow-x: clip; /* 'clip' evita scroll horizontal SEM quebrar position: sticky */
+    overflow-x: clip;
+    /* 'clip' evita scroll horizontal SEM quebrar position: sticky */
     width: 100%;
 }
 
-img, video {
+img,
+video {
     max-width: 100%;
     height: auto;
 }
@@ -77,8 +91,10 @@ body {
     /* Fonte principal para leitura (Limpa e moderna) */
     font-family: 'Inter', sans-serif;
     margin: 0;
-    padding-top: 140px; /* Compensação da altura do header fixed */
-    background-color: var(--cor-fundo-escuro); /* Override to the deep dark background */
+    padding-top: 140px;
+    /* Compensação da altura do header fixed */
+    background-color: var(--cor-fundo-escuro);
+    /* Override to the deep dark background */
     color: var(--cor-texto-claro);
     line-height: 1.6;
     transition: background-color 0.3s ease, color 0.3s ease;
@@ -201,19 +217,10 @@ header {
 /* (Certifique-se que esta regra exista e esteja correta) */
 
 .main-nav li a {
-    display: block;
-    /* Garante que o link ocupe todo o espaço do <li> */
-    padding: 1rem 1.5rem;
-    /* Espaçamento interno (ajuste se necessário) */
-    color: var(--cor-texto-claro);
-    /* Cor do texto (branco) */
-    text-decoration: none;
-    /* <<< A CORREÇÃO PRINCIPAL: REMOVE O SUBLINHADO */
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 500;
-    /* Peso da fonte (ajuste se necessário) */
-    transition: background-color 0.3s;
-    /* Efeito suave no hover */
+    padding: 0.7rem 1.2rem;
+    text-align: center;
+    white-space: nowrap;
+    box-sizing: border-box;
 }
 
 /* Estilo para o link ativo (página atual) e hover */
@@ -286,12 +293,9 @@ header {
 }
 
 .dropdown-menu li a {
-    padding: 0.8rem 1.5rem;
-    color: var(--cor-texto-claro);
-    text-decoration: none;
-    white-space: nowrap;
-    transition: background-color 0.2s ease;
-    /* Adiciona transição suave no hover */
+    padding: 0.7rem 1.2rem;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .dropdown-menu li a:hover {
@@ -355,11 +359,13 @@ main {
 
 /* Efeito Hover */
 .fundo-card:hover img {
-    transform: scale(1.05); /* Suavizado de 1.1 para 1.05 para elegância */
+    transform: scale(1.05);
+    /* Suavizado de 1.1 para 1.05 para elegância */
 }
 
 .fundo-card:hover figcaption {
-    background-color: rgba(216, 155, 66, 0.9); /* Premium amber com transparência e glassmorphism */
+    background-color: rgba(216, 155, 66, 0.9);
+    /* Premium amber com transparência e glassmorphism */
     backdrop-filter: blur(8px);
 }
 
@@ -520,7 +526,8 @@ main {
 
 /* Sobrescreve o estilo padrão de H1 para o hero */
 .page-hero h1 {
-    color: #FFFFFF; /* Fixo branco para leitura sob imagem */
+    color: #FFFFFF;
+    /* Fixo branco para leitura sob imagem */
     font-size: 3rem;
     margin: 0 0 0.5rem 0;
     padding-bottom: 0;
@@ -537,7 +544,8 @@ main {
     position: relative;
     z-index: 2;
     /* Garante que o texto fique acima do overlay */
-    color: #E0E0E0; /* Fixo cinza muito claro para leitura sob imagem */
+    color: #E0E0E0;
+    /* Fixo cinza muito claro para leitura sob imagem */
     font-size: 1.2rem;
     max-width: 600px;
     opacity: 0.9;
@@ -582,7 +590,8 @@ main {
 .info-card h2,
 .map-section h2 {
     background-color: var(--cor-laranja-destaque);
-    color: #FFFFFF; /* Fixo fundo claro para contraste com laranja */
+    color: #FFFFFF;
+    /* Fixo fundo claro para contraste com laranja */
     padding: 1rem 2rem;
     margin: -2rem -2rem 1.5rem -2rem;
     border-top-left-radius: 8px;
@@ -1618,29 +1627,35 @@ textarea:focus-visible,
    22. Estilos da Página de Busca (Dynamic)
    ==========================================================================
 */
-.search-loading, .no-results {
+.search-loading,
+.no-results {
     text-align: center;
     padding: 3rem;
     color: var(--cor-texto-escuro);
     font-size: 1.2rem;
 }
+
 .search-loading i {
     color: var(--cor-laranja-destaque);
     margin-right: 10px;
 }
+
 .search-summary {
     margin-bottom: 2rem;
     padding-bottom: 1rem;
     border-bottom: 1px solid var(--cor-borda-suave);
     color: var(--cor-texto-escuro);
 }
+
 .search-results-list {
     list-style: none;
     padding: 0;
 }
+
 .search-results-list li {
     margin-bottom: 1.5rem;
 }
+
 .result-card {
     display: block;
     background: var(--cor-fundo-claro);
@@ -1650,22 +1665,26 @@ textarea:focus-visible,
     transition: all 0.3s ease;
     text-align: left;
 }
+
 .result-card:hover {
     background: transparent;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
     transform: translateY(-2px);
     border-color: var(--cor-laranja-destaque);
 }
+
 .result-card h3 {
     margin: 0.5rem 0;
     color: var(--cor-texto-claro);
     font-size: 1.3rem;
 }
+
 .result-card p {
     color: var(--cor-texto-escuro);
     font-size: 0.95rem;
     margin-bottom: 0;
 }
+
 .result-type {
     display: inline-block;
     padding: 2px 8px;
@@ -1676,9 +1695,21 @@ textarea:focus-visible,
     color: #fff;
     background-color: #999;
 }
-.tag-pagina { background-color: var(--cor-laranja-destaque); }
-.tag-noticia { background-color: #27ae60; } /* Verde */
-.tag-acervo { background-color: #8e44ad; } /* Roxo */
+
+.tag-pagina {
+    background-color: var(--cor-laranja-destaque);
+}
+
+.tag-noticia {
+    background-color: #27ae60;
+}
+
+/* Verde */
+.tag-acervo {
+    background-color: #8e44ad;
+}
+
+/* Roxo */
 
 /* Estilo específico para endereço */
 .footer-column address {
@@ -2467,42 +2498,50 @@ body.high-contrast .timeline-content::after {
 
 /* Correções críticas de contraste de cores (Texto escuro sobre Fundo Laranja) */
 .skip-link {
-    color: #1a202c !important; /* Contraste preto no laranja (~4.79:1) */
+    color: #1a202c !important;
+    /* Contraste preto no laranja (~4.79:1) */
 }
 
 .info-card h2,
 .map-section h2 {
-    color: #1a202c !important; /* Contraste preto no laranja (~4.79:1) */
+    color: #1a202c !important;
+    /* Contraste preto no laranja (~4.79:1) */
 }
 
 .main-nav li a:hover,
 .main-nav li a.active,
 .dropdown-menu li a:hover,
 .dropdown-menu li a:focus {
-    color: #1a202c !important; /* Contraste nítido sob o hover/active laranja */
+    color: #1a202c !important;
+    /* Contraste nítido sob o hover/active laranja */
 }
 
 .publication-link,
 .hero-button {
-    color: #1a202c !important; /* Contraste sob fundo laranja */
+    color: #1a202c !important;
+    /* Contraste sob fundo laranja */
 }
 
 .publication-link:hover,
 .hero-button:hover {
-    color: #1a202c !important; /* Contraste sob fundo laranja hover */
+    color: #1a202c !important;
+    /* Contraste sob fundo laranja hover */
 }
 
 /* ==========================================================================
    21. RETROFIT DE RESPONSIVIDADE MOBILE-FIRST (AUDITORIA E CORREÇÕES PROFUNDAS)
    ========================================================================== */
 @media (max-width: 768px) {
+
     /* Tipografia de Hero Sections e Títulos de Páginas */
     .page-hero h1 {
         font-size: 2rem !important;
     }
+
     .page-title h1 {
         font-size: 2rem !important;
     }
+
     .home-hero-new h1 {
         font-size: 2.2rem !important;
     }
@@ -2521,7 +2560,7 @@ body.high-contrast .timeline-content::after {
     .two-column-layout {
         gap: 1.5rem !important;
     }
-    
+
     /* Touch Target para o Botão do Menu Hamburguer */
     .mobile-menu-toggle {
         min-height: 48px !important;
@@ -2545,6 +2584,7 @@ body.high-contrast .timeline-content::after {
    fotossensibilidade, epilepsia ou distúrbios vestibulares.
    ========================================================== */
 @media (prefers-reduced-motion: reduce) {
+
     *,
     *::before,
     *::after {
