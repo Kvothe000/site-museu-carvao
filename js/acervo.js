@@ -1,5 +1,6 @@
 import { fundosHistoricos } from './dados-fundos.js';
 import { renderSidebar } from './modules/sidebar.js';
+import { updatePageLanguage } from './modules/acervo-common.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const listContainer = document.getElementById('fundo-list-container');
@@ -67,9 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ${actionButtonsHtml ? `<div class="actions-area">${actionButtonsHtml}</div>` : ''}
         `;
 
-        if (typeof window.updateLanguage === 'function') {
-            window.updateLanguage(localStorage.getItem('language') || 'pt');
-        }
+        updatePageLanguage();
 
         // Collapsible synthesis logic
         const sinteseText = document.getElementById('sintese-text-element');
@@ -101,9 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }, 10);
 
                     btnToggle.querySelector('span').setAttribute('data-i18n', 'nf_read_more');
-                    if (typeof window.updateLanguage === 'function') {
-                        window.updateLanguage(localStorage.getItem('language') || 'pt');
-                    }
+                    updatePageLanguage();
                     btnToggle.querySelector('i').className = 'fa-solid fa-chevron-down';
                     
                     // Smooth scroll back to the top of the detail container to avoid losing reading position
@@ -114,9 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     sinteseText.classList.add('expanded');
 
                     btnToggle.querySelector('span').setAttribute('data-i18n', 'nf_read_less');
-                    if (typeof window.updateLanguage === 'function') {
-                        window.updateLanguage(localStorage.getItem('language') || 'pt');
-                    }
+                    updatePageLanguage();
                     btnToggle.querySelector('i').className = 'fa-solid fa-chevron-up';
 
                     // Once transition finishes, set height to none to prevent clipping on window resize/orientation change

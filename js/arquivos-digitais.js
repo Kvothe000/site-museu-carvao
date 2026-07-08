@@ -1,5 +1,6 @@
 import { fundosHistoricos } from './dados-fundos.js';
 import { renderSidebar } from './modules/sidebar.js';
+import { updatePageLanguage } from './modules/acervo-common.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const listContainer = document.getElementById('fundo-list-container');
@@ -89,9 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p data-i18n="ad_welcome_desc">Selecione um Fundo na lateral para explorar os documentos históricos e fotografias digitalizadas que integram a memória da era do carvão.</p>
             </div>
         `;
-        if (typeof window.updateLanguage === 'function') {
-            window.updateLanguage(localStorage.getItem('language') || 'pt');
-        }
+        updatePageLanguage();
     }
 
     // Carrega e renderiza a galeria de imagens (Masonry Grid)
@@ -110,9 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <p data-i18n="ad_no_docs_desc">Atualmente não há fotografias ou documentos digitalizados para este fundo no acervo online.</p>
                 </div>
             `;
-            if (typeof window.updateLanguage === 'function') {
-                window.updateLanguage(localStorage.getItem('language') || 'pt');
-            }
+            updatePageLanguage();
             return;
         }
 
@@ -159,9 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        if (typeof window.updateLanguage === 'function') {
-            window.updateLanguage(localStorage.getItem('language') || 'pt');
-        }
+        updatePageLanguage();
     }
 
     function openLightbox(fundoId, index, imgData) {
@@ -170,9 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
         lightboxCaption.setAttribute('data-i18n', `fundo_${fundoId}_img_${index}_caption`);
         lightboxCaption.textContent = imgData.legenda;
 
-        if (typeof window.updateLanguage === 'function') {
-            window.updateLanguage(localStorage.getItem('language') || 'pt');
-        }
+        updatePageLanguage();
 
         if (lightboxDownload) {
             lightboxDownload.href = imgData.src;

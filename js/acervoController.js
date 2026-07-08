@@ -2,6 +2,7 @@
 // Refatorado: removidas funções globais e onclick inline.
 // Padrão de Event Delegation aplicado em todos os containers.
 // acervoData.js carregado sob demanda via import() dinâmico (não bloqueia o parser).
+import { updatePageLanguage, scrollToDetail } from './modules/acervo-common.js';
 
 let ACERVO_DATA = null;
 
@@ -31,9 +32,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         initDigitalPage();
     }
 
-    if (typeof window.updateLanguage === 'function') {
-        window.updateLanguage(localStorage.getItem('language') || 'pt');
-    }
+    updatePageLanguage();
 });
 
 // ==========================================
@@ -53,7 +52,10 @@ function initDocumentalPage() {
             const toggle = e.target.closest('.nf-fundo-toggle');
             if (!toggle) return;
             const fundoId = toggle.dataset.fundoId;
-            if (fundoId) loadDocumentalFundo(fundoId, toggle);
+            if (fundoId) {
+                loadDocumentalFundo(fundoId, toggle);
+                scrollToDetail(document.getElementById('documental-content-area'));
+            }
         });
     }
 
@@ -116,9 +118,7 @@ function renderDocumentalSidebar() {
         sidebar.appendChild(div);
     });
 
-    if (typeof window.updateLanguage === 'function') {
-        window.updateLanguage(localStorage.getItem('language') || 'pt');
-    }
+    updatePageLanguage();
 }
 
 function loadDocumentalFundo(id, element) {
@@ -232,9 +232,7 @@ function loadDocumentalFundo(id, element) {
 
     container.appendChild(detailDiv);
 
-    if (typeof window.updateLanguage === 'function') {
-        window.updateLanguage(localStorage.getItem('language') || 'pt');
-    }
+    updatePageLanguage();
 }
 
 function toggleSintese(btn) {
@@ -247,9 +245,7 @@ function toggleSintese(btn) {
         el.style.display = 'none';
         btn.dataset.i18n = 'nf_read_more';
     }
-    if (typeof window.updateLanguage === 'function') {
-        window.updateLanguage(localStorage.getItem('language') || 'pt');
-    }
+    updatePageLanguage();
 }
 
 function openDocumentalModal(id) {
@@ -292,9 +288,7 @@ function openDocumentalModal(id) {
 
     if (modal) {
         modal.classList.add('active');
-        if (typeof window.updateLanguage === 'function') {
-            window.updateLanguage(localStorage.getItem('language') || 'pt');
-        }
+        updatePageLanguage();
     }
 }
 
@@ -314,7 +308,10 @@ function initDigitalPage() {
             const summary = e.target.closest('summary[data-fundo-id]');
             if (summary) {
                 const fundoId = summary.dataset.fundoId;
-                if (fundoId) loadDigitalFundo(fundoId);
+                if (fundoId) {
+                    loadDigitalFundo(fundoId);
+                    scrollToDetail(document.getElementById('detail-area'));
+                }
             }
         });
     }
@@ -398,9 +395,7 @@ function renderDigitalSidebar() {
         sidebar.appendChild(details);
     });
 
-    if (typeof window.updateLanguage === 'function') {
-        window.updateLanguage(localStorage.getItem('language') || 'pt');
-    }
+    updatePageLanguage();
 }
 
 function loadDigitalFundo(id) {
@@ -506,7 +501,5 @@ function loadDigitalFundo(id) {
     detailDiv.appendChild(taxonomyWrapper);
     container.appendChild(detailDiv);
 
-    if (typeof window.updateLanguage === 'function') {
-        window.updateLanguage(localStorage.getItem('language') || 'pt');
-    }
+    updatePageLanguage();
 }
