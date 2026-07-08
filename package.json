@@ -1,17 +1,19 @@
 {
-  "name": "refactor-museum-frontend-stack",
+  "name": "site-museu-carvao",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "images:webp": "node scripts/convert-to-webp.mjs"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "sharp": "^0.35.3",
     "vite": "^8.0.16",
     "vite-plugin-html-inject": "^1.1.2"
   }
