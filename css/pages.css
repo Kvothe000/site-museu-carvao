@@ -784,37 +784,59 @@ body.historicos-page .sintese-text.expanded + .sintese-fade-overlay {
 
 /* Cores personalizadas dos fundos documentais - solicitação do orientador */
 .fundo-color-01.active,
-.fundo-color-01:hover { background-color: #efb810; color: #121212 !important; }
+.fundo-color-01:hover,
+.fundo-color-cefmsj.active,
+.fundo-color-cefmsj:hover { background-color: #efb810 !important; color: #121212 !important; }
 
 .fundo-color-02.active,
-.fundo-color-02:hover { background-color: #C0C0C0; color: #121212 !important; }
+.fundo-color-02:hover,
+.fundo-color-cmcj.active,
+.fundo-color-cmcj:hover { background-color: #C0C0C0 !important; color: #121212 !important; }
 
 .fundo-color-03.active,
-.fundo-color-03:hover { background-color: #00894D; color: #fff !important; }
+.fundo-color-03:hover,
+.fundo-color-ccr.active,
+.fundo-color-ccr:hover { background-color: #00894D !important; color: #fff !important; }
 
 .fundo-color-04.active,
-.fundo-color-04:hover { background-color: #0594ad; color: #fff !important; }
+.fundo-color-04:hover,
+.fundo-color-efj.active,
+.fundo-color-efj:hover { background-color: #0594ad !important; color: #fff !important; }
 
 .fundo-color-05.active,
-.fundo-color-05:hover { background-color: #bb0000; color: #fff !important; }
+.fundo-color-05:hover,
+.fundo-color-cadem.active,
+.fundo-color-cadem:hover { background-color: #bb0000 !important; color: #fff !important; }
 
 .fundo-color-06.active,
-.fundo-color-06:hover { background-color: #ff5999; color: #121212 !important; }
+.fundo-color-06:hover,
+.fundo-color-compequi.active,
+.fundo-color-compequi:hover { background-color: #ff5999 !important; color: #121212 !important; }
 
 .fundo-color-07.active,
-.fundo-color-07:hover { background-color: #fbcc43; color: #121212 !important; }
+.fundo-color-07:hover,
+.fundo-color-ccmb.active,
+.fundo-color-ccmb:hover { background-color: #fbcc43 !important; color: #121212 !important; }
 
 .fundo-color-08.active,
-.fundo-color-08:hover { background-color: #000000; color: #fff !important; }
+.fundo-color-08:hover,
+.fundo-color-sindicatos.active,
+.fundo-color-sindicatos:hover { background-color: #000000 !important; color: #fff !important; }
 
 .fundo-color-09.active,
-.fundo-color-09:hover { background-color: #ff5f1f; color: #121212 !important; }
+.fundo-color-09:hover,
+.fundo-color-copelmi.active,
+.fundo-color-copelmi:hover { background-color: #ff5f1f !important; color: #121212 !important; }
 
 .fundo-color-10.active,
-.fundo-color-10:hover { background-color: #91420D; color: #fff !important; }
+.fundo-color-10:hover,
+.fundo-color-minas-do-recreio.active,
+.fundo-color-minas-do-recreio:hover { background-color: #91420D !important; color: #fff !important; }
 
 .fundo-color-11.active,
-.fundo-color-11:hover { background-color: #A40EC2; color: #fff !important; }
+.fundo-color-11:hover,
+.fundo-color-termoeletrica-charqueadas.active,
+.fundo-color-termoeletrica-charqueadas:hover { background-color: #A40EC2 !important; color: #fff !important; }
 
 
 /* ===== Página: Nossa História ===== */
