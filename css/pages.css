@@ -450,6 +450,13 @@
 
 
 /* ===== Página: Arquivos Históricos ===== */
+.detail-header {
+  text-align: center;
+}
+.detail-header h2 {
+  font-size: 2.2rem;
+}
+
 .historicos-layout {
     display: grid;
     grid-template-columns: 320px 1fr;
