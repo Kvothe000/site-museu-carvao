@@ -422,7 +422,8 @@ export const translations = {
         "pubs_item3_desc": "Estudo sociopolítico sobre os movimentos grevistas de mineiros, a estruturação dos primeiros sindicatos regionais e a repressão estatal na era Vargas e no período democrático subsequente.",
         "pubs_item4_title": "Manual de Conservação Preventiva de Documentos Ferroviários",
         "pubs_item4_author": "Dra. Beatriz Ramos",
-        "pubs_item4_desc": "Diretrizes práticas aplicadas no resgate, higienização, desinfecção e acondicionamento de acervos cartográficos e administrativos expostos a intempéries ou desastres climáticos."
+        "pubs_item4_desc": "Diretrizes práticas aplicadas no resgate, higienização, desinfecção e acondicionamento de acervos cartográficos e administrativos expostos a intempéries ou desastres climáticos.",
+        "loading_archive_text": "Carregando acervo..."
     },
     "en": {
         "meta_title_index": "State Coal Museum - Home",
@@ -852,7 +853,8 @@ export const translations = {
         "pubs_item3_desc": "A sociopolitical study on the miners' strike movements, the structure of the first regional unions, and state repression in the Vargas era and the subsequent democratic period.",
         "pubs_item4_title": "Manual for Preventive Conservation of Railway Documents",
         "pubs_item4_author": "Dr. Beatriz Ramos",
-        "pubs_item4_desc": "Practical guidelines applied in the rescue, sanitization, disinfection, and packaging of cartographic and administrative collections exposed to severe weather or climate disasters."
+        "pubs_item4_desc": "Practical guidelines applied in the rescue, sanitization, disinfection, and packaging of cartographic and administrative collections exposed to severe weather or climate disasters.",
+        "loading_archive_text": "Loading archive..."
     },
     "es": {
         "meta_title_index": "Museo Estatal del Carbón - Inicio",
@@ -1271,6 +1273,7 @@ export const translations = {
         "pubs_item3_desc": "Estudio sociopolítico sobre los movimientos huelguistas de mineros, la estructuración de los primeros sindicatos regionales y la represión estatal en la era Vargas y en el período democrático subsecuente.",
         "pubs_item4_title": "Manual de Conservación Preventiva de Documentos Ferroviarios",
         "pubs_item4_author": "Dra. Beatriz Ramos",
-        "pubs_item4_desc": "Directrices prácticas aplicadas en el rescate, higienización, desinfección y acondicionamiento de acervos cartográficos y administrativos expuestos a la intemperie o desastres climáticos."
+        "pubs_item4_desc": "Directrices prácticas aplicadas en el rescate, higienización, desinfección y acondicionamiento de acervos cartográficos y administrativos expuestos a la intemperie o desastres climáticos.",
+        "loading_archive_text": "Cargando archivo..."
     }
 };
