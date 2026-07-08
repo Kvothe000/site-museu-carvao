@@ -35,6 +35,10 @@
             <!-- Coluna Esquerda: Master -->
             <aside class="sidebar-nav" data-i18n-aria="nf_sidebar_aria" aria-label="Lista de Fundos Documentais">
                 <h2 data-i18n="nf_sidebar_title">Fundos Históricos</h2>
+                <div id="loading-indicator" class="loading-state" aria-live="polite" role="status">
+                    <div class="loading-spinner"></div>
+                    <p data-i18n="loading_archive_text">Carregando acervo...</p>
+                </div>
                 <ul class="fundo-list" id="fundo-list-container">
                     <!-- Gerado dinamicamente via JS -->
                 </ul>
