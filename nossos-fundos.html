@@ -4,13 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Explore o Acervo Documental Oficial do Museu Estadual do Carvão. Acesse a árvore de fundos das antigas mineradoras, sindicatos e arquivos técnicos preservados.">
-    <meta name="keywords" content="Museu Estadual do Carvão, Museu do Carvão, Arroio dos Ratos, patrimônio histórico, mineração, Rio Grande do Sul, história industrial">
+    <meta name="description"
+        content="Explore o Acervo Documental Oficial do Museu Estadual do Carvão. Acesse a árvore de fundos das antigas mineradoras, sindicatos e arquivos técnicos preservados.">
+    <meta name="keywords"
+        content="Museu Estadual do Carvão, Museu do Carvão, Arroio dos Ratos, patrimônio histórico, mineração, Rio Grande do Sul, história industrial">
     <title>Nosso Acervo - Museu Estadual do Carvão</title>
 
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="Nosso Acervo - Museu Estadual do Carvão">
-    <meta property="og:description" content="Explore o Acervo Documental Oficial do Museu Estadual do Carvão. Acesse a árvore de fundos das antigas mineradoras, sindicatos e arquivos técnicos preservados.">
+    <meta property="og:description"
+        content="Explore o Acervo Documental Oficial do Museu Estadual do Carvão. Acesse a árvore de fundos das antigas mineradoras, sindicatos e arquivos técnicos preservados.">
     <meta property="og:image" content="https://kvothe000.github.io/site-museu-carvao/img/fachada_museu.jpg">
     <meta property="og:url" content="https://kvothe000.github.io/site-museu-carvao/nossos-fundos.html">
     <meta property="og:type" content="website">
@@ -19,28 +22,95 @@
     <!-- Twitter Cards Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Nosso Acervo - Museu Estadual do Carvão">
-    <meta name="twitter:description" content="Explore o Acervo Documental Oficial do Museu Estadual do Carvão. Acesse a árvore de fundos das antigas mineradoras, sindicatos e arquivos técnicos preservados.">
+    <meta name="twitter:description"
+        content="Explore o Acervo Documental Oficial do Museu Estadual do Carvão. Acesse a árvore de fundos das antigas mineradoras, sindicatos e arquivos técnicos preservados.">
     <meta name="twitter:image" content="https://kvothe000.github.io/site-museu-carvao/img/fachada_museu.jpg">
     <link rel="icon" href="img/logo-museu.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300..800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300..800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/premium.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); z-index: 9999; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s; }
-        .modal-overlay.active { display: flex; opacity: 1; }
-        .modal-content { background: var(--cor-fundo-escuro); width: 90%; max-width: 900px; max-height: 85vh; overflow-y: auto; border-radius: 8px; padding: 2.5rem; position: relative; border: 1px solid var(--cor-borda-suave); color: var(--cor-texto-claro); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .close-modal { position: absolute; top: 1.5rem; right: 2rem; font-size: 2.5rem; cursor: pointer; color: var(--cor-laranja-destaque); transition: color 0.2s; min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
-        .close-modal:hover { color: var(--cor-texto-claro); }
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(5px);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: var(--cor-fundo-escuro);
+            width: 90%;
+            max-width: 900px;
+            max-height: 85vh;
+            overflow-y: auto;
+            border-radius: 8px;
+            padding: 2.5rem;
+            position: relative;
+            border: 1px solid var(--cor-borda-suave);
+            color: var(--cor-texto-claro);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+            font-size: 2.5rem;
+            cursor: pointer;
+            color: var(--cor-laranja-destaque);
+            transition: color 0.2s;
+            min-width: 44px;
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-modal:hover {
+            color: var(--cor-texto-claro);
+        }
+
         @media (max-width: 768px) {
-            .modal-content { width: 95%; padding: 1.5rem; max-height: 90vh; }
-            .close-modal { top: 0.5rem; right: 1rem; }
+            .modal-content {
+                width: 95%;
+                padding: 1.5rem;
+                max-height: 90vh;
+            }
+
+            .close-modal {
+                top: 0.5rem;
+                right: 1rem;
+            }
         }
     </style>
 
-    <noscript><style>body { opacity: 1 !important; visibility: visible !important; }</style></noscript>
+    <noscript>
+        <style>
+            body {
+                opacity: 1 !important;
+                visibility: visible !important;
+            }
+        </style>
+    </noscript>
 </head>
 
 <body>
@@ -62,9 +132,9 @@
                     <li><a href="#tridimensional" data-i18n="nav_tridimensional">Acervo Tridimensional</a></li>
                     <li><a href="#fotografico" data-i18n="nav_photographic">Acervo Fotográfico</a></li>
                     <li>
-                        <a href="#documental" data-i18n="nav_documental">Arquivo da Mineração</a>
+                        <a href="#documental" data-i18n="nav_documental">Arquivo Histórico</a>
                         <div id="doc-sidebar-tree" style="margin-top: 1rem; padding-left: 0.5rem;">
-                             <!-- Menu populado via JS -->
+                            <!-- Menu populado via JS -->
                         </div>
                     </li>
                 </ul>
@@ -72,13 +142,19 @@
 
             <section class="main-content">
                 <article id="documental" style="margin-top:2rem;">
-                    <h2 data-i18n="collection_doc_title" style="font-size: 2.2rem; color:var(--cor-texto-claro);">Arquivo da Mineração</h2>
-                    <p data-i18n="collection_doc_desc">Este é o núcleo do arquivo histórico...<!-- TEXTO: substituir pelo conteúdo do Word "Nosso Acervo - Arquivo da Mineração" --></p>
+                    <h2 data-i18n="collection_doc_title" style="font-size: 2.2rem; color:var(--cor-texto-claro);">
+                        Arquivo Histórico</h2>
+                    <p data-i18n="collection_doc_desc">Este é o núcleo do arquivo
+                        histórico...<!-- TEXTO: substituir pelo conteúdo do Word "Nosso Acervo - Arquivo da Mineração" -->
+                    </p>
 
-                    <div id="nf-placeholder" style="margin-top:4rem; padding: 3rem; text-align:center; border:1px dashed var(--cor-borda-suave); border-radius:8px; color:var(--cor-texto-escuro);">
-                        <i class="fa-solid fa-book-open-reader" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+                    <div id="nf-placeholder"
+                        style="margin-top:4rem; padding: 3rem; text-align:center; border:1px dashed var(--cor-borda-suave); border-radius:8px; color:var(--cor-texto-escuro);">
+                        <i class="fa-solid fa-book-open-reader"
+                            style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
                         <h3 data-i18n="nf_select_fund_title">Selecione um Fundo na lateral para Ler</h3>
-                        <p data-i18n="nf_select_fund_desc">Acesse as sínteses detalhadas e relatórios completos da nossa história documental.</p>
+                        <p data-i18n="nf_select_fund_desc">Acesse as sínteses detalhadas e relatórios completos da nossa
+                            história documental.</p>
                     </div>
 
                     <div id="documental-content-area">
@@ -98,11 +174,16 @@
     </footer>
 
     <!-- MODAL ÚNICO GLOBAL -->
-    <div id="global-modal" class="modal-overlay" data-i18n-aria="nf_report_modal_aria" aria-label="Visualizador de Relatório">
+    <div id="global-modal" class="modal-overlay" data-i18n-aria="nf_report_modal_aria"
+        aria-label="Visualizador de Relatório">
         <div class="modal-content">
-            <span class="close-modal" data-action="close-modal" data-i18n-aria="nf_close_modal_aria" aria-label="Fechar">&times;</span>
-            <h2 id="global-modal-title" style="color:var(--cor-laranja-destaque); font-size:2.2rem; margin-bottom:1.5rem; padding-right:2rem;"><span data-i18n="nf_report_title">Relatório Completo</span></h2>
-            <div id="global-modal-body" class="modal-body" style="border-top:1px solid var(--cor-borda-suave); padding-top:1.5rem; text-align:justify;">
+            <span class="close-modal" data-action="close-modal" data-i18n-aria="nf_close_modal_aria"
+                aria-label="Fechar">&times;</span>
+            <h2 id="global-modal-title"
+                style="color:var(--cor-laranja-destaque); font-size:2.2rem; margin-bottom:1.5rem; padding-right:2rem;">
+                <span data-i18n="nf_report_title">Relatório Completo</span></h2>
+            <div id="global-modal-body" class="modal-body"
+                style="border-top:1px solid var(--cor-borda-suave); padding-top:1.5rem; text-align:justify;">
                 <!-- Conteúdo Modal populado via JS -->
             </div>
         </div>
