@@ -217,7 +217,19 @@ header {
 /* (Certifique-se que esta regra exista e esteja correta) */
 
 .main-nav li a {
+    display: block;
+    /* Garante que o link ocupe todo o espaço do <li> */
     padding: 0.7rem 1.2rem;
+    /* Espaçamento interno (ajuste se necessário) */
+    color: var(--cor-texto-claro);
+    /* Cor do texto (branco) */
+    text-decoration: none;
+    /* <<< A CORREÇÃO PRINCIPAL: REMOVE O SUBLINHADO */
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+    /* Peso da fonte (ajuste se necessário) */
+    transition: background-color 0.3s;
+    /* Efeito suave no hover */
     text-align: center;
     white-space: nowrap;
     box-sizing: border-box;
@@ -296,6 +308,11 @@ header {
     padding: 0.7rem 1.2rem;
     width: 100%;
     box-sizing: border-box;
+    color: var(--cor-texto-claro);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color 0.2s ease;
+    /* Adiciona transição suave no hover */
 }
 
 .dropdown-menu li a:hover {
