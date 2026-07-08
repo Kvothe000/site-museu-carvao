@@ -1,3 +1,5 @@
+import { updatePageLanguage, scrollToDetail } from './acervo-common.js';
+
 export function renderSidebar(options) {
     const { listContainer, detailArea, dataList, onSelect, i18nPrefix = 'fund_name_' } = options;
 
@@ -29,9 +31,7 @@ export function renderSidebar(options) {
             }
             
             // Scroll para detalhes em mobile
-            if (window.innerWidth <= 768 && detailArea) {
-                detailArea.scrollIntoView({ behavior: 'smooth' });
-            }
+            scrollToDetail(detailArea);
         });
 
         li.appendChild(button);
@@ -39,7 +39,5 @@ export function renderSidebar(options) {
     });
 
     // Atualiza idioma após criar o DOM dinâmico
-    if (typeof window.updateLanguage === 'function') {
-        window.updateLanguage(localStorage.getItem('language') || 'pt');
-    }
+    updatePageLanguage();
 }

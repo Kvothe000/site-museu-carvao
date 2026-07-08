@@ -493,7 +493,7 @@
 /* Glassmorphic Background overlay styling */
 body.historicos-page {
     background: linear-gradient(var(--overlay-historico-1), var(--overlay-historico-2)), 
-                url('img/bg-acervo.jpg') no-repeat center center fixed;
+                url('/img/bg-acervo.jpg') no-repeat center center fixed;
     background-size: cover;
     color: var(--cor-texto-claro);
 }
@@ -1129,30 +1129,6 @@ body.historicos-page .sintese-text.expanded + .sintese-fade-overlay {
     box-sizing: border-box;
 }
 
-.carousel-placeholder-content {
-    text-align: center;
-    color: var(--cor-texto-escuro);
-    padding: 2rem;
-}
-
-.carousel-placeholder-content i {
-    font-size: 3rem;
-    color: var(--cor-laranja-destaque);
-    margin-bottom: 1rem;
-}
-
-.carousel-placeholder-content h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-}
-
-.carousel-placeholder-content p {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.95rem;
-    opacity: 0.8;
-}
-
 /* Setas de navegação */
 .carousel-btn {
     position: absolute;
@@ -1219,12 +1195,6 @@ body.historicos-page .sintese-text.expanded + .sintese-fade-overlay {
 @media (max-width: 768px) {
     .carousel-slide {
         height: 280px;
-    }
-    .carousel-placeholder-content i {
-        font-size: 2.2rem;
-    }
-    .carousel-placeholder-content h3 {
-        font-size: 1.2rem;
     }
     .carousel-btn {
         width: 36px;

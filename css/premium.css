@@ -245,7 +245,7 @@ footer#main-footer.site-footer {
 .story-hero {
     position: relative;
     height: 80vh;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.3), var(--cor-fundo-escuro)), url('/site-museu-carvao/img/historia/historia-1.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), var(--cor-fundo-escuro)), url('/img/historia/historia-1.jpg');
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -422,7 +422,7 @@ footer#main-footer.site-footer {
 .story-parallax-banner {
     position: relative;
     height: 55vh;
-    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('/site-museu-carvao/img/historia/historia-16.png');
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('/img/historia/historia-16.png');
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -649,7 +649,7 @@ footer#main-footer.site-footer {
 
 body.digitais-page {
     background: linear-gradient(var(--overlay-historico-1), var(--overlay-historico-2)), 
-                url('img/bg-acervo.jpg') no-repeat center center fixed;
+                url('/img/bg-acervo.jpg') no-repeat center center fixed;
     background-size: cover;
     color: var(--cor-texto-claro);
 }

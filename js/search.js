@@ -93,50 +93,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             return null;
         });
 
-        // --- 3. Busca em Notícias (JSON) ---
-        const newsPromise = fetch('noticias.json')
-            .then(res => res.json())
-            .then(news => {
-                if (news && news.titulo && news.titulo.toLowerCase().includes(searchTerm)) {
-                    return {
-                        title: news.titulo,
-                        url: news.link,
-                        snippet: news.resumo || 'Notícia recente do museu.',
-                        type: getTranslation('search_type_news')
-                    };
-                }
-                return null;
-            })
-            .catch(() => null);
-
-        // --- 4. Busca no Acervo (Mock API JSON) ---
-        const collectionPromise = fetch('mock-api.json')
-            .then(res => res.json())
-            .then(data => {
-                const items = data.results || data;
-                return items
-                    .filter(item =>
-                        (item.title && item.title.toLowerCase().includes(searchTerm)) ||
-                        (item.description && item.description.toLowerCase().includes(searchTerm))
-                    )
-                    .map(item => ({
-                        title: item.title,
-                        url: item.slug || '#',
-                        snippet: item.description || 'Item do acervo histórico.',
-                        type: getTranslation('search_type_collection')
-                    }));
-            })
-            .catch(() => []);
-
         // Executa todas as buscas em paralelo
-        const [pageResults, newsResult, collectionResults] = await Promise.all([
-            Promise.all(pagePromises),
-            newsPromise,
-            collectionPromise
-        ]);
-
-        if (newsResult) results.push(newsResult);
-        results.push(...collectionResults);
+        const pageResults = await Promise.all(pagePromises);
         results.push(...pageResults.filter(r => r !== null));
 
         // --- 5. Renderiza Resultados com DOM seguro ---
