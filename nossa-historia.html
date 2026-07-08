@@ -429,6 +429,10 @@
             }
         }
 
+        .carousel-image { width: 100%; height: 100%; object-fit: cover; border-radius: 8px; display: block; }
+        .carousel-caption { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.7)); padding: 2rem 1.5rem 1rem; color: #fff; border-radius: 0 0 8px 8px; }
+        .carousel-caption p { margin: 0; font-size: 0.9rem; font-family: 'Inter', sans-serif; }
+
         /* 
         BOTÃO VOLTAR AO TOPO
         */
@@ -496,29 +500,65 @@
         <div id="hero-carousel" class="hero-carousel" data-i18n-aria="hist_carousel_aria" aria-label="Carrossel de Fotos da História">
             <div class="carousel-container">
                 <div class="carousel-track">
-                    <div id="story-slide-1" class="carousel-slide">
-                        <!-- IMAGEM: [foto-1] -->
-                        <div class="carousel-placeholder-content">
-                            <i class="fa-regular fa-image"></i>
-                            <h3>Patrimônio da Mineração 1</h3>
-                            <p>Imagem histórica do complexo de Arroio dos Ratos</p>
-                        </div>
+                    <div class="carousel-slide">
+                      <img src="img/historia/historia-1.jpg" 
+                           loading="lazy" 
+                           alt="Vista geral do complexo" 
+                           class="carousel-image"
+                           data-i18n-alt="hist_carousel_img_1_alt">
+                      <div class="carousel-caption">
+                        <p data-i18n="hist_carousel_caption_1">Vista geral do complexo</p>
+                      </div>
                     </div>
-                    <div id="story-slide-2" class="carousel-slide">
-                        <!-- IMAGEM: [foto-2] -->
-                        <div class="carousel-placeholder-content">
-                            <i class="fa-regular fa-image"></i>
-                            <h3>Patrimônio da Mineração 2</h3>
-                            <p>Trabalhadores e poços de extração de carvão</p>
-                        </div>
+                    <div class="carousel-slide">
+                      <img src="img/historia/historia-2.jpg" 
+                           loading="lazy" 
+                           alt="Trabalhadores na mina" 
+                           class="carousel-image"
+                           data-i18n-alt="hist_carousel_img_2_alt">
+                      <div class="carousel-caption">
+                        <p data-i18n="hist_carousel_caption_2">Trabalhadores na mina</p>
+                      </div>
                     </div>
-                    <div id="story-slide-3" class="carousel-slide">
-                        <!-- IMAGEM: [foto-3] -->
-                        <div class="carousel-placeholder-content">
-                            <i class="fa-regular fa-image"></i>
-                            <h3>Patrimônio da Mineração 3</h3>
-                            <p>Prédios históricos e usina termoelétrica</p>
-                        </div>
+                    <div class="carousel-slide">
+                      <img src="img/historia/historia-3.jpg" 
+                           loading="lazy" 
+                           alt="Estrutura da usina" 
+                           class="carousel-image"
+                           data-i18n-alt="hist_carousel_img_3_alt">
+                      <div class="carousel-caption">
+                        <p data-i18n="hist_carousel_caption_3">Estrutura da usina</p>
+                      </div>
+                    </div>
+                    <div class="carousel-slide">
+                      <img src="img/historia/historia-4.jpg" 
+                           loading="lazy" 
+                           alt="Equipamentos de mineração" 
+                           class="carousel-image"
+                           data-i18n-alt="hist_carousel_img_4_alt">
+                      <div class="carousel-caption">
+                        <p data-i18n="hist_carousel_caption_4">Equipamentos de mineração</p>
+                      </div>
+                    </div>
+                    <div class="carousel-slide">
+                      <img src="img/historia/historia-5.jpg" 
+                           loading="lazy" 
+                           alt="Documentos históricos" 
+                           class="carousel-image"
+                           data-i18n-alt="hist_carousel_img_5_alt">
+                      <div class="carousel-caption">
+                        <p data-i18n="hist_carousel_caption_5">Documentos históricos</p>
+                      </div>
+                    </div>
+                    <div class="carousel-slide">
+                      <img src="img/historia/historia-6.jpg" 
+                           loading="lazy" 
+                           alt="Ruínas das caldeiras" 
+                           class="carousel-image"
+                           data-i18n-alt="hist_carousel_img_6_alt">
+                      <div class="carousel-caption">
+                        <p data-i18n="hist_carousel_caption_6">Ruínas das caldeiras</p>
+                      </div>
                     </div>
                 </div>
                 
@@ -535,6 +575,9 @@
                     <button class="indicator-dot active" data-slide="0" data-i18n-aria="carousel_dot_1_aria" aria-label="Ir para slide 1"></button>
                     <button class="indicator-dot" data-slide="1" data-i18n-aria="carousel_dot_2_aria" aria-label="Ir para slide 2"></button>
                     <button class="indicator-dot" data-slide="2" data-i18n-aria="carousel_dot_3_aria" aria-label="Ir para slide 3"></button>
+                    <button class="indicator-dot" data-slide="3" data-i18n-aria="carousel_dot_4_aria" aria-label="Ir para slide 4"></button>
+                    <button class="indicator-dot" data-slide="4" data-i18n-aria="carousel_dot_5_aria" aria-label="Ir para slide 5"></button>
+                    <button class="indicator-dot" data-slide="5" data-i18n-aria="carousel_dot_6_aria" aria-label="Ir para slide 6"></button>
                 </div>
             </div>
         </div>
