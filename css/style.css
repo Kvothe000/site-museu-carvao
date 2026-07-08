@@ -203,8 +203,10 @@ header {
 .main-nav li a {
     display: block;
     /* Garante que o link ocupe todo o espaço do <li> */
-    padding: 1rem 1.5rem;
-    /* Espaçamento interno (ajuste se necessário) */
+    padding: 0.7rem 1.2rem;
+    text-align: center;
+    white-space: nowrap;
+    box-sizing: border-box;
     color: var(--cor-texto-claro);
     /* Cor do texto (branco) */
     text-decoration: none;
@@ -220,7 +222,7 @@ header {
 .main-nav li a:hover,
 .main-nav li a.active {
     background-color: var(--cor-laranja-destaque);
-    /* Fundo laranja no hover/ativo */
+    color: #1a202c !important;
 }
 
 .main-nav ul {
@@ -286,7 +288,9 @@ header {
 }
 
 .dropdown-menu li a {
-    padding: 0.8rem 1.5rem;
+    padding: 0.7rem 1.2rem;
+    width: 100%;
+    box-sizing: border-box;
     color: var(--cor-texto-claro);
     text-decoration: none;
     white-space: nowrap;
@@ -448,7 +452,9 @@ main {
 }
 
 .dropdown-menu li a {
-    padding: 0.8rem 1.5rem;
+    padding: 0.7rem 1.2rem;
+    width: 100%;
+    box-sizing: border-box;
     color: var(--cor-texto-claro);
     text-decoration: none;
     white-space: nowrap;
