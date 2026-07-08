@@ -1180,6 +1180,16 @@ body.historicos-page .sintese-text.expanded + .sintese-fade-overlay {
 .carousel-caption { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.7)); padding: 2rem 1.5rem 1rem; color: #fff; border-radius: 0 0 8px 8px; }
 .carousel-caption p { margin: 0; font-size: 0.9rem; font-family: 'Inter', sans-serif; }
 
+/* Ajuste de espaçamento - solicitação do orientador */
+.story-section-new p,
+.story-para {
+    margin-bottom: 0.75rem;
+    line-height: 1.6;
+}
+.story-para + .story-para {
+    margin-top: 0.25rem;
+}
+
 /* 
 BOTÃO VOLTAR AO TOPO
 */
