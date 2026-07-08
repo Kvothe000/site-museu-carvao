@@ -6,7 +6,7 @@ export function renderSidebar(options) {
     dataList.forEach((item) => {
         const li = document.createElement('li');
         const button = document.createElement('button');
-        button.className = 'fundo-item-btn';
+        button.className = `fundo-item-btn fundo-color-${item.id}`;
         button.setAttribute('data-id', item.id);
         button.setAttribute('aria-selected', 'false');
 
