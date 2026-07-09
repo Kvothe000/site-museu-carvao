@@ -4,15 +4,18 @@
 ::-webkit-scrollbar {
     width: 10px;
 }
+
 ::-webkit-scrollbar-track {
-    background: var(--cor-fundo-escuro); 
+    background: var(--cor-fundo-escuro);
 }
+
 ::-webkit-scrollbar-thumb {
-    background: #333; 
+    background: #333;
     border-radius: 5px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--cor-laranja-destaque); 
+    background: var(--cor-laranja-destaque);
 }
 
 /* Ocultar barra de rolagem horizontal se criada inadvertidamente */
@@ -43,7 +46,8 @@ footer#main-footer.site-footer {
 
 #home-carousel {
     position: relative;
-    box-shadow: inset 0 -50px 100px -20px var(--cor-fundo-escuro); /* Vignette fade at the bottom */
+    box-shadow: inset 0 -50px 100px -20px var(--cor-fundo-escuro);
+    /* Vignette fade at the bottom */
 }
 
 /* Overlay do texto no Hero */
@@ -59,10 +63,12 @@ footer#main-footer.site-footer {
     width: 90%;
     max-width: 800px;
 }
+
 .hero-overlay-text h1 {
     font-size: 4rem;
-    color: #FFFFFF; /* Fixo por cima da global tag h1 */
-    text-shadow: 2px 4px 10px rgba(0,0,0,0.8);
+    color: #FFFFFF;
+    /* Fixo por cima da global tag h1 */
+    text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.8);
     margin-bottom: 2rem;
     animation: fadeInUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
@@ -84,6 +90,7 @@ footer#main-footer.site-footer {
         opacity: 0;
         transform: translateY(40px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -99,14 +106,17 @@ footer#main-footer.site-footer {
     backdrop-filter: blur(10px);
     margin-top: 2rem;
 }
+
 .archive-tree details {
     margin-bottom: 0.5rem;
 }
-.archive-tree > details > summary {
+
+.archive-tree>details>summary {
     font-size: 1.2rem;
     color: var(--cor-laranja-destaque);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
+
 .archive-tree summary {
     cursor: pointer;
     font-size: 1.1rem;
@@ -116,29 +126,35 @@ footer#main-footer.site-footer {
     border-radius: 4px;
     transition: background 0.3s;
     outline: none;
-    list-style: none; /* remove default arrow in some browsers */
+    list-style: none;
+    /* remove default arrow in some browsers */
     display: flex;
     align-items: center;
     gap: 10px;
 }
+
 .archive-tree summary::-webkit-details-marker {
     display: none;
 }
+
 .archive-tree summary:hover {
     background: rgba(255, 255, 255, 0.05);
 }
+
 .archive-tree .tree-content {
     padding: 1rem 1rem 1rem 3rem;
     margin-top: 0.5rem;
     border-left: 2px dashed rgba(255, 255, 255, 0.1);
     color: var(--cor-texto-escuro);
 }
+
 .archive-tree .tree-content h3 {
     margin-top: 1.5rem;
     color: var(--cor-texto-claro);
     font-family: 'Inter', sans-serif;
     font-size: 1.1rem;
 }
+
 .archive-tree .btn-atom {
     display: inline-flex;
     align-items: center;
@@ -153,6 +169,7 @@ footer#main-footer.site-footer {
     border-radius: 4px;
     transition: transform 0.2s, filter 0.2s;
 }
+
 .archive-tree .btn-atom:hover {
     transform: scale(1.02);
     filter: brightness(1.1);
@@ -177,7 +194,7 @@ footer#main-footer.site-footer {
     color: #121212;
     font-size: 2rem;
     border: none;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     cursor: pointer;
     transition: transform 0.3s ease, background-color 0.3s;
     display: flex;
@@ -202,7 +219,7 @@ footer#main-footer.site-footer {
     background: var(--cor-fundo-escuro);
     padding: 1rem;
     border-radius: 40px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     border: 1px solid var(--cor-borda-suave);
 }
 
@@ -281,7 +298,7 @@ footer#main-footer.site-footer {
     color: #e5e5e5;
     text-shadow: 1px 2px 10px rgba(0, 0, 0, 0.9);
     line-height: 1.4;
-    margin-bottom: 2rem;
+    margin-bottom: 8rem;
 }
 
 .scroll-indicator {
@@ -306,12 +323,19 @@ footer#main-footer.site-footer {
 }
 
 @keyframes scrollBounce {
-    0%, 20%, 50%, 80%, 100% {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
         transform: translate(-50%, 0);
     }
+
     40% {
         transform: translate(-50%, -10px);
     }
+
     60% {
         transform: translate(-50%, -5px);
     }
@@ -422,7 +446,7 @@ footer#main-footer.site-footer {
 .story-parallax-banner {
     position: relative;
     height: 55vh;
-    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('/img/historia/historia-16.png');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('/img/historia/historia-16.png');
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -446,7 +470,7 @@ footer#main-footer.site-footer {
     font-family: 'Playfair Display', serif;
     font-size: clamp(2rem, 4.5vw, 3.2rem);
     color: #ffffff !important;
-    text-shadow: 2px 4px 15px rgba(0,0,0,0.9);
+    text-shadow: 2px 4px 15px rgba(0, 0, 0, 0.9);
     margin-bottom: 1.2rem;
     letter-spacing: -0.01em;
 }
@@ -456,7 +480,7 @@ footer#main-footer.site-footer {
     font-size: clamp(1rem, 2vw, 1.2rem);
     line-height: 1.8;
     color: #f3f3f3;
-    text-shadow: 1px 2px 8px rgba(0,0,0,0.9);
+    text-shadow: 1px 2px 8px rgba(0, 0, 0, 0.9);
     font-weight: 300;
 }
 
@@ -487,11 +511,11 @@ footer#main-footer.site-footer {
     left: 50%;
     width: 2px;
     height: 100%;
-    background: linear-gradient(to bottom, 
-                rgba(240, 168, 77, 0.1) 0%, 
-                rgba(240, 168, 77, 0.4) 15%, 
-                rgba(240, 168, 77, 0.4) 85%, 
-                rgba(240, 168, 77, 0.1) 100%);
+    background: linear-gradient(to bottom,
+            rgba(240, 168, 77, 0.1) 0%,
+            rgba(240, 168, 77, 0.4) 15%,
+            rgba(240, 168, 77, 0.4) 85%,
+            rgba(240, 168, 77, 0.1) 100%);
     transform: translateX(-50%);
     top: 0;
 }
@@ -552,7 +576,7 @@ footer#main-footer.site-footer {
     border-radius: 8px;
     padding: 1.5rem;
     backdrop-filter: blur(10px);
-    box-shadow: 0 8px 30px rgba(0,0,0,0.45);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
     transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s;
 }
 
@@ -586,7 +610,8 @@ footer#main-footer.site-footer {
 @media (max-width: 768px) {
     .story-hero {
         height: 60vh;
-        background-attachment: scroll; /* Fix bug on mobile browsers */
+        background-attachment: scroll;
+        /* Fix bug on mobile browsers */
     }
 
     .story-parallax-banner {
@@ -648,8 +673,8 @@ footer#main-footer.site-footer {
    ========================================================== */
 
 body.digitais-page {
-    background: linear-gradient(var(--overlay-historico-1), var(--overlay-historico-2)), 
-                url('/img/bg-acervo.jpg') no-repeat center center fixed;
+    background: linear-gradient(var(--overlay-historico-1), var(--overlay-historico-2)),
+        url('/img/bg-acervo.jpg') no-repeat center center fixed;
     background-size: cover;
     color: var(--cor-texto-claro);
 }
@@ -861,7 +886,7 @@ body.digitais-page .detail-section {
     max-width: 100%;
     max-height: 80vh;
     border-radius: 6px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
     display: block;
     object-fit: contain;
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -874,7 +899,7 @@ body.digitais-page .detail-section {
     font-family: 'Inter', sans-serif;
     font-size: 1rem;
     font-weight: 400;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
     max-width: 800px;
     line-height: 1.5;
 }
@@ -902,13 +927,25 @@ body.digitais-page .detail-section {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 @keyframes zoomIn {
-    from { transform: scale(0.95); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
+    from {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 /* Responsividade do Acervo Digital */
@@ -994,7 +1031,7 @@ body.digitais-page .detail-section {
     .masonry-grid {
         column-count: 1;
     }
-    
+
     .lightbox-close {
         top: -40px;
         right: 10px;
@@ -1008,8 +1045,8 @@ body.digitais-page .detail-section {
 .home-hero-new {
     position: relative;
     height: 80vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.85)), 
-                url('../img/fachada_museu.jpg') no-repeat center center;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.85)),
+        url('../img/fachada_museu.jpg') no-repeat center center;
     background-size: cover;
     background-attachment: fixed;
     display: flex;
@@ -1088,9 +1125,9 @@ body.digitais-page .detail-section {
     color: var(--cor-texto-claro);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
     backdrop-filter: blur(10px);
-    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), 
-                box-shadow 0.3s, 
-                border-color 0.3s;
+    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+        box-shadow 0.3s,
+        border-color 0.3s;
 }
 
 .quick-card:hover {
@@ -1240,12 +1277,12 @@ body.digitais-page .detail-section {
     .quick-access-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-    
+
     .quick-access-section {
         margin-top: -3rem;
         margin-bottom: 3rem;
     }
-    
+
     .visit-grid {
         gap: 1.5rem;
     }
@@ -1254,23 +1291,24 @@ body.digitais-page .detail-section {
 @media (max-width: 768px) {
     .home-hero-new {
         height: 65vh;
-        background-attachment: scroll; /* Melhora performance no mobile */
+        background-attachment: scroll;
+        /* Melhora performance no mobile */
     }
-    
+
     .quick-access-grid {
         grid-template-columns: 1fr;
         gap: 1.2rem;
     }
-    
+
     .quick-card {
         padding: 2rem 1.5rem;
     }
-    
+
     .visit-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
-    
+
     .visit-section {
         padding: 4rem 1.5rem;
     }
@@ -1342,8 +1380,10 @@ body.digitais-page .detail-section {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     padding: 1rem 0.5rem 2rem 0.5rem;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
 }
 
 /* Ocultar barra de rolagem no Chrome/Safari */
@@ -1352,7 +1392,8 @@ body.digitais-page .detail-section {
 }
 
 .news-card {
-    flex: 0 0 360px; /* Largura fixa para manter proporção */
+    flex: 0 0 360px;
+    /* Largura fixa para manter proporção */
     scroll-snap-align: start;
     background-color: var(--cor-fundo-claro);
     border: 1px solid var(--cor-borda-suave);
@@ -1458,22 +1499,22 @@ body.digitais-page .detail-section {
     .news-section {
         padding: 4rem 1rem;
     }
-    
+
     .news-container h2 {
         font-size: 2rem;
         margin-bottom: 2.5rem;
     }
-    
+
     .news-carousel {
         gap: 1.2rem;
         padding-left: 0.5rem;
         padding-right: 0.5rem;
     }
-    
+
     .news-card {
         flex: 0 0 290px;
     }
-    
+
     .news-img-wrapper {
         height: 180px;
     }
@@ -1508,10 +1549,21 @@ body.digitais-page .detail-section {
 }
 
 /* Efeito cascata para os cards de acesso rápido */
-.quick-card.reveal:nth-child(1) { transition-delay: 0.1s; }
-.quick-card.reveal:nth-child(2) { transition-delay: 0.2s; }
-.quick-card.reveal:nth-child(3) { transition-delay: 0.3s; }
-.quick-card.reveal:nth-child(4) { transition-delay: 0.4s; }
+.quick-card.reveal:nth-child(1) {
+    transition-delay: 0.1s;
+}
+
+.quick-card.reveal:nth-child(2) {
+    transition-delay: 0.2s;
+}
+
+.quick-card.reveal:nth-child(3) {
+    transition-delay: 0.3s;
+}
+
+.quick-card.reveal:nth-child(4) {
+    transition-delay: 0.4s;
+}
 
 /* ==========================================================
    BOTOES DO LIGHTBOX (DOWNLOAD E FECHAR)
@@ -1563,42 +1615,52 @@ body.digitais-page .detail-section {
     border-left: 4px solid #D89B42;
     background: rgba(216, 155, 66, 0.1);
 }
+
 .fundo-color-cmcj.active {
     border-left: 4px solid #E74C3C;
     background: rgba(231, 76, 60, 0.1);
 }
+
 .fundo-color-ccr.active {
     border-left: 4px solid #2ECC71;
     background: rgba(46, 204, 113, 0.1);
 }
+
 .fundo-color-efj.active {
     border-left: 4px solid #3498DB;
     background: rgba(52, 152, 219, 0.1);
 }
+
 .fundo-color-cadem.active {
     border-left: 4px solid #9B59B6;
     background: rgba(155, 89, 182, 0.1);
 }
+
 .fundo-color-compequi.active {
     border-left: 4px solid #1ABC9C;
     background: rgba(26, 188, 156, 0.1);
 }
+
 .fundo-color-ccmb.active {
     border-left: 4px solid #F1C40F;
     background: rgba(241, 196, 15, 0.1);
 }
+
 .fundo-color-sindicatos.active {
     border-left: 4px solid #E67E22;
     background: rgba(230, 126, 34, 0.1);
 }
+
 .fundo-color-copelmi.active {
     border-left: 4px solid #34495E;
     background: rgba(52, 73, 94, 0.1);
 }
+
 .fundo-color-minas-do-recreio.active {
     border-left: 4px solid #16A085;
     background: rgba(22, 160, 133, 0.1);
 }
+
 .fundo-color-termoeletrica-charqueadas.active {
     border-left: 4px solid #7F8C8D;
     background: rgba(127, 140, 141, 0.1);
@@ -1615,5 +1677,3 @@ body.digitais-page .detail-section {
     color: var(--cor-texto-escuro);
     border-radius: 0 4px 4px 0;
 }
-
-
