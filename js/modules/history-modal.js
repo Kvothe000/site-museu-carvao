@@ -1,6 +1,29 @@
 export function initHistoryModal() {
-    const overlay = document.getElementById('history-gallery-modal-overlay');
-    if (!overlay) return;
+    let overlay = document.getElementById('history-gallery-modal-overlay');
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.id = 'history-gallery-modal-overlay';
+        overlay.className = 'modal-overlay';
+        overlay.setAttribute('role', 'dialog');
+        overlay.setAttribute('aria-modal', 'true');
+        overlay.setAttribute('aria-hidden', 'true');
+        overlay.style.display = 'none';
+        
+        overlay.innerHTML = `
+            <div class="modal-container" id="history-gallery-modal" role="document">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="history-modal-title-el"></h3>
+                    <button class="modal-close-btn" id="close-history-modal" aria-label="Fechar modal">
+                        <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="modal-carousel-wrapper"></div>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(overlay);
+    }
 
     const modalContainer = document.getElementById('history-gallery-modal');
     const closeBtn = document.getElementById('close-history-modal');
@@ -183,6 +206,7 @@ export function initHistoryModal() {
         // Initialize carousel controls on the injected HTML
         initDynamicCarousel(carouselWrapper);
 
+        overlay.style.display = 'flex';
         overlay.classList.add('active');
         overlay.removeAttribute('aria-hidden');
         document.body.style.overflow = 'hidden';
@@ -197,6 +221,7 @@ export function initHistoryModal() {
     function closeModal() {
         overlay.classList.remove('active');
         overlay.setAttribute('aria-hidden', 'true');
+        overlay.style.display = 'none';
         document.body.style.overflow = '';
 
         overlay.removeEventListener('keydown', handleTabKey);

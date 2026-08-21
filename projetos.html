@@ -91,7 +91,7 @@
                             documentos originais (1891-1964) do Arquivo Histórico do Museu Estadual do Carvão.
                         </p>
                         <div class="project-btn-wrapper">
-                            <button class="project-action-btn" id="open-cartas-modal" aria-haspopup="dialog"
+                            <button class="project-action-btn open-project-modal" data-modal-key="cartas" aria-haspopup="dialog"
                                 aria-controls="cartas-modal">
                                 <span data-i18n="projects_btn_learn_more">Saber Mais</span>
                                 <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
@@ -117,7 +117,7 @@
                             oficinas didáticas sobre a história da mineração e preservação ambiental.
                         </p>
                         <div class="project-btn-wrapper">
-                            <button class="project-action-btn" id="open-cartas-modal" aria-haspopup="dialog"
+                            <button class="project-action-btn open-project-modal" data-modal-key="school" aria-haspopup="dialog"
                                 aria-controls="cartas-modal">
                                 <span data-i18n="projects_btn_learn_more">Saber Mais</span>
                                 <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
@@ -144,7 +144,7 @@
                             cartográficos e manuscritos raros do fundo documental CADEM.
                         </p>
                         <div class="project-btn-wrapper">
-                            <button class="project-action-btn" id="open-cartas-modal" aria-haspopup="dialog"
+                            <button class="project-action-btn open-project-modal" data-modal-key="restoration" aria-haspopup="dialog"
                                 aria-controls="cartas-modal">
                                 <span data-i18n="projects_btn_learn_more">Saber Mais</span>
                                 <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
@@ -157,43 +157,19 @@
         </div>
     </main>
 
-    <!-- Modal Acessível para Exposição Cartas do Fundo do Poço -->
+    <!-- Modal Acessível para Projetos -->
     <div class="modal-overlay" id="cartas-modal-overlay" aria-hidden="true" role="dialog"
         aria-labelledby="modal-title-el">
         <div class="modal-container" id="cartas-modal">
             <header class="modal-header">
-                <h2 class="modal-title" id="modal-title-el" data-i18n="projects_cartas_modal_title">Exposição: Cartas do
-                    Fundo do Poço</h2>
+                <h2 class="modal-title" id="modal-title-el"></h2>
                 <button class="modal-close-btn" id="close-cartas-modal" aria-label="Fechar modal"
-                    data-i18n="[aria-label]projects_modal_close">
+                    data-i18n-aria="projects_modal_close">
                     <i class="fa-solid fa-xmark" aria-hidden="true"></i>
                 </button>
             </header>
-            <div class="modal-body">
-                <p data-i18n="projects_cartas_modal_p1">A exposição 'Cartas do Fundo do Poço: As correspondências das
-                    minas de carvão do Baixo Jacuí (1891-1964)' reconstrói aspectos fundamentais da história social da
-                    mineração no Rio Grande do Sul. O acervo exposto é constituído por uma seleção de correspondências
-                    originais trocadas entre trabalhadores, empresas de mineração e suas famílias.</p>
-                <p data-i18n="projects_cartas_modal_p2"><strong>A Bacia do Rio Jacuí:</strong> As minas localizadas nos
-                    municípios que compõem a bacia do Rio Jacuí, como Arroio dos Ratos e Butiá, foram o núcleo dessa
-                    rica trajetória. As cartas expostas retratam o cotidiano penoso nas vilas operárias, a forte
-                    presença da imigração europeia e as técnicas utilizadas na extração subterrânea do carvão.</p>
-                <p data-i18n="projects_cartas_modal_p3"><strong>O Esforço na Segunda Guerra Mundial:</strong> Durante a
-                    Segunda Guerra Mundial (1939-1945), a mineração no Jacuí assumiu relevância geopolítica estratégica
-                    para o Brasil. Com o bloqueio marítimo internacional e a escassez do carvão importado da Europa, o
-                    mineral extraído na região tornou-se vital para mover as ferrovias e alimentar as usinas
-                    termoelétricas que sustentavam a infraestrutura brasileira.</p>
-                <p data-i18n="projects_cartas_modal_p4"><strong>Greves e Lutas Sociais:</strong> As cartas também
-                    documentam as relações de trabalho tensas, os movimentos grevistas organizados em busca de melhorias
-                    salariais e segurança, e a mobilização dos sindicatos de mineiros ao longo das décadas de 1940 a
-                    1960.</p>
-
-                <div class="modal-info-block" data-i18n="projects_cartas_modal_info">
-                    <strong>ONDE/QUANDO:</strong> Exposição concebida em parceria com a ONG Arquivistas Sem Fronteiras e
-                    Surya Projetos, exibida originalmente no Memorial do Rio Grande do Sul (Porto Alegre). O acervo
-                    documental original encontra-se sob guarda permanente e está disponível para consulta no Arquivo
-                    Histórico do Museu Estadual do Carvão, em Arroio dos Ratos/RS.
-                </div>
+            <div class="modal-body" id="modal-body-content">
+                <!-- Conteúdo injetado dinamicamente via JS -->
             </div>
         </div>
     </div>
@@ -204,49 +180,78 @@
 
     <script type="module" src="js/main.js"></script>
     <script>
-        // Lógica de gerenciamento do Modal de forma acessível
-        const openBtn = document.getElementById('open-cartas-modal');
-        const overlay = document.getElementById('cartas-modal-overlay');
+        // ─── Mapa de conteúdo dos modais por card ───────────────────────────────
+        // Cada entrada mapeia data-modal-key → chaves de tradução do modal
+        const PROJECT_MODAL_MAP = {
+            cartas: {
+                title: 'projects_cartas_modal_title',
+                paragraphs: ['projects_cartas_modal_p1', 'projects_cartas_modal_p2', 'projects_cartas_modal_p3', 'projects_cartas_modal_p4'],
+                info: 'projects_cartas_modal_info'
+            },
+            school: {
+                title: 'projects_school_modal_title',
+                paragraphs: ['projects_school_modal_p1', 'projects_school_modal_p2', 'projects_school_modal_p3'],
+                info: 'projects_school_modal_info'
+            },
+            restoration: {
+                title: 'projects_restoration_modal_title',
+                paragraphs: ['projects_restoration_modal_p1', 'projects_restoration_modal_p2', 'projects_restoration_modal_p3'],
+                info: 'projects_restoration_modal_info'
+            }
+        };
+
+        const overlay       = document.getElementById('cartas-modal-overlay');
         const modalContainer = document.getElementById('cartas-modal');
-        const closeBtn = document.getElementById('close-cartas-modal');
+        const closeBtn      = document.getElementById('close-cartas-modal');
+        const titleEl       = document.getElementById('modal-title-el');
+        const bodyEl        = document.getElementById('modal-body-content');
+        const focusableQ    = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
 
-        // Focus Trap Elements
-        const focusableElementsString = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+        let lastOpenBtn = null; // guarda referência ao botão que abriu o modal
 
-        function getFocusableElements() {
-            return Array.from(modalContainer.querySelectorAll(focusableElementsString));
+        // ─── Renderiza o conteúdo do modal para o idioma atual ──────────────────
+        function renderModalContent(key) {
+            const map  = PROJECT_MODAL_MAP[key];
+            const lang = localStorage.getItem('language') || 'pt';
+            const t    = (window.translations && window.translations[lang]) ? window.translations[lang] : {};
+
+            // Título
+            titleEl.textContent = t[map.title] || '';
+
+            // Corpo: parágrafos + bloco info
+            let html = '';
+            (map.paragraphs || []).forEach(pKey => {
+                const text = t[pKey] || '';
+                if (text) html += `<p>${text}</p>`;
+            });
+            if (map.info) {
+                const infoText = t[map.info] || '';
+                if (infoText) html += `<div class="modal-info-block">${infoText}</div>`;
+            }
+            bodyEl.innerHTML = html;
         }
 
+        // ─── Focus trap ─────────────────────────────────────────────────────────
         function handleTabKey(e) {
-            const focusableElements = getFocusableElements();
-            const firstElement = focusableElements[0];
-            const lastElement = focusableElements[focusableElements.length - 1];
-
-            if (e.key === 'Tab') {
-                if (e.shiftKey) { // Shift + Tab
-                    if (document.activeElement === firstElement) {
-                        lastElement.focus();
-                        e.preventDefault();
-                    }
-                } else { // Tab
-                    if (document.activeElement === lastElement) {
-                        firstElement.focus();
-                        e.preventDefault();
-                    }
-                }
+            if (e.key !== 'Tab') return;
+            const els   = Array.from(modalContainer.querySelectorAll(focusableQ));
+            const first = els[0];
+            const last  = els[els.length - 1];
+            if (e.shiftKey) {
+                if (document.activeElement === first) { last.focus(); e.preventDefault(); }
+            } else {
+                if (document.activeElement === last)  { first.focus(); e.preventDefault(); }
             }
         }
 
-        function openModal() {
+        // ─── Abrir/fechar ────────────────────────────────────────────────────────
+        function openModal(btn, key) {
+            lastOpenBtn = btn;
+            renderModalContent(key);
             overlay.classList.add('active');
             overlay.removeAttribute('aria-hidden');
             document.body.style.overflow = 'hidden';
-
-            // Foco inicial no botão de fechar do modal
-            setTimeout(() => {
-                closeBtn.focus();
-            }, 100);
-
+            setTimeout(() => closeBtn.focus(), 100);
             overlay.addEventListener('keydown', handleTabKey);
         }
 
@@ -254,27 +259,29 @@
             overlay.classList.remove('active');
             overlay.setAttribute('aria-hidden', 'true');
             document.body.style.overflow = '';
-
-            // Retorna o foco para o botão acionador
-            openBtn.focus();
-
             overlay.removeEventListener('keydown', handleTabKey);
+            if (lastOpenBtn) lastOpenBtn.focus();
         }
 
-        openBtn.addEventListener('click', openModal);
-        closeBtn.addEventListener('click', closeModal);
-
-        // Fechar ao clicar no overlay escuro (fora do modal-container)
-        overlay.addEventListener('click', (e) => {
-            if (e.target === overlay) {
-                closeModal();
-            }
+        // ─── Listeners dos botões de cada card ──────────────────────────────────
+        document.querySelectorAll('.open-project-modal').forEach(btn => {
+            btn.addEventListener('click', () => openModal(btn, btn.dataset.modalKey));
         });
 
-        // Fechar com a tecla ESC
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && overlay.classList.contains('active')) {
-                closeModal();
+        closeBtn.addEventListener('click', closeModal);
+
+        overlay.addEventListener('click', e => {
+            if (e.target === overlay) closeModal();
+        });
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape' && overlay.classList.contains('active')) closeModal();
+        });
+
+        // ─── Atualiza conteúdo do modal ao trocar idioma (se estiver aberto) ────
+        document.addEventListener('languagechange', () => {
+            if (overlay.classList.contains('active') && lastOpenBtn) {
+                renderModalContent(lastOpenBtn.dataset.modalKey);
             }
         });
     </script>

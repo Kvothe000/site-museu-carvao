@@ -56,11 +56,6 @@
         <changefreq>monthly</changefreq>
     </url>
     <url>
-        <loc>https://kvothe000.github.io/site-museu-carvao/localizacao-contato.html</loc>
-        <priority>0.7</priority>
-        <changefreq>yearly</changefreq>
-    </url>
-    <url>
         <loc>https://kvothe000.github.io/site-museu-carvao/contato.html</loc>
         <priority>0.7</priority>
         <changefreq>yearly</changefreq>

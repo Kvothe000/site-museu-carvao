@@ -68,7 +68,7 @@ O site institucional é composto pelas seguintes páginas:
 - **Nossos Fundos (`nossos-fundos.html`)**: Introdução sobre a catalogação do acervo documental da mineração.
 - **Arquivos Históricos (`arquivos-historicos.html`)**: Painel dinâmico master-detail detalhando os 11 fundos documentais.
 - **Arquivos Fotográficos (`arquivos-fotograficos.html`)**, **Tridimensionais (`arquivos-tridimensionais.html`)** e **Digitais (`arquivos-digitais.html`)**: Portais dedicados de catalogação visual do patrimônio físico e digitalizado.
-- **Contato (`contato.html` / `localizacao-contato.html`)**: Informações de localização, horário de funcionamento e formulário de fale conosco.
+- **Contato (`contato.html`)**: Informações de localização, horário de funcionamento e formulário de fale conosco.
 - **Busca (`busca.html`)**: Sistema de busca integrada do acervo documental.
 - **Mapa do Site (`mapa-do-site.html`)**: Relação estruturada de todas as páginas da plataforma.
 
