@@ -1,0 +1,148 @@
+{
+  "noticias": [
+    {
+      "id": "visita-escola-2025",
+      "data": "2025-10-12",
+      "tag": "educacao",
+      "titulo": {
+        "pt": "Visita da Escola Estadual 20 de Setembro",
+        "en": "Visit from Escola Estadual 20 de Setembro",
+        "es": "Visita de la Escuela Estatal 20 de Setiembre"
+      },
+      "resumo": {
+        "pt": "Estudantes exploraram as dependências da antiga usina e conheceram a história dos mineiros da nossa região em uma visita mediada.",
+        "en": "Students explored the grounds of the former power plant and learned about the history of the miners of our region in a guided visit.",
+        "es": "Los estudiantes recorrieron las instalaciones de la antigua usina y conocieron la historia de los mineros de nuestra región en uma visita mediada."
+      },
+      "conteudo": {
+        "pt": [
+          "No dia 12 de outubro de 2025, o Museu Estadual do Carvão recebeu a visita da Escola Estadual 20 de Setembro. Os estudantes percorreram as dependências da antiga usina termelétrica, incluindo as ruínas das caldeiras e o Poço 1, em uma visita mediada pelos educadores do museu.",
+          "Durante o percurso, os alunos conheceram a história dos trabalhadores da mineração, o funcionamento da termoelétrica e a importância da preservação desse patrimônio para a memória da região carbonífera."
+        ],
+        "en": [
+          "On October 12, 2025, the Museu Estadual do Carvão hosted a visit from Escola Estadual 20 de Setembro. The students toured the grounds of the former thermoelectric plant, including the ruins of the boilers and Pit 1, in a visit mediated by the museum's educators.",
+          "Along the way, the students learned about the history of mining workers, how the power plant operated, and the importance of preserving this heritage for the memory of the coal region."
+        ],
+        "es": [
+          "El 12 de octubre de 2025, el Museu Estadual do Carvão recibió la visita de la Escuela Estatal 20 de Setiembre. Los estudiantes recorrieron las instalaciones de la antigua usina termoeléctrica, incluidas las ruinas de las calderas y el Pozo 1, en una visita mediada por los educadores del museo.",
+          "Durante el recorrido, los alumnos conocieron la historia de los trabajadores de la minería, el funcionamiento de la termoeléctrica y la importância de preservar este patrimonio para la memoria de la región carbonífera."
+        ]
+      },
+      "imagem": "img/museu_exposicao.jpg",
+      "imagemWebp": "img/museu_exposicao.webp",
+      "alt": {
+        "pt": "Crianças da Escola Estadual 20 de Setembro em visita guiada pelo museu",
+        "en": "Children from Escola Estadual 20 de Setembro on a guided tour of the museum",
+        "es": "Niños de la Escuela Estatal 20 de Setiembre en visita guiada por el museo"
+      }
+    },
+    {
+      "id": "peca-restaurada-2025",
+      "data": "2025-11-05",
+      "tag": "acervo",
+      "titulo": {
+        "pt": "Nova Peça Histórica de Mineração Restaurada",
+        "en": "New Restored Historical Mining Artifact",
+        "es": "Nueva Pieza Histórica de Minería Restaurada"
+      },
+      "resumo": {
+        "pt": "Uma antiga lanterna de segurança utilizada no século XX foi integrada ao acervo permanente após passar por processo minucioso de restauro.",
+        "en": "An antique safety lamp used in the 20th century was added to the permanent collection after undergoing a meticulous restoration process.",
+        "es": "Una antiga lámpara de seguridad utilizada en el siglo XX fue incorporada al acervo permanente tras un minucioso proceso de restauración."
+      },
+      "conteudo": {
+        "pt": [
+          "O acervo do Museu do Carvão recebeu uma nova peça: uma lanterna de segurança utilizada por mineiros no início do século XX. O objeto passou por um processo minucioso de restauro, incluindo limpeza, estabilização e reintegração de partes faltantes.",
+          "A lanterna integra agora a exposição permanente do museu, permitindo aos visitantes compreender as condições de trabalho dos mineiros e a evolução dos equipamentos de segurança ao longo do tempo."
+        ],
+        "en": [
+          "The Museu do Carvão collection received a new artifact: a safety lamp used by miners in the early 20th century. The object underwent a meticulous restoration process, including cleaning, stabilization, and reintegration of missing parts.",
+          "The lamp now joins the museum's permanent exhibition, helping visitors understand the working conditions of miners and the evolution of safety equipment over time."
+        ],
+        "es": [
+          "El acervo del Museu do Carvão recibió una nueva pieza: una lámpara de seguridad utilizada por los mineros a principios del siglo XX. La pieza pasó por un minucioso proceso de restauración, que incluyó limpieza, estabilización y reintegración de partes faltantes.",
+          "La lámpara ahora integra la exposición permanente del museo, permitiendo a los visitantes comprender las condiciones de trabajo de los mineros y la evolución de los equipos de seguridad a lo largo del tiempo."
+        ]
+      },
+      "imagem": "img/tecnica-inovadora.jpg",
+      "imagemWebp": "img/tecnica-inovadora.webp",
+      "alt": {
+        "pt": "Nova peça histórica restaurada exposta no museu",
+        "en": "New restored historical artifact on display at the museum",
+        "es": "Nueva pieza histórica restaurada expuesta en el museo"
+      }
+    },
+    {
+      "id": "encontro-ex-mineiros-2025",
+      "data": "2025-11-18",
+      "tag": "comunidade",
+      "titulo": {
+        "pt": "Encontro Memorial de Ex-Mineiros do Jacuí",
+        "en": "Memorial Gathering of Former Jacuí Miners",
+        "es": "Encuentro Memorial de Ex-Mineros del Jacuí"
+      },
+      "resumo": {
+        "pt": "O museu reuniu antigos trabalhadores da região carbonífera e seus familiares para registrar relatos e memórias essenciais de nosso patrimônio imaterial.",
+        "en": "The museum brought together former workers of the coal region and their families to record stories and memories essential to our intangible heritage.",
+        "es": "El museo reunió a antiguos trabajadores de la región carbonífera y sus familias para registrar relatos y memorias esenciales de nuestro patrimonio inmaterial."
+      },
+      "conteudo": {
+        "pt": [
+          "O Museu Estadual do Carvão promoveu um encontro memorial com ex-mineiros da região do Baixo Jacuí e seus familiares. Durante o evento, foram registrados relatos orais, fotografias e documentos que integram o patrimônio imaterial do museu.",
+          "As memórias compartilhadas contribuem para a preservação da história social da mineração e serão incorporadas ao acervo de pesquisa do Arquivo Histórico da Mineração."
+        ],
+        "en": [
+          "The Museu Estadual do Carvão held a memorial gathering with former miners from the Baixo Jacuí region and their families. During the event, oral accounts, photographs, and documents were recorded, becoming part of the museum's intangible heritage.",
+          "The shared memories contribute to preserving the social history of mining and will be incorporated into the research collection of the Arquivo Histórico da Mineração."
+        ],
+        "es": [
+          "El Museu Estadual do Carvão realizó un encuentro memorial con ex-mineros de la región del Bajo Jacuí y sus familias. Durante el evento se registraron relatos orales, fotografías y documentos que pasan a integrar el patrimonio inmaterial del museo.",
+          "Las memorias compartidas contribuyen a la preservación de la historia social de la minería y serán incorporadas al acervo de investigación del Archivo Histórico de la Minería."
+        ]
+      },
+      "imagem": "img/acervo_prateleiras.jpg",
+      "imagemWebp": "img/acervo_prateleiras.webp",
+      "alt": {
+        "pt": "Ex-mineiros reunidos no arquivo do museu compartilhando memórias",
+        "en": "Former miners gathered in the museum's archive sharing memories",
+        "es": "Ex-mineros reunidos en el archivo del museo compartiendo memorias"
+      }
+    },
+    {
+      "id": "pesquisa-arqueologia-2025",
+      "data": "2025-12-03",
+      "tag": "pesquisa",
+      "titulo": {
+        "pt": "Lançamento da Pesquisa de Arqueologia Industrial",
+        "en": "Launch of the Industrial Archaeology Research",
+        "es": "Lanzamiento de la Investigación de Arqueología Industrial"
+      },
+      "resumo": {
+        "pt": "Apresentamos os resultados do projeto de mapeamento estrutural das ruínas industriais da mina, realizado em cooperação com universidades parceiras.",
+        "en": "We present the results of the structural mapping project of the mine's industrial ruins, carried out in cooperation with partner universities.",
+        "es": "Presentamos los resultados del proyecto de mapeo estructural de las ruinas industriales de la mina, realizado en cooperación con universidades socias."
+      },
+      "conteudo": {
+        "pt": [
+          "O museu apresentou os resultados do projeto de arqueologia industrial que mapeou estruturalmente as ruínas do complexo minerador, em cooperação com universidades parceiras. O estudo documenta edificações, maquinários e vestígios do processo produtivo do carvão.",
+          "A pesquisa amplia o conhecimento sobre o patrimônio industrial da região e subsidiará futuras ações de conservação e divulgação do sítio histórico."
+        ],
+        "en": [
+          "The museum presented the results of the industrial archaeology project that structurally mapped the ruins of the mining complex, in cooperation with partner universities. The study documents buildings, machinery, and traces of the coal production process.",
+          "The research expands knowledge about the region's industrial heritage and will support future conservation and outreach actions for the historic site."
+        ],
+        "es": [
+          "El museo presentó los resultados del proyecto de arqueología industrial que mapeó estructuralmente las ruinas del complejo minero, en cooperación con universidades socias. El estudio documenta edificios, maquinarias y vestigios del proceso de producción del carbón.",
+          "La investigación amplía el conocimiento sobre el patrimonio industrial de la región y respaldará futuras acciones de conservación y divulgación del sitio histórico."
+        ]
+      },
+      "imagem": "img/inicio_mineracao.jpg",
+      "imagemWebp": "img/inicio_mineracao.webp",
+      "alt": {
+        "pt": "Pesquisadores trabalhando nas ruínas industriais do entorno do museu",
+        "en": "Researchers working on the industrial ruins around the museum",
+        "es": "Investigadores trabajando en las ruinas industriales del entorno del museo"
+      }
+    }
+  ]
+}

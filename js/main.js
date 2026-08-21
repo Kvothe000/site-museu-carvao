@@ -97,6 +97,7 @@ function updateLanguage(lang) {
             }
         });
     }
+    document.dispatchEvent(new CustomEvent('languagechange', { detail: { language: lang } }));
 }
 
 // Expor função globalmente para chamadas dinâmicas pós-injeção de DOM

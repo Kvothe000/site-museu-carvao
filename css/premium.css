@@ -1403,6 +1403,7 @@ body.digitais-page .detail-section {
     transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s, box-shadow 0.3s;
     display: flex;
     flex-direction: column;
+    text-decoration: none; /* Prevent default link underlining */
 }
 
 .news-card:hover {
@@ -1676,4 +1677,133 @@ body.digitais-page .detail-section {
     font-style: italic;
     color: var(--cor-texto-escuro);
     border-radius: 0 4px 4px 0;
+}
+
+/* Modal Acessível (Copiado de pages.css para uso na Home) */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(6px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    padding: 1.5rem;
+}
+
+.modal-overlay.active {
+    display: flex;
+    animation: fadeInOverlay 0.3s ease forwards;
+}
+
+.modal-container {
+    background: var(--cor-fundo-claro);
+    border: 1px solid var(--cor-borda-suave);
+    border-radius: 12px;
+    width: 100%;
+    max-width: 650px;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    transform: translateY(30px);
+    opacity: 0;
+}
+
+.modal-overlay.active .modal-container {
+    animation: slideInModal 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.modal-header {
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid var(--cor-borda-suave);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--cor-laranja-destaque);
+    margin: 0;
+}
+
+.modal-close-btn {
+    background: transparent;
+    border: none;
+    color: var(--cor-texto-escuro);
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s, transform 0.2s;
+    border-radius: 50%;
+    min-width: 44px;
+    min-height: 44px;
+}
+
+.modal-close-btn:hover {
+    color: var(--cor-laranja-destaque);
+    transform: rotate(90deg);
+    background: rgba(216, 155, 66, 0.1);
+}
+
+.modal-body {
+    padding: 2rem;
+    overflow-y: auto;
+    color: var(--cor-texto-escuro);
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.modal-body p {
+    margin: 0 0 1.5rem 0;
+}
+
+.modal-body p:last-child {
+    margin: 0;
+}
+
+.modal-info-block {
+    background: rgba(216, 155, 66, 0.08);
+    border-left: 4px solid var(--cor-laranja-destaque);
+    padding: 1.25rem 1.5rem;
+    border-radius: 4px;
+    margin-top: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.modal-body img.modal-featured-img {
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.modal-body .modal-meta {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+@keyframes fadeInOverlay {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInModal {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
