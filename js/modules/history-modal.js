@@ -153,7 +153,7 @@ export function initHistoryModal() {
                 <div class="carousel-slide">
                     <picture>
                         <source srcset="img/${topic}/${imgName}.webp" type="image/webp">
-                        <img src="img/${topic}/${imgName}.jpg" loading="lazy" class="carousel-image" alt="Imagem de ${topic}">
+                        <img src="img/${topic}/${imgName}.jpg" loading="lazy" class="carousel-image" alt="Imagem de ${topic}" onerror="this.src='img/fachada_museu.jpg'; this.onerror=null; if(this.previousElementSibling) this.previousElementSibling.srcset='img/fachada_museu.jpg';">
                     </picture>
                 </div>
             `;

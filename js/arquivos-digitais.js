@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="masonry-item" data-index="${idx}" role="button" tabindex="0"
                     data-i18n-aria="fundo_${fundo.id}_img_${idx}_aria"
                     aria-label="Visualizar imagem: ${img.legenda}">
-                    <img src="${img.src}" loading="lazy" data-i18n-alt="fundo_${fundo.id}_img_${idx}_alt" alt="${img.alt}">
+                    <img src="${img.src}" loading="lazy" data-i18n-alt="fundo_${fundo.id}_img_${idx}_alt" alt="${img.alt}" onerror="this.src='img/fachada_museu.jpg'; this.onerror=null;">
                     <div class="masonry-item-caption" data-i18n="fundo_${fundo.id}_img_${idx}_caption">${img.legenda}</div>
                 </div>
             `;
@@ -160,6 +160,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function openLightbox(fundoId, index, imgData) {
+        lightboxImage.onerror = () => {
+            lightboxImage.src = 'img/fachada_museu.jpg';
+            lightboxImage.onerror = null;
+            if (lightboxDownload) {
+                lightboxDownload.href = 'img/fachada_museu.jpg';
+            }
+        };
         lightboxImage.src = imgData.src;
         lightboxImage.setAttribute('data-i18n-alt', `fundo_${fundoId}_img_${index}_alt`);
         lightboxCaption.setAttribute('data-i18n', `fundo_${fundoId}_img_${index}_caption`);

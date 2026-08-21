@@ -196,7 +196,10 @@ const ACERVO_DATA = {
             }
           ]
         }
-      ]
+      ],
+      "pdfDescricao": "pdf/descricoes/descricao-cefmsj.pdf",
+      "pdfQuadro": "pdf/quadros/quadro-cefmsj.pdf",
+      "linkAtom": "https://arquivos.cultura.rs.gov.br/index.php/companhia-estrada-de-ferro-e-minas-de-sao-jeronymo-cefmsj"
     },
     {
       "id": "02",
@@ -313,7 +316,10 @@ const ACERVO_DATA = {
             }
           ]
         }
-      ]
+      ],
+      "pdfDescricao": "pdf/descricoes/descricao-cmcj.pdf",
+      "pdfQuadro": "pdf/quadros/quadro-cmcj.pdf",
+      "linkAtom": "https://arquivos.cultura.rs.gov.br/index.php/br-rsmc02"
     },
     {
       "id": "03",
@@ -625,7 +631,10 @@ const ACERVO_DATA = {
             }
           ]
         }
-      ]
+      ],
+      "pdfDescricao": "pdf/descricoes/descricao-ccr.pdf",
+      "pdfQuadro": "pdf/quadros/quadro-ccr.pdf",
+      "linkAtom": "https://arquivos.cultura.rs.gov.br/index.php/br-rsmc03"
     },
     {
       "id": "04",
@@ -886,7 +895,10 @@ const ACERVO_DATA = {
             }
           ]
         }
-      ]
+      ],
+      "pdfDescricao": "pdf/descricoes/descricao-efj.pdf",
+      "pdfQuadro": null,
+      "linkAtom": "https://arquivos.cultura.rs.gov.br/index.php/br-rsmc04"
     },
     {
       "id": "05",
@@ -1669,7 +1681,10 @@ const ACERVO_DATA = {
             }
           ]
         }
-      ]
+      ],
+      "pdfDescricao": "pdf/descricoes/descricao-cadem.pdf",
+      "pdfQuadro": null,
+      "linkAtom": "https://arquivos.cultura.rs.gov.br/index.php/a2rm-febn-st82"
     },
     {
       "id": "06",
@@ -1869,7 +1884,10 @@ const ACERVO_DATA = {
             }
           ]
         }
-      ]
+      ],
+      "pdfDescricao": "pdf/descricoes/descricao-compequi.pdf",
+      "pdfQuadro": "pdf/quadros/quadro-compequi.pdf",
+      "linkAtom": null
     },
     {
       "id": "07",
@@ -2240,7 +2258,10 @@ const ACERVO_DATA = {
             }
           ]
         }
-      ]
+      ],
+      "pdfDescricao": "pdf/descricoes/descricao-ccmb.pdf",
+      "pdfQuadro": "pdf/quadros/quadro-ccmb.pdf",
+      "linkAtom": null
     },
     {
       "id": "08",
@@ -2338,7 +2359,10 @@ const ACERVO_DATA = {
             }
           ]
         }
-      ]
+      ],
+      "pdfDescricao": "pdf/descricoes/descricao-sindicatos.pdf",
+      "pdfQuadro": "pdf/quadros/quadro-sindicatos.pdf",
+      "linkAtom": null
     },
     {
       "id": "09",
@@ -2882,7 +2906,10 @@ const ACERVO_DATA = {
             }
           ]
         }
-      ]
+      ],
+      "pdfDescricao": "pdf/descricoes/descricao-copelmi.pdf",
+      "pdfQuadro": "pdf/quadros/quadro-copelmi.pdf",
+      "linkAtom": null
     },
     {
       "id": "10",
@@ -3021,7 +3048,10 @@ const ACERVO_DATA = {
           "date": "1934-1937",
           "subseries": []
         }
-      ]
+      ],
+      "pdfDescricao": "pdf/descricoes/descricao-minas-do-recreio.pdf",
+      "pdfQuadro": "pdf/quadros/quadro-minas-do-recreio.pdf",
+      "linkAtom": null
     },
     {
       "id": "11",
@@ -3119,7 +3149,10 @@ const ACERVO_DATA = {
             }
           ]
         }
-      ]
+      ],
+      "pdfDescricao": "pdf/descricoes/descricao-termoeletrica-charqueadas.pdf",
+      "pdfQuadro": null,
+      "linkAtom": null
     }
   ]
 };
