@@ -24,4 +24,33 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Executa no início para restaurar o estado correto se a página for recarregada
     toggleSchedulingFields();
+
+    const form = document.querySelector('.contact-form');
+    if (form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const subject = subjectSelect.value;
+            const message = document.getElementById('message').value;
+
+            let body = `Nome: ${name}\nE-mail: ${email}\n`;
+            if (phone) {
+                body += `Telefone: ${phone}\n`;
+            }
+            
+            if (subject === 'Agendamento Escolar') {
+                const studentCount = studentCountInput.value;
+                const visitDate = visitDateInput.value;
+                body += `Número de Alunos: ${studentCount}\nData da Visita: ${visitDate}\n`;
+            }
+            
+            body += `\nMensagem:\n${message}`;
+
+            const mailtoUrl = `mailto:museu-carvao@sedac.rs.gov.br?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            window.location.href = mailtoUrl;
+        });
+    }
 });

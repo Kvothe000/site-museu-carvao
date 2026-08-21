@@ -327,4 +327,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.querySelectorAll('.fade-in-up, .reveal').forEach(el => {
         unifiedObserver.observe(el);
     });
+
+    // Evitar que links de redes sociais vazios (href="#") com data-placeholder rolem a página para o topo
+    document.addEventListener('click', (e) => {
+        const socialLink = e.target.closest('a[href="#"][data-placeholder]');
+        if (socialLink) {
+            e.preventDefault();
+        }
+    });
 });
