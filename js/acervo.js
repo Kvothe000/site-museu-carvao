@@ -5,6 +5,11 @@ import { updatePageLanguage } from './modules/acervo-common.js';
 document.addEventListener('DOMContentLoaded', () => {
     const listContainer = document.getElementById('fundo-list-container');
     const detailArea = document.getElementById('detail-area');
+    // Remove loading indicator
+    const loadingIndicator = document.getElementById('loading-indicator');
+    if (loadingIndicator) {
+        loadingIndicator.style.display = 'none';
+    }
 
     if (!listContainer || !detailArea) {
         console.warn('Elements for Master-Detail UI not found on this page.');
@@ -90,10 +95,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Set current height as starting point for collapse animation
                     sinteseText.style.maxHeight = sinteseText.scrollHeight + 'px';
                     sinteseText.classList.remove('expanded');
-                    
+
                     // Force a reflow to make the transition work
-                    sinteseText.offsetHeight; 
-                    
+                    sinteseText.offsetHeight;
+
                     // Collapse back to baseline after a tiny delay
                     setTimeout(() => {
                         sinteseText.style.maxHeight = '280px';
@@ -102,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     btnToggle.querySelector('span').setAttribute('data-i18n', 'nf_read_more');
                     updatePageLanguage();
                     btnToggle.querySelector('i').className = 'fa-solid fa-chevron-down';
-                    
+
                     // Smooth scroll back to the top of the detail container to avoid losing reading position
                     detailArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 } else {
