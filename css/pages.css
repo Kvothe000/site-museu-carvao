@@ -643,6 +643,15 @@ body.historicos-page .sintese-text.expanded+.sintese-fade-overlay {
     opacity: 0;
 }
 
+.sintese-subtitle {
+    display: block;
+    font-weight: bold;
+    color: var(--cor-laranja-destaque);
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
 .btn-toggle-sintese {
     background: transparent;
     border: 1px solid var(--cor-laranja-destaque);

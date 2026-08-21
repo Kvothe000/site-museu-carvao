@@ -168,8 +168,8 @@ function loadDocumentalFundo(id, element) {
 
         const sinteseSpan = document.createElement('span');
         sinteseSpan.dataset.i18n = `fund_sintese_1_${fundo.id}`;
-        // Conteúdo da síntese é texto do banco de dados interno — exibido via textContent por segurança
-        sinteseSpan.textContent = fundo.sintesePrimeiro;
+        // Conteúdo da síntese é texto formatado em HTML
+        sinteseSpan.innerHTML = fundo.sintesePrimeiro;
 
         sinteseContainer.appendChild(sinteseSpan);
 
@@ -179,7 +179,7 @@ function loadDocumentalFundo(id, element) {
             moreDiv.style.display = 'none';
             const moreSpan = document.createElement('span');
             moreSpan.dataset.i18n = `fund_sintese_2_${fundo.id}`;
-            moreSpan.textContent = fundo.sinteseRestante;
+            moreSpan.innerHTML = fundo.sinteseRestante;
             moreDiv.appendChild(moreSpan);
             sinteseContainer.appendChild(moreDiv);
 
