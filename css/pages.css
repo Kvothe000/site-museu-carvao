@@ -1377,3 +1377,121 @@ BOTÃO VOLTAR AO TOPO
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
     transition: all 0.3s ease;
 }
+
+/* Style override for history modal trigger buttons */
+.story-content-col .project-action-btn {
+    color: var(--cor-texto-escuro);
+    border-color: var(--cor-laranja-destaque);
+}
+
+.story-content-col .project-action-btn:hover {
+    color: var(--cor-fundo-escuro);
+    background: var(--cor-laranja-destaque);
+}
+
+/* Sidebar visual hierarchy adjustments */
+.story-sidebar-nav .sidebar-link {
+    color: var(--cor-texto-mutado, #8e8b82);
+    font-weight: 500;
+    border-left: 3px solid transparent;
+    padding-left: 0.8rem;
+    transition: all 0.3s ease;
+}
+
+.story-sidebar-nav .sidebar-link:hover {
+    color: var(--cor-laranja-destaque);
+    background: rgba(216, 155, 66, 0.05);
+    border-left-color: rgba(216, 155, 66, 0.3);
+}
+
+.story-sidebar-nav .sidebar-link.active {
+    background: rgba(216, 155, 66, 0.08);
+    color: var(--cor-laranja-destaque) !important;
+    font-weight: 700;
+    border-left: 3px solid var(--cor-laranja-destaque);
+    box-shadow: none;
+}
+
+/* CSS float wrapping layout for history page sections (magazine style) */
+.story-grid-block {
+    display: block;
+    margin-bottom: 5rem;
+}
+
+.story-grid-block::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.story-grid-block .story-text {
+    width: 100%;
+}
+
+.story-figure {
+    max-width: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: transparent !important;
+    background: none !important;
+}
+
+.story-figure.esquerda {
+    float: left;
+    width: 280px;
+    margin: 0 1.5rem 1rem 0;
+}
+
+.story-figure.direita {
+    float: right;
+    width: 280px;
+    margin: 0 0 1rem 1.5rem;
+}
+
+.story-figure a {
+    display: block;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    background-color: transparent !important;
+    background: none !important;
+}
+
+.story-figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+    background-color: transparent !important;
+    background: none !important;
+}
+
+.story-figure figcaption {
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    color: var(--cor-texto-mutado, #8e8b82);
+    line-height: 1.4;
+    background-color: transparent !important;
+    background: none !important;
+}
+
+/* Mobile responsive layout (turn off floats) */
+@media (max-width: 768px) {
+    .story-grid-block {
+        margin-bottom: 3rem;
+    }
+    
+    .story-figure.esquerda,
+    .story-figure.direita {
+        float: none;
+        width: 100%;
+        margin: 0 0 1.5rem 0;
+    }
+    
+    .story-figure img {
+        width: 100%;
+        height: auto;
+    }
+}

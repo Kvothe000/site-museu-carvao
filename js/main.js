@@ -1,6 +1,7 @@
 import { initAccessibility } from './modules/a11y.js';
 import { initCarousel } from './modules/carousel.js';
 import { initStoryCarousel } from './modules/story-carousel.js';
+import { initHistoryModal } from './modules/history-modal.js';
 import { translations } from './translations.js';
 
 window.translations = translations;
@@ -224,6 +225,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     initCarousel();
     initStoryCarousel();
+    initHistoryModal();
 
     const internalLinks = document.querySelectorAll('a[href^="#"]:not([href="#"])');
     internalLinks.forEach(link => {

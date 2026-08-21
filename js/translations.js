@@ -423,7 +423,14 @@ export const translations = {
         "pubs_item4_title": "Manual de Conservação Preventiva de Documentos Ferroviários",
         "pubs_item4_author": "Dra. Beatriz Ramos",
         "pubs_item4_desc": "Diretrizes práticas aplicadas no resgate, higienização, desinfecção e acondicionamento de acervos cartográficos e administrativos expostos a intempéries ou desastres climáticos.",
-        "loading_archive_text": "Carregando acervo..."
+        "loading_archive_text": "Carregando acervo...",
+        "hist_btn_view_images": "Ver imagens",
+        "hist_modal_title_mineracao": "Galeria: Início da Mineração",
+        "hist_modal_title_museu-carvao": "Galeria: Museu do Carvão",
+        "hist_modal_title_museu-hoje": "Galeria: O Museu Hoje",
+        "hist_modal_title_arquivo": "Galeria: Arquivo Histórico",
+        "hist_modal_title_enchente-2024": "Galeria: A Enchente de 2024",
+        "hist_modal_title_linha-tempo": "Galeria: Linha do Tempo"
     },
     "en": {
         "meta_title_index": "State Coal Museum - Home",
@@ -854,7 +861,14 @@ export const translations = {
         "pubs_item4_title": "Manual for Preventive Conservation of Railway Documents",
         "pubs_item4_author": "Dr. Beatriz Ramos",
         "pubs_item4_desc": "Practical guidelines applied in the rescue, sanitization, disinfection, and packaging of cartographic and administrative collections exposed to severe weather or climate disasters.",
-        "loading_archive_text": "Loading archive..."
+        "loading_archive_text": "Loading archive...",
+        "hist_btn_view_images": "View images",
+        "hist_modal_title_mineracao": "Gallery: Beginning of Mining",
+        "hist_modal_title_museu-carvao": "Gallery: Coal Museum",
+        "hist_modal_title_museu-hoje": "Gallery: The Museum Today",
+        "hist_modal_title_arquivo": "Gallery: Historical Archive",
+        "hist_modal_title_enchente-2024": "Gallery: The Flood of 2024",
+        "hist_modal_title_linha-tempo": "Gallery: Timeline"
     },
     "es": {
         "meta_title_index": "Museo Estatal del Carbón - Inicio",
@@ -1274,6 +1288,13 @@ export const translations = {
         "pubs_item4_title": "Manual de Conservación Preventiva de Documentos Ferroviarios",
         "pubs_item4_author": "Dra. Beatriz Ramos",
         "pubs_item4_desc": "Directrices prácticas aplicadas en el rescate, higienización, desinfección y acondicionamiento de acervos cartográficos y administrativos expuestos a la intemperie o desastres climáticos.",
-        "loading_archive_text": "Cargando archivo..."
+        "loading_archive_text": "Cargando archivo...",
+        "hist_btn_view_images": "Ver imágenes",
+        "hist_modal_title_mineracao": "Galería: Inicio de la Minería",
+        "hist_modal_title_museu-carvao": "Galería: Museo del Carbón",
+        "hist_modal_title_museu-hoje": "Galería: El Museo Hoy",
+        "hist_modal_title_arquivo": "Galería: Archivo Histórico",
+        "hist_modal_title_enchente-2024": "Galería: La Inundación de 2024",
+        "hist_modal_title_linha-tempo": "Galería: Línea del Tiempo"
     }
 };
